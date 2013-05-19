@@ -1,0 +1,5 @@
+*.xcodeproj/*.pbxuser
+*.xcodeproj/*.perspectivev3
+*.xcodeproj/xcuserdata
+project.pbxproj
+.DS_Store

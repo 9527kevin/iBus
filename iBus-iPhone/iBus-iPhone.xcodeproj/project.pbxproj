@@ -1,0 +1,345 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7740B1CA1748AFC800D98529 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1C91748AFC800D98529 /* UIKit.framework */; };
+		7740B1CC1748AFC800D98529 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1CB1748AFC800D98529 /* Foundation.framework */; };
+		7740B1CE1748AFC800D98529 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1CD1748AFC800D98529 /* CoreGraphics.framework */; };
+		7740B1D41748AFC800D98529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1D21748AFC800D98529 /* InfoPlist.strings */; };
+		7740B1D61748AFC800D98529 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1D51748AFC800D98529 /* main.m */; };
+		7740B1DA1748AFC800D98529 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1D91748AFC800D98529 /* AppDelegate.m */; };
+		7740B1DC1748AFC800D98529 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1DB1748AFC800D98529 /* Default.png */; };
+		7740B1DE1748AFC800D98529 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1DD1748AFC800D98529 /* Default@2x.png */; };
+		7740B1E01748AFC800D98529 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1DF1748AFC800D98529 /* Default-568h@2x.png */; };
+		7740B1EE1748B4DB00D98529 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1ED1748B4DB00D98529 /* BaseController.m */; };
+		7740B1F11748B4F900D98529 /* MenuContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1F01748B4F900D98529 /* MenuContainerController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7740B1C61748AFC800D98529 /* iBus-iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iBus-iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7740B1C91748AFC800D98529 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7740B1CB1748AFC800D98529 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7740B1CD1748AFC800D98529 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7740B1D11748AFC800D98529 /* iBus-iPhone-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iBus-iPhone-Info.plist"; sourceTree = "<group>"; };
+		7740B1D31748AFC800D98529 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7740B1D51748AFC800D98529 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7740B1D71748AFC800D98529 /* iBus-iPhone-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iBus-iPhone-Prefix.pch"; sourceTree = "<group>"; };
+		7740B1D81748AFC800D98529 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7740B1D91748AFC800D98529 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7740B1DB1748AFC800D98529 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7740B1DD1748AFC800D98529 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7740B1DF1748AFC800D98529 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7740B1EC1748B4DB00D98529 /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
+		7740B1ED1748B4DB00D98529 /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
+		7740B1EF1748B4F900D98529 /* MenuContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuContainerController.h; sourceTree = "<group>"; };
+		7740B1F01748B4F900D98529 /* MenuContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuContainerController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7740B1C31748AFC800D98529 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7740B1CA1748AFC800D98529 /* UIKit.framework in Frameworks */,
+				7740B1CC1748AFC800D98529 /* Foundation.framework in Frameworks */,
+				7740B1CE1748AFC800D98529 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7740B1BD1748AFC800D98529 = {
+			isa = PBXGroup;
+			children = (
+				7740B1CF1748AFC800D98529 /* iBus-iPhone */,
+				7740B1C81748AFC800D98529 /* Frameworks */,
+				7740B1C71748AFC800D98529 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7740B1C71748AFC800D98529 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1C61748AFC800D98529 /* iBus-iPhone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7740B1C81748AFC800D98529 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1C91748AFC800D98529 /* UIKit.framework */,
+				7740B1CB1748AFC800D98529 /* Foundation.framework */,
+				7740B1CD1748AFC800D98529 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7740B1CF1748AFC800D98529 /* iBus-iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1E91748B46900D98529 /* Controllers */,
+				7740B1D81748AFC800D98529 /* AppDelegate.h */,
+				7740B1D91748AFC800D98529 /* AppDelegate.m */,
+				7740B1D01748AFC800D98529 /* Supporting Files */,
+			);
+			path = "iBus-iPhone";
+			sourceTree = "<group>";
+		};
+		7740B1D01748AFC800D98529 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1D11748AFC800D98529 /* iBus-iPhone-Info.plist */,
+				7740B1D21748AFC800D98529 /* InfoPlist.strings */,
+				7740B1D51748AFC800D98529 /* main.m */,
+				7740B1D71748AFC800D98529 /* iBus-iPhone-Prefix.pch */,
+				7740B1DB1748AFC800D98529 /* Default.png */,
+				7740B1DD1748AFC800D98529 /* Default@2x.png */,
+				7740B1DF1748AFC800D98529 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7740B1E61748B3F000D98529 /* BusSearch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = BusSearch;
+			sourceTree = "<group>";
+		};
+		7740B1E71748B3FD00D98529 /* MyBusService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MyBusService;
+			sourceTree = "<group>";
+		};
+		7740B1E81748B42C00D98529 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		7740B1E91748B46900D98529 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1EB1748B4B500D98529 /* Common */,
+				7740B1EA1748B49900D98529 /* HomePage */,
+				7740B1E81748B42C00D98529 /* Setting */,
+				7740B1E71748B3FD00D98529 /* MyBusService */,
+				7740B1E61748B3F000D98529 /* BusSearch */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7740B1EA1748B49900D98529 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1EF1748B4F900D98529 /* MenuContainerController.h */,
+				7740B1F01748B4F900D98529 /* MenuContainerController.m */,
+			);
+			name = HomePage;
+			sourceTree = "<group>";
+		};
+		7740B1EB1748B4B500D98529 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1EC1748B4DB00D98529 /* BaseController.h */,
+				7740B1ED1748B4DB00D98529 /* BaseController.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7740B1C51748AFC800D98529 /* iBus-iPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7740B1E31748AFC800D98529 /* Build configuration list for PBXNativeTarget "iBus-iPhone" */;
+			buildPhases = (
+				7740B1C21748AFC800D98529 /* Sources */,
+				7740B1C31748AFC800D98529 /* Frameworks */,
+				7740B1C41748AFC800D98529 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iBus-iPhone";
+			productName = "iBus-iPhone";
+			productReference = 7740B1C61748AFC800D98529 /* iBus-iPhone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7740B1BE1748AFC800D98529 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = yanghua;
+			};
+			buildConfigurationList = 7740B1C11748AFC800D98529 /* Build configuration list for PBXProject "iBus-iPhone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7740B1BD1748AFC800D98529;
+			productRefGroup = 7740B1C71748AFC800D98529 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7740B1C51748AFC800D98529 /* iBus-iPhone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7740B1C41748AFC800D98529 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7740B1D41748AFC800D98529 /* InfoPlist.strings in Resources */,
+				7740B1DC1748AFC800D98529 /* Default.png in Resources */,
+				7740B1DE1748AFC800D98529 /* Default@2x.png in Resources */,
+				7740B1E01748AFC800D98529 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7740B1C21748AFC800D98529 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7740B1D61748AFC800D98529 /* main.m in Sources */,
+				7740B1DA1748AFC800D98529 /* AppDelegate.m in Sources */,
+				7740B1EE1748B4DB00D98529 /* BaseController.m in Sources */,
+				7740B1F11748B4F900D98529 /* MenuContainerController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7740B1D21748AFC800D98529 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7740B1D31748AFC800D98529 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7740B1E11748AFC800D98529 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7740B1E21748AFC800D98529 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7740B1E41748AFC800D98529 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iBus-iPhone/iBus-iPhone-Prefix.pch";
+				INFOPLIST_FILE = "iBus-iPhone/iBus-iPhone-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7740B1E51748AFC800D98529 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iBus-iPhone/iBus-iPhone-Prefix.pch";
+				INFOPLIST_FILE = "iBus-iPhone/iBus-iPhone-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7740B1C11748AFC800D98529 /* Build configuration list for PBXProject "iBus-iPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7740B1E11748AFC800D98529 /* Debug */,
+				7740B1E21748AFC800D98529 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7740B1E31748AFC800D98529 /* Build configuration list for PBXNativeTarget "iBus-iPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7740B1E41748AFC800D98529 /* Debug */,
+				7740B1E51748AFC800D98529 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7740B1BE1748AFC800D98529 /* Project object */;
+}
