@@ -7,21 +7,32 @@
 //
 
 #import "AppDelegate.h"
+#import "MenuContainerController.h"
+
+@interface AppDelegate ()
+
+@property (nonatomic,retain) MenuContainerController *menuContainerCtrller;
+
+@end
 
 @implementation AppDelegate
 
 - (void)dealloc
 {
     [_window release];
+    [_menuContainerCtrller release],_menuContainerCtrller=nil;
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.menuContainerCtrller=[[MenuContainerController alloc] init];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window.rootViewController=self.menuContainerCtrller;
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

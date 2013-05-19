@@ -8,6 +8,9 @@
 
 #import "BaseController.h"
 
+#define BusQueryBtn_Origin_X 10.0f
+#define BusQueryBtn_Origin_Y 30.0f
+
 @interface MenuContainerController : BaseController
 
 @end
