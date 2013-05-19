@@ -38,6 +38,7 @@
 		7740B1ED1748B4DB00D98529 /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 		7740B1EF1748B4F900D98529 /* MenuContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuContainerController.h; sourceTree = "<group>"; };
 		7740B1F01748B4F900D98529 /* MenuContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuContainerController.m; sourceTree = "<group>"; };
+		7740B1F41748BC5C00D98529 /* GlobalDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinition.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 		7740B1CF1748AFC800D98529 /* iBus-iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				7740B1F21748BBE300D98529 /* Utility */,
 				7740B1E91748B46900D98529 /* Controllers */,
 				7740B1D81748AFC800D98529 /* AppDelegate.h */,
 				7740B1D91748AFC800D98529 /* AppDelegate.m */,
@@ -113,11 +115,11 @@
 			name = BusSearch;
 			sourceTree = "<group>";
 		};
-		7740B1E71748B3FD00D98529 /* MyBusService */ = {
+		7740B1E71748B3FD00D98529 /* MyBusZoom */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = MyBusService;
+			name = MyBusZoom;
 			sourceTree = "<group>";
 		};
 		7740B1E81748B42C00D98529 /* Setting */ = {
@@ -133,7 +135,7 @@
 				7740B1EB1748B4B500D98529 /* Common */,
 				7740B1EA1748B49900D98529 /* HomePage */,
 				7740B1E81748B42C00D98529 /* Setting */,
-				7740B1E71748B3FD00D98529 /* MyBusService */,
+				7740B1E71748B3FD00D98529 /* MyBusZoom */,
 				7740B1E61748B3F000D98529 /* BusSearch */,
 			);
 			name = Controllers;
@@ -155,6 +157,14 @@
 				7740B1ED1748B4DB00D98529 /* BaseController.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		7740B1F21748BBE300D98529 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7740B1F41748BC5C00D98529 /* GlobalDefinition.h */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
