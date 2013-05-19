@@ -33,7 +33,7 @@
 }
 
 - (void)loadView{
-    self.view=[UIView alloc] initWithFrame:<#(CGRect)#>
+//    self.view=[UIView alloc] initWithFrame:<#(CGRect)#>
     [self initMenuContainer];
 }
 
@@ -53,7 +53,7 @@
 
 
 - (void)initMenuContainer{
-    UIView *menuContainerView=[[UIView alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)]
+//    UIView *menuContainerView=[[UIView alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)]
 }
 
 #pragma mark - button events -
