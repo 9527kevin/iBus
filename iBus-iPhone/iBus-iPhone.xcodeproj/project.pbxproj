@@ -19,6 +19,7 @@
 		7740B1E01748AFC800D98529 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1DF1748AFC800D98529 /* Default-568h@2x.png */; };
 		7740B1EE1748B4DB00D98529 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1ED1748B4DB00D98529 /* BaseController.m */; };
 		7740B1F11748B4F900D98529 /* MenuContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1F01748B4F900D98529 /* MenuContainerController.m */; };
+		77EABAAB174A3935006C9E03 /* BusQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EABAAA174A3935006C9E03 /* BusQueryController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		7740B1F01748B4F900D98529 /* MenuContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuContainerController.m; sourceTree = "<group>"; };
 		7740B1F41748BC5C00D98529 /* GlobalDefinitionForBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForBusiness.h; sourceTree = "<group>"; };
 		7740B1F51748E4FE00D98529 /* GlobalDefinitionForUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForUI.h; sourceTree = "<group>"; };
+		77EABAA9174A3935006C9E03 /* BusQueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusQueryController.h; sourceTree = "<group>"; };
+		77EABAAA174A3935006C9E03 /* BusQueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusQueryController.m; sourceTree = "<group>"; };
 		7DD7B459E986410FA3291522 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C779380FAA884B0BB973B9B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,6 +121,8 @@
 		7740B1E61748B3F000D98529 /* BusQuery */ = {
 			isa = PBXGroup;
 			children = (
+				77EABAA9174A3935006C9E03 /* BusQueryController.h */,
+				77EABAAA174A3935006C9E03 /* BusQueryController.m */,
 			);
 			name = BusQuery;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				7740B1DA1748AFC800D98529 /* AppDelegate.m in Sources */,
 				7740B1EE1748B4DB00D98529 /* BaseController.m in Sources */,
 				7740B1F11748B4F900D98529 /* MenuContainerController.m in Sources */,
+				77EABAAB174A3935006C9E03 /* BusQueryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "ZUUIRevealController.h"
 #import "MenuContainerController.h"
+#import "BusQueryController.h"
 
 @interface AppDelegate ()
 
-@property (nonatomic,retain) MenuContainerController *menuContainerCtrller;
+@property (nonatomic,retain) ZUUIRevealController *zuuiRevealCtrller;
+
 
 @end
 
@@ -20,17 +23,26 @@
 - (void)dealloc
 {
     [_window release];
-    [_menuContainerCtrller release],_menuContainerCtrller=nil;
+    [_zuuiRevealCtrller release],_zuuiRevealCtrller=nil;
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.menuContainerCtrller=[[MenuContainerController alloc] init];
+    //front controller
+    MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
+    
+//    UINavigationController *menuNavCtrller=[[[UINavigationController alloc] initWithRootViewController:menuContaonerCtrller] autorelease];
+    
+    //rear controller
+    BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
+    UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
+    
+    
+    self.zuuiRevealCtrller=[[ZUUIRevealController alloc] initWithFrontViewController:busQueryNavCtrller rearViewController:menuContaonerCtrller];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.window.rootViewController=self.menuContainerCtrller;
+    self.window.rootViewController=self.zuuiRevealCtrller;
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;

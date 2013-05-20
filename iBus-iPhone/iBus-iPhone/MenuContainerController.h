@@ -8,8 +8,10 @@
 
 #import "BaseController.h"
 
-#define BusQueryBtn_Origin_X 10.0f
-#define BusQueryBtn_Origin_Y 30.0f
+#define Default_MenuItem_View_Width  50.0f
+#define Default_MenuItem_View_Height 50.0f
+#define BusQueryView_Origin_X 0.0f
+#define BusQueryView_Origin_Y 60.0f
 
 @interface MenuContainerController : BaseController
 

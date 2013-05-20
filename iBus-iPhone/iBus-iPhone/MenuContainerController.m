@@ -11,14 +11,22 @@
 @interface MenuContainerController ()
 
 //menu buttons
-@property (nonatomic,retain) UIButton *busQueryBtn;
-@property (nonatomic,retain) UIButton *myBusZoomBtn;
+@property (nonatomic,retain) UIView *busQueryMenuView;
+@property (nonatomic,retain) UIView *myBusZoomView;
+@property (nonatomic,retain) UIView *aboutView;
+@property (nonatomic,retain) UIView *findFriendView;
+@property (nonatomic,retain) UIView *mapShowView;
 
 @end
 
 @implementation MenuContainerController
 
 - (void)dealloc{
+    [_busQueryMenuView release],_busQueryMenuView=nil;
+    [_myBusZoomView release],_myBusZoomView=nil;
+    [_aboutView release],_aboutView=nil;
+    [_findFriendView release],_findFriendView=nil;
+    [_mapShowView release],_mapShowView=nil;
     
     [super dealloc];
 }
@@ -45,19 +53,14 @@
 
 - (void)initMenuContainer{
     UIView *menuContainerView=[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar];
-    menuContainerView.backgroundColor=[UIColor greenColor];
+    menuContainerView.backgroundColor=[UIColor blackColor];
     [self.view addSubview:menuContainerView];
     
-    //buttons
-    _busQueryBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self.busQueryBtn setTitle:@"公交查询" forState:UIControlStateNormal];
-    self.busQueryBtn.frame=CGRectMake(BusQueryBtn_Origin_X,
-                                      BusQueryBtn_Origin_Y,
-                                      MainContainer_MenuItem_Width,
-                                      MainContainer_MenuItem_Height);
-    [self.busQueryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.busQueryBtn.titleLabel setFont:[UIFont systemFontOfSize:MainContainer_MenuItem_Font]];
-    [menuContainerView addSubview:self.busQueryBtn];
+
+    _busQueryMenuView=[UIView alloc] initWithFrame:<#(CGRect)#>
+    
+    
+    [menuContainerView addSubview:self.busQueryMenuView];
     
     _myBusZoomBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self.myBusZoomBtn setTitle:@"我的巴士空间" forState:UIControlStateNormal];
@@ -65,6 +68,8 @@
     
     [self.view addSubview:menuContainerView];
     [menuContainerView release];
+    
+    
 }
 
 #pragma mark - button events -
