@@ -35,6 +35,8 @@
 		77A9A6DE1750ADE700263B54 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6DD1750ADE700263B54 /* IconDownloader.m */; };
 		77A9A6E71750AF6100263B54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1CD1748AFC800D98529 /* CoreGraphics.framework */; };
 		77A9A6E91750AFCF00263B54 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A9A6E81750AFCE00263B54 /* QuartzCore.framework */; };
+		77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */; };
+		77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EE1750C63A00263B54 /* StationListController.m */; };
 		77EABAAB174A3935006C9E03 /* BusQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EABAAA174A3935006C9E03 /* BusQueryController.m */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,10 @@
 		77A9A6DC1750ADE700263B54 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
 		77A9A6DD1750ADE700263B54 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		77A9A6E81750AFCE00263B54 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		77A9A6EA1750C3DE00263B54 /* LineDynamicStateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDynamicStateController.h; sourceTree = "<group>"; };
+		77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDynamicStateController.m; sourceTree = "<group>"; };
+		77A9A6ED1750C63900263B54 /* StationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationListController.h; sourceTree = "<group>"; };
+		77A9A6EE1750C63A00263B54 /* StationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListController.m; sourceTree = "<group>"; };
 		77EABAA9174A3935006C9E03 /* BusQueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusQueryController.h; sourceTree = "<group>"; };
 		77EABAAA174A3935006C9E03 /* BusQueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusQueryController.m; sourceTree = "<group>"; };
 		7DD7B459E986410FA3291522 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -165,6 +171,10 @@
 				77EABAAA174A3935006C9E03 /* BusQueryController.m */,
 				77A9A54417509F0000263B54 /* LineListController.h */,
 				77A9A54517509F0000263B54 /* LineListController.m */,
+				77A9A6EA1750C3DE00263B54 /* LineDynamicStateController.h */,
+				77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */,
+				77A9A6ED1750C63900263B54 /* StationListController.h */,
+				77A9A6EE1750C63A00263B54 /* StationListController.m */,
 			);
 			name = BusQuery;
 			sourceTree = "<group>";
@@ -413,6 +423,8 @@
 				77A9A6C01750A2A300263B54 /* LoadMoreTableFooterView.m in Sources */,
 				77A9A6C41750A2DC00263B54 /* ELTableViewController.m in Sources */,
 				77A9A6DE1750ADE700263B54 /* IconDownloader.m in Sources */,
+				77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */,
+				77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

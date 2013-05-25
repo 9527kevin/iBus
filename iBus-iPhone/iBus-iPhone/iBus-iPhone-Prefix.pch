@@ -13,4 +13,6 @@
     #import <Foundation/Foundation.h>
     #import "GlobalDefinitionForBusiness.h"
     #import "GlobalDefinitionForUI.h"
+    #import "ASIHTTPRequest.h"
+    #import "ASIFormDataRequest.h"
 #endif
