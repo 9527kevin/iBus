@@ -16,7 +16,7 @@
 
 - (void)loadView{
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
-    self.view.backgroundColor=[UIColor redColor];
+    self.view.backgroundColor=[UIColor whiteColor];
 }
 
 - (void)viewDidLoad
@@ -40,7 +40,7 @@
                                                                                                             action:@selector(revealGesture:)];
 		[self.navigationController.navigationBar addGestureRecognizer:navigationBarPanGestureRecognizer];
 		
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单"
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"导航菜单"
                                                                                  style:UIBarButtonItemStylePlain
                                                                                 target:self.navigationController.parentViewController
                                                                                 action:@selector(revealToggle:)];

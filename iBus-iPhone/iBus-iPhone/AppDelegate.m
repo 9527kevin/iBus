@@ -31,19 +31,18 @@
 {
     //front controller
     MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
-    
-//    UINavigationController *menuNavCtrller=[[[UINavigationController alloc] initWithRootViewController:menuContaonerCtrller] autorelease];
-    
+        
     //rear controller
     BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
     UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
-    
     
     self.zuuiRevealCtrller=[[ZUUIRevealController alloc] initWithFrontViewController:busQueryNavCtrller rearViewController:menuContaonerCtrller];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController=self.zuuiRevealCtrller;
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
+    
+    [self configDefaultUIAppearance];
     
     return YES;
 }
@@ -73,6 +72,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)configDefaultUIAppearance{
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor redColor]];
+    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor darkGrayColor], UITextAttributeTextColor, [UIColor whiteColor], UITextAttributeTextShadowColor, nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
+    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
+//    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBackgroundColor:[UIColor lightGrayColor]];
 }
 
 @end

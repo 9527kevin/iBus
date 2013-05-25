@@ -144,6 +144,8 @@
 		7740B1E91748B46900D98529 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				77A9A54317508E6100263B54 /* MapShow */,
+				77A9A54217508E5200263B54 /* FindFriends */,
 				7740B1EB1748B4B500D98529 /* Common */,
 				7740B1EA1748B49900D98529 /* HomePage */,
 				7740B1E81748B42C00D98529 /* Setting */,
@@ -178,6 +180,20 @@
 				7740B1F51748E4FE00D98529 /* GlobalDefinitionForUI.h */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		77A9A54217508E5200263B54 /* FindFriends */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FindFriends;
+			sourceTree = "<group>";
+		};
+		77A9A54317508E6100263B54 /* MapShow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MapShow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
