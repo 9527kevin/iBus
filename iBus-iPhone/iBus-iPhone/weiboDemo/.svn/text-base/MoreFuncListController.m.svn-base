@@ -1,0 +1,29 @@
+//
+//  MoreFuncListController.m
+//  weiboDemo
+//
+//  Created by yanghua on 3/26/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "MoreFuncListController.h"
+
+@interface MoreFuncListController ()
+
+@end
+
+@implementation MoreFuncListController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end

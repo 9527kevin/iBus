@@ -1,0 +1,94 @@
+//
+//  GlobalURLDefinition.h
+//  weiboDemo
+//
+//  Created by yanghua on 3/25/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+//for test
+#define Default_UserId              @"10013"
+#define Default_TestUserId          @"10002"
+
+#define Url_Base                    @"http://172.16.206.16:8080/microblog"
+
+#define Url_FollowedUserList        @"%@/user/%@/myfollow.json"
+
+#define Url_FansUserList            @"%@/user/%@/followers.json"
+
+/**
+ *type:post 
+ *parm:followingIds
+ */
+#define Url_Follow                  @"%@/user/%@/follow.json"
+#define Url_Follow_Param_followingIds @"followingIds"
+
+/**
+ *type:post 
+ *parm:unFollowUserIds
+ */
+#define Url_Unfollow                @"%@/user/%@/unfollow.json"
+#define Url_Unfollow_Param_unFollowUserIds @"followingIds"
+
+
+#define Url_FindFriend              @"%@/user/%@/searchUsers.json?userIdOrUserName=%@"
+
+#define Url_Group                   @"%@/user/%@/groups.json"
+
+#define Url_FollowedList_By_GroupId @"%@/user/%@/myfollow.json?groupId=%@"
+
+#define Url_UserDetail              @"%@/user/%@/detail.json"
+
+#define Url_Relationship            @"%@/user/%@/relationship.json?followingId=%@"
+
+#define Url_UploadImage             @"%@/user/%@/uploadImg.do"
+
+/**
+  *type:post
+  *parm:type,groupId
+  */
+#define Url_GetWeiboList            @"%@/user/%@/feeds/fullmessagelist.json"
+
+#define Url_GetCommentList          @"%@/user/%@/feeds/comments.json?msgId=%@"
+
+/**
+  *type:post
+  *parm:content  /  type
+  */
+#define Url_CreateWeibo             @"%@/user/%@/feeds/media/create.json"
+
+#define Url_CreateWeiboJustText  @"%@/user/%@/feeds/text/create.json"
+
+/**
+  *type:post
+  *parm:content  /  forwardedMsgId
+  */
+#define Url_Republish               @"%@/user/%@/feeds/forward.json"
+
+/**
+  *type:post
+  *param:content /  commentedMsgId
+  */
+#define Url_Comment                 @"%@/user/%@/feeds/comment.json"
+
+#define Url_CommentListByMsgId      @"%@/user/%@/feeds/comments.json?msgId=%@"
+
+#define Url_RepublishListByMsgId    @"%@/user/%@/feeds/reforwards.json?msgId=%@"
+
+#define Url_RAndCCountPerMsg        @"%@/user/%@/feeds/counts.json?msgId=%@"
+
+/**
+  *type:post
+  *param:userId, 
+  *      content,
+  *      replyCommentId,
+  *      replyCommentCreatorId,
+  *      commentedMsgId
+  */
+#define Url_ReplyComment            @"%@/user/%@/feeds/comment/reply.json"
+
+#define Url_GetFansAndFollowedCnt   @"%@/user/%@/dynamic"
+
+
+//status code
+#define Status_Success 100000

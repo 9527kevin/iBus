@@ -1,0 +1,58 @@
+//
+//  FindFriendCell.m
+//  weiboDemo
+//
+//  Created by yanghua on 4/1/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "FindFriendCell.h"
+
+@interface FindFriendCell ()
+
+@property (nonatomic, retain) UIImageView* findFriendIconImgView;
+@property (nonatomic, retain) UILabel* findFriendLbl;
+
+@end
+
+@implementation FindFriendCell
+
+- (void)dealloc{
+    [super dealloc];
+    
+    [_findFriendIconImgView release],_findFriendIconImgView=nil;
+    [_findFriendLbl release],_findFriendLbl=nil;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        //head image
+        _findFriendIconImgView=[[UIImageView alloc] init];
+        _findFriendIconImgView.frame=FindFriendImgView_Frame;
+        _findFriendIconImgView.image=[UIImage imageNamed:@"iconPlaceHolder.png"];
+        [self addSubview:_findFriendIconImgView];
+        
+        //nick name
+        _findFriendLbl=[[UILabel alloc] initWithFrame:CGRectZero];
+        _findFriendLbl.font=[UIFont systemFontOfSize:FindFriendLbl_FontSize];
+        _findFriendLbl.text=@"找朋友";
+        _findFriendLbl.frame=FindFriendLbl_Frame;
+        [self addSubview:_findFriendLbl];
+    }
+    return self;
+}
+
+
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

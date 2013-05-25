@@ -1,0 +1,49 @@
+//
+//  DetailHeadCell.h
+//  weiboDemo
+//
+//  Created by yanghua on 3/29/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "BaseCell.h"
+
+#define HeadImgView_Frame CGRectMake(10,10,50.0f,50.0f)
+#define HeadImgView_Size CGSizeMake(50.0f,50.0f)
+
+#define Sex_Icon_Width 15.0f
+#define Sex_Icon_Height 13.0f
+
+#define NickLbl_Frame CGRectMake(65,10,100.0f,20.0f)
+#define NickLbl_Font_Size 15.0f
+
+#define Relationship_Frame CGRectMake(200,50,80,25)
+#define Relationship_Placeholder_Str @"加关注"
+#define Relationship_FontSize 15.0f
+
+#define DescLbl_Frame CGRectMake(0,75,MainWidth,20.0f)
+#define DescLbl_Font_Size 13.0f
+
+@protocol DetailHeadCellDelegate;
+
+@interface DetailHeadCell : BaseCell
+<
+ASIHTTPRequestDelegate
+>
+
+
+@property (nonatomic,assign) id<DetailHeadCellDelegate> delegate;
+
+- (id)initWithStyle:(UITableViewCellStyle)style
+    reuseIdentifier:(NSString *)reuseIdentifier
+             userId:(NSString*)userId;
+
+@end
+
+
+//@protocol DetailHeadCellDelegate <NSObject>
+//
+//@required
+//- (void)relationshipButton_touchedCallback:(id)sender;
+//
+//@end

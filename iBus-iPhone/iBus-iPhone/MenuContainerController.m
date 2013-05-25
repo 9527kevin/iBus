@@ -34,13 +34,14 @@
 - (void)loadView{
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
     [self initMenuContainer];
-    [self registerTapEventsForMenuItems];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+	[self registerTapEventsForMenuItems];
 }
 
 - (void)didReceiveMemoryWarning

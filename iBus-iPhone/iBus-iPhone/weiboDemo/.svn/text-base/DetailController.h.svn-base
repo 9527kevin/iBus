@@ -1,0 +1,30 @@
+//
+//  DetailController.h
+//  weiboDemo
+//
+//  Created by yanghua on 3/29/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "BaseController.h"
+
+#define Relationship_Frame CGRectMake(180,50,80,30)
+#define Relationship_Placeholder_Str @"加关注"
+#define Relationship_FontSize 17.0f
+
+//request type enum
+typedef enum {
+    relationshipInfo,
+    RelationshipChangeAction,
+    detailInfo,
+    weiboList
+}RequestEnum;
+
+@interface DetailController : BaseController
+<
+ASIHTTPRequestDelegate
+>
+
+- (id)initWithUserId:(NSString*)userId;
+
+@end

@@ -1,0 +1,15 @@
+//
+//  BaseCtrller.h
+//  weiboDemo
+//
+//  Created by yanghua on 3/22/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface BaseController : UIViewController
+
+- (void)layoutSubViews;
+
+@end

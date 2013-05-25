@@ -1,0 +1,184 @@
+//
+//  FindFriendController.m
+//  weiboDemo
+//
+//  Created by yanghua on 4/1/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "FindFriendController.h"
+#import "RelationshipCell.h"
+#import "UserDetailController.h"
+
+#define cellIdentifierForRelation @"cellIdentifierForRelation"
+
+@interface FindFriendController ()
+
+@end
+
+@implementation FindFriendController
+
+- (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
+          andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView{
+    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
+- (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
+          andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
+                     andTableViewFrame:(CGRect)frame{
+    
+    self=[self initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
+    
+    if (self) {
+        self.tableViewFrame=frame;
+    }
+    
+    return self;
+}
+
+- (void)loadView{
+    [self layoutSubViews];
+    
+    [super loadView];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	
+    [self initBlocks];
+    self.tableView.hidden=YES;
+    
+    
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - override methods -
+- (void)layoutSubViews{
+    [super layoutSubViews];
+    
+    self.view=[[[UIView alloc] initWithFrame:Default_TableView_Frame] autorelease];
+    self.view.backgroundColor=[UIColor whiteColor];
+    
+    UISearchBar *searchBar=[[[UISearchBar alloc] initWithFrame:Default_SearchBar_Frame] autorelease];
+    searchBar.delegate=self;
+    searchBar.placeholder=@"输入想查找的用户名";
+    
+    [self.view addSubview:searchBar];
+}
+
+- (void)initBlocks{
+    [super initBlocks];
+    
+    self.cellForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        NSDictionary *currentUserInfo=self.dataSource[indexPath.row];
+        UIImage *currentHeadImg=(UIImage*)self.imageDownloadedInstances[indexPath];
+        
+        
+        RelationshipCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierForRelation];
+        if (cell==nil) {
+            cell=[[[RelationshipCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierForRelation] autorelease];
+        }
+        
+        cell.nickName=currentUserInfo[@"userName"];
+        
+        if(!currentHeadImg){
+            cell.headImgView.image=[UIImage imageNamed:@"iconPlaceHolder.png"];
+            if (self.tableView.dragging==NO&&self.tableView.decelerating==NO) {
+                [self startIconDownload:currentUserInfo[@"imgUrl"] forIndexPath:indexPath withSize:Middle_HeadImg_Size];
+            }
+        }else{
+            cell.headImgView.image=currentHeadImg;
+        }
+        
+        return cell;
+    };
+    
+    self.heightForRowAtIndexPathDelegate=^(UITableView *tableView,NSIndexPath *indexPath){
+        return Default_TableViewCell_Height;
+    };
+    
+    self.didSelectRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        NSDictionary *currentUserInfo=self.dataSource[indexPath.row];
+        
+        NSLog(@"%@",currentUserInfo[@"userId"]);
+        
+        UserDetailController *userDetailCtrller=[[[UserDetailController alloc] initWithRefreshHeaderViewEnabled:NO andLoadMoreFooterViewEnabled:NO
+                                                                                              andTableViewFrame:Default_TableView_Frame userId:currentUserInfo[@"userId"]] autorelease];
+        
+        [self.navigationController pushViewController:userDetailCtrller
+                                             animated:YES];
+    };
+    
+    self.loadImagesForVisiableRowsFunc=^(){
+        if ([self.dataSource count]>0) {
+            //取得当前tableview中的可见cell集合
+            NSArray *visiblePaths=[self.tableView indexPathsForVisibleRows];
+            for (NSIndexPath *indexPath in visiblePaths) {
+                
+                UIImage *tmpImg=(UIImage*)self.imageDownloadedInstances[indexPath];
+                
+                NSDictionary *userInfo=[self.dataSource objectAtIndex:indexPath.row];
+                
+                if (!tmpImg) {
+                    [self startIconDownload:userInfo[@"imgUrl"] forIndexPath:indexPath withSize:Middle_HeadImg_Size];
+                }
+            }
+        }
+    };
+    
+    self.appImageDownloadCompleted=^(NSIndexPath *indexPath){
+        RelationshipCell *cell=(RelationshipCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        IconDownloader *iconDownloader=nil;
+        iconDownloader=[self.imageDownloadsInProgress objectForKey:indexPath];
+        if (iconDownloader) {
+            [self.imageDownloadedInstances setObject:iconDownloader.appIcon forKey:indexPath];
+            cell.headImgView.image=iconDownloader.appIcon;
+        }
+    };
+}
+
+#pragma mark - private methods -
+- (void)sendSearchRequest:(NSString*)searchKey{
+    NSURL *requestURL=[NSURL URLWithString:[NSString stringWithFormat:Url_FindFriend,Url_Base,Default_UserId,searchKey]];
+    ASIHTTPRequest *searchRequest=[ASIHTTPRequest requestWithURL:requestURL];
+    searchRequest.delegate=self;
+    
+    [searchRequest startAsynchronous];
+    
+    self.imageDownloadedInstances=[NSMutableDictionary dictionary];
+    self.imageDownloadsInProgress=[NSMutableDictionary dictionary];
+}
+
+#pragma mark - ASIHTTPRequest delegate -
+- (void)request:(ASIHTTPRequest *)request
+ didReceiveData:(NSData *)data{
+    NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:data
+                                                              options:NSJSONReadingMutableContainers error:nil];
+    
+    if ([responseDic[@"statusCode"] intValue]==Status_Success) {
+        self.dataSource=responseDic[@"data"];
+        self.tableView.hidden=NO;
+        [self.tableView reloadData];
+    }else{
+        NSLog(@"fail");
+        NSLog(@"%d",[responseDic[@"statusCode"] intValue]);
+    }
+}
+
+#pragma mark - UISearchBar delegate -
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self sendSearchRequest:searchBar.text];
+}
+
+@end

@@ -1,0 +1,138 @@
+//
+//  UserDetailController.m
+//  weiboDemo
+//
+//  Created by yanghua on 4/7/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "UserDetailController.h"
+#import "DetailHeadCell.h"
+
+static NSString *cellIdentifier4UserDetail  =@"cellIdentifier4UserDetail";
+static NSString *cellIdentifier4Weibo       =@"cellIdentifier4Weibo";
+
+@interface UserDetailController ()
+
+@end
+
+@implementation UserDetailController
+
+- (void)dealloc{
+    [super dealloc];
+    
+    [_userId release],_userId=nil;
+}
+
+- (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
+          andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
+                     andTableViewFrame:(CGRect)frame{
+    self=[self initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
+    
+    if (self) {
+        self.tableViewFrame=frame;
+    }
+    
+    return self;
+}
+
+- (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
+          andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
+                     andTableViewFrame:(CGRect)frame
+                                userId:(NSString*)userId{
+    self=[self initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView andTableViewFrame:frame];
+    
+    if (self) {
+        _userId=[userId retain];
+    }
+    
+    return self;
+}
+
+- (void)loadView{
+    [self layoutSubViews];
+    
+    [super loadView];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	[self initBlocks];
+    [self.tableView reloadData];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UI -
+- (void)layoutSubViews{
+    [super layoutSubViews];
+    
+    self.view=[[[UIView alloc] initWithFrame:Default_TableView_Frame] autorelease];
+    self.view.backgroundColor=[UIColor whiteColor];
+}
+
+- (UITableViewCell*)initTableViewCell4UserDetail:(UITableView *)tableView
+                                    forIndexPath:(NSIndexPath*)indexPath{
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier4UserDetail];
+    if (!cell) {
+        cell=[[DetailHeadCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                   reuseIdentifier:cellIdentifier4UserDetail
+                                            userId:self.userId];
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell*)initTableViewCell4Weibo:(UITableView *)tableView
+                               forIndexPath:(NSIndexPath*)indexPath{
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier4Weibo];
+    if (!cell) {
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                    reuseIdentifier:cellIdentifier4Weibo];
+    }
+    
+    return cell;
+}
+
+#pragma mark - override methods -
+- (void)initBlocks{
+    [super initBlocks];
+    
+    self.numberOfRowsInSectionDelegate=^(UITableView *tableView, NSInteger section){
+        //add one for user detail info
+        return (NSInteger)(self.dataSource.count+1);
+    };
+    
+    self.heightForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        if (indexPath.row!=0) {
+            return 40.0f;
+        }else{
+            return 100.0f;
+        }
+    };
+    
+    self.cellForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        UITableViewCell *cell;
+        if (indexPath.row==0) {                                 //user detail cell
+            cell=[self initTableViewCell4UserDetail:tableView
+                                       forIndexPath:indexPath];
+        }else{                                                  //weibo cell
+            cell=[self initTableViewCell4Weibo:tableView
+                                  forIndexPath:indexPath];
+        }
+        
+        return cell;
+    };
+    
+    
+    
+    
+    
+}
+
+@end

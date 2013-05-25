@@ -1,0 +1,17 @@
+//
+//  FollowerCtrller.h
+//  weiboDemo
+//
+//  Created by yanghua on 3/22/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "RelationshipController.h"
+
+@interface FollowerController : RelationshipController
+<
+ASIHTTPRequestDelegate
+>
+
+@end

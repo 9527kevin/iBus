@@ -1,0 +1,154 @@
+//
+//  FollowedCtrller.m
+//  weiboDemo
+//
+//  Created by yanghua on 3/22/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "FollowedController.h"
+#import "RelationshipCell.h"
+
+@interface FollowedController ()
+
+@end
+
+@implementation FollowedController
+
+- (void)dealloc{
+    [Default_Notification_Center removeObserver:self
+                                           name:Notification_For_ChangedGroup
+                                         object:nil];
+    
+    [super dealloc];
+}
+
+- (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
+          andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
+                     andTableViewFrame:(CGRect)frame
+                              loadType:(Enum_LoadType)loadType{
+    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView andTableViewFrame:frame];
+    
+    if (self) {
+        self.tableViewFrame=frame;
+        _loadType=loadType;
+    }
+    
+    return self;
+}
+
+- (void)loadView{
+    [self layoutSubViews];
+    
+    [super loadView];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self sendRequest4FollowedWithUserId:Default_UserId];
+    [self registerNotification];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - override methods -
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (self.loadType) {
+        case normal_load:
+            [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+            break;
+            
+        case publish_load:
+        {
+            NSString *currentIndexStr=[self.allIndexCharacter objectAtIndex:indexPath.section];
+            NSArray *currentSectionDataSource=[self.userGroupedDictionary objectForKey:currentIndexStr];
+            NSDictionary *currentUserInfo=currentSectionDataSource[indexPath.row];
+            
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                //when selected a followed, post a notification to notification center
+                [Default_Notification_Center postNotificationName:Notification_For_AtSomebody
+                                                           object:currentUserInfo
+                                                         userInfo:nil];
+            }];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - private methods
+- (void)sendRequest4FollowedWithUserId:(NSString *)userId{
+    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_FollowedUserList,Url_Base,userId]];
+    
+    ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
+    request.delegate=self;
+    [request startAsynchronous];
+    
+    self.imageDownloadsInProgress=[NSMutableDictionary dictionary];
+    self.imageDownloadedInstances=[NSMutableDictionary dictionary];
+}
+
+- (void)sendRequest4FollowedWithGroupId:(NSString *)groupId{
+    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_FollowedList_By_GroupId,Url_Base,Default_UserId,groupId]];
+    
+    ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
+    
+    [request setCompletionBlock:^{
+        NSData *responseData = [request responseData];
+        
+        NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
+                                                                  options:NSJSONReadingMutableContainers error:nil];
+        
+        //success
+        if ([responseDic[@"statusCode"] intValue]==Status_Success) {
+            self.dataSource=responseDic[@"data"];
+            
+            [self handleDataSourceAndGenerateGroupedUserSet];       //generate index
+            self.tableView.hidden=NO;
+            [self.tableView reloadData];
+            
+        }
+    }];
+    
+    [request startAsynchronous];
+    
+    self.imageDownloadsInProgress=[NSMutableDictionary dictionary];
+    self.imageDownloadedInstances=[NSMutableDictionary dictionary];
+}
+
+- (void)registerNotification{
+    [Default_Notification_Center addObserver:self
+                                    selector:@selector(handleNotification:)
+                                        name:Notification_For_ChangedGroup
+                                      object:nil];
+}
+
+- (void)handleNotification:(NSNotification*)notification{
+    NSMutableDictionary *notificationObj=(NSMutableDictionary*)[notification object];
+    FollowedLoadtypeEnum loadType=(FollowedLoadtypeEnum)[notificationObj[@"type"] intValue];
+    NSString *theId=notificationObj[@"id"];
+    switch (loadType) {
+        case loadByUser:
+            [self sendRequest4FollowedWithUserId:theId];
+            break;
+            
+        case loadByGroup:
+            [self sendRequest4FollowedWithGroupId:theId];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+
+
+@end

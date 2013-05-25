@@ -1,0 +1,78 @@
+//
+//  TestController.m
+//  weiboDemo
+//
+//  Created by yanghua on 4/2/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "TestController.h"
+
+@interface TestController ()
+
+@end
+
+@implementation TestController
+
+- (void)loadView{
+    [self layoutSubViews];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)layoutSubViews{
+    [super layoutSubViews];
+    
+    self.view=[[[UIView alloc] initWithFrame:CGRectMake(ZERO_Original_X, ZERO_Original_Y, MainWidth, MainHeight)] autorelease];
+    self.view.backgroundColor=[UIColor whiteColor];
+    
+    CATextLayer *textLayer=[CATextLayer layer];
+    textLayer.frame=CGRectMake(0, 0, MainWidth, 300);
+    textLayer.string=[self getAttributedString];
+    textLayer.wrapped=YES;
+    textLayer.font =@"Helvetica-Bold";
+    textLayer.fontSize=100;
+    [self.view.layer addSublayer:textLayer];
+}
+
+- (NSAttributedString*)getAttributedString{
+    NSString *testString=@"你好123 @ab123 abc @12_abc @123_abc a @abc_123 @ab1231111111111 abc @12_abcadfasdfasdfsad 123 @123_abcasdfasdfwerq @abc1111111 @111111111_123asdfa ";
+    NSArray *array=[TwitterText mentionsOrListsInText:testString];
+    NSMutableAttributedString *result=[[NSMutableAttributedString alloc] initWithString:testString];
+    
+    //把this的字体颜色变为黄色
+    for (TwitterTextEntity *entity in array) {
+        [result addAttribute:(NSString *)kCTForegroundColorAttributeName
+                       value:(id)[UIColor greenColor].CGColor
+                       range:entity.range];
+        
+        CTTextAlignment coreTextAlign = kCTLeftTextAlignment;
+        CTLineBreakMode coreTextLBMode = kCTLineBreakByCharWrapping;
+        CTParagraphStyleSetting paraStyles[2] =
+        {
+            {.spec = kCTParagraphStyleSpecifierAlignment, .valueSize = sizeof(CTTextAlignment), .value = (const void*)&coreTextAlign},
+            {.spec = kCTParagraphStyleSpecifierLineBreakMode, .valueSize = sizeof(CTLineBreakMode), .value = (const void*)&coreTextLBMode},
+        };
+        CTParagraphStyleRef aStyle = CTParagraphStyleCreate(paraStyles, 2);
+        [result removeAttribute:(NSString*)kCTParagraphStyleAttributeName range:entity.range];
+        [result addAttribute:(NSString*)kCTParagraphStyleAttributeName value:(id)aStyle range:entity.range];
+        CFRelease(aStyle);
+    }
+    
+    
+    
+    return result;
+    
+}
+
+@end

@@ -1,0 +1,25 @@
+//
+//  BaseCell.h
+//  weiboDemo
+//
+//  Created by yanghua on 3/25/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface BaseCell : UITableViewCell
+<
+IconDownloaderDelegate
+>
+
+@property (nonatomic,retain) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic,copy) appImageDownloadCompleted appImageDownloadCompleted;
+
+- (void)startIconDownload:(NSString*)headurl
+             forIndexPath:(NSIndexPath *)indexPath
+                 withSize:(CGSize)imgSize;
+
+- (void)resizeSubviews;
+
+@end

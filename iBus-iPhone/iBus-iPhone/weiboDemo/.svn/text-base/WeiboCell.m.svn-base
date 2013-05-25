@@ -1,0 +1,223 @@
+//
+//  WeiboCell.m
+//  FastEasyBlog
+//
+//  Created by yanghua_kobe on 9/12/12.
+//  Copyright (c) 2012 yanghua_kobe. All rights reserved.
+//
+
+#import "WeiboCell.h"
+
+Class object_getClass(id object);
+
+@interface WeiboCell ()
+
+@property (nonatomic,retain) UILabel *txtWeiboLabel;
+@property (nonatomic,retain) UILabel *txtSourceWeiboLabel;
+@property (nonatomic,retain) UIView *sourceView;
+
+@property (nonatomic,retain) NSDictionary *sourceWeiboInfo;
+
+@end
+
+@implementation WeiboCell
+
+-(void)dealloc{
+    [_txtWeiboLabel release],_txtWeiboLabel=nil;
+    [_txtSourceWeiboLabel release],_txtSourceWeiboLabel=nil;
+    [_sourceView release],_sourceView=nil;
+    [_weiboImgView release],_weiboImgView=nil;
+    [_sourceImgView release],_sourceImgView=nil;
+    
+    [_sourceWeiboInfo release],_sourceWeiboInfo=nil;
+    [super dealloc];
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style
+    reuseIdentifier:(NSString *)reuseIdentifier
+          weiboInfo:(NSDictionary *)weiboInfo
+{
+    self=[super initWithStyle:style
+              reuseIdentifier:reuseIdentifier
+                    weiboInfo:weiboInfo];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
+- (void)setContentForViews{
+    [super setContentForViews];
+    
+    if (self.weiboInfo[@"originalMessage"]==[NSNull null]) {
+        _isRepublish=NO;
+    }
+    else{
+        _isRepublish=YES;
+        _sourceWeiboInfo=self.weiboInfo[@"originalMessage"];
+    }
+    
+    if (self.isRepublish) {
+        self.hasSourceWeiboImg=(self.sourceWeiboInfo[@"imgUrl"]!=[NSNull null]);
+    }else{
+        self.hasWeiboImg=(self.weiboInfo[@"imgUrl"]!=[NSNull null]);
+    }
+    
+    UIView *_contentView=(UIView*)[self viewWithTag:7000];
+    
+    _txtWeiboLabel=[[UILabel alloc]initWithFrame:CGRectZero];
+    [_txtWeiboLabel setMinimumFontSize:15];
+    [_txtWeiboLabel setNumberOfLines:0];
+    [_txtWeiboLabel setLineBreakMode:UILineBreakModeWordWrap];
+    [_txtWeiboLabel setFont:Weibo_Content_Font];
+    [_txtWeiboLabel setText:self.weiboInfo[@"content"]];
+    [_contentView addSubview:_txtWeiboLabel];
+    
+    //微博图片
+    if (self.hasWeiboImg) {
+        UIImageView *tmpWeiboImgView=[[UIImageView alloc]initWithFrame:CGRectZero];
+        tmpWeiboImgView.userInteractionEnabled=YES;
+        [tmpWeiboImgView addGestureRecognizer:[[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(weiboImgClick:)]autorelease]];
+        self.weiboImgView=tmpWeiboImgView;
+        [tmpWeiboImgView release];
+        [_contentView addSubview:self.weiboImgView];
+    }
+    
+    
+    if (self.isRepublish) {
+        //原始微博
+        _sourceView=[[UIView alloc]initWithFrame:CGRectZero];
+        _sourceView.backgroundColor=SourceView_BackgroundColor;
+        [_contentView addSubview:_sourceView];
+        
+        _txtSourceWeiboLabel=[[UILabel alloc]initWithFrame:CGRectZero];
+        _txtSourceWeiboLabel.backgroundColor=SourceView_BackgroundColor;
+        [_txtSourceWeiboLabel setMinimumFontSize:14];
+        [_txtSourceWeiboLabel setNumberOfLines:0];
+        [_txtSourceWeiboLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [_txtSourceWeiboLabel setFont:SourceWeibo_Content_Font];
+        
+        NSString *sourceWeiboContent =[GlobalInstance shortCutWeiboContentWith:self.sourceWeiboInfo[@"content"] andLimit:Source_Weibo_CharactorLimit];
+        NSString *showingText=[NSString stringWithFormat:
+                               @"%@: %@",
+                               self.sourceWeiboInfo[@"creator"][@"userName"],
+                               sourceWeiboContent];
+        
+        [_txtSourceWeiboLabel setText:showingText];
+        [_sourceView addSubview:_txtSourceWeiboLabel];
+        
+        //原始图片
+        if (self.hasSourceWeiboImg) {
+            UIImageView *tmpSourceWeiboImgView=[[UIImageView alloc]initWithFrame:CGRectZero];
+            tmpSourceWeiboImgView.userInteractionEnabled=YES;
+            [tmpSourceWeiboImgView addGestureRecognizer:[[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(sourceWeiboImgClick:)]autorelease]];
+            self.sourceImgView=tmpSourceWeiboImgView;
+            [_sourceView addSubview:self.sourceImgView];
+            [tmpSourceWeiboImgView release];
+        }
+    }
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.weiboImgView.image = nil;
+    self.sourceImgView.image=nil;
+    self.txtWeiboLabel.text=nil;
+    self.txtSourceWeiboLabel.text=nil;
+}
+
+#pragma mark -override setter-
+/*
+ *重置视图的边框/区域
+ */
+- (void)resizeViewFrames{
+    [super resizeViewFrames];
+    
+    [self setContentForViews];
+    
+	//內容高度
+    CGFloat txtHeight=[GlobalInstance getHeightWithFontText:self.txtWeiboLabel.text
+                                                       font:Weibo_Content_Font
+                                                 constraint:DEFAULT_CONSTRAINT_SIZE
+                                                  minHeight:MIN_CONTENT_HEIGHT];
+    
+    CGFloat txtSourceHeight=0;
+    if (self.isRepublish) {
+        txtSourceHeight=[GlobalInstance getHeightWithFontText:self.txtSourceWeiboLabel.text
+                                                         font:SourceWeibo_Content_Font
+                                                   constraint:DEFAULT_CONSTRAINT_SIZE
+                                                    minHeight:MIN_CONTENT_HEIGHT];
+        
+        
+        if (self.hasSourceWeiboImg) {
+            [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight+txtSourceHeight+WEIBO_IMAGE_HEIGHT+CELL_CONTENT_SOURCE_MARGIN*2)];
+            //设置内容的frame
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+            [self.sourceView setFrame:CGRectMake(0, txtHeight+CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2+WEIBO_IMAGE_HEIGHT)];
+            //设置原文的frame
+            [self.txtSourceWeiboLabel setFrame:CGRectMake(CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_SOURCE_MARGIN, self.sourceView.frame.size.width-CELL_CONTENT_SOURCE_MARGIN*2, txtSourceHeight)];
+            //设置图片区域的frame
+            self.sourceImgView.frame=CGRectMake(0, txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN,WEIBO_IMAGE_HEIGHT, WEIBO_IMAGE_HEIGHT);
+        }else {									//无图片
+            [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight+txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2)];
+            //设置内容的frame
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+            [self.sourceView setFrame:CGRectMake(0, txtHeight+CELL_CONTENT_SOURCE_MARGIN, contentView.frame.size.width, txtSourceHeight+CELL_CONTENT_SOURCE_MARGIN*2)];
+            //设置原文的frame
+            [self.txtSourceWeiboLabel setFrame:CGRectMake(CELL_CONTENT_SOURCE_MARGIN, CELL_CONTENT_SOURCE_MARGIN, self.sourceView.frame.size.width-CELL_CONTENT_SOURCE_MARGIN*2, txtSourceHeight)];
+        }
+        
+    }else {										//原创微博，只需判斷原圍脖圖片
+        if (self.hasWeiboImg) {
+            [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight+WEIBO_IMAGE_HEIGHT+IMAGE_MARGIN)];
+            //设置内容的frame
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+            self.weiboImgView.frame=CGRectMake(0, txtHeight+IMAGE_MARGIN, WEIBO_IMAGE_HEIGHT, WEIBO_IMAGE_HEIGHT);
+        }else{
+            [contentView setFrame:CGRectMake(50+CELL_CONTENT_MARGIN, 50+CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH-(CELL_CONTENT_MARGIN*2), txtHeight)];
+            //设置内容的frame
+            [self.txtWeiboLabel setFrame:CGRectMake(0, 0, contentView.frame.size.width, txtHeight)];
+        }
+    }
+    
+    //设置底部区域
+    [footerView setFrame:CGRectMake(0, CELL_CONTENT_MARGIN+50.0f+contentView.frame.size.height+5.0f, self.frame.size.width, TABLE_FOOTER_HEIGHT)];
+}
+
+#pragma mark -override setter-
+- (void)setShowWeiboImgDelegate:(id<WeiboImageDelegate>)showWeiboImgDelegate_{
+    if (_showWeiboImgDelegate!=showWeiboImgDelegate_) {
+        _showWeiboImgDelegate=showWeiboImgDelegate_;
+        _originalShowImgClass=object_getClass(showWeiboImgDelegate_);
+    }
+}
+
+/*
+ *显示大图的点击事件(微博)
+ */
+- (void)weiboImgClick:(id)sender{
+    Class currentDelegate=object_getClass(self.showWeiboImgDelegate);
+    if (currentDelegate==_originalShowImgClass) {
+        if ([self.showWeiboImgDelegate respondsToSelector:@selector(showWeiboImage:)]) {
+            UITapGestureRecognizer *recognizer=(UITapGestureRecognizer*)sender;
+            [self.showWeiboImgDelegate showWeiboImage:recognizer.view];
+        }
+    }
+}
+
+/*
+ *显示大图的点击事件(原微博)
+ */
+- (void)sourceWeiboImgClick:(id)sender{
+    Class currentDelegate=object_getClass(self.showWeiboImgDelegate);
+    if (currentDelegate==_originalShowImgClass) {
+        if ([self.showWeiboImgDelegate respondsToSelector:@selector(showSourceWeiboImage:)]) {
+            UITapGestureRecognizer *recognizer=(UITapGestureRecognizer*)sender;
+            [self.showWeiboImgDelegate showSourceWeiboImage:recognizer.view];
+        }
+    }
+}
+
+@end

@@ -1,0 +1,131 @@
+//
+//  GlobalConstDefinition.h
+//  weiboDemo
+//
+//  Created by yanghua on 3/24/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#define ScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
+#define StateBarHeight 20
+#define MainHeight (ScreenHeight - StateBarHeight)
+#define MainWidth ScreenWidth
+#define ZERO_Original_X 0
+#define ZERO_Original_Y 0
+#define TabBarHeight 49
+#define NavigationBarHeight 44
+
+#define isIPhone5 \
+([UIScreen instancesRespondToSelector:@selector(currentMode)] ? \
+    CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : \
+    NO)
+
+#define ColorWithRGBA(r,g,b,a) \
+[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a] 
+
+#define fileExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x]
+#define removerAtItem(x) [[NSFileManager defaultManager] removeItemAtPath:x error:nil]
+#define appDelegateObj [[UIApplication sharedApplication] delegate]
+
+//默认TabBar背景色为黑色
+//#define defalutTabBarBGColor ColorWithRGBA(0,0,0,1)
+
+//默认导航条背景色为天蓝色
+//#define defaultNavigationBGColor ColorWithRGBA(30,144,255,1)
+
+#define defaultNavigationBGColor ColorWithRGBA(75,204,41,1)
+
+//默认tableview cell 的高度
+#define Default_TableViewCell_Height 40.0f
+
+//默认tableview frame
+#define Default_TableView_Frame CGRectMake(ZERO_Original_X,ZERO_Original_Y,\
+MainWidth,MainHeight-NavigationBarHeight-TabBarHeight)
+
+#define TableView_Frame_WithTabBarHeight CGRectMake(ZERO_Original_X,ZERO_Original_Y,\
+MainWidth,MainHeight-NavigationBarHeight)
+
+
+//默认头像大小
+#define Default_HeadImg_Size CGSizeMake(30.0f, 30.0f)
+
+#define Middle_HeadImg_Size CGSizeMake(50.0f, 50.0f)
+
+//默认搜索框尺寸
+#define Default_SearchBar_Frame CGRectMake(ZERO_Original_X,ZERO_Original_Y,MainWidth,40)
+
+//默认原创微博字符数限制
+#define Source_Weibo_CharactorLimit 70
+
+//默认微博字体
+#define Weibo_Content_Font [UIFont systemFontOfSize:15.0f]
+
+//默认源微博字体
+#define SourceWeibo_Content_Font [UIFont systemFontOfSize:14.0f]
+
+#define Default_Weibo_ImageFileName @"tmpWeiboImage.jpg"
+#define Default_Weibo_ImagePath \
+[NSTemporaryDirectory() stringByAppendingPathComponent:Default_Weibo_ImageFileName]
+
+/*****************************regular expressions**************************/
+#define ALABEL_EXPRESSION @"(<[aA].*?>.+?</[aA]>)"
+#define HREF_PROPERTY_IN_ALABEL_EXPRESSION @"(href\\s*=\\s*(?:\"([^\"]*)\"|\'([^\']*)\'|([^\"\'>\\s]+)))"
+#define URL_EXPRESSION @"([hH][tT][tT][pP][sS]?:\\/\\/[^ ,'\">\\]\\)]*[^\\. ,'\">\\]\\)])"
+#define AT_IN_WEIBO_EXPRESSION @"(@([\u4e00-\u9fa5a-zA-Z0-9_-]*))"
+#define TOPIC_IN_WEIBO_EXPRESSION @"(#[^#]+#)"
+
+/**********************************Business Const******************************/
+typedef enum{
+    unFollowed,
+    followed,
+    fans,
+    friends
+}RelationshipEnum;
+
+typedef enum {
+    follow,         //if has not followed, the show screen is "add follow"
+    unFollow,       //if has followed, the show screen is "followed"
+    other           //if followed each other
+}RelationshipActionEnum;
+
+typedef enum {
+    unFollowCode        =1,
+    followedCode        =2,
+    followedEachother   =3
+}RelationshipCode;
+
+typedef enum {
+    originalType            =0,
+    republishType           =1,
+    commentType             =2
+}FeedTypeEnum;
+
+typedef enum{
+    republish,
+    comment,
+    reply
+}OperateTypeEnum;
+
+typedef enum{
+    dataType_comment,
+    dataType_rePublish
+}DataTypeEnum;
+
+typedef enum {
+    loadByGroup,
+    loadByUser
+}FollowedLoadtypeEnum;
+
+/*********************************Notification Const***************************/
+#define Default_Notification_Center         [NSNotificationCenter defaultCenter]
+
+#define Notification_For_Followed           @"Notification_For_Followed"
+
+#define Notification_For_UnFollowed         @"Notification_For_UnFollowed"
+
+#define Notification_For_ChangedGroup       @"Notification_For_ChangedGroup"
+
+#define Notification_For_AtSomebody         @"Notification_For_AtSomebody"
+
+#define Notification_For_RAndCCompleted     @"Notification_For_RAndCCompleted"

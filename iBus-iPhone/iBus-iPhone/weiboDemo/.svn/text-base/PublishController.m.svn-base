@@ -1,0 +1,107 @@
+//
+//  PublishController.m
+//  weiboDemo
+//
+//  Created by yanghua on 4/9/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "PublishController.h"
+#import "PhotoPickerController.h"
+#import "PublishOperation.h"
+
+@interface PublishController ()
+
+@property (nonatomic,retain) PhotoPickerController *photoPicker;
+
+@end
+
+@implementation PublishController
+
+- (void)dealloc{
+    [_photoPicker release],_photoPicker=nil;
+    [super dealloc];
+}
+
+- (void)loadView{
+    [self layoutSubViews];
+}
+
+- (void)viewDidLoad
+{
+	super.delegate=self;
+    [super viewDidLoad];
+    self.navigationItem.title=@"发表微博";
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - PublishBaseControllerDelegate -
+- (void)photoBtn_handle:(id)sender{
+    if (!_photoPicker) {
+        _photoPicker = [[PhotoPickerController alloc] initWithDelegate:self];
+    }
+    [self.photoPicker showWithPhotoLibrary];
+}
+
+- (void)cameraBtn_handle:(id)sender{
+	if (!_photoPicker) {
+        _photoPicker = [[PhotoPickerController alloc] initWithDelegate:self];
+    }
+    [self.photoPicker showWithCamera];
+}
+
+- (void)lbsPositionBtn_handle:(id)sender{
+//	[self.navigationController pushViewController:[[[MapKitDragAndDropViewController alloc]initWithNibName:@"MapKitDragAndDropViewController" bundle:nil]autorelease] animated:YES];
+}
+
+- (void)atBtn_handle:(id)sender{
+	FollowedController *followedListCtrller=[[[FollowedController alloc] initWithRefreshHeaderViewEnabled:NO andLoadMoreFooterViewEnabled:NO
+            andTableViewFrame:TableView_Frame_WithTabBarHeight loadType:publish_load] autorelease];
+    
+    //register a notification to notification center
+    [self registerAtNotification];
+    
+    UINavigationController *followedListNavCtrller=[[[UINavigationController alloc] initWithRootViewController:followedListCtrller] autorelease];
+    
+    [self presentModalViewController:followedListNavCtrller
+                            animated:YES];
+}
+
+- (void)topicBtn_handle:(id)sender{
+	self.publishTxtView.text=[NSString stringWithFormat:@"%@ ## ",self.publishTxtView.text];
+    NSRange selectedLoc=NSMakeRange([self.publishTxtView.text length]-2, 0);
+    self.publishTxtView.selectedRange=selectedLoc;
+}
+
+
+- (void)publishBtn_handle:(id)sender{
+    NSString *txt=self.publishTxtView.text;
+    PublishOperation *publishOperation=[[PublishOperation alloc] initWithOperateParams:txt
+                                                                                andType:originalType];
+    [((AppDelegate*)appDelegateObj).operationQueue addOperation:publishOperation];
+    [publishOperation release];
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - notification -
+- (void)registerAtNotification{
+    [Default_Notification_Center addObserver:self selector:@selector(handleAtNotification:) name:Notification_For_AtSomebody object:nil];
+}
+
+- (void)handleAtNotification:(NSNotification*)notification{
+    NSDictionary *followedInfo=(NSDictionary*)[notification object];
+    [self.followedList addObject:followed];
+    self.publishTxtView.text=[NSString stringWithFormat:@"%@ @%@ ",self.publishTxtView.text,followedInfo[@"userName"]];
+}
+
+@end

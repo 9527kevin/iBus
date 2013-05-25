@@ -1,0 +1,30 @@
+//
+//  BaseWeiboDetailController.h
+//  weiboDemo
+//
+//  Created by yanghua on 4/16/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "BaseController.h"
+
+@protocol PlatformDetailControllerDelegate;
+
+@interface BaseWeiboDetailController : BaseController
+
+@property (nonatomic,retain) MBProgressHUD *hud;
+@property (nonatomic,assign) id<PlatformDetailControllerDelegate> delegate;
+@property (nonatomic,retain) UIToolbar *toolbar;
+
+@end
+
+@protocol PlatformDetailControllerDelegate <NSObject>
+
+@optional
+
+//实现评论／转发／分享／转发 逻辑
+- (void)operate:(OperateTypeEnum)_operateType;
+
+- (void)moreToolBar_TouchUpInside:(id)sender;
+
+@end

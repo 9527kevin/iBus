@@ -1,0 +1,110 @@
+//
+//  PublishOperation.m
+//  FastEasyBlog
+//
+//  Created by yanghua_kobe on 11/16/12.
+//  Copyright (c) 2012 yanghua_kobe. All rights reserved.
+//
+
+#import "PublishOperation.h"
+
+@implementation PublishOperation
+
+
+- (void)dealloc{
+    [_txt release],_txt=nil;
+    
+    [super dealloc];
+}
+
+- (id)init{
+    if (self=[super init]) {
+        _completed=NO;
+        _canceledAfterError=NO;
+        [self initMTStatusBarOverlay];
+    }
+    
+    return self;
+}
+
+- (id)initWithOperateParams:(NSString*)content
+                    andType:(FeedTypeEnum)contentType{
+    if (self=[self init]) {
+        _txt=[content retain];
+        _contentType=contentType;
+    }
+    
+    return self;
+}
+
+/*
+ *实例化工具栏提示组件
+ */
+-(void)initMTStatusBarOverlay{
+    _overlay = [MTStatusBarOverlay sharedInstance];
+    _overlay.animation = MTStatusBarOverlayAnimationFallDown;  
+    _overlay.detailViewMode = MTDetailViewModeHistory;         
+    _overlay.delegate=self;
+}
+
+- (void)main{
+    [self.overlay postImmediateMessage:@"微博发表中..." animated:YES];
+    
+    BOOL hasImg=[self hasImage];
+    NSURL *requestUrl=nil;
+    ASIFormDataRequest *postRequest=nil;
+    
+    if (hasImg) {
+        requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_CreateWeibo,Url_Base,Default_UserId]];
+        postRequest=[ASIFormDataRequest requestWithURL:requestUrl];
+        [postRequest setFile:Default_Weibo_ImagePath forKey:@"file"];
+    }else{
+        requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_CreateWeiboJustText,Url_Base,Default_UserId]];
+        postRequest=[ASIFormDataRequest requestWithURL:requestUrl];
+    }
+    
+    [postRequest setPostValue:self.txt forKey:@"content"];
+    [postRequest setPostValue:@"0" forKey:@"type"];
+    
+    [postRequest setStringEncoding:NSUTF8StringEncoding];
+    
+    [postRequest startSynchronous];
+    
+    NSData *responseData=[postRequest responseData];
+    NSLog(@"%@",[[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
+    NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
+                                                              options:NSJSONReadingAllowFragments error:nil];
+    
+    if ([responseDic[@"statusCode"] intValue]==Status_Success) {
+        [self clearPublishedImage];
+        
+        [GlobalInstance showOverlayMsg:@"微博发表成功!"
+                           andDuration:2.0
+                            andOverlay:self.overlay];
+        [NSThread sleepForTimeInterval:5];
+        
+        
+    }
+    
+    
+    
+}
+
+
+#pragma mark - other methods -
+- (BOOL)hasImage{
+    if (fileExistsAtPath(Default_Weibo_ImagePath)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)clearPublishedImage{
+    if (fileExistsAtPath(Default_Weibo_ImagePath)) {
+        removerAtItem(Default_Weibo_ImagePath);
+    }
+}
+
+
+@end

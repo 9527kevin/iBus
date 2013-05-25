@@ -1,0 +1,475 @@
+//
+//  WeiboDetailController.m
+//  weiboDemo
+//
+//  Created by yanghua on 3/26/13.
+//  Copyright (c) 2013 yanghua. All rights reserved.
+//
+
+#import "WeiboDetailController.h"
+#import "ICUTemplateMatcher.h"
+#import "WeiboRAndCController.h"
+
+#define WEIBO_IMAGE_BIG 460
+
+#define TEMPLATE_PATH [[NSBundle mainBundle] pathForResource:@"weiboDetail" ofType:@"html"]
+
+@interface WeiboDetailController ()
+
+@property (nonatomic,retain) MGTemplateEngine *engine;
+@property (nonatomic,retain) NSDictionary *weiboInfo;
+@property (nonatomic,retain) NSString *htmlStr;
+
+@property (nonatomic,assign) loadType loadtypeForRePublish;
+@property (nonatomic,assign) loadType loadtypeForComment;
+@property (nonatomic,assign) DataTypeEnum currentDataType;      //comment / republish
+@property (nonatomic,retain) NSArray *weiboDataArr;
+
+@property (nonatomic,retain) NSDictionary *currentSelectedItem;
+
+
+@end
+
+@implementation WeiboDetailController
+
+- (void)dealloc{
+    [_engine release],_engine=nil;
+    _engine.delegate=nil;
+    
+    _webView.delegate=nil;
+    [_webView release],_webView=nil;
+    
+    [_weiboInfo release],_weiboInfo=nil;
+    [_htmlStr release],_htmlStr=nil;
+    [_weiboDataArr release],_weiboDataArr=nil;
+    
+    [_currentSelectedItem release],_currentSelectedItem=nil;
+    
+    [Default_Notification_Center removeObserver:self
+                                           name:Notification_For_RAndCCompleted
+                                         object:nil];
+    
+    [super dealloc];
+}
+
+- (id)initWithWeiboInfo:(NSDictionary*)weiboDetail
+{
+    self = [super init];
+    if (self) {
+        
+        _weiboInfo=[weiboDetail retain];
+        
+        self.hidesBottomBarWhenPushed=YES;
+        
+        // Set up template engine with your chosen matcher.
+        _engine = [[MGTemplateEngine templateEngine] retain];
+        [self.engine setDelegate:self];
+        [self.engine setMatcher:[ICUTemplateMatcher matcherWithTemplateEngine:self.engine]];
+        
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, MainWidth, MainHeight-TabBarHeight)];
+        self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [GlobalInstance clearWebViewBackground:self.webView];
+        self.webView.delegate = self;
+        
+        self.loadtypeForRePublish=firstLoad;
+		self.loadtypeForComment=firstLoad;
+		
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    super.delegate=self;
+    [self.view addSubview:super.toolbar];
+    [self.view addSubview:self.webView];
+    
+    self.navigationItem.title=[NSString stringWithFormat:@"%@的微博",self.weiboInfo[@"creator"][@"userName"]];
+    
+    [self initWeiboTmplate];
+    
+	
+    [GlobalInstance showHUD:@"微博详情加载中,请稍后..."
+                    andView:self.view
+                     andHUD:self.hud];
+	self.htmlStr = [self.engine processTemplateInFileAtPath:TEMPLATE_PATH
+                                              withVariables:nil];
+    [self.webView loadHTMLString:self.htmlStr
+                         baseURL:[[NSBundle mainBundle]bundleURL]];
+    [self registerNotification];
+}
+
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    self.webView=nil;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    [self.webView stopLoading];
+}
+
+- (void)initWeiboTmplate{
+    //weibo
+    [self.engine setObject:self.weiboInfo[@"creator"][@"imgUrl"] forKey:@"weibo_headImgUrl"];
+    [self.engine setObject:self.weiboInfo[@"creator"][@"userName"] forKey:@"weibo_userName"];
+    
+    NSString *weiboContent=@"";
+    if (self.weiboInfo[@"content"]!=[NSNull null] &&
+        ![self.weiboInfo[@"content"] isEqualToString:@""]) {
+        weiboContent=self.weiboInfo[@"content"];
+    }
+    [self.engine setObject:[weiboContent handleForShowing] forKey:@"weibo_text"];
+    
+    if (self.weiboInfo[@"imgUrl"]!=[NSNull null] && ![self.weiboInfo[@"imgUrl"] isEqualToString:@""]) {
+        [self.engine setObject:[NSNumber numberWithBool:YES] forKey:@"hasWeiboImg"];
+        [self.engine setObject:self.weiboInfo[@"imgUrl"] forKey:@"weibo_imgUrl"];
+        NSLog(@"weiboImgUrl:%@",self.weiboInfo[@"imgUrl"]);
+    }else {
+        [self.engine setObject:[NSNumber numberWithBool:NO] forKey:@"hasWeiboImg"];
+    }
+    
+    [self.engine setObject:@"Wisedu" forKey:@"weibo_comeFrom"];
+    [self.engine setObject:[GlobalInstance resolveWeiboDate:[self.weiboInfo[@"createTime"] doubleValue]]
+                    forKey:@"weibo_pubDate"];
+    
+    //source weibo
+    if (self.weiboInfo[@"originalMessage"]!=[NSNull null]) {
+        [self.engine setObject:[NSNumber numberWithBool:YES] forKey:@"hasSource"];
+        
+        NSDictionary *sourceWeiboInfo=self.weiboInfo[@"originalMessage"];
+        
+        [self.engine setObject:sourceWeiboInfo[@"creator"][@"imgUrl"] forKey:@"source_headImgUrl"];
+        [self.engine setObject:sourceWeiboInfo[@"creator"][@"userName"] forKey:@"source_userName"];
+        
+        NSString *sourceWeiboContent=@"";
+        if (sourceWeiboInfo[@"content"]!=[NSNull null]  && ![sourceWeiboInfo[@"content"] isEqualToString:@""] ) {
+            sourceWeiboContent=sourceWeiboInfo[@"content"];
+        }
+        [self.engine setObject:[sourceWeiboContent handleForShowing] forKey:@"source_text"];
+        
+        if (sourceWeiboInfo[@"imgUrl"]!=[NSNull null] && ![sourceWeiboInfo[@"imgUrl"] isEqualToString:@""]) {
+            [self.engine setObject:[NSNumber numberWithBool:YES] forKey:@"hasSourceImg"];
+            NSLog(@"sourceImgUrl:%@",sourceWeiboInfo[@"imgUrl"]);
+            [self.engine setObject:sourceWeiboInfo[@"imgUrl"] forKey:@"source_imgUrl"];
+        }else {
+            [self.engine setObject:[NSNumber numberWithBool:NO] forKey:@"hasSourceImg"];
+        }
+        
+        [self.engine setObject:@"Wisedu" forKey:@"source_comeFrom"];
+        
+        [self.engine setObject:[GlobalInstance resolveWeiboDate:[sourceWeiboInfo[@"createTime"] doubleValue]] forKey:@"source_pubDate"];
+    }else {
+        [self.engine setObject:[NSNumber numberWithBool:NO] forKey:@"hasSource"];
+    }
+    
+    //others
+    [self.engine setObject:[NSString stringWithFormat:@"%d",[self.weiboInfo[@"reforwardCount"] intValue]]
+                    forKey:@"republishNum"];
+    [self.engine setObject:[NSString stringWithFormat:@"%d",[self.weiboInfo[@"commentCount"] intValue]]
+                    forKey:@"commentNum"];
+    [self.engine setObject:[[NSBundle mainBundle] URLForResource:@"rePublishGuide" withExtension:@"png"]
+                    forKey:@"default_guide_imgUrl"];
+    
+    [self.engine setObject:[[NSBundle mainBundle] URLForResource:@"commentGuide" withExtension:@"png"]
+                    forKey:@"comment_guide_imgUrl"];
+}
+
+#pragma mark - UIWebView Delegate -
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [GlobalInstance hideHUD:self.hud];
+}
+
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    switch (navigationType) {
+        case UIWebViewNavigationTypeLinkClicked:
+        {
+            TSMiniWebBrowser *webBrowser = [[[TSMiniWebBrowser alloc] initWithUrl:[request URL]]autorelease];
+            webBrowser.delegate = self;
+            webBrowser.mode = TSMiniWebBrowserModeNavigation;
+            webBrowser.barStyle = UIBarStyleBlack;
+            
+            if (webBrowser.mode == TSMiniWebBrowserModeModal) {
+                webBrowser.modalDismissButtonTitle = @"Home";
+                [self presentModalViewController:webBrowser animated:YES];
+            } else if(webBrowser.mode == TSMiniWebBrowserModeNavigation) {
+                [self.navigationController pushViewController:webBrowser
+                                                     animated:YES];
+            }
+        }
+            return NO;
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSString *requestString = [[request URL] absoluteString];
+    NSArray *components = [requestString componentsSeparatedByString:@":"];
+    if ([components count] > 1 && [(NSString *)[components objectAtIndex:0] isEqualToString:[@"FEB" lowercaseString]]) {
+        NSString *cmdName=(NSString *)[components objectAtIndex:1];
+        if([cmdName isEqualToString:@"loadRepublishList"]) {
+            NSString *loadTypeStr=(NSString*)[components objectAtIndex:2];
+            self.loadtypeForRePublish=[loadTypeStr isEqualToString:@"0"]?firstLoad:loadMore;
+            [self sendRequest4Republish];
+        }else if([cmdName isEqualToString:@"loadCommentList"]){
+            NSString *loadTypeStr=(NSString*)[components objectAtIndex:2];
+            self.loadtypeForComment=[loadTypeStr isEqualToString:@"0"]?firstLoad:loadMore;
+            [self sendRequest4Comment];
+        }else if([cmdName startsWith:@"popActiveSheet"]){
+            int itemIndex=[(NSString*)[components objectAtIndex:2] intValue];
+            self.currentSelectedItem=[self.weiboDataArr objectAtIndex:itemIndex];
+            
+            //NSString *name=[self.currentSelectedItem objectForKey:@"name"];
+            UIActionSheet *actionSheet=nil;
+            NSString *operationName=@"";
+            if ([cmdName isEqualToString:@"popActiveSheet_republish"]) {
+                operationName=@"转发";
+            }else {
+                operationName=@"回复";
+            }
+            
+            actionSheet=[[UIActionSheet alloc]initWithTitle:@""
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                     destructiveButtonTitle:operationName
+                                          otherButtonTitles:nil];
+            
+			
+			[actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+			[actionSheet release];
+		}
+    }
+    
+    return YES;
+}
+
+#pragma mark - WeiboDetailForRAndCDelegate -
+- (void)operate:(OperateTypeEnum)_operateType{
+    [self presentWeiboRAndCController:_operateType];
+}
+
+- (void)presentWeiboRAndCController:(OperateTypeEnum)_operateType{
+    //传递参数
+	NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+    WeiboRAndCController *RandCCtrller;
+    
+    switch (_operateType) {
+        case republish:
+            [params setObject:[NSString stringWithFormat:@"转发%@的微博",self.weiboInfo[@"creator"][@"userName"]] forKey:@"showTitle"];
+            [params setObject:self.weiboInfo[@"msgId"] forKey:@"theSubjectId"];
+            [params setObject:[NSString stringWithFormat:@"// @%@ :%@",self.weiboInfo[@"creator"][@"userName"],self.weiboInfo[@"content"]] forKey:@"sourceContent"];
+            break;
+            
+        case comment:
+            [params setObject:[NSString stringWithFormat:@"评论给%@",self.weiboInfo[@"creator"][@"userName"]] forKey:@"showTitle"];
+            [params setObject:self.weiboInfo[@"msgId"] forKey:@"theSubjectId"];
+            [params setObject:@"0" forKey:@"commentType"];
+            [params setObject:@"" forKey:@"sourceContent"];
+            break;
+            
+        case reply:
+            break;
+            
+        default:
+            break;
+    }
+	
+    RandCCtrller=[[WeiboRAndCController alloc] initWithOperateType:_operateType comeInParam:params];
+    RandCCtrller.delegate=self;
+	[params release];
+    
+    UINavigationController *randcNavCtrller=[[UINavigationController alloc]initWithRootViewController:RandCCtrller];
+    [RandCCtrller release];
+    randcNavCtrller.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
+	
+	//弹出模式视图
+    [self presentModalViewController:randcNavCtrller animated:YES];
+    [randcNavCtrller release];
+}
+
+#pragma mark - comment and republish
+- (void)sendRequest4Comment{
+    self.currentDataType=dataType_comment;
+    
+    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_CommentListByMsgId,Url_Base,Default_UserId,self.weiboInfo[@"msgId"]]];
+    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
+    
+    [request setCompletionBlock:^{
+        NSString *scriptFuncStrFormat=@"FEB.loadCommentList(%@);";
+        NSData *responseData=[request responseData];
+        NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
+                                                                  options:NSJSONReadingMutableContainers error:nil];
+        
+        if ([responseDic[@"statusCode"] intValue]==Status_Success) {
+            self.weiboDataArr=responseDic[@"data"];
+            [self callWebViewJavaScriptForRAndCList:scriptFuncStrFormat];
+        }
+
+    }];
+    [request startAsynchronous];
+}
+
+- (void)sendRequest4Republish{
+    self.currentDataType=dataType_rePublish;
+    
+    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_RepublishListByMsgId,Url_Base,Default_UserId,self.weiboInfo[@"msgId"]]];
+    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
+    [request setCompletionBlock:^{
+        NSString *scriptFuncStrFormat=@"FEB.loadRepublishList(%@);";
+        NSData *responseData=[request responseData];
+        NSLog(@"%@",[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+        NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
+                                                                  options:NSJSONReadingAllowFragments error:nil];
+        
+        if ([responseDic[@"statusCode"] intValue]==Status_Success) {
+            self.weiboDataArr=responseDic[@"data"];
+            [self callWebViewJavaScriptForRAndCList:scriptFuncStrFormat];
+        }
+
+    }];
+    [request startAsynchronous];
+}
+
+#pragma mark - notification -
+- (void)registerNotification{
+    [Default_Notification_Center addObserver:self
+                                    selector:@selector(handleRAndCNotification:) name:Notification_For_RAndCCompleted object:nil];
+}
+
+- (void)handleRAndCNotification:(NSNotification*)notification{
+    OperateTypeEnum operateType=(OperateTypeEnum)[[notification object] intValue];
+    //refresh republish and comment num
+    [self loadRepublishAndCommentNum];
+    //reload list
+    switch (operateType) {
+        case comment:
+            [self sendRequest4Comment];
+            break;
+            
+        case republish:
+            [self sendRequest4Republish];
+            break;
+            
+        case reply:
+            [self sendRequest4Comment];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)callWebViewJavaScriptForRAndCList:(NSString*)scriptFuncStrFormat{
+    NSMutableDictionary *list=nil;
+    
+    if (self.weiboDataArr) {
+        list=[[[NSMutableDictionary alloc] initWithObjectsAndKeys:self.weiboDataArr,@"dataList", nil]autorelease];
+    }else {
+        list=[[[NSMutableDictionary alloc]initWithObjectsAndKeys:[[[NSArray alloc] init]autorelease],@"dataList", nil]autorelease];
+    }
+
+    NSError *error;
+    NSData *listData=[NSJSONSerialization dataWithJSONObject:list options:0 error:&error];
+    if (!listData) {
+        NSLog(@"Could not write JSON data: %@", error);
+    }else {
+        NSString *listString = [[[NSString alloc] initWithData:listData encoding:NSUTF8StringEncoding]autorelease];
+        NSString *script = [NSString stringWithFormat:scriptFuncStrFormat, listString];
+        NSLog(@"%@",script);
+        [self.webView stringByEvaluatingJavaScriptFromString:script];
+        //refresh republish and comment num
+        [self loadRepublishAndCommentNum];
+    }
+}
+
+
+- (void)loadRepublishAndCommentNum{
+    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_RAndCCountPerMsg,
+                                                                    Url_Base,
+                                                                    Default_UserId,
+                                                                    self.weiboInfo[@"msgId"]]];
+    
+    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
+    [request setCompletionBlock:^{
+        
+        NSData *responseData=[request responseData];
+        NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
+                                                                  options:NSJSONReadingMutableContainers error:nil];
+        
+        if ([responseDic[@"statusCode"] intValue]==Status_Success) {
+            NSString *rNum=[responseDic[@"data"][@"reforwardedCount"] stringValue];
+            NSString *cNum=[responseDic[@"data"][@"commentedCount"] stringValue];
+            NSString *randcNumscript = [NSString stringWithFormat:@"FEB.reloadRAndCNum('%@','%@');", rNum,cNum];
+            NSLog(@"%@---------------",randcNumscript);
+            [self.webView stringByEvaluatingJavaScriptFromString:randcNumscript];
+            
+        }
+        
+    }];
+    [request startAsynchronous];
+}
+
+#pragma mark - UIActionSheet Delegate -
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:                 //operate
+            [self handleRAndCActionSheet];
+            break;
+            
+        case 1:                 //cancel
+            break;
+    }
+}
+
+- (void)handleRAndCActionSheet{
+    //传递参数
+	NSMutableDictionary *commentParams=[[NSMutableDictionary alloc]init];
+    WeiboRAndCController *RandCCtrller;
+    OperateTypeEnum _operateType;
+    
+    switch (self.currentDataType) {
+        case dataType_rePublish:
+            _operateType=republish;
+            [commentParams setObject:[NSString stringWithFormat:@"转发%@的微博",self.currentSelectedItem[@"creator"][@"userName"]] forKey:@"showTitle"];
+            [commentParams setObject:self.currentSelectedItem[@"msgId"] forKey:@"theSubjectId"];
+            [commentParams setObject:[NSString stringWithFormat:@"// @%@ :%@",self.currentSelectedItem[@"creator"][@"userId"],self.currentSelectedItem[@"content"]] forKey:@"sourceContent"];
+            break;
+            
+        case dataType_comment:
+            _operateType=reply;
+            [commentParams setObject:[NSString stringWithFormat:@"评论给%@",self.currentSelectedItem[@"commentCreator"][@"userName"]] forKey:@"showTitle"];
+            [commentParams setObject:self.currentSelectedItem[@"commentId"] forKey:@"theSubjectId"];
+            [commentParams setObject:@"0" forKey:@"commentType"];
+            [commentParams setObject:@"" forKey:@"sourceContent"];
+            //for reply:微博的id
+            [commentParams setObject:self.weiboInfo[@"msgId"] forKey:@"theSourceId"];
+            [commentParams setObject:self.currentSelectedItem[@"creatorId"] forKey:@"commentCreatorId"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+	
+    RandCCtrller=[[WeiboRAndCController alloc] initWithOperateType:_operateType
+                                                       comeInParam:commentParams];
+    RandCCtrller.delegate=self;
+	[commentParams release];
+    
+    UINavigationController *randcNavCtrller=[[UINavigationController alloc]initWithRootViewController:RandCCtrller];
+    [RandCCtrller release];
+    randcNavCtrller.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
+	
+	//弹出模式视图
+    [self presentModalViewController:randcNavCtrller animated:YES];
+    [randcNavCtrller release];
+}
+
+
+@end
