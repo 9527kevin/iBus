@@ -50,11 +50,11 @@
 
 #pragma mark - private methods -
 - (void)sendRequest4StationList{
-    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DetailOfLine,self.lineId,@"1"]];
-    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
-    [request setCompletionBlock:^{
-        
-    }];
+//    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DetailOfLine,self.lineId,@"1"]];
+//    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
+//    [request setCompletionBlock:^{
+//        
+//    }];
     
 }
 

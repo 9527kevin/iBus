@@ -1,4 +1,4 @@
 platform:ios
 pod 'ASIHTTPRequest'
 pod 'ZUUIRevealController'
-pod 'RevealController'
+pod 'FMDB'

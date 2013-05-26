@@ -15,7 +15,8 @@
 @implementation LineDynamicStateController
 
 - (void)loadView{
-    
+    self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
+    self.view.backgroundColor=[UIColor whiteColor];
 }
 
 - (void)viewDidLoad
@@ -29,5 +30,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - private methods -
+
 
 @end

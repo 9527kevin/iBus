@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32D5BB778C5B43F0B93FBB59 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C779380FAA884B0BB973B9B8 /* libPods.a */; };
+		7715B5501751FD82002B4487 /* LineDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B54F1751FD82002B4487 /* LineDao.m */; };
 		7740B1CA1748AFC800D98529 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1C91748AFC800D98529 /* UIKit.framework */; };
 		7740B1CC1748AFC800D98529 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1CB1748AFC800D98529 /* Foundation.framework */; };
 		7740B1D41748AFC800D98529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1D21748AFC800D98529 /* InfoPlist.strings */; };
@@ -41,6 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7715B54E1751FD82002B4487 /* LineDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDao.h; sourceTree = "<group>"; };
+		7715B54F1751FD82002B4487 /* LineDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDao.m; sourceTree = "<group>"; };
+		7715B5511752004F002B4487 /* CREATE_SQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREATE_SQL.h; sourceTree = "<group>"; };
 		7740B1C61748AFC800D98529 /* iBus-iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iBus-iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7740B1C91748AFC800D98529 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7740B1CB1748AFC800D98529 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,6 +111,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7715B54A1751FBF7002B4487 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				7715B54E1751FD82002B4487 /* LineDao.h */,
+				7715B54F1751FD82002B4487 /* LineDao.m */,
+				7715B5511752004F002B4487 /* CREATE_SQL.h */,
+			);
+			name = Dao;
+			sourceTree = "<group>";
+		};
 		7740B1BD1748AFC800D98529 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +154,7 @@
 		7740B1CF1748AFC800D98529 /* iBus-iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				7715B54A1751FBF7002B4487 /* Dao */,
 				77A9A6C51750AC1000263B54 /* Resources */,
 				7740B1F21748BBE300D98529 /* Utility */,
 				7740B1E91748B46900D98529 /* Controllers */,
@@ -425,6 +440,7 @@
 				77A9A6DE1750ADE700263B54 /* IconDownloader.m in Sources */,
 				77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */,
 				77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */,
+				7715B5501751FD82002B4487 /* LineDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,24 +49,24 @@
 
 #pragma mark - private methods -
 - (void)sendRequest4LineList{
-    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:Url_BusLineList];
-    
-    [request setCompletionBlock:^{
-        NSData *responseData = [request responseData];
-        
-        NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
-                                                                  options:NSJSONReadingAllowFragments
-                                                                    error:nil];
-        
-        //success
-        if ([responseDic[@"statusCode"] isEqualToString:@"OK"]) {
-            self.dataSource=responseDic[@"data"];
-            
-            self.tableView.hidden=NO;
-            [self.tableView reloadData];
-            
-        }
-    }];
+//    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:Url_BusLineList];
+//    
+//    [request setCompletionBlock:^{
+//        NSData *responseData = [request responseData];
+//        
+//        NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
+//                                                                  options:NSJSONReadingAllowFragments
+//                                                                    error:nil];
+//        
+//        //success
+//        if ([responseDic[@"statusCode"] isEqualToString:@"OK"]) {
+//            self.dataSource=responseDic[@"data"];
+//            
+//            self.tableView.hidden=NO;
+//            [self.tableView reloadData];
+//            
+//        }
+//    }];
 }
 
 - (void)initBlocks{
