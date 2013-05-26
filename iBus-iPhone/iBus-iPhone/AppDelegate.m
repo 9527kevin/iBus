@@ -44,6 +44,8 @@
     
     [self configDefaultUIAppearance];
     
+    [self initDatabase];
+    
     return YES;
 }
 
@@ -75,12 +77,18 @@
 }
 
 - (void)configDefaultUIAppearance{
-//    [[UINavigationBar appearance] setBackgroundColor:[UIColor redColor]];
     NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor darkGrayColor], UITextAttributeTextColor, [UIColor whiteColor], UITextAttributeTextShadowColor, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
     [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
 //    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor lightGrayColor]];
+}
+
+- (void)initDatabase{
+    if (!fileExistsAtPath(PATH_OF_DB)) {
+        [[DBHelper sharedInstance] initWithCreatingTablesForDatabase:PATH_OF_DB
+                                                         andSQLArray:CREATE_TABLE_SQL_ARRAY];
+    }
 }
 
 @end

@@ -16,4 +16,7 @@
     #import "ASIHTTPRequest.h"
     #import "ASIFormDataRequest.h"
     #import "FMDatabase.h"
+    #import "FMDatabaseQueue.h"
+    #import "CREATE_SQL.h"
+    #import "DBHelper.h"
 #endif

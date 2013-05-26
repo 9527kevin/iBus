@@ -46,8 +46,20 @@ NO)
                                                     MainHeight)
 
 
-#define MainContainer_MenuItem_Width 60.0f
-#define MainContainer_MenuItem_Height 60.0f
+#define fileExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x]
+#define removerItemAtPath(x) [[NSFileManager defaultManager] removeItemAtPath:x error:nil]
+#define appDelegateObj [[UIApplication sharedApplication] delegate]
 
-#define MainContainer_MenuItem_Font 15.0f
+#define UserDefault [NSUserDefaults standardUserDefaults]
+#define NSFileDefaultManager [NSFileManager defaultManager]
 
+
+//common paths
+#define PATH_OF_APP_HOME    NSHomeDirectory()
+#define PATH_OF_TEMP        NSTemporaryDirectory()
+#define PATH_OF_DOCUMENT    \
+[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+//db path
+#define Database_Name @"BusDB.db"
+#define PATH_OF_DB [PATH_OF_DOCUMENT stringByAppendingPathComponent:Database_Name]
