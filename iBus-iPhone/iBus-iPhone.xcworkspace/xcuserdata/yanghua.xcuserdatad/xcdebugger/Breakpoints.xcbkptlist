@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iBus-iPhone/FetchLineInfoOperation.m"
-         timestampString = "391351263.59177"
+         timestampString = "391353773.203441"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "33"
-         endingLineNumber = "33"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
          landmarkName = "-getLineInfoWithLineId:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -20,26 +20,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iBus-iPhone/FetchLineInfoOperation.m"
-         timestampString = "391351345.754556"
+         filePath = "iBus-iPhone/LineDao.m"
+         timestampString = "391353769.04406"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "21"
-         endingLineNumber = "21"
-         landmarkName = "-main"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iBus-iPhone/MenuContainerController.m"
-         timestampString = "391351847.117596"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
-         landmarkName = "-fetchLineInfoAsync"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
+         landmarkName = "+addLineInfo:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

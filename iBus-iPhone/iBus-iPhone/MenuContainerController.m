@@ -127,11 +127,9 @@
 }
 
 - (void)fetchLineInfoAsync{
-    FetchLineInfoOperation *fenchLineInfoOperation=[[FetchLineInfoOperation alloc] init];
-    [fenchLineInfoOperation start];
+#warning TODO:check is inited
+    FetchLineInfoOperation *fenchLineInfoOperation=[[[FetchLineInfoOperation alloc] init] autorelease];
     [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
-    [fenchLineInfoOperation release];
-    
 }
 
 

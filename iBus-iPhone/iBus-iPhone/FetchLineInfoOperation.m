@@ -7,6 +7,7 @@
 //
 
 #import "FetchLineInfoOperation.h"
+#import "LineDao.h"
 
 @implementation FetchLineInfoOperation
 
@@ -16,16 +17,25 @@
     NSMutableArray *lineInfoArray=[NSMutableArray array];
     
     //send request to fetch line info
-//    for (int i=0; i<100; i++) {
+//    for (int i=335; i<=530; i++) {
 //        NSMutableDictionary *lineInfo=[self getLineInfoWithLineId:[NSString stringWithFormat:@"%d",i]];
 //        NSLog(@"%@",lineInfo[@"lineId"]);
 //        NSLog(@"%@",lineInfo[@"lineName"]);
 //        [lineInfoArray addObject:lineInfo];
 //    }
     
-    NSMutableDictionary *lineInfo=[self getLineInfoWithLineId:@"400"];
-    NSLog(@"%@",lineInfo[@"lineId"]);
-    NSLog(@"%@",lineInfo[@"lineName"]);
+//    NSMutableDictionary *lineInfo=[self getLineInfoWithLineId:@"400"];
+//    NSLog(@"%@",lineInfo[@"lineId"]);
+//    NSLog(@"%@",lineInfo[@"lineName"]);
+    
+//    NSMutableArray *tmpArray=[NSMutableArray array];
+//    NSMutableDictionary *tmpDic=[NSMutableDictionary dictionary];
+//    tmpDic[@"lineId"]=@"123";
+//    tmpDic[@"lineName"]=@"清安线";
+//    [tmpArray addObject:tmpDic];
+    
+    //insert into db
+    [LineDao add:lineInfoArray];
     
     //send a message to message center
     

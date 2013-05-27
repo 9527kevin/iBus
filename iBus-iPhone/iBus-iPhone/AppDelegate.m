@@ -30,6 +30,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self initDatabase];
+    
+    [self initOperationQueueCenter];
+    
     //front controller
     MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
         
@@ -44,10 +48,6 @@
     [self.window makeKeyAndVisible];
     
     [self configDefaultUIAppearance];
-    
-    [self initDatabase];
-    
-    [self initOperationQueueCenter];
     
     return YES;
 }
@@ -88,6 +88,7 @@
 }
 
 - (void)initDatabase{
+    NSLog(@"DB Path---->:%@",PATH_OF_DB);
     if (!fileExistsAtPath(PATH_OF_DB)) {
         [[DBHelper sharedInstance] initWithCreatingTablesForDatabase:PATH_OF_DB
                                                          andSQLArray:CREATE_TABLE_SQL_ARRAY];
