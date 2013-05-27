@@ -19,4 +19,5 @@
     #import "FMDatabaseQueue.h"
     #import "CREATE_SQL.h"
     #import "DBHelper.h"
+    #import "AppDelegate.h"
 #endif

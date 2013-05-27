@@ -40,6 +40,8 @@
 		77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */; };
 		77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EE1750C63A00263B54 /* StationListController.m */; };
 		77EABAAB174A3935006C9E03 /* BusQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EABAAA174A3935006C9E03 /* BusQueryController.m */; };
+		77F0E3181753276A00F4C748 /* BaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E3171753276A00F4C748 /* BaseOperation.m */; };
+		77F0E31B175327B300F4C748 /* FetchLineInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +96,10 @@
 		77A9A6EE1750C63A00263B54 /* StationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListController.m; sourceTree = "<group>"; };
 		77EABAA9174A3935006C9E03 /* BusQueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusQueryController.h; sourceTree = "<group>"; };
 		77EABAAA174A3935006C9E03 /* BusQueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusQueryController.m; sourceTree = "<group>"; };
+		77F0E3161753276A00F4C748 /* BaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOperation.h; sourceTree = "<group>"; };
+		77F0E3171753276A00F4C748 /* BaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOperation.m; sourceTree = "<group>"; };
+		77F0E319175327B300F4C748 /* FetchLineInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchLineInfoOperation.h; sourceTree = "<group>"; };
+		77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchLineInfoOperation.m; sourceTree = "<group>"; };
 		7DD7B459E986410FA3291522 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C779380FAA884B0BB973B9B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -157,6 +163,7 @@
 		7740B1CF1748AFC800D98529 /* iBus-iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				77F0E3141753270000F4C748 /* OperateQueue */,
 				7715B54A1751FBF7002B4487 /* Dao */,
 				77A9A6C51750AC1000263B54 /* Resources */,
 				7740B1F21748BBE300D98529 /* Utility */,
@@ -325,6 +332,17 @@
 			name = IconDownloader;
 			sourceTree = "<group>";
 		};
+		77F0E3141753270000F4C748 /* OperateQueue */ = {
+			isa = PBXGroup;
+			children = (
+				77F0E3161753276A00F4C748 /* BaseOperation.h */,
+				77F0E3171753276A00F4C748 /* BaseOperation.m */,
+				77F0E319175327B300F4C748 /* FetchLineInfoOperation.h */,
+				77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */,
+			);
+			name = OperateQueue;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -447,6 +465,8 @@
 				77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */,
 				7715B5501751FD82002B4487 /* LineDao.m in Sources */,
 				7715B55417520B07002B4487 /* DBHelper.m in Sources */,
+				77F0E3181753276A00F4C748 /* BaseOperation.m in Sources */,
+				77F0E31B175327B300F4C748 /* FetchLineInfoOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

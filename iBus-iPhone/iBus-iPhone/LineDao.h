@@ -9,19 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #define SELECT_LINEINFO_SQL \
-SELECT * FROM lineInfo WHERE lineId = ?
+@"SELECT * FROM lineInfo WHERE lineId = ? "
 
 #define DELETE_LINEINFO_SQL \
-DELETE FROM lineInfo WHERE lineId = ?
+@"DELETE FROM lineInfo WHERE lineId = ? "
 
 #define DELETE_ALL_LINEINFO_SQL \
-DELETE FROM lineInfo 
+@"DELETE FROM lineInfo "
 
 #define INSERT_LINEINFO_SQL \
-INSERT INTO lineInfo VALUES(?,?,?,?)
+@"INSERT INTO lineInfo VALUES(?,?,?,?)"
 
 #define UPDATE_LINEINFO_SQL \
-UPDATE lineInfo SET lineName = ? WHERE lineId = ?
+@"UPDATE lineInfo SET lineName = ? WHERE lineId = ?"
 
 
 @interface LineDao : NSObject

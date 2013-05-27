@@ -7,6 +7,7 @@
 //
 
 #import "MenuContainerController.h"
+#import "FetchLineInfoOperation.h"
 
 @interface MenuContainerController ()
 
@@ -42,6 +43,9 @@
     [super viewDidLoad];
     
 	[self registerTapEventsForMenuItems];
+    
+    //fetch basic data
+    [self fetchLineInfoAsync];
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,7 +126,13 @@
     
 }
 
-#pragma mark - button events -
-//- (void)
+- (void)fetchLineInfoAsync{
+    FetchLineInfoOperation *fenchLineInfoOperation=[[FetchLineInfoOperation alloc] init];
+    [fenchLineInfoOperation start];
+    [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
+    [fenchLineInfoOperation release];
+    
+}
+
 
 @end

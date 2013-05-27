@@ -23,6 +23,7 @@
 - (void)dealloc
 {
     [_window release];
+    [_operationQueueCenter release],_operationQueueCenter=nil;
     [_zuuiRevealCtrller release],_zuuiRevealCtrller=nil;
     [super dealloc];
 }
@@ -45,6 +46,8 @@
     [self configDefaultUIAppearance];
     
     [self initDatabase];
+    
+    [self initOperationQueueCenter];
     
     return YES;
 }
@@ -89,6 +92,10 @@
         [[DBHelper sharedInstance] initWithCreatingTablesForDatabase:PATH_OF_DB
                                                          andSQLArray:CREATE_TABLE_SQL_ARRAY];
     }
+}
+
+- (void)initOperationQueueCenter{
+    _operationQueueCenter=[[NSOperationQueue alloc] init];
 }
 
 @end

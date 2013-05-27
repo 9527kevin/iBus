@@ -10,6 +10,29 @@
 
 @implementation LineDao
 
++ (void)add:(NSMutableArray*)lineArray{
+    for (NSMutableDictionary *lineInfo in lineArray) {
+        
+    }
+}
 
+
+
+
+#pragma mark - inner methods -
++ (void)addLineInfo:(NSMutableDictionary*)lineInfo{
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:[UserDefault objectForKey:@"privateDBPath"]];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            [db executeUpdate:INSERT_LINEINFO_SQL withParameterDictionary:lineInfo];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+}
 
 @end
