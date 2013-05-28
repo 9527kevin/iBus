@@ -18,15 +18,18 @@
 @"DELETE FROM lineInfo "
 
 #define INSERT_LINEINFO_SQL \
-@"INSERT INTO lineInfo(lineId,lineName) VALUES(:lineId,:lineName)"
+@"INSERT INTO lineInfo(lineId,lineName,firstTime,lastTime,edgeStation_1,edgeStation_2) VALUES(:lineId,:lineName,:firstTime,:lastTime,:edgeStation_1,:edgeStation_2)"
 
 #define UPDATE_LINEINFO_SQL \
 @"UPDATE lineInfo SET lineName = ? WHERE lineId = ?"
 
+#define CHECK_EXISTS_LINEINFO_SQL \
+@"SELECT COUNT(1) FROM lineInfo "
+
 
 @interface LineDao : NSObject
 
-+ (int)checkIsInited;
++ (BOOL)checkIsInited;
 
 + (void)add:(NSMutableArray*)lineArray;
 

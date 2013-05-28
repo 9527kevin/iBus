@@ -30,7 +30,7 @@ http://www.baidu.com
 
 //线路详情
 #define Url_DetailOfLine \
-http://112.2.33.3:7106/BusAndroid/android.do?command=toLs&lineId=%@&inDown=%@
+@"http://112.2.33.3:7106/BusAndroid/android.do?command=toLs&lineId=%@&inDown=1"
 
 //线路换乘
 #define Url_LineExchange \

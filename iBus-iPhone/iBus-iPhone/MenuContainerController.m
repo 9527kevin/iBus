@@ -8,6 +8,7 @@
 
 #import "MenuContainerController.h"
 #import "FetchLineInfoOperation.h"
+#import "LineDao.h"
 
 @interface MenuContainerController ()
 
@@ -127,9 +128,10 @@
 }
 
 - (void)fetchLineInfoAsync{
-#warning TODO:check is inited
-    FetchLineInfoOperation *fenchLineInfoOperation=[[[FetchLineInfoOperation alloc] init] autorelease];
-    [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
+    if (![LineDao checkIsInited]) {
+        FetchLineInfoOperation *fenchLineInfoOperation=[[[FetchLineInfoOperation alloc] init] autorelease];
+        [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
+    }
 }
 
 
