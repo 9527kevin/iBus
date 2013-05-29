@@ -8,6 +8,9 @@
 
 #import "BusQueryController.h"
 
+//test
+#import "LineListController.h"
+
 @interface BusQueryController ()
 
 @property (nonatomic,retain) UIButton *queryByLineBtn;
@@ -81,8 +84,20 @@
 }
 
 - (void)registerEventsForQueryMenuItems{
+    [self.queryByLineBtn addTarget:self action:@selector(Button_QueryByLine_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    [self.queryByStationBtn addTarget:self action:@selector() forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [self.queryByExchangeBtn addTarget:self action:@selector() forControlEvents:UIControlEventTouchUpInside];
     
 }
+
+- (void)Button_QueryByLine_TouchUpInside:(id)sender{
+    LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+    [self.navigationController pushViewController:lineListCtrller animated:YES];
+}
+
+
 
 
 

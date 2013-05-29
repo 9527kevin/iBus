@@ -18,6 +18,7 @@
 @property (nonatomic,retain) UIView *aboutView;
 @property (nonatomic,retain) UIView *findFriendView;
 @property (nonatomic,retain) UIView *mapShowView;
+@property (nonatomic,retain) UIView *settingView;
 
 @end
 
@@ -29,6 +30,7 @@
     [_aboutView release],_aboutView=nil;
     [_findFriendView release],_findFriendView=nil;
     [_mapShowView release],_mapShowView=nil;
+    [_settingView release],_settingView=nil;
     
     [super dealloc];
 }
@@ -65,6 +67,10 @@
     //公交查询
     _busQueryMenuView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
     self.busQueryMenuView.backgroundColor=[UIColor grayColor];
+    
+    UIImageView *busQueryImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    busQueryImgView.image=[UIImage imageNamed:@"busQuery.png"];
+    [self.busQueryMenuView addSubview:busQueryImgView];
     [menuContainerView addSubview:self.busQueryMenuView];
     
     UILabel *busQueryLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
@@ -76,6 +82,10 @@
     //查看地图
     _mapShowView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+Default_MenuItem_View_Height+Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
     self.mapShowView.backgroundColor=[UIColor grayColor];
+    
+    UIImageView *mapShowImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    mapShowImgView.image=[UIImage imageNamed:@"map.png"];
+    [self.mapShowView addSubview:mapShowImgView];
     [menuContainerView addSubview:self.mapShowView];
     
     UILabel *mapShowLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
@@ -95,9 +105,14 @@
     myBusZoomLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
     [self.myBusZoomView addSubview:myBusZoomLbl];
     
+    
     //附近的人
     _findFriendView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+3*Default_MenuItem_View_Height+3*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
     self.findFriendView.backgroundColor=[UIColor grayColor];
+    
+    UIImageView *findFriendImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    findFriendImgView.image=[UIImage imageNamed:@"friends.png"];
+    [self.findFriendView addSubview:findFriendImgView];
     [menuContainerView addSubview:self.findFriendView];
     
     UILabel *findFriendLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
@@ -109,6 +124,10 @@
     //关于
     _aboutView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+4*Default_MenuItem_View_Height+4*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
     self.aboutView.backgroundColor=[UIColor grayColor];
+    
+    UIImageView *aboutImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    aboutImgView.image=[UIImage imageNamed:@"about.png"];
+    [self.aboutView addSubview:aboutImgView];
     [menuContainerView addSubview:self.aboutView];
     
     UILabel *aboutLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];

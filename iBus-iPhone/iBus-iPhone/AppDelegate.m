@@ -22,9 +22,7 @@
 
 - (void)dealloc
 {
-    [_window release];
     [_operationQueueCenter release],_operationQueueCenter=nil;
-    [_zuuiRevealCtrller release],_zuuiRevealCtrller=nil;
     [super dealloc];
 }
 
@@ -41,7 +39,7 @@
     BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
     UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
     
-    self.zuuiRevealCtrller=[[ZUUIRevealController alloc] initWithFrontViewController:busQueryNavCtrller rearViewController:menuContaonerCtrller];
+    self.zuuiRevealCtrller=[[[ZUUIRevealController alloc] initWithFrontViewController:busQueryNavCtrller rearViewController:menuContaonerCtrller] autorelease];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController=self.zuuiRevealCtrller;
     // Override point for customization after application launch.
@@ -80,8 +78,8 @@
 }
 
 - (void)configDefaultUIAppearance{
-    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor darkGrayColor], UITextAttributeTextColor, [UIColor whiteColor], UITextAttributeTextShadowColor, nil];
-    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
+//    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor darkGrayColor], UITextAttributeTextColor, [UIColor whiteColor], UITextAttributeTextShadowColor, nil];
+//    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
     [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
 //    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor lightGrayColor]];

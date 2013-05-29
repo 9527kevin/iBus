@@ -33,7 +33,7 @@ NO)
 #define Default_TableView_Frame CGRectMake(ZERO_Original_X,\
                                             ZERO_Original_Y,\
                                             MainWidth,\
-                                MainHeight-NavigationBarHeight-TabBarHeight)
+                                MainHeight-NavigationBarHeight)
 
 #define TableView_Frame_WithTabBarHeight CGRectMake(ZERO_Original_X,\
                                                     ZERO_Original_Y,\

@@ -21,6 +21,11 @@
 
 #define Default_MenuItem_View_Line_Splitor 1.0f
 
+#define Default_MenuItem_ImageView_Origin_X 10.0f
+#define Default_MenuItem_ImageView_Origin_Y 15.0f
+#define Default_MenuItem_ImageView_Width 40.0f
+#define Default_MenuItem_ImageView_Height 40.0f
+
 
 @interface MenuContainerController : BaseController
 

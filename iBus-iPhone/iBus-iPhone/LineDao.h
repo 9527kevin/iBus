@@ -11,6 +11,9 @@
 #define SELECT_LINEINFO_SQL \
 @"SELECT * FROM lineInfo WHERE lineId = ? "
 
+#define SELECT_ALL_LINEINFO_SQL \
+@"SELECT * FROM lineInfo "
+
 #define DELETE_LINEINFO_SQL \
 @"DELETE FROM lineInfo WHERE lineId = ? "
 
@@ -39,6 +42,8 @@
 
 + (void)modify:(NSMutableArray*)lineArray;
 
-+ (NSMutableDictionary*)getLineInfoWithId:(NSString*)lineId;
++ (NSDictionary*)getLineInfoWithId:(NSString*)lineId;
+
++ (NSMutableArray*)getLineList;
 
 @end

@@ -1,13 +1,18 @@
 //
-//  LineListController.h
+//  LineList_test_Controller.h
 //  iBus-iPhone
 //
-//  Created by yanghua on 5/25/13.
+//  Created by yanghua on 5/29/13.
 //  Copyright (c) 2013 yanghua. All rights reserved.
 //
 
-#import "ELTableViewController.h"
+#import "BaseController.h"
+#import "UIFolderTableView.h"
 
-@interface LineListController : ELTableViewController
+
+@interface LineListController : BaseController<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,retain) NSMutableArray *dataSource;
+@property (nonatomic,retain) UIFolderTableView *tableView;
 
 @end
