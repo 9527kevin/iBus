@@ -203,26 +203,32 @@
     switch (gestureRecognizer.view.tag) {
         case TAG_BUSQUERY:
             NSLog(@"%d",TAG_BUSQUERY);
+            [self.parentViewController performSelector:@selector(revealToggle:)];
             break;
             
         case TAG_MAP:
             NSLog(@"%d",TAG_MAP);
+            [self.parentViewController performSelector:@selector(revealToggle:)];
             break;
             
         case TAG_BUSZOOM:
             NSLog(@"%d",TAG_BUSZOOM);
+            [self.parentViewController performSelector:@selector(revealToggle:)];
             break;
             
         case TAG_FRIENDS:
             NSLog(@"%d",TAG_FRIENDS);
+            [self.parentViewController performSelector:@selector(revealToggle:)];
             break;
             
         case TAG_ABOUT:
             NSLog(@"%d",TAG_ABOUT);
+            [self.parentViewController performSelector:@selector(revealToggle:)];
             break;
             
         case TAG_SETTING:
             NSLog(@"%d",TAG_SETTING);
+            [self.parentViewController performSelector:@selector(revealToggle:)];
             break;
             
         default:

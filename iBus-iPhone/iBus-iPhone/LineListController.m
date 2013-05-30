@@ -105,7 +105,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 
 -(CGFloat)tableView:(UIFolderTableView *)tableView xForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.0f;
+    return 72.0f;
 }
 
 -(void)subCateBtnAction:(UIButton *)btn
