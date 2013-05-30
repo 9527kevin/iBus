@@ -22,7 +22,9 @@
 		772A634D175615B900FBF5E6 /* busQuery.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A634C175615B900FBF5E6 /* busQuery.png */; };
 		772A634F1756181A00FBF5E6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A634E1756181A00FBF5E6 /* map.png */; };
 		772A6352175618EB00FBF5E6 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A6351175618EB00FBF5E6 /* friends.png */; };
-		772A6354175619B200FBF5E6 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A6353175619B200FBF5E6 /* about.png */; };
+		7737BBBA175720C2001D5CE8 /* busZoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 7737BBB9175720C2001D5CE8 /* busZoom.png */; };
+		7737BBBC17572594001D5CE8 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 7737BBBB17572594001D5CE8 /* setting.png */; };
+		7737BBBE17573C92001D5CE8 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 7737BBBD17573C92001D5CE8 /* about.png */; };
 		7740B1CA1748AFC800D98529 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1C91748AFC800D98529 /* UIKit.framework */; };
 		7740B1CC1748AFC800D98529 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1CB1748AFC800D98529 /* Foundation.framework */; };
 		7740B1D41748AFC800D98529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1D21748AFC800D98529 /* InfoPlist.strings */; };
@@ -84,7 +86,9 @@
 		772A634C175615B900FBF5E6 /* busQuery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busQuery.png; sourceTree = "<group>"; };
 		772A634E1756181A00FBF5E6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		772A6351175618EB00FBF5E6 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
-		772A6353175619B200FBF5E6 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
+		7737BBB9175720C2001D5CE8 /* busZoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busZoom.png; sourceTree = "<group>"; };
+		7737BBBB17572594001D5CE8 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		7737BBBD17573C92001D5CE8 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		7740B1C61748AFC800D98529 /* iBus-iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iBus-iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7740B1C91748AFC800D98529 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7740B1CB1748AFC800D98529 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -193,7 +197,9 @@
 		772A6350175618CB00FBF5E6 /* menuItem */ = {
 			isa = PBXGroup;
 			children = (
-				772A6353175619B200FBF5E6 /* about.png */,
+				7737BBBD17573C92001D5CE8 /* about.png */,
+				7737BBBB17572594001D5CE8 /* setting.png */,
+				7737BBB9175720C2001D5CE8 /* busZoom.png */,
 				772A6351175618EB00FBF5E6 /* friends.png */,
 				772A634E1756181A00FBF5E6 /* map.png */,
 				772A634C175615B900FBF5E6 /* busQuery.png */,
@@ -531,7 +537,9 @@
 				772A634D175615B900FBF5E6 /* busQuery.png in Resources */,
 				772A634F1756181A00FBF5E6 /* map.png in Resources */,
 				772A6352175618EB00FBF5E6 /* friends.png in Resources */,
-				772A6354175619B200FBF5E6 /* about.png in Resources */,
+				7737BBBA175720C2001D5CE8 /* busZoom.png in Resources */,
+				7737BBBC17572594001D5CE8 /* setting.png in Resources */,
+				7737BBBE17573C92001D5CE8 /* about.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
