@@ -7,6 +7,9 @@
 //
 
 #import "StationListController.h"
+#import "StationListCell.h"
+
+static NSString *stationListIdentifier @"stationListIdentifier";
 
 @interface StationListController ()
 
@@ -16,6 +19,7 @@
 
 - (void)dealloc{
     [_lineId release],_lineId=nil;
+    [_identifier release],_identifier=nil;
     
     [super dealloc];
 }
@@ -39,7 +43,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self sendRequest4StationList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,19 +52,27 @@
 }
 
 #pragma mark - private methods -
-- (void)sendRequest4StationList{
-//    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DetailOfLine,self.lineId,@"1"]];
-//    __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
-//    [request setCompletionBlock:^{
-//        
-//    }];
-    
-}
 
 - (void)initBlocks{
     [super initBlocks];
     
+    self.heightForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        return 40.0f;
+    };
     
+    self.cellForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        StationListCell *cell=(StationListCell*)[tableView dequeueReusableCellWithIdentifier:stationListIdentifier];
+        if (!cell) {
+            cell=[[[StationListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stationListIdentifier] autorelease];
+        }
+        
+        cell.stationInfo=self.dataSource[indexPath.row];
+        
+        [cell initSubViewsWithModel:self.dataSource[indexPath.row]];
+        [cell resizeSubViews];
+        
+        return cell;
+    };
 }
 
 @end

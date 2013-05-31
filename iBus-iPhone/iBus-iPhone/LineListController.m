@@ -10,6 +10,9 @@
 #import "LineListCell.h"
 #import "SubLineViewController.h"
 #import "LineDao.h"
+#import "StationDao.h"
+#import "FetchStationInfoOperation.h"
+#import "StationListController.h"
 
 static NSString *lineCellIdentifier=@"lineCellIdentifier";
 
@@ -17,6 +20,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 
 @property (nonatomic,retain) SubLineViewController *subLineViewCtrller;
 @property (nonatomic,retain) NSDictionary *currentLineInfo;
+
 
 @end
 
@@ -44,6 +48,8 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     self.tableView.folderDelegate=self;
 	self.dataSource=[LineDao getLineList];
     [self.tableView reloadData];
+    
+    [self fetchStationInfoAsync];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,8 +88,8 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     LineListCell *currentCell=(LineListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     [currentCell changeArrowWithUp:YES];
     
-    NSDictionary *lineInfo=self.dataSource[indexPath.row];
-    SubLineViewController *subVC = [[[SubLineViewController alloc] initWithLineInfo:lineInfo] autorelease];
+    self.currentLineInfo=self.dataSource[indexPath.row];
+    SubLineViewController *subVC = [[SubLineViewController alloc] initWithLineInfo:self.currentLineInfo];
     subVC.lineListCtrller=self;
     
     self.tableView.scrollEnabled = NO;
@@ -101,6 +107,8 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
                                [currentCell changeArrowWithUp:NO];
                            }];
     
+    [subVC release];
+    
 }
 
 -(CGFloat)tableView:(UIFolderTableView *)tableView xForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,18 +116,44 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     return 72.0f;
 }
 
--(void)subCateBtnAction:(UIButton *)btn
-{
+
+- (void)handleGesture:(UISwipeGestureRecognizer*)gestureRecognizer{
+    if (gestureRecognizer.state==UIGestureRecognizerStateBegan) {
+        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_HIGHLIGHT_COLOR;
+    }else if(gestureRecognizer.state==UIGestureRecognizerStateEnded){
+        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_HIGHLIGHT_COLOR;
+    }else if (gestureRecognizer.state==UIGestureRecognizerStateCancelled){
+        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_NORMAL_COLOR;
+    }
     
-//    NSDictionary *subCate = [[self.currentCate objectForKey:@"subClass"] objectAtIndex:btn.tag];
-//    NSString *name = [subCate objectForKey:@"name"];
-//    UIAlertView *Notpermitted=[[UIAlertView alloc] initWithTitle:@"子类信息"
-//                                                         message:[NSString stringWithFormat:@"名称:%@, ID: %@", name, [subCate objectForKey:@"classID"]]
-//                                                        delegate:nil
-//                                               cancelButtonTitle:@"确认"
-//                                               otherButtonTitles:nil];
-//    [Notpermitted show];
-//    [Notpermitted release];
+    StationListController *stationListCtrller=[[[StationListController alloc] initWithRefreshHeaderViewEnabled:NO andLoadMoreFooterViewEnabled:NO andTableViewFrame:Default_TableView_Frame] autorelease];
+    
+    switch (gestureRecognizer.view.tag) {
+        case TAG_LEFT_TO_RIGHT:
+        {
+            stationListCtrller.lineId=self.currentLineInfo[@"lineId"];
+            stationListCtrller.identifier=@"1";
+        }
+            break;
+            
+        case TAG_RIGHT_TO_LEFT:
+        {
+            stationListCtrller.lineId=self.currentLineInfo[@"lineId"];
+            stationListCtrller.identifier=@"2";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+- (void)fetchStationInfoAsync{
+    if (![StationDao checkIsInited]) {
+        FetchStationInfoOperation *fenchLineInfoOperation=[[[FetchStationInfoOperation alloc] init] autorelease];
+        [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
+    }
 }
 
 

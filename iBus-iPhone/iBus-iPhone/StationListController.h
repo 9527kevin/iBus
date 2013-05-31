@@ -11,5 +11,6 @@
 @interface StationListController : ELTableViewController
 
 @property (nonatomic,copy) NSString *lineId;
+@property (nonatomic,copy) NSString *identifier;
 
 @end

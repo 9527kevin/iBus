@@ -18,12 +18,12 @@
  //顺序方向
  edgeStation_1:水阁路客运站
  edgeStation_2:安德门
- isTurnOver:1   
+ identifier:1   
  
  //逆序方向
  edgeStation_1:安德门
  edgeStation_2:水阁路客运站
- isTurnOver:2
+ identifier:2
  */
 #define LINEINFO_CREATE_TABLE_SQL \
 @"CREATE TABLE lineInfo (   \
@@ -33,9 +33,22 @@
     lastTime text,          \
     edgeStation_1 text,     \
     edgeStation_2 text,     \
-    isTurnOver text         \
+    identifier text         \
 )"
 
-    
+#define STATIONINFO_CREATE_TABLE_SQL \
+@"CREATE TABLE stationInfo (                    \
+    autoId integer PRIMARY KEY autoincrement,   \
+    stationName text,                           \
+    stationLog text,                            \
+    stationLat text,                            \
+    orderNo integer,                            \
+    lineId text                                 \
+)"
+
+//LINEINFO_CREATE_TABLE_SQL,      \
+
 #define CREATE_TABLE_SQL_ARRAY \
-@[LINEINFO_CREATE_TABLE_SQL]
+@[                              \
+STATIONINFO_CREATE_TABLE_SQL    \
+]

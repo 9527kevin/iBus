@@ -53,6 +53,9 @@
 		77A9A6E91750AFCF00263B54 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A9A6E81750AFCE00263B54 /* QuartzCore.framework */; };
 		77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */; };
 		77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EE1750C63A00263B54 /* StationListController.m */; };
+		77DEB0FB1758524D00E93D1D /* StationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FA1758524D00E93D1D /* StationDao.m */; };
+		77DEB0FE175854F600E93D1D /* FetchStationInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FD175854F600E93D1D /* FetchStationInfoOperation.m */; };
+		77DEB10117587C2000E93D1D /* StationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB10017587C2000E93D1D /* StationListCell.m */; };
 		77DEB62B175498CC00FD4594 /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB62A175498CC00FD4594 /* BaseCell.m */; };
 		77DEB62E175498E700FD4594 /* LineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB62D175498E700FD4594 /* LineListCell.m */; };
 		77DEB6371754A21000FD4594 /* busPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB6361754A21000FD4594 /* busPlaceHolder.png */; };
@@ -131,6 +134,12 @@
 		77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDynamicStateController.m; sourceTree = "<group>"; };
 		77A9A6ED1750C63900263B54 /* StationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationListController.h; sourceTree = "<group>"; };
 		77A9A6EE1750C63A00263B54 /* StationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListController.m; sourceTree = "<group>"; };
+		77DEB0F91758524D00E93D1D /* StationDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDao.h; sourceTree = "<group>"; };
+		77DEB0FA1758524D00E93D1D /* StationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDao.m; sourceTree = "<group>"; };
+		77DEB0FC175854F600E93D1D /* FetchStationInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchStationInfoOperation.h; sourceTree = "<group>"; };
+		77DEB0FD175854F600E93D1D /* FetchStationInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchStationInfoOperation.m; sourceTree = "<group>"; };
+		77DEB0FF17587C2000E93D1D /* StationListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationListCell.h; sourceTree = "<group>"; };
+		77DEB10017587C2000E93D1D /* StationListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListCell.m; sourceTree = "<group>"; };
 		77DEB629175498CC00FD4594 /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
 		77DEB62A175498CC00FD4594 /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
 		77DEB62C175498E700FD4594 /* LineListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineListCell.h; sourceTree = "<group>"; };
@@ -170,6 +179,8 @@
 				7715B54E1751FD82002B4487 /* LineDao.h */,
 				7715B54F1751FD82002B4487 /* LineDao.m */,
 				7715B5511752004F002B4487 /* CREATE_SQL.h */,
+				77DEB0F91758524D00E93D1D /* StationDao.h */,
+				77DEB0FA1758524D00E93D1D /* StationDao.m */,
 			);
 			name = Dao;
 			sourceTree = "<group>";
@@ -431,6 +442,8 @@
 				77DEB62A175498CC00FD4594 /* BaseCell.m */,
 				77DEB62C175498E700FD4594 /* LineListCell.h */,
 				77DEB62D175498E700FD4594 /* LineListCell.m */,
+				77DEB0FF17587C2000E93D1D /* StationListCell.h */,
+				77DEB10017587C2000E93D1D /* StationListCell.m */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";
@@ -456,6 +469,8 @@
 				77F0E3171753276A00F4C748 /* BaseOperation.m */,
 				77F0E319175327B300F4C748 /* FetchLineInfoOperation.h */,
 				77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */,
+				77DEB0FC175854F600E93D1D /* FetchStationInfoOperation.h */,
+				77DEB0FD175854F600E93D1D /* FetchStationInfoOperation.m */,
 			);
 			name = OperateQueue;
 			sourceTree = "<group>";
@@ -603,6 +618,9 @@
 				772A633B1755C06300FBF5E6 /* UIView+screenshot.m in Sources */,
 				772A633E1755C24500FBF5E6 /* LineListController.m in Sources */,
 				772A63411755C36200FBF5E6 /* SubLineViewController.m in Sources */,
+				77DEB0FB1758524D00E93D1D /* StationDao.m in Sources */,
+				77DEB0FE175854F600E93D1D /* FetchStationInfoOperation.m in Sources */,
+				77DEB10117587C2000E93D1D /* StationListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

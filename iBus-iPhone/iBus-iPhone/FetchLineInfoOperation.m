@@ -19,16 +19,11 @@
     //send request to fetch line info
     for (int i=335; i<=530; i++) {
         NSMutableDictionary *lineInfo=[self getLineInfoWithLineId:[NSString stringWithFormat:@"%d",i]];
-        NSLog(@"%@",lineInfo[@"lineId"]);
-        NSLog(@"%@",lineInfo[@"lineName"]);
         lineInfo!=nil?[lineInfoArray addObject:lineInfo]:nil;
     }
     
     //insert into db
     [LineDao add:lineInfoArray];
-    
-    //send a message to message center
-    
 }
 
 
@@ -58,6 +53,7 @@
         
         lineInfo[@"edgeStation_1"]=responseDic[@"msgBean"][@"SStation"];
         lineInfo[@"edgeStation_2"]=responseDic[@"msgBean"][@"EStation"];
+        lineInfo[@"identifier"]=@"1";
         
     }
     

@@ -21,7 +21,7 @@
 @"DELETE FROM lineInfo "
 
 #define INSERT_LINEINFO_SQL \
-@"INSERT INTO lineInfo(lineId,lineName,firstTime,lastTime,edgeStation_1,edgeStation_2) VALUES(:lineId,:lineName,:firstTime,:lastTime,:edgeStation_1,:edgeStation_2)"
+@"INSERT INTO lineInfo(lineId,lineName,firstTime,lastTime,edgeStation_1,edgeStation_2,identifier) VALUES(:lineId,:lineName,:firstTime,:lastTime,:edgeStation_1,:edgeStation_2,:identifier)"
 
 #define UPDATE_LINEINFO_SQL \
 @"UPDATE lineInfo SET lineName = ? WHERE lineId = ?"
@@ -39,8 +39,6 @@
 + (void)remove:(NSMutableArray*)lineIdArray;
 
 + (void)removeAll;
-
-+ (void)modify:(NSMutableArray*)lineArray;
 
 + (NSDictionary*)getLineInfoWithId:(NSString*)lineId;
 

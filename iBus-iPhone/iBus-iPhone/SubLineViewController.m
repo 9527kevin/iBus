@@ -20,7 +20,6 @@
 - (void)dealloc{
     [_lineInfo release],_lineInfo=nil;
     [_lineListCtrller release],_lineListCtrller=nil;
-    
     [_leftToRightView release],_leftToRightView=nil;
     [_rightToLeftView release],_rightToLeftView=nil;
     
@@ -40,10 +39,10 @@
     self.view.backgroundColor=[UIColor blackColor];
     
     //left to right
-    _leftToRightView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, MainWidth, EDGESTATION_VIEW_HEIGHT)];
+    _leftToRightView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, MainWidth, EDGESTATION_VIEW_HEIGHT)] ;
     [self.leftToRightView setTag:TAG_LEFT_TO_RIGHT];
     [self.leftToRightView setBackgroundColor:EDGESTATION_VIEW_NORMAL_COLOR];
-    UIImageView *arrowToRightImgView=[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_ORIGIN_X, ARROW_ORIGIN_Y, ARROW_WIDTH, ARROW_HEIGHT)];
+    UIImageView *arrowToRightImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_ORIGIN_X, ARROW_ORIGIN_Y, ARROW_WIDTH, ARROW_HEIGHT)] autorelease];
     arrowToRightImgView.image=[UIImage imageNamed:@"arrow_right.png"];
     [self.leftToRightView addSubview:arrowToRightImgView];
     
@@ -69,7 +68,7 @@
     _rightToLeftView=[[UIView alloc] initWithFrame:CGRectMake(0, EDGESTATION_VIEW_HEIGHT+1, MainWidth, EDGESTATION_VIEW_HEIGHT)];
     [self.leftToRightView setTag:TAG_RIGHT_TO_LEFT];
     [self.rightToLeftView setBackgroundColor:EDGESTATION_VIEW_NORMAL_COLOR];
-    UIImageView *arrowToLeftImgView=[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_ORIGIN_X, ARROW_ORIGIN_Y, ARROW_WIDTH, ARROW_HEIGHT)];
+    UIImageView *arrowToLeftImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_ORIGIN_X, ARROW_ORIGIN_Y, ARROW_WIDTH, ARROW_HEIGHT)] autorelease];
     arrowToLeftImgView.image=[UIImage imageNamed:@"arrow_left.png"];
     [self.rightToLeftView addSubview:arrowToLeftImgView];
     
@@ -95,7 +94,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self registerEventsForViews];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,34 +105,11 @@
 
 #pragma mark - private methods -
 - (void)registerEventsForViews{
-    [self.rightToLeftView addGestureRecognizer:[[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)] autorelease]];
+    [self.rightToLeftView addGestureRecognizer:[[[UITapGestureRecognizer alloc] initWithTarget:self.lineListCtrller action:@selector(handleGesture:)] autorelease]];
     
-    [self.leftToRightView addGestureRecognizer:[[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)] autorelease]];
+    [self.leftToRightView addGestureRecognizer:[[[UITapGestureRecognizer alloc] initWithTarget:self.lineListCtrller action:@selector(handleGesture:)] autorelease]];
 }
 
-- (void)handleGesture:(UISwipeGestureRecognizer*)gestureRecognizer{
-    if (gestureRecognizer.state==UIGestureRecognizerStateBegan) {
-        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_HIGHLIGHT_COLOR;
-    }else if(gestureRecognizer.state==UIGestureRecognizerStateEnded){
-        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_HIGHLIGHT_COLOR;
-    }else if (gestureRecognizer.state==UIGestureRecognizerStateCancelled){
-        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_NORMAL_COLOR;
-    }
-    
-#warning TODO
-    switch (gestureRecognizer.view.tag) {
-        case TAG_LEFT_TO_RIGHT:
-            
-            break;
-            
-        case TAG_RIGHT_TO_LEFT:
-            
-            break;
-            
-        default:
-            break;
-    }
-    
-}
+
 
 @end
