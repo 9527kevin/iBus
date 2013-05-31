@@ -8,8 +8,9 @@
 
 #import "StationListController.h"
 #import "StationListCell.h"
+#import "StationDao.h"
 
-static NSString *stationListIdentifier @"stationListIdentifier";
+static NSString *stationListIdentifier=@"stationListIdentifier";
 
 @interface StationListController ()
 
@@ -19,6 +20,7 @@ static NSString *stationListIdentifier @"stationListIdentifier";
 
 - (void)dealloc{
     [_lineId release],_lineId=nil;
+    [_lineName release],_lineName=nil;
     [_identifier release],_identifier=nil;
     
     [super dealloc];
@@ -43,6 +45,9 @@ static NSString *stationListIdentifier @"stationListIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initBlocks];
+    self.navigationController.title=[NSString stringWithFormat:@"%@-站点列表",self.lineName];
+    self.dataSource=[StationDao getStationListWithLineId:self.lineId];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,12 +57,11 @@ static NSString *stationListIdentifier @"stationListIdentifier";
 }
 
 #pragma mark - private methods -
-
 - (void)initBlocks{
     [super initBlocks];
     
     self.heightForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
-        return 40.0f;
+        return 50.0f;
     };
     
     self.cellForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
@@ -74,5 +78,6 @@ static NSString *stationListIdentifier @"stationListIdentifier";
         return cell;
     };
 }
+
 
 @end

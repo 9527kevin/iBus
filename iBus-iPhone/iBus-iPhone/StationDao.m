@@ -40,6 +40,61 @@
     return rowsCount!=0?YES:NO;
 }
 
+//+ (NSDictionary*)getStationInfoWithLineId:(NSString*)lineId{
+//    __block NSDictionary *result=nil;
+//    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+//    [dbQueue inDatabase:^(FMDatabase *db) {
+//        @try {
+//            FMResultSet *resultSet=[db executeQueryWithFormat:SELECT_LINEINFO_ORDER_DESC_SQL,lineId];
+//            if ([resultSet next]) {
+//                result=@{
+//                         @"stationName": [resultSet stringForColumn:@"stationName"],
+//                         @"stationLog":[resultSet stringForColumn:@"stationLog"],
+//                         @"stationLat":[resultSet stringForColumn:@"stationLat"],
+//                         @"orderNo" : [resultSet stringForColumn:@"orderNo"],
+//                         @"lineId" : [resultSet stringForColumn:@"lineId"]
+//                         };
+//            }
+//        }
+//        @catch (NSException *exception) {
+//            NSLog(@"%@",[exception reason]);
+//        }
+//        @finally {
+//            [db close];
+//        }
+//    }];
+//    
+//    return result;
+//}
+
++ (NSMutableArray*)getStationListWithLineId:(NSString*)lineId{
+    __block NSMutableArray *stationArray=[NSMutableArray array];
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=[db executeQuery:SELECT_LINEINFO_ORDER_DESC_SQL,lineId];
+            while ([resultSet next]) {
+                [stationArray addObject:
+                 @{
+                 @"stationName": [resultSet stringForColumn:@"stationName"],
+                 @"stationLog":[resultSet stringForColumn:@"stationLog"],
+                 @"stationLat":[resultSet stringForColumn:@"stationLat"],
+                 @"orderNo" : [resultSet stringForColumn:@"orderNo"],
+                 @"lineId" : [resultSet stringForColumn:@"lineId"]
+                 }];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return stationArray;
+}
+
 #pragma mark - inner methods -
 + (void)addStationInfo:(NSMutableDictionary*)stationInfo{
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];

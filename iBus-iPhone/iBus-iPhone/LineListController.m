@@ -36,6 +36,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 - (void)loadView{
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
     self.view.backgroundColor=[UIColor whiteColor];
+    self.navigationController.title=@"线路列表";
 }
 
 - (void)viewDidLoad
@@ -108,7 +109,6 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
                            }];
     
     [subVC release];
-    
 }
 
 -(CGFloat)tableView:(UIFolderTableView *)tableView xForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,18 +127,18 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     }
     
     StationListController *stationListCtrller=[[[StationListController alloc] initWithRefreshHeaderViewEnabled:NO andLoadMoreFooterViewEnabled:NO andTableViewFrame:Default_TableView_Frame] autorelease];
+    stationListCtrller.lineId=self.currentLineInfo[@"lineId"];
+    stationListCtrller.lineName=self.currentLineInfo[@"lineName"];
     
     switch (gestureRecognizer.view.tag) {
         case TAG_LEFT_TO_RIGHT:
         {
-            stationListCtrller.lineId=self.currentLineInfo[@"lineId"];
             stationListCtrller.identifier=@"1";
         }
             break;
             
         case TAG_RIGHT_TO_LEFT:
         {
-            stationListCtrller.lineId=self.currentLineInfo[@"lineId"];
             stationListCtrller.identifier=@"2";
         }
             break;
@@ -147,6 +147,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
             break;
     }
     
+    [self.navigationController pushViewController:stationListCtrller animated:YES];
 }
 
 - (void)fetchStationInfoAsync{

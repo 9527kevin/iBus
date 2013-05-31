@@ -15,10 +15,19 @@
 @"SELECT COUNT(1) FROM stationInfo "
 
 
+#define SELECT_LINEINFO_ORDER_DESC_SQL \
+@"SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC"
+
+//#define SELECT_ALL_LINEINFO_SQL \
+//@"SELECT * FROM stationInfo "
+
+
 @interface StationDao : NSObject
 
 + (BOOL)checkIsInited;
 
 + (void)add:(NSMutableArray*)stationList;
+
++ (NSMutableArray*)getStationListWithLineId:(NSString*)lineId;
 
 @end
