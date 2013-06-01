@@ -15,11 +15,22 @@
 @"SELECT COUNT(1) FROM stationInfo "
 
 
-#define SELECT_LINEINFO_ORDER_DESC_SQL \
+#define SELECT_STATIONLIST_ORDER_ASC_SQL \
 @"SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC"
 
-//#define SELECT_ALL_LINEINFO_SQL \
-//@"SELECT * FROM stationInfo "
+#define SELECT_STATIONLIST_ORDER_DESC_SQL \
+@"SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC"
+
+#define SELECT_STATIONINFO_WITH_LINEID_AND_ORDER_ASC_SQL \
+@"SELECT * FROM (               \
+       SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+ ) WHERE orderno = ?"
+
+#define SELECT_STATIONINFO_WITH_LINEID_AND_ORDER_DESC_SQL \
+@"SELECT * FROM (               \
+SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
+) WHERE orderno = ?"
+
 
 
 @interface StationDao : NSObject
@@ -28,6 +39,11 @@
 
 + (void)add:(NSMutableArray*)stationList;
 
-+ (NSMutableArray*)getStationListWithLineId:(NSString*)lineId;
++ (NSMutableArray*)getStationListWithLineId:(NSString*)lineId
+                              andIdentifier:(NSString*)identifier;
+
++ (NSDictionary*)getStationInfoWithLineId:(NSString*)lineId
+                            andIdentifier:(NSString*)identifier
+                               andOrderNo:(NSInteger)orderNo;
 
 @end

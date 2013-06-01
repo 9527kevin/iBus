@@ -40,39 +40,14 @@
     return rowsCount!=0?YES:NO;
 }
 
-//+ (NSDictionary*)getStationInfoWithLineId:(NSString*)lineId{
-//    __block NSDictionary *result=nil;
-//    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
-//    [dbQueue inDatabase:^(FMDatabase *db) {
-//        @try {
-//            FMResultSet *resultSet=[db executeQueryWithFormat:SELECT_LINEINFO_ORDER_DESC_SQL,lineId];
-//            if ([resultSet next]) {
-//                result=@{
-//                         @"stationName": [resultSet stringForColumn:@"stationName"],
-//                         @"stationLog":[resultSet stringForColumn:@"stationLog"],
-//                         @"stationLat":[resultSet stringForColumn:@"stationLat"],
-//                         @"orderNo" : [resultSet stringForColumn:@"orderNo"],
-//                         @"lineId" : [resultSet stringForColumn:@"lineId"]
-//                         };
-//            }
-//        }
-//        @catch (NSException *exception) {
-//            NSLog(@"%@",[exception reason]);
-//        }
-//        @finally {
-//            [db close];
-//        }
-//    }];
-//    
-//    return result;
-//}
-
-+ (NSMutableArray*)getStationListWithLineId:(NSString*)lineId{
++ (NSMutableArray*)getStationListWithLineId:(NSString*)lineId andIdentifier:(NSString*)identifier{
     __block NSMutableArray *stationArray=[NSMutableArray array];
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
-            FMResultSet *resultSet=[db executeQuery:SELECT_LINEINFO_ORDER_DESC_SQL,lineId];
+            FMResultSet *resultSet=nil;
+            NSString *sql=[identifier isEqualToString:@"1"]?SELECT_STATIONLIST_ORDER_ASC_SQL:SELECT_STATIONLIST_ORDER_DESC_SQL;
+            resultSet=[db executeQuery:sql,lineId];
             while ([resultSet next]) {
                 [stationArray addObject:
                  @{
@@ -93,6 +68,37 @@
     }];
     
     return stationArray;
+}
+
++ (NSDictionary*)getStationInfoWithLineId:(NSString*)lineId
+                            andIdentifier:(NSString*)identifier
+                               andOrderNo:(NSInteger)orderNo{
+    __block NSDictionary *stationInfo=nil;
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=nil;
+            NSString *sql=[identifier isEqualToString:@"1"]?SELECT_STATIONINFO_WITH_LINEID_AND_ORDER_ASC_SQL:SELECT_STATIONINFO_WITH_LINEID_AND_ORDER_DESC_SQL;
+            resultSet=[db executeQuery:sql,lineId,[NSString stringWithFormat:@"%d",orderNo]];
+            if ([resultSet next]) {
+                stationInfo= @{
+                 @"stationName": [resultSet stringForColumn:@"stationName"],
+                 @"stationLog":[resultSet stringForColumn:@"stationLog"],
+                 @"stationLat":[resultSet stringForColumn:@"stationLat"],
+                 @"orderNo" : [resultSet stringForColumn:@"orderNo"],
+                 @"lineId" : [resultSet stringForColumn:@"lineId"]
+                 };
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return stationInfo;
 }
 
 #pragma mark - inner methods -

@@ -53,6 +53,9 @@
 		77A9A6E91750AFCF00263B54 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A9A6E81750AFCE00263B54 /* QuartzCore.framework */; };
 		77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */; };
 		77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EE1750C63A00263B54 /* StationListController.m */; };
+		77C481F41759C39700AA00A3 /* mapBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C481F31759C39700AA00A3 /* mapBtn.png */; };
+		77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C481F7175A2AAB00AA00A3 /* MapHelper.m */; };
+		77C481FA175A3F0A00AA00A3 /* refreshBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C481F9175A3F0A00AA00A3 /* refreshBtn.png */; };
 		77DEB0FB1758524D00E93D1D /* StationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FA1758524D00E93D1D /* StationDao.m */; };
 		77DEB0FE175854F600E93D1D /* FetchStationInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FD175854F600E93D1D /* FetchStationInfoOperation.m */; };
 		77DEB10117587C2000E93D1D /* StationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB10017587C2000E93D1D /* StationListCell.m */; };
@@ -135,6 +138,11 @@
 		77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDynamicStateController.m; sourceTree = "<group>"; };
 		77A9A6ED1750C63900263B54 /* StationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationListController.h; sourceTree = "<group>"; };
 		77A9A6EE1750C63A00263B54 /* StationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListController.m; sourceTree = "<group>"; };
+		77C481F31759C39700AA00A3 /* mapBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapBtn.png; sourceTree = "<group>"; };
+		77C481F51759FB0400AA00A3 /* GlobalDefinitionForMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForMap.h; sourceTree = "<group>"; };
+		77C481F6175A2AAB00AA00A3 /* MapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapHelper.h; sourceTree = "<group>"; };
+		77C481F7175A2AAB00AA00A3 /* MapHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapHelper.m; sourceTree = "<group>"; };
+		77C481F9175A3F0A00AA00A3 /* refreshBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshBtn.png; sourceTree = "<group>"; };
 		77DEB0F91758524D00E93D1D /* StationDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDao.h; sourceTree = "<group>"; };
 		77DEB0FA1758524D00E93D1D /* StationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDao.m; sourceTree = "<group>"; };
 		77DEB0FC175854F600E93D1D /* FetchStationInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchStationInfoOperation.h; sourceTree = "<group>"; };
@@ -355,6 +363,9 @@
 				77A9A5471750A1D300263B54 /* RefreshAndLoadMore */,
 				7740B1F41748BC5C00D98529 /* GlobalDefinitionForBusiness.h */,
 				7740B1F51748E4FE00D98529 /* GlobalDefinitionForUI.h */,
+				77C481F51759FB0400AA00A3 /* GlobalDefinitionForMap.h */,
+				77C481F6175A2AAB00AA00A3 /* MapHelper.h */,
+				77C481F7175A2AAB00AA00A3 /* MapHelper.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -453,6 +464,8 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				77C481F9175A3F0A00AA00A3 /* refreshBtn.png */,
+				77C481F31759C39700AA00A3 /* mapBtn.png */,
 				77DEB10217589EF700E93D1D /* busStation.png */,
 				772A63421755F08500FBF5E6 /* DownAccessory.png */,
 				772A63431755F08500FBF5E6 /* DownAccessory@2x.png */,
@@ -559,6 +572,8 @@
 				7737BBBC17572594001D5CE8 /* setting.png in Resources */,
 				7737BBBE17573C92001D5CE8 /* about.png in Resources */,
 				77DEB10317589EF700E93D1D /* busStation.png in Resources */,
+				77C481F41759C39700AA00A3 /* mapBtn.png in Resources */,
+				77C481FA175A3F0A00AA00A3 /* refreshBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +640,7 @@
 				77DEB0FB1758524D00E93D1D /* StationDao.m in Sources */,
 				77DEB0FE175854F600E93D1D /* FetchStationInfoOperation.m in Sources */,
 				77DEB10117587C2000E93D1D /* StationListCell.m in Sources */,
+				77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

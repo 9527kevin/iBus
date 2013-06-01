@@ -21,6 +21,8 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 @property (nonatomic,retain) SubLineViewController *subLineViewCtrller;
 @property (nonatomic,retain) NSDictionary *currentLineInfo;
 
+@property (nonatomic,retain) UIView *currentSelectedView;
+
 
 @end
 
@@ -36,7 +38,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 - (void)loadView{
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
     self.view.backgroundColor=[UIColor whiteColor];
-    self.navigationController.title=@"线路列表";
+    self.navigationItem.title=@"线路列表";
 }
 
 - (void)viewDidLoad
@@ -47,6 +49,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.folderDelegate=self;
+    self.tableView.rowHeight=60.0f;
 	self.dataSource=[LineDao getLineList];
     [self.tableView reloadData];
     
@@ -125,6 +128,12 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     }else if (gestureRecognizer.state==UIGestureRecognizerStateCancelled){
         [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_NORMAL_COLOR;
     }
+    
+    if (self.currentSelectedView!=gestureRecognizer.view) {
+        self.currentSelectedView.backgroundColor=EDGESTATION_VIEW_NORMAL_COLOR;
+    }
+    
+    self.currentSelectedView=gestureRecognizer.view;
     
     StationListController *stationListCtrller=[[[StationListController alloc] initWithRefreshHeaderViewEnabled:NO andLoadMoreFooterViewEnabled:NO andTableViewFrame:Default_TableView_Frame] autorelease];
     stationListCtrller.lineId=self.currentLineInfo[@"lineId"];

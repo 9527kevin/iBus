@@ -9,6 +9,7 @@
 #import "StationListController.h"
 #import "StationListCell.h"
 #import "StationDao.h"
+#import "LineDynamicStateController.h"
 
 static NSString *stationListIdentifier=@"stationListIdentifier";
 
@@ -46,8 +47,9 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
 {
     [super viewDidLoad];
     [self initBlocks];
-    self.navigationController.title=[NSString stringWithFormat:@"%@-站点列表",self.lineName];
-    self.dataSource=[StationDao getStationListWithLineId:self.lineId];
+    self.navigationItem.title=[NSString stringWithFormat:@"%@-站点列表",self.lineName];
+    self.dataSource=[StationDao getStationListWithLineId:self.lineId andIdentifier:self.identifier];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,6 +78,15 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
         [cell resizeSubViews];
         
         return cell;
+    };
+    
+    self.didSelectRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
+        int stationNo=indexPath.row+1;
+        LineDynamicStateController *lineDynamicStateCtrller=[[[LineDynamicStateController alloc] init] autorelease];
+        lineDynamicStateCtrller.lineId=self.lineId;
+        lineDynamicStateCtrller.identifier=self.identifier;
+        lineDynamicStateCtrller.stationNo=stationNo;
+        [self.navigationController pushViewController:lineDynamicStateCtrller animated:YES];
     };
 }
 

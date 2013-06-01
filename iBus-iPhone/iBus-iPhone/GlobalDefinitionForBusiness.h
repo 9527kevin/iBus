@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 /*
 --站点查询：http://112.2.33.3:7106/BusAndroid/android.do?command=toSway&stationName=军师巷
 --线路选择：http://112.2.33.3:7106/BusAndroid/android.do?command=toSsta&stationName=军师巷
@@ -22,7 +21,7 @@
 
 //站点查询
 #define Url_StationSearch \
-http://112.2.33.3:7106/BusAndroid/android.do?command=toSsta&stationName=%@
+@"http://112.2.33.3:7106/BusAndroid/android.do?command=toSsta&stationName=%@"
 
 //线路列表
 #define Url_BusLineList \

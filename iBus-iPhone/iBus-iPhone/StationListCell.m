@@ -12,6 +12,7 @@
 
 @property (nonatomic,retain) UIImageView *stationImgView;
 @property (nonatomic,retain) UILabel *stationNameLbl;
+@property (nonatomic,retain) UIButton *mapBtn;
 
 @end
 
@@ -20,31 +21,43 @@
 - (void)dealloc{
     [_stationImgView release],_stationImgView=nil;
     [_stationNameLbl release],_stationNameLbl=nil;
+    [_stationInfo release],_stationInfo=nil;
     
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
+
+- (id)initWithStyle:(UITableViewCellStyle)style
+    reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        _stationImgView=[[UIImageView alloc] initWithFrame:CGRectMake(Station_ImageView_Origin_X, Station_ImageView_Origin_Y, Station_ImageView_Width, Station_ImageView_Height)];
+        self.stationImgView.image=[UIImage imageNamed:@"busStation.png"];
+        [self addSubview:self.stationImgView];
+        
+        _mapBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        self.mapBtn.frame=CGRectMake(Map_Button_Origin_X, Map_Button_Origin_Y, Map_Button_Width, Map_Button_Height);
+        [self.mapBtn setBackgroundImage:[UIImage imageNamed:@"mapBtn.png"] forState:UIControlStateNormal];
+        [self addSubview:self.mapBtn];
     }
     return self;
 }
 
 - (void)prepareForReuse{
     [super prepareForReuse];
-    
+    _stationNameLbl.text=nil;
 }
 
 - (void)initSubViewsWithModel:(NSDictionary*)modelInfo{
-    _stationImgView=[[UIImageView alloc] initWithFrame:CGRectMake(Station_ImageView_Origin_X, Station_ImageView_Origin_Y, Station_ImageView_Width, Station_ImageView_Height)];
-    self.stationImgView.image=[UIImage imageNamed:@"busStation.png"];
+    _stationInfo=[modelInfo retain];
+    
+    _stationNameLbl=[[UILabel alloc] initWithFrame:CGRectMake(Station_Name_Label_Origin_X, Station_Name_Label_Origin_Y, Station_Name_Label_Width, Station_Name_Label_Height)];
+    _stationNameLbl.text=modelInfo[@"stationName"];
+    [self addSubview:self.stationNameLbl];
     
     
     
-    [self addSubview:self.stationImgView];
+    
 }
 
 - (void)resizeSubViews{

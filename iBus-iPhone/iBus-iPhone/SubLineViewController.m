@@ -66,7 +66,7 @@
     
     //right to left
     _rightToLeftView=[[UIView alloc] initWithFrame:CGRectMake(0, EDGESTATION_VIEW_HEIGHT+1, MainWidth, EDGESTATION_VIEW_HEIGHT)];
-    [self.leftToRightView setTag:TAG_RIGHT_TO_LEFT];
+    [self.rightToLeftView setTag:TAG_RIGHT_TO_LEFT];
     [self.rightToLeftView setBackgroundColor:EDGESTATION_VIEW_NORMAL_COLOR];
     UIImageView *arrowToLeftImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_ORIGIN_X, ARROW_ORIGIN_Y, ARROW_WIDTH, ARROW_HEIGHT)] autorelease];
     arrowToLeftImgView.image=[UIImage imageNamed:@"arrow_left.png"];

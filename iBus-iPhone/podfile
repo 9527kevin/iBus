@@ -1,4 +1,5 @@
-platform:ios
+platform:ios,'5.1'
 pod 'ASIHTTPRequest'
 pod 'ZUUIRevealController'
 pod 'FMDB'
+pod 'Google-Maps-iOS-SDK'

@@ -12,6 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "GlobalDefinitionForBusiness.h"
+    #import "GlobalDefinitionForMap.h"
     #import "GlobalDefinitionForUI.h"
     #import "ASIHTTPRequest.h"
     #import "ASIFormDataRequest.h"
@@ -20,4 +21,5 @@
     #import "CREATE_SQL.h"
     #import "DBHelper.h"
     #import "AppDelegate.h"
+    #import "MapHelper.h"
 #endif

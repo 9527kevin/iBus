@@ -7,13 +7,13 @@
 //
 
 #import "LineListCell.h"
+#import "QuartzCore/CAAnimation.h"
 
 @interface LineListCell ()
 
 @property (nonatomic,retain) UIImageView *busImgView;
 @property (nonatomic,retain) UILabel *lineNameLbl;
-@property (nonatomic,retain) UILabel *firstTimeLbl;
-@property (nonatomic,retain) UILabel *lastTimeLbl;
+@property (nonatomic,retain) UIButton *refreshBtn;
 
 @end
 
@@ -24,8 +24,6 @@
     [_busImgView release],_busImgView=nil;
     [_arrowImageView release],_arrowImageView=nil;
     [_lineNameLbl release],_lineNameLbl=nil;
-    [_firstTimeLbl release],_firstTimeLbl=nil;
-    [_lastTimeLbl release],_lastTimeLbl=nil;
     
     [super dealloc];
 }
@@ -43,6 +41,10 @@
         _arrowImageView=[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_IMAGEVIEW_ORIGIN_X, ARROW_IMAGEVIEW_ORIGIN_Y, ARROW_IMAGEVIEW_WIDTH, ARROW_IMAGEVIEW_HEIGHT)];
         [self addSubview:self.arrowImageView];
         
+        _refreshBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        self.refreshBtn.frame=CGRectMake(Refresh_Button_Origin_X, Refresh_Button_Origin_Y, Refresh_Button_Width, Refresh_Button_Height);
+        [self.refreshBtn setBackgroundImage:[UIImage imageNamed:@"refreshBtn.png"] forState:UIControlStateNormal];
+        [self addSubview:self.refreshBtn];
         
     }
     
@@ -52,8 +54,6 @@
 - (void)prepareForReuse{
     [super prepareForReuse];
     self.lineNameLbl=nil;
-    self.firstTimeLbl=nil;
-    self.lastTimeLbl=nil;
 }
 
 - (void)initSubViewsWithModel:(NSDictionary*)modelInfo{
@@ -65,16 +65,7 @@
     self.lineNameLbl.font=[UIFont systemFontOfSize:18.0f];
     [self addSubview:self.lineNameLbl];
     
-    _firstTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(TIME_LABEL_ORIGIN_X, FIRST_TIME_LABEL_ORIGIN_Y, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
-    self.firstTimeLbl.text=[NSString stringWithFormat:@"首班时间:%@",self.lineInfo[@"firstTime"]];
-    
-    self.firstTimeLbl.font=[UIFont systemFontOfSize:TIME_LABEL_FONTSIZE];
-    [self addSubview:self.firstTimeLbl];
-    
-    _lastTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(TIME_LABEL_ORIGIN_X, LAST_TIME_LABEL_ORIGIN_Y, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
-    self.lastTimeLbl.text=[NSString stringWithFormat:@"末班时间:%@",self.lineInfo[@"lastTime"]];
-    self.lastTimeLbl.font=[UIFont systemFontOfSize:TIME_LABEL_FONTSIZE];
-    [self addSubview:self.lastTimeLbl];
+    [self.refreshBtn addTarget:self action:@selector(RefreshButton_touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)resizeSubViews{
@@ -98,6 +89,24 @@
     }else{
         self.arrowImageView.image = [UIImage imageNamed:@"DownAccessory.png"];
     }
+}
+
+- (void)RefreshButton_touchUpInside:(id)sender{
+#warning TODO: update lineInfo
+    NSLog(@"%@",self.lineInfo[@"lineId"]);
+    [self runSpinAnimationWithDuration:2.0];
+}
+
+- (void) runSpinAnimationWithDuration:(CGFloat) duration;
+{
+    CABasicAnimation *rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
+    rotationAnimation.duration = duration;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 1.0;
+    
+    [self.refreshBtn.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
 @end

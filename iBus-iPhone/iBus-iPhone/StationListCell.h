@@ -15,6 +15,14 @@
 #define Station_ImageView_Height 40.0f
 
 #define Station_Name_Label_Origin_X 50.0f
+#define Station_Name_Label_Origin_Y 5.0f
+#define Station_Name_Label_Width 150.0f
+#define Station_Name_Label_Height 40.0f
+
+#define Map_Button_Width 20.0f
+#define Map_Button_Height 32.0f
+#define Map_Button_Origin_X MainWidth - Map_Button_Width - 10.0f
+#define Map_Button_Origin_Y 9.0f
 
 @interface StationListCell : BaseCell
 

@@ -10,6 +10,7 @@
 #import "ZUUIRevealController.h"
 #import "MenuContainerController.h"
 #import "BusQueryController.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface AppDelegate ()
 
@@ -46,6 +47,8 @@
     [self.window makeKeyAndVisible];
     
     [self configDefaultUIAppearance];
+    
+    [GMSServices provideAPIKey:@"AIzaSyBwalOcYe-ONBL-TmFN66_sXncJFfI-T8A"];
     
     return YES;
 }
