@@ -8,6 +8,8 @@
 
 #import "ELTableViewController.h"
 
+#define Notification_For_LoadCountDownTimeCallbackCompleted @"Notification_For_LoadCountDownTimeCallbackCompleted"
+
 @interface StationListController : ELTableViewController
 
 @property (nonatomic,copy) NSString *lineId;

@@ -10,9 +10,10 @@
 
 @interface StationListCell ()
 
-@property (nonatomic,retain) UIImageView *stationImgView;
-@property (nonatomic,retain) UILabel *stationNameLbl;
-@property (nonatomic,retain) UIButton *mapBtn;
+@property (nonatomic,retain) UIImageView        *stationImgView;
+@property (nonatomic,retain) UILabel            *stationNameLbl;
+@property (nonatomic,retain) UIButton           *mapBtn;
+@property (nonatomic,retain) UILabel            *countdownTimeLbl;  //倒计时显示
 
 @end
 
@@ -22,6 +23,7 @@
     [_stationImgView release],_stationImgView=nil;
     [_stationNameLbl release],_stationNameLbl=nil;
     [_stationInfo release],_stationInfo=nil;
+    [_countdownTimeLbl release],_countdownTimeLbl=nil;
     
     [super dealloc];
 }
@@ -45,17 +47,32 @@
 
 - (void)prepareForReuse{
     [super prepareForReuse];
-    _stationNameLbl.text=nil;
+    self.stationNameLbl.text=nil;
+    self.countdownTimeLbl.text=nil;
 }
 
-- (void)initSubViewsWithModel:(NSDictionary*)modelInfo{
+- (void)initSubViewsWithModel:(NSMutableDictionary*)modelInfo{
     _stationInfo=[modelInfo retain];
     
     _stationNameLbl=[[UILabel alloc] initWithFrame:CGRectMake(Station_Name_Label_Origin_X, Station_Name_Label_Origin_Y, Station_Name_Label_Width, Station_Name_Label_Height)];
+    _stationNameLbl.backgroundColor=[UIColor clearColor];
     _stationNameLbl.text=modelInfo[@"stationName"];
     [self addSubview:self.stationNameLbl];
     
     
+    if (modelInfo[@"countDownTime"]) {
+        NSLog(@"%@",self.stationInfo[@"countDownTime"]);
+        
+        _countdownTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(CountDown_Label_Origin_X, CountDown_Label_Origin_Y, CountDown_Label_Width, CountDown_Label_Height)];
+        _countdownTimeLbl.backgroundColor=[UIColor redColor];
+        _countdownTimeLbl.backgroundColor=[UIColor clearColor];
+        _countdownTimeLbl.textAlignment=NSTextAlignmentRight;
+        _countdownTimeLbl.text=[NSString stringWithFormat:@"%@分钟",self.stationInfo[@"countDownTime"]];
+        [_countdownTimeLbl setFont:[UIFont systemFontOfSize:CountDown_Label_FontSize]];
+        [self addSubview:self.countdownTimeLbl];
+    }else{
+        NSLog(@"Nil!!!!!");
+    }
     
     
 }

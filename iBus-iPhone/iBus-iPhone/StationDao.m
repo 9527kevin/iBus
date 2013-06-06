@@ -49,14 +49,14 @@
             NSString *sql=[identifier isEqualToString:@"1"]?SELECT_STATIONLIST_ORDER_ASC_SQL:SELECT_STATIONLIST_ORDER_DESC_SQL;
             resultSet=[db executeQuery:sql,lineId];
             while ([resultSet next]) {
-                [stationArray addObject:
+                [stationArray addObject:[NSMutableDictionary dictionaryWithDictionary:
                  @{
                  @"stationName": [resultSet stringForColumn:@"stationName"],
                  @"stationLog":[resultSet stringForColumn:@"stationLog"],
                  @"stationLat":[resultSet stringForColumn:@"stationLat"],
                  @"orderNo" : [resultSet stringForColumn:@"orderNo"],
                  @"lineId" : [resultSet stringForColumn:@"lineId"]
-                 }];
+                 }]];
             }
         }
         @catch (NSException *exception) {
@@ -70,7 +70,7 @@
     return stationArray;
 }
 
-+ (NSDictionary*)getStationInfoWithLineId:(NSString*)lineId
++ (NSMutableDictionary*)getStationInfoWithLineId:(NSString*)lineId
                             andIdentifier:(NSString*)identifier
                                andOrderNo:(NSInteger)orderNo{
     __block NSDictionary *stationInfo=nil;
@@ -98,7 +98,8 @@
         }
     }];
     
-    return stationInfo;
+    
+    return [NSMutableDictionary dictionaryWithDictionary:stationInfo];
 }
 
 #pragma mark - inner methods -

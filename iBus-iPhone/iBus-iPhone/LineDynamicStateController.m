@@ -58,6 +58,10 @@
     if (self.stationInfo) {
         center_log=[self.stationInfo[@"stationLog"] doubleValue] / Default_Div_Time;
         center_lat=[self.stationInfo[@"stationLat"] doubleValue] / Default_Div_Time;
+        
+        NSLog(@"lat:%f",center_lat);
+        NSLog(@"log:%f",center_log);
+        
         zoom=16;
     }else{
         center_log=Log_Default;

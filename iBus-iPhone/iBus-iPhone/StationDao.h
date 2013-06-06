@@ -42,8 +42,8 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 + (NSMutableArray*)getStationListWithLineId:(NSString*)lineId
                               andIdentifier:(NSString*)identifier;
 
-+ (NSDictionary*)getStationInfoWithLineId:(NSString*)lineId
-                            andIdentifier:(NSString*)identifier
-                               andOrderNo:(NSInteger)orderNo;
++ (NSMutableDictionary*)getStationInfoWithLineId:(NSString*)lineId
+                                   andIdentifier:(NSString*)identifier
+                                      andOrderNo:(NSInteger)orderNo;
 
 @end
