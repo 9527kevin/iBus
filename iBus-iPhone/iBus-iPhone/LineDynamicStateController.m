@@ -1,20 +1,16 @@
 //
-//  BusDynamicStateOfLineController.m
+//  LineDynamicStateController.m
 //  iBus-iPhone
 //
-//  Created by yanghua on 5/25/13.
+//  Created by yanghua on 6/7/13.
 //  Copyright (c) 2013 yanghua. All rights reserved.
 //
 
 #import "LineDynamicStateController.h"
-#import <GoogleMaps/GoogleMaps.h>
-#import "StationDao.h"
 
 @interface LineDynamicStateController ()
 
-@property (nonatomic,retain) GMSMarker *marker;
-@property (nonatomic,retain) NSDictionary *stationInfo;
-@property (nonatomic,retain) GMSMapView *mapView;
+@property (nonatomic,retain) UIView *containerView;
 
 @end
 
@@ -23,88 +19,55 @@
 - (void)dealloc{
     [_identifier release],_identifier=nil;
     [_lineId release],_lineId=nil;
-    [_marker release],_marker=nil;
+    [_containerView release],_containerView=nil;
     
     [super dealloc];
 }
 
 - (void)loadView{
-    [self initMapAndCreateCenterMarker];
+    self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
+    self.view.backgroundColor=[UIColor whiteColor];
+    
+    [self initDynamicStateContainerView];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-    [self drawLineOnMap];
+    //send request to get dynamic info
+    
+    [self layoutDynamicStationSubviews];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - private methods -
-- (void)initMapAndCreateCenterMarker{
-    
-    double center_log;
-    double center_lat;
-    int zoom;
-    
-    self.stationInfo=[StationDao getStationInfoWithLineId:self.lineId
-                                            andIdentifier:self.identifier
-                                               andOrderNo:self.stationNo];
-    
-    if (self.stationInfo) {
-        center_log=[self.stationInfo[@"stationLog"] doubleValue] / Default_Div_Time;
-        center_lat=[self.stationInfo[@"stationLat"] doubleValue] / Default_Div_Time;
-        
-        NSLog(@"lat:%f",center_lat);
-        NSLog(@"log:%f",center_log);
-        
-        zoom=16;
-    }else{
-        center_log=Log_Default;
-        center_lat=Lat_Default;
-        zoom=Default_Map_Zoom;
-    }
-    
-    //transform earth to mars
-    MarsGeodetic mapGeodetic=[MapHelper transformWithWGLat:center_lat andWGLon:center_log];
-    
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:mapGeodetic.lat
-                                                            longitude:mapGeodetic.log
-                                                                 zoom:zoom];
-    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    self.mapView.myLocationEnabled = YES;
-    self.view = self.mapView;
-    
-    // Creates a marker in the center of the map.
-    _marker = [[GMSMarker alloc] init];
-    self.marker.position = CLLocationCoordinate2DMake(mapGeodetic.lat,mapGeodetic.log);
-    self.marker.title = Map_Title;
-    self.marker.snippet = Map_Snippet;
-    self.marker.map = self.mapView;
-    
+- (void)initDynamicStateContainerView{
+    _containerView=[[UIView alloc] initWithFrame:CGRectMake(Dynamic_State_ContainerView_Origin_X, Dynamic_State_ContainerView_Origin_Y, Dynamic_State_ContainerView_Width, Dynamic_State_ContainerView_Height)];
+    self.containerView.backgroundColor=ColorWithRGBA(245, 245, 245, 1);
+    [self.view addSubview:self.containerView];
 }
 
-- (void)drawLineOnMap{
-    NSMutableArray *stationList=[StationDao getStationListWithLineId:self.lineId andIdentifier:self.identifier];
-    
-    GMSMutablePath *path = [GMSMutablePath path];
-    for (NSDictionary *stationInfo in stationList) {
-        if (stationInfo[@"stationLat"] && stationInfo[@"stationLog"]) {
-            MarsGeodetic mapGeodetic=[MapHelper transformWithWGLat:[stationInfo[@"stationLat"] doubleValue] / Default_Div_Time
-                                                          andWGLon:[stationInfo[@"stationLog"] doubleValue] / Default_Div_Time];
-            [path addCoordinate:CLLocationCoordinate2DMake(mapGeodetic.lat,mapGeodetic.log)];
-        }
+- (void)layoutDynamicStationSubviews{
+    for (int i=0; i<8; i++) {
+        //s1
+        UILabel *stationLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Station_Label_Origin_X, Station_Label_Margin+Station_Label_Height*i, Station_Label_Width, Station_Label_Height)] autorelease];
+        stationLbl.textAlignment=NSTextAlignmentRight;
+        stationLbl.backgroundColor=[UIColor clearColor];
+        stationLbl.textColor=[UIColor blueColor];
+        stationLbl.font=[UIFont systemFontOfSize:Station_Label_FontSize];
+        stationLbl.text=@"石马";
         
+        [self.containerView addSubview:stationLbl];
+        
+#warning add station mark image
     }
-    
-    GMSPolyline *rectangle = [GMSPolyline polylineWithPath:path];
-    [rectangle setStrokeColor:[UIColor redColor]];
-    [rectangle setStrokeWidth:4.0f];
-    rectangle.map = self.mapView;
 }
 
 @end

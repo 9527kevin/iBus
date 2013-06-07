@@ -24,11 +24,11 @@
 #define Map_Button_Origin_X MainWidth - Map_Button_Width - 10.0f
 #define Map_Button_Origin_Y 9.0f
 
-#define CountDown_Label_Width 70.0f
-#define CountDown_Label_Height 32.0f
-#define CountDown_Label_Origin_X Map_Button_Origin_X - CountDown_Label_Width -10.0f
-#define CountDown_Label_Origin_Y 9.0f
-#define CountDown_Label_FontSize 14.0f
+//#define CountDown_Label_Width 70.0f
+//#define CountDown_Label_Height 32.0f
+//#define CountDown_Label_Origin_X Map_Button_Origin_X - CountDown_Label_Width -10.0f
+//#define CountDown_Label_Origin_Y 9.0f
+//#define CountDown_Label_FontSize 14.0f
 
 
 @interface StationListCell : BaseCell

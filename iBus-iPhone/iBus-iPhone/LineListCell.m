@@ -41,10 +41,10 @@
         _arrowImageView=[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_IMAGEVIEW_ORIGIN_X, ARROW_IMAGEVIEW_ORIGIN_Y, ARROW_IMAGEVIEW_WIDTH, ARROW_IMAGEVIEW_HEIGHT)];
         [self addSubview:self.arrowImageView];
         
-        _refreshBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        self.refreshBtn.frame=CGRectMake(Refresh_Button_Origin_X, Refresh_Button_Origin_Y, Refresh_Button_Width, Refresh_Button_Height);
-        [self.refreshBtn setBackgroundImage:[UIImage imageNamed:@"refreshBtn.png"] forState:UIControlStateNormal];
-        [self addSubview:self.refreshBtn];
+//        _refreshBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+//        self.refreshBtn.frame=CGRectMake(Refresh_Button_Origin_X, Refresh_Button_Origin_Y, Refresh_Button_Width, Refresh_Button_Height);
+//        [self.refreshBtn setBackgroundImage:[UIImage imageNamed:@"refreshBtn.png"] forState:UIControlStateNormal];
+//        [self addSubview:self.refreshBtn];
         
     }
     
@@ -65,7 +65,7 @@
     self.lineNameLbl.font=[UIFont systemFontOfSize:18.0f];
     [self addSubview:self.lineNameLbl];
     
-    [self.refreshBtn addTarget:self action:@selector(RefreshButton_touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.refreshBtn addTarget:self action:@selector(RefreshButton_touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)resizeSubViews{
@@ -91,11 +91,11 @@
     }
 }
 
-- (void)RefreshButton_touchUpInside:(id)sender{
-#warning TODO: update lineInfo
-    NSLog(@"%@",self.lineInfo[@"lineId"]);
-    [self runSpinAnimationWithDuration:2.0];
-}
+//- (void)RefreshButton_touchUpInside:(id)sender{
+//#warning TODO: update lineInfo
+//    NSLog(@"%@",self.lineInfo[@"lineId"]);
+//    [self runSpinAnimationWithDuration:2.0];
+//}
 
 - (void) runSpinAnimationWithDuration:(CGFloat) duration;
 {

@@ -60,19 +60,19 @@
     [self addSubview:self.stationNameLbl];
     
     
-    if (modelInfo[@"countDownTime"]) {
-        NSLog(@"%@",self.stationInfo[@"countDownTime"]);
-        
-        _countdownTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(CountDown_Label_Origin_X, CountDown_Label_Origin_Y, CountDown_Label_Width, CountDown_Label_Height)];
-        _countdownTimeLbl.backgroundColor=[UIColor redColor];
-        _countdownTimeLbl.backgroundColor=[UIColor clearColor];
-        _countdownTimeLbl.textAlignment=NSTextAlignmentRight;
-        _countdownTimeLbl.text=[NSString stringWithFormat:@"%@分钟",self.stationInfo[@"countDownTime"]];
-        [_countdownTimeLbl setFont:[UIFont systemFontOfSize:CountDown_Label_FontSize]];
-        [self addSubview:self.countdownTimeLbl];
-    }else{
-        NSLog(@"Nil!!!!!");
-    }
+//    if (modelInfo[@"countDownTime"]) {
+//        NSLog(@"%@",self.stationInfo[@"countDownTime"]);
+//        
+//        _countdownTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(CountDown_Label_Origin_X, CountDown_Label_Origin_Y, CountDown_Label_Width, CountDown_Label_Height)];
+//        _countdownTimeLbl.backgroundColor=[UIColor redColor];
+//        _countdownTimeLbl.backgroundColor=[UIColor clearColor];
+//        _countdownTimeLbl.textAlignment=NSTextAlignmentRight;
+//        _countdownTimeLbl.text=[NSString stringWithFormat:@"%@分钟",self.stationInfo[@"countDownTime"]];
+//        [_countdownTimeLbl setFont:[UIFont systemFontOfSize:CountDown_Label_FontSize]];
+//        [self addSubview:self.countdownTimeLbl];
+//    }else{
+//        NSLog(@"Nil!!!!!");
+//    }
     
     
 }

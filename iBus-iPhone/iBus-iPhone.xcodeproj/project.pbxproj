@@ -51,7 +51,7 @@
 		77A9A6DE1750ADE700263B54 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6DD1750ADE700263B54 /* IconDownloader.m */; };
 		77A9A6E71750AF6100263B54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740B1CD1748AFC800D98529 /* CoreGraphics.framework */; };
 		77A9A6E91750AFCF00263B54 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A9A6E81750AFCE00263B54 /* QuartzCore.framework */; };
-		77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */; };
+		77A9A6EC1750C3DE00263B54 /* StationMapInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EB1750C3DE00263B54 /* StationMapInfoController.m */; };
 		77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EE1750C63A00263B54 /* StationListController.m */; };
 		77C481F41759C39700AA00A3 /* mapBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C481F31759C39700AA00A3 /* mapBtn.png */; };
 		77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C481F7175A2AAB00AA00A3 /* MapHelper.m */; };
@@ -68,6 +68,7 @@
 		77EABAAB174A3935006C9E03 /* BusQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EABAAA174A3935006C9E03 /* BusQueryController.m */; };
 		77F0E3181753276A00F4C748 /* BaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E3171753276A00F4C748 /* BaseOperation.m */; };
 		77F0E31B175327B300F4C748 /* FetchLineInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */; };
+		77FDD8E51761ED8D001E5A77 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FDD8E41761ED8D001E5A77 /* LineDynamicStateController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,8 +135,8 @@
 		77A9A6DC1750ADE700263B54 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
 		77A9A6DD1750ADE700263B54 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		77A9A6E81750AFCE00263B54 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		77A9A6EA1750C3DE00263B54 /* LineDynamicStateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDynamicStateController.h; sourceTree = "<group>"; };
-		77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDynamicStateController.m; sourceTree = "<group>"; };
+		77A9A6EA1750C3DE00263B54 /* StationMapInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationMapInfoController.h; sourceTree = "<group>"; };
+		77A9A6EB1750C3DE00263B54 /* StationMapInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationMapInfoController.m; sourceTree = "<group>"; };
 		77A9A6ED1750C63900263B54 /* StationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationListController.h; sourceTree = "<group>"; };
 		77A9A6EE1750C63A00263B54 /* StationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationListController.m; sourceTree = "<group>"; };
 		77C481F31759C39700AA00A3 /* mapBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapBtn.png; sourceTree = "<group>"; };
@@ -163,6 +164,8 @@
 		77F0E3171753276A00F4C748 /* BaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOperation.m; sourceTree = "<group>"; };
 		77F0E319175327B300F4C748 /* FetchLineInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchLineInfoOperation.h; sourceTree = "<group>"; };
 		77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchLineInfoOperation.m; sourceTree = "<group>"; };
+		77FDD8E31761ED8D001E5A77 /* LineDynamicStateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDynamicStateController.h; sourceTree = "<group>"; };
+		77FDD8E41761ED8D001E5A77 /* LineDynamicStateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDynamicStateController.m; sourceTree = "<group>"; };
 		7DD7B459E986410FA3291522 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C779380FAA884B0BB973B9B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -293,14 +296,16 @@
 			children = (
 				77EABAA9174A3935006C9E03 /* BusQueryController.h */,
 				77EABAAA174A3935006C9E03 /* BusQueryController.m */,
-				77A9A6EA1750C3DE00263B54 /* LineDynamicStateController.h */,
-				77A9A6EB1750C3DE00263B54 /* LineDynamicStateController.m */,
+				77A9A6EA1750C3DE00263B54 /* StationMapInfoController.h */,
+				77A9A6EB1750C3DE00263B54 /* StationMapInfoController.m */,
 				77A9A6ED1750C63900263B54 /* StationListController.h */,
 				77A9A6EE1750C63A00263B54 /* StationListController.m */,
 				772A633C1755C24500FBF5E6 /* LineListController.h */,
 				772A633D1755C24500FBF5E6 /* LineListController.m */,
 				772A633F1755C36200FBF5E6 /* SubLineViewController.h */,
 				772A63401755C36200FBF5E6 /* SubLineViewController.m */,
+				77FDD8E31761ED8D001E5A77 /* LineDynamicStateController.h */,
+				77FDD8E41761ED8D001E5A77 /* LineDynamicStateController.m */,
 			);
 			name = BusQuery;
 			sourceTree = "<group>";
@@ -624,7 +629,7 @@
 				77A9A6C01750A2A300263B54 /* LoadMoreTableFooterView.m in Sources */,
 				77A9A6C41750A2DC00263B54 /* ELTableViewController.m in Sources */,
 				77A9A6DE1750ADE700263B54 /* IconDownloader.m in Sources */,
-				77A9A6EC1750C3DE00263B54 /* LineDynamicStateController.m in Sources */,
+				77A9A6EC1750C3DE00263B54 /* StationMapInfoController.m in Sources */,
 				77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */,
 				7715B5501751FD82002B4487 /* LineDao.m in Sources */,
 				7715B55417520B07002B4487 /* DBHelper.m in Sources */,
@@ -641,6 +646,7 @@
 				77DEB0FE175854F600E93D1D /* FetchStationInfoOperation.m in Sources */,
 				77DEB10117587C2000E93D1D /* StationListCell.m in Sources */,
 				77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */,
+				77FDD8E51761ED8D001E5A77 /* LineDynamicStateController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
