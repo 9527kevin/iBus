@@ -38,7 +38,7 @@ http://www.baidu.com
 //到站距离
 //inDown:0/1
 #define Url_DestinationDistance \
-@"http://112.2.33.3:7106/BusAndroid/android.do?command=toDis&lineId=%@&inDown=%@&stationNo=%@"
+@"http://112.2.33.3:7106/BusAndroid/android.do?command=toDis&lineId=%@&inDown=%@&stationNo=%d"
 
 //站点模糊匹配
 #define Url_StationFuzzyQuery \
@@ -48,6 +48,7 @@ http://www.baidu.com
 #define Url_LineFuzzyQuery \
 @"http://112.2.33.3:7106//BusAndroid/android.do?command=toHcSta&sstation=%@&estation=%@"
 
+#define Dynamic_Station_List_Count 8
 
 /******************************Messages*******************************/
 #define Notification_Of_LineList @"Notification_Of_LineList"

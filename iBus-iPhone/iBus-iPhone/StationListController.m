@@ -93,6 +93,7 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
         lineDynamicStateCtrller.lineId=self.lineId;
         lineDynamicStateCtrller.identifier=self.identifier;
         lineDynamicStateCtrller.stationNo=stationNo;
+        lineDynamicStateCtrller.stationName=self.dataSource[indexPath.row][@"stationName"];
         [self.navigationController pushViewController:lineDynamicStateCtrller animated:YES];
     };
 }

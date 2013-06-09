@@ -10,6 +10,7 @@
 		32D5BB778C5B43F0B93FBB59 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C779380FAA884B0BB973B9B8 /* libPods.a */; };
 		7715B5501751FD82002B4487 /* LineDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B54F1751FD82002B4487 /* LineDao.m */; };
 		7715B55417520B07002B4487 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B55317520B07002B4487 /* DBHelper.m */; };
+		771A3E881762DD6D000EBB44 /* stationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 771A3E871762DD6D000EBB44 /* stationMarker.png */; };
 		772A63391755C06300FBF5E6 /* FolderCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A63341755C06300FBF5E6 /* FolderCoverView.m */; };
 		772A633A1755C06300FBF5E6 /* UIFolderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A63361755C06300FBF5E6 /* UIFolderTableView.m */; };
 		772A633B1755C06300FBF5E6 /* UIView+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A63381755C06300FBF5E6 /* UIView+screenshot.m */; };
@@ -35,6 +36,8 @@
 		7740B1E01748AFC800D98529 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1DF1748AFC800D98529 /* Default-568h@2x.png */; };
 		7740B1EE1748B4DB00D98529 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1ED1748B4DB00D98529 /* BaseController.m */; };
 		7740B1F11748B4F900D98529 /* MenuContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1F01748B4F900D98529 /* MenuContainerController.m */; };
+		778546E2176465830020AE10 /* stationBusMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E1176465830020AE10 /* stationBusMarker.png */; };
+		778546EA17647ED50020AE10 /* arrowStation.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E917647ED50020AE10 /* arrowStation.png */; };
 		77A9A6BF1750A2A300263B54 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6BC1750A2A300263B54 /* EGORefreshTableHeaderView.m */; };
 		77A9A6C01750A2A300263B54 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6BE1750A2A300263B54 /* LoadMoreTableFooterView.m */; };
 		77A9A6C41750A2DC00263B54 /* ELTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6C31750A2DC00263B54 /* ELTableViewController.m */; };
@@ -77,6 +80,7 @@
 		7715B5511752004F002B4487 /* CREATE_SQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREATE_SQL.h; sourceTree = "<group>"; };
 		7715B55217520B07002B4487 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		7715B55317520B07002B4487 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		771A3E871762DD6D000EBB44 /* stationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stationMarker.png; sourceTree = "<group>"; };
 		772A63331755C06300FBF5E6 /* FolderCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCoverView.h; sourceTree = "<group>"; };
 		772A63341755C06300FBF5E6 /* FolderCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCoverView.m; sourceTree = "<group>"; };
 		772A63351755C06300FBF5E6 /* UIFolderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFolderTableView.h; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		7740B1F01748B4F900D98529 /* MenuContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuContainerController.m; sourceTree = "<group>"; };
 		7740B1F41748BC5C00D98529 /* GlobalDefinitionForBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForBusiness.h; sourceTree = "<group>"; };
 		7740B1F51748E4FE00D98529 /* GlobalDefinitionForUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForUI.h; sourceTree = "<group>"; };
+		778546E1176465830020AE10 /* stationBusMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stationBusMarker.png; sourceTree = "<group>"; };
+		778546E917647ED50020AE10 /* arrowStation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowStation.png; sourceTree = "<group>"; };
 		77A9A6BB1750A2A300263B54 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		77A9A6BC1750A2A300263B54 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		77A9A6BD1750A2A300263B54 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -469,6 +475,9 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				778546E917647ED50020AE10 /* arrowStation.png */,
+				778546E1176465830020AE10 /* stationBusMarker.png */,
+				771A3E871762DD6D000EBB44 /* stationMarker.png */,
 				77C481F9175A3F0A00AA00A3 /* refreshBtn.png */,
 				77C481F31759C39700AA00A3 /* mapBtn.png */,
 				77DEB10217589EF700E93D1D /* busStation.png */,
@@ -579,6 +588,9 @@
 				77DEB10317589EF700E93D1D /* busStation.png in Resources */,
 				77C481F41759C39700AA00A3 /* mapBtn.png in Resources */,
 				77C481FA175A3F0A00AA00A3 /* refreshBtn.png in Resources */,
+				771A3E881762DD6D000EBB44 /* stationMarker.png in Resources */,
+				778546E2176465830020AE10 /* stationBusMarker.png in Resources */,
+				778546EA17647ED50020AE10 /* arrowStation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,26 @@
 SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 ) WHERE orderno = ?"
 
+//count : wheather in the middle or not
+#define SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL \
+@"SELECT COUNT(1) FROM stationInfo WHERE lineId = ? AND orderno <= ?  ORDER BY orderno ASC "
+
+#define SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_DESC_SQL \
+@"SELECT COUNT(1) FROM stationInfo WHERE lineId = ? AND orderno >= ?  ORDER BY orderno DESC "
+
+//in the middle
+#define SELECT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL \
+@"SELECT * FROM stationInfo WHERE lineId = ? AND orderno <= ?  ORDER BY orderno ASC LIMIT 8 OFFSET ?"
+
+#define SELECT_DYNAMIC_STATIONLIST_ORDER_DESC_SQL \
+@"SELECT * FROM stationInfo WHERE lineId = ? AND orderno >= ? ORDER BY orderno DESC LIMIT 8  OFFSET ?"
+
+//start or end
+#define SELECT_DYNAMIC_STATIONLIST_ORDER_ASC_END_SQL \
+@"SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC LIMIT 8"
+
+#define SELECT_DYNAMIC_STATIONLIST_ORDER_DESC_END_SQL \
+@"SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC LIMIT 8"
 
 
 @interface StationDao : NSObject
@@ -45,5 +65,9 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 + (NSMutableDictionary*)getStationInfoWithLineId:(NSString*)lineId
                                    andIdentifier:(NSString*)identifier
                                       andOrderNo:(NSInteger)orderNo;
+
++ (NSMutableArray *)getDynamicStationList:(NSString*)lineId
+                             andStationId:(NSNumber*)stationId
+                            andIdentifier:(NSString*)identifier;
 
 @end
