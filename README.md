@@ -4,7 +4,7 @@ This is a iPhone client for common bus service. Now it just provides services fo
 
 ##screen shot
 
-
+![dynamicStationImage](http://img.my.csdn.net/uploads/201306/10/1370848332_5953.png)
 
 ##build & test
 
