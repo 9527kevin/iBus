@@ -20,6 +20,8 @@
 //hack cotainer view array
 @property (nonatomic,retain) NSMutableArray *GCContainerViewArray;
 
+@property (nonatomic,retain) NSTimer *timer;
+
 
 @end
 
@@ -34,6 +36,9 @@
     [_dataSource release],_dataSource=nil;
     [_stationName release],_stationName=nil;
     [_GCContainerViewArray release],_GCContainerViewArray=nil;
+    
+    //stop timer
+    [self stopRefreshTimer];
     
     [super dealloc];
 }
@@ -64,7 +69,6 @@
     //bottom tip
     _bottomTipLbl=[[UILabel alloc] initWithFrame:CGRectMake(BottomTip_Label_Origin_X, BottomTip_Label_Origin_Y, BottomTip_Label_Width, BottomTip_Label_Height)];
     self.bottomTipLbl.font=[UIFont systemFontOfSize:BottomTip_Label_FontSize];
-    self.bottomTipLbl.text=@"下一班预计发车时间:";
     [self.view addSubview:self.bottomTipLbl];
     
     //bottom next-bus coming time
@@ -87,13 +91,14 @@
                                         andIdentifier:self.identifier];
     [self layoutDynamicStationSubviews];
     
-    [self sendRequest4GetDynamicStateInfo];
+//    [self sendRequest4GetDynamicStateInfo];
+    [self startRefreshTimer];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self stopRefreshTimer];
 }
 
 #pragma mark - private methods -
@@ -136,15 +141,33 @@
         UILabel *stationLbl=(UILabel *)[self.containerView viewWithTag:Station_Label_StartIndex+i];
         stationLbl.text=self.dataSource[i][@"stationName"];
     }
+    
+    [self markFollowingStation];
+}
+
+- (void)markFollowingStation{
+    if (self.dataSource.count==0) {
+        return;
+    }
+    
+    for (int i=0; i<self.dataSource.count; i++) {
+        if ([self.dataSource[i][@"orderNo"] intValue]==self.stationNo) {
+            ((UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+i]).textColor=[UIColor redColor];
+        }
+    }
 }
 
 - (void)setStationMarker:(int)directionStationNo
              andDistance:(NSString*)distance
         andCountDownTime:(NSString*)countDownTime{
     
-    if (directionStationNo>8) {
+    if (directionStationNo>8 || directionStationNo<0) {
         return;
     }
+    
+    //set current station label's background color
+    UILabel *currentStationLbl=(UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+directionStationNo];
+    currentStationLbl.textColor=TipInContainerView_Label_TextColor;
     
     //bus marker image view
     CGRect currentStationMarkerFrame=CGRectMake(StationEntryMark_ImageView_Origin_X, StationEntryMark_ImageView_Margin+(StationEntryMark_ImageView_Margin+Station_Label_Height)*directionStationNo, StationEntryMark_ImageView_Width, StationEntryMark_ImageView_Height);
@@ -153,21 +176,27 @@
     stationMarkerImgView.image=[UIImage imageNamed:@"stationBusMarker.png"];
     [self.containerView addSubview:stationMarkerImgView];
     
-    [self.GCContainerViewArray addObject:stationMarkerImgView];
+    [self.GCContainerViewArray addObject:stationMarkerImgView];     //add to gc
     
     //count down time
-    CGRect currentCountDownTimeFrame=CGRectMake(currentStationMarkerFrame.origin.x + currentStationMarkerFrame.size.width+5.0f, currentStationMarkerFrame.origin.y, Toptip_CountDownTime_Label_Width, Toptip_Distance_Label_Width);
+    CGRect currentCountDownTimeFrame=CGRectMake(currentStationMarkerFrame.origin.x + currentStationMarkerFrame.size.width+3.0f, currentStationMarkerFrame.origin.y, Toptip_CountDownTime_Label_Width, TipInContainerView_Label_Height);
     UILabel *countDownTimeLbl=[[[UILabel alloc] initWithFrame:currentCountDownTimeFrame] autorelease];
-    countDownTimeLbl.backgroundColor=[UIColor clearColor];
+    [countDownTimeLbl setBackgroundColor:[UIColor clearColor]];
+    countDownTimeLbl.font=[UIFont systemFontOfSize:TipInContainerView_Label_FontSize];
+    countDownTimeLbl.textColor=TipInContainerView_Label_TextColor;
+    countDownTimeLbl.textAlignment=NSTextAlignmentLeft;
     countDownTimeLbl.text=countDownTime;
     [self.containerView addSubview:countDownTimeLbl];
     
     [self.GCContainerViewArray addObject:countDownTimeLbl];         //add to gc
     
     //distance
-    CGRect currentDistanceFrame=CGRectMake(currentCountDownTimeFrame.origin.x+currentCountDownTimeFrame.size.width, currentStationMarkerFrame.origin.y, Toptip_CountDownTime_Label_Width, Toptip_Distance_Label_Width);
+    CGRect currentDistanceFrame=CGRectMake(currentCountDownTimeFrame.origin.x+currentCountDownTimeFrame.size.width, currentStationMarkerFrame.origin.y, Toptip_CountDownTime_Label_Width, TipInContainerView_Label_Height);
     UILabel *distanceLbl=[[[UILabel alloc] initWithFrame:currentDistanceFrame] autorelease];
     [distanceLbl setBackgroundColor:[UIColor clearColor]];
+    distanceLbl.font=[UIFont systemFontOfSize:TipInContainerView_Label_FontSize];
+    distanceLbl.textColor=TipInContainerView_Label_TextColor;
+    distanceLbl.textAlignment=NSTextAlignmentCenter;
     distanceLbl.text=distance;
     [self.containerView addSubview:distanceLbl];
     
@@ -183,12 +212,16 @@
         NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
                                                                 options:NSJSONReadingAllowFragments
                                                                     error:nil];
+        NSLog(@"%@",responseDic);
+        
         //exist bus info
         if ([responseDic[@"success"] boolValue]==true && responseDic[@"rows"] && [responseDic[@"rows"] count]>0) {
+            
+            [self resetContainerView];
+            
             self.dataSource=[StationDao getDynamicStationList:self.lineId
                                                   andStationId:[NSNumber numberWithInt:self.stationNo]
                                                  andIdentifier:self.identifier];
-            [self clear];
             
             //rows
             NSArray *busArray=responseDic[@"rows"];
@@ -204,8 +237,9 @@
                     if ([tmpDisForCountDownTime length]>=startRange.location+1) {
                         tmpDisForCountDownTime=[tmpDisForCountDownTime substringFromIndex:startRange.location+1];
                         NSRange endRange=[tmpDisForCountDownTime rangeOfString:@"分钟"];
-                        if ([disStr length]>=endRange.location) {
-                            countDownTimeStr=[tmpDisForCountDownTime substringToIndex:endRange.location];
+                        if ([tmpDisForCountDownTime length]>=endRange.location) {
+                            NSString *tmpCDT=[tmpDisForCountDownTime substringToIndex:endRange.location];
+                            countDownTimeStr=[NSString stringWithFormat:@"%@分",tmpCDT];
                         }
                     }
                     
@@ -216,12 +250,20 @@
                     startRange=[tmpDisFordistance rangeOfString:@"约"];
                     if ([tmpDisFordistance length]>=startRange.location+1) {
                         tmpDisFordistance=[tmpDisFordistance substringFromIndex:startRange.location+1];
-                        NSRange endRange=[tmpDisFordistance rangeOfString:@"分钟"];
-                        if ([disStr length]>=endRange.location) {
-                            distanceStr=[tmpDisFordistance substringToIndex:endRange.location];
+                        NSRange endRange=[tmpDisFordistance rangeOfString:@"米"];
+                        if ([tmpDisFordistance length]>=endRange.location) {
+                            NSString *tmpDistance=[tmpDisFordistance substringToIndex:endRange.location];
+                            distanceStr=[NSString stringWithFormat:@"%@米",tmpDistance];
+                        }
+                        
+                        endRange=[tmpDisFordistance rangeOfString:@"公里"];
+                        if ([tmpDisFordistance length]>=endRange.location) {
+                            NSString *tmpDistance=[tmpDisFordistance substringToIndex:endRange.location];
+                            distanceStr=[NSString stringWithFormat:@"%@公里",tmpDistance];
                         }
                     }
                     
+                    //show
                     [self setStationMarker:7-[busInfo[@"stationNo"] intValue]
                                andDistance:distanceStr
                           andCountDownTime:countDownTimeStr];
@@ -239,9 +281,43 @@
     [request startAsynchronous];
 }
 
+- (void)resetContainerView{
+    [self clear];
+    for (int i=0; i<self.dataSource.count; i++) {
+        ((UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+i]).textColor=[UIColor blueColor];
+    }
+    
+    [self markFollowingStation];
+}
+
 - (void)clear{
     for (NSObject *subViewObj in self.GCContainerViewArray) {
         [(UIView*)subViewObj removeFromSuperview];
+    }
+}
+
+#pragma mark - NSTimer -
+- (void)initAndStartScheduleTask{
+    [NSTimer scheduledTimerWithTimeInterval:DynamicRefresh_Frequency target:self selector:@selector(sendRequest4GetDynamicStateInfo) userInfo:nil repeats:YES];
+    
+}
+
+- (void)startRefreshTimer{
+    if (self.timer == nil)
+    {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:DynamicRefresh_Frequency
+                                                  target:self
+                                                selector:@selector(sendRequest4GetDynamicStateInfo)
+                                                userInfo:nil
+                                                 repeats:YES];
+    }
+}
+
+- (void)stopRefreshTimer{
+    if (self.timer != nil)
+    {
+        [self.timer invalidate];
+        self.timer = nil;
     }
 }
 

@@ -49,6 +49,8 @@ http://www.baidu.com
 @"http://112.2.33.3:7106//BusAndroid/android.do?command=toHcSta&sstation=%@&estation=%@"
 
 #define Dynamic_Station_List_Count 8
+//刷新频率
+#define DynamicRefresh_Frequency 20
 
 /******************************Messages*******************************/
 #define Notification_Of_LineList @"Notification_Of_LineList"

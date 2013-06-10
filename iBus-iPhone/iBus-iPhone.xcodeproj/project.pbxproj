@@ -38,6 +38,7 @@
 		7740B1F11748B4F900D98529 /* MenuContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1F01748B4F900D98529 /* MenuContainerController.m */; };
 		778546E2176465830020AE10 /* stationBusMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E1176465830020AE10 /* stationBusMarker.png */; };
 		778546EA17647ED50020AE10 /* arrowStation.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E917647ED50020AE10 /* arrowStation.png */; };
+		77935CCA1765B2B100B68BA6 /* screenShot_Images in Resources */ = {isa = PBXBuildFile; fileRef = 77935CC91765B2B100B68BA6 /* screenShot_Images */; };
 		77A9A6BF1750A2A300263B54 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6BC1750A2A300263B54 /* EGORefreshTableHeaderView.m */; };
 		77A9A6C01750A2A300263B54 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6BE1750A2A300263B54 /* LoadMoreTableFooterView.m */; };
 		77A9A6C41750A2DC00263B54 /* ELTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6C31750A2DC00263B54 /* ELTableViewController.m */; };
@@ -122,6 +123,7 @@
 		7740B1F51748E4FE00D98529 /* GlobalDefinitionForUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForUI.h; sourceTree = "<group>"; };
 		778546E1176465830020AE10 /* stationBusMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stationBusMarker.png; sourceTree = "<group>"; };
 		778546E917647ED50020AE10 /* arrowStation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowStation.png; sourceTree = "<group>"; };
+		77935CC91765B2B100B68BA6 /* screenShot_Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = screenShot_Images; sourceTree = "<group>"; };
 		77A9A6BB1750A2A300263B54 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		77A9A6BC1750A2A300263B54 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		77A9A6BD1750A2A300263B54 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 		77A9A6C51750AC1000263B54 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				77935CC91765B2B100B68BA6 /* screenShot_Images */,
 				772A6350175618CB00FBF5E6 /* menuItem */,
 				77DEB62F17549A4700FD4594 /* images */,
 				77A9A6C61750AC2300263B54 /* RefreshAndLoadMoreImages */,
@@ -591,6 +594,7 @@
 				771A3E881762DD6D000EBB44 /* stationMarker.png in Resources */,
 				778546E2176465830020AE10 /* stationBusMarker.png in Resources */,
 				778546EA17647ED50020AE10 /* arrowStation.png in Resources */,
+				77935CCA1765B2B100B68BA6 /* screenShot_Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
