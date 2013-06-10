@@ -6,7 +6,13 @@ Now the service it provides  can only be available for users who are in **Jiangn
 
 ##screen shot
 
+* single
+
 ![dynamicStationImage](http://img.my.csdn.net/uploads/201306/10/1370848332_5953.png)
+
+* multi
+
+![dynamicStationImage](http://img.my.csdn.net/uploads/201306/10/1370853465_9965.png)
 
 ##build & test
 
