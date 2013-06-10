@@ -1,6 +1,8 @@
 #overview
 
-This is a iPhone client for common bus service. Now it just provides services for the area located at Jiangning Nanjing China.
+This is a iPhone client provides common bus service. <br />
+
+Now the service it provides  can only be available for users who are in **Jiangning** Nanjing China.
 
 ##screen shot
 
