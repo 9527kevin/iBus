@@ -1,5 +1,5 @@
 //
-//  FMDatabasePool.h
+//  FMDatabaseQueue.h
 //  fmdb
 //
 //  Created by August Mueller on 6/22/11.
@@ -17,7 +17,7 @@
     FMDatabase          *_db;
 }
 
-@property (retain) NSString *path;
+@property (atomic, retain) NSString *path;
 
 + (id)databaseQueueWithPath:(NSString*)aPath;
 - (id)initWithPath:(NSString*)aPath;

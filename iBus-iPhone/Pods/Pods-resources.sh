@@ -26,3 +26,7 @@ install_resource()
   esac
 }
 install_resource 'Google-Maps-iOS-SDK/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle'
+install_resource 'Nimbus/src/overview/resources/NimbusOverviewer.bundle'
+install_resource 'Nimbus/src/photos/resources/NimbusPhotos.bundle'
+install_resource 'Nimbus/src/webcontroller/resources/NimbusWebController.bundle'
+install_resource 'SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle'
