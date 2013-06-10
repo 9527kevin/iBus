@@ -69,6 +69,9 @@
 		77DEB6371754A21000FD4594 /* busPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB6361754A21000FD4594 /* busPlaceHolder.png */; };
 		77DEB63A1754AA3100FD4594 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB6381754AA3100FD4594 /* arrow_left.png */; };
 		77DEB63D1754AB2600FD4594 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB63C1754AB2600FD4594 /* arrow_right.png */; };
+		77E71A431765DF6500120F92 /* FollowingStationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A421765DF6500120F92 /* FollowingStationListController.m */; };
+		77E71A471765DFAD00120F92 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A461765DFAD00120F92 /* SettingController.m */; };
+		77E71A4B1765E41300120F92 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A4A1765E41300120F92 /* AboutController.m */; };
 		77EABAAB174A3935006C9E03 /* BusQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EABAAA174A3935006C9E03 /* BusQueryController.m */; };
 		77F0E3181753276A00F4C748 /* BaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E3171753276A00F4C748 /* BaseOperation.m */; };
 		77F0E31B175327B300F4C748 /* FetchLineInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */; };
@@ -166,6 +169,12 @@
 		77DEB6361754A21000FD4594 /* busPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busPlaceHolder.png; sourceTree = "<group>"; };
 		77DEB6381754AA3100FD4594 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		77DEB63C1754AB2600FD4594 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
+		77E71A411765DF6500120F92 /* FollowingStationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingStationListController.h; sourceTree = "<group>"; };
+		77E71A421765DF6500120F92 /* FollowingStationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingStationListController.m; sourceTree = "<group>"; };
+		77E71A451765DFAD00120F92 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		77E71A461765DFAD00120F92 /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		77E71A491765E41300120F92 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		77E71A4A1765E41300120F92 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
 		77EABAA9174A3935006C9E03 /* BusQueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusQueryController.h; sourceTree = "<group>"; };
 		77EABAAA174A3935006C9E03 /* BusQueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusQueryController.m; sourceTree = "<group>"; };
 		77F0E3161753276A00F4C748 /* BaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOperation.h; sourceTree = "<group>"; };
@@ -321,6 +330,8 @@
 		7740B1E71748B3FD00D98529 /* MyBusZoom */ = {
 			isa = PBXGroup;
 			children = (
+				77E71A411765DF6500120F92 /* FollowingStationListController.h */,
+				77E71A421765DF6500120F92 /* FollowingStationListController.m */,
 			);
 			name = MyBusZoom;
 			sourceTree = "<group>";
@@ -328,6 +339,8 @@
 		7740B1E81748B42C00D98529 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				77E71A451765DFAD00120F92 /* SettingController.h */,
+				77E71A461765DFAD00120F92 /* SettingController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -335,6 +348,7 @@
 		7740B1E91748B46900D98529 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				77E71A481765E3DF00120F92 /* About */,
 				772A632E1755B07E00FBF5E6 /* Test */,
 				77A9A54317508E6100263B54 /* MapShow */,
 				77A9A54217508E5200263B54 /* FindFriends */,
@@ -493,6 +507,15 @@
 				77DEB6361754A21000FD4594 /* busPlaceHolder.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		77E71A481765E3DF00120F92 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				77E71A491765E41300120F92 /* AboutController.h */,
+				77E71A4A1765E41300120F92 /* AboutController.m */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		77F0E3141753270000F4C748 /* OperateQueue */ = {
@@ -663,6 +686,9 @@
 				77DEB10117587C2000E93D1D /* StationListCell.m in Sources */,
 				77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */,
 				77FDD8E51761ED8D001E5A77 /* LineDynamicStateController.m in Sources */,
+				77E71A431765DF6500120F92 /* FollowingStationListController.m in Sources */,
+				77E71A471765DFAD00120F92 /* SettingController.m in Sources */,
+				77E71A4B1765E41300120F92 /* AboutController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
