@@ -17,7 +17,7 @@
 
 #define Toptip_Distance_Label_Origin_X MainWidth - Toptip_Distance_Label_Width - 5.0f
 #define Toptip_Distance_Label_Origin_Y 0.0f
-#define Toptip_Distance_Label_Width 63.0f
+#define Toptip_Distance_Label_Width 65.0f
 
 #define Toptip_CountDownTime_Label_Origin_X \
 Toptip_Distance_Label_Origin_X - Toptip_CountDownTime_Label_Width -5.0f
@@ -48,10 +48,10 @@ MainHeight - Toptip_Label_Height - BottomTip_Label_Height - NavigationBarHeight
 #define StationEntryMark_ImageView_Height 25.0f
 
 #define BottomTip_Label_Origin_X 5.0f
-#define BottomTip_Label_Width 160.0f
+#define BottomTip_Label_Width MainWidth
 #define BottomTip_Label_Height 30.0f
 #define BottomTip_Label_Origin_Y MainHeight - Toptip_Label_Height - NavigationBarHeight
-#define BottomTip_Label_FontSize 16.0f 
+#define BottomTip_Label_FontSize 16.0f
 
 #define BottomNextTime_Label_Origin_X BottomTip_Label_Width + 5.0f
 #define BottomNextTime_Label_Origin_Y BottomTip_Label_Origin_Y

@@ -16,12 +16,12 @@
 @property (nonatomic,retain) UILabel *bottomTipLbl;
 
 @property (nonatomic,retain) NSMutableArray *dataSource;
+@property (nonatomic,assign) int currentStationIndex;
 
 //hack cotainer view array
 @property (nonatomic,retain) NSMutableArray *GCContainerViewArray;
 
 @property (nonatomic,retain) NSTimer *timer;
-
 
 @end
 
@@ -72,10 +72,10 @@
     [self.view addSubview:self.bottomTipLbl];
     
     //bottom next-bus coming time
-    _bottomNextTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(BottomNextTime_Label_Origin_X, BottomNextTime_Label_Origin_Y, BottomNextTime_Label_Width, BottomNextTime_Label_Height)];
-    self.bottomNextTimeLbl.font=[UIFont systemFontOfSize:BottomNextTime_Label_FontSize];
-    self.bottomNextTimeLbl.textColor=[UIColor redColor];
-    [self.view addSubview:self.bottomNextTimeLbl];
+//    _bottomNextTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(BottomNextTime_Label_Origin_X, BottomNextTime_Label_Origin_Y, BottomNextTime_Label_Width, BottomNextTime_Label_Height)];
+//    self.bottomNextTimeLbl.font=[UIFont systemFontOfSize:BottomNextTime_Label_FontSize];
+//    self.bottomNextTimeLbl.textColor=[UIColor redColor];
+//    [self.view addSubview:self.bottomNextTimeLbl];
     
     //hack container view
     _GCContainerViewArray=[[NSMutableArray alloc] init];
@@ -89,9 +89,11 @@
     self.dataSource=[StationDao getDynamicStationList:self.lineId
                                          andStationId:[NSNumber numberWithInt:self.stationNo]
                                         andIdentifier:self.identifier];
+    [self getStationIndex];
+    
     [self layoutDynamicStationSubviews];
     
-//    [self sendRequest4GetDynamicStateInfo];
+    [self sendRequest4GetDynamicStateInfo];     //first load
     [self startRefreshTimer];
 }
 
@@ -102,6 +104,14 @@
 }
 
 #pragma mark - private methods -
+- (void)getStationIndex{
+    for (int i=0; i<self.dataSource.count; i++) {
+        if ([self.dataSource[i][@"orderNo"] intValue]==self.stationNo) {
+            self.currentStationIndex=i;
+        }
+    }
+}
+
 - (void)initDynamicStateContainerView{
     _containerView=[[UIView alloc] initWithFrame:CGRectMake(Dynamic_State_ContainerView_Origin_X, Dynamic_State_ContainerView_Origin_Y, Dynamic_State_ContainerView_Width, Dynamic_State_ContainerView_Height)];
     self.containerView.backgroundColor=ColorWithRGBA(245, 245, 245, 1);
@@ -150,27 +160,27 @@
         return;
     }
     
-    for (int i=0; i<self.dataSource.count; i++) {
-        if ([self.dataSource[i][@"orderNo"] intValue]==self.stationNo) {
-            ((UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+i]).textColor=[UIColor redColor];
-        }
-    }
+    ((UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+self.currentStationIndex]).textColor=[UIColor redColor];
 }
 
 - (void)setStationMarker:(int)directionStationNo
              andDistance:(NSString*)distance
-        andCountDownTime:(NSString*)countDownTime{
-    
+        andCountDownTime:(NSString*)countDownTime
+              andInorOut:(int)inOrOut{
     if (directionStationNo>8 || directionStationNo<0) {
         return;
     }
     
-    //set current station label's background color
-    UILabel *currentStationLbl=(UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+directionStationNo];
-    currentStationLbl.textColor=TipInContainerView_Label_TextColor;
+    float realStationNo=inOrOut==1?directionStationNo:directionStationNo+0.5;
+    
+    //entry a station
+    if (inOrOut==1) {         //set current station label's background color
+        UILabel *currentStationLbl=(UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+directionStationNo];
+        currentStationLbl.textColor=TipInContainerView_Label_TextColor;
+    }
     
     //bus marker image view
-    CGRect currentStationMarkerFrame=CGRectMake(StationEntryMark_ImageView_Origin_X, StationEntryMark_ImageView_Margin+(StationEntryMark_ImageView_Margin+Station_Label_Height)*directionStationNo, StationEntryMark_ImageView_Width, StationEntryMark_ImageView_Height);
+    CGRect currentStationMarkerFrame=CGRectMake(StationEntryMark_ImageView_Origin_X, StationEntryMark_ImageView_Margin+(StationEntryMark_ImageView_Margin+Station_Label_Height)*realStationNo, StationEntryMark_ImageView_Width, StationEntryMark_ImageView_Height);
     
     UIImageView *stationMarkerImgView=[[UIImageView alloc] initWithFrame:currentStationMarkerFrame];
     stationMarkerImgView.image=[UIImage imageNamed:@"stationBusMarker.png"];
@@ -264,23 +274,27 @@
                     }
                     
                     //show
-                    [self setStationMarker:7-[busInfo[@"stationNo"] intValue]
+                    [self setStationMarker:self.currentStationIndex-[busInfo[@"stationNo"] intValue]
                                andDistance:distanceStr
-                          andCountDownTime:countDownTimeStr];
+                          andCountDownTime:countDownTimeStr
+                                andInorOut:[busInfo[@"inOrOut"] intValue]];
+                    
+                    //out of dynamic container view station list
+                    if (self.currentStationIndex-[busInfo[@"stationNo"] intValue]<0) {
+                        self.bottomTipLbl.text=[NSString stringWithFormat:@"距本站%d之前有下一班公交",Dynamic_Station_List_Count-1];
+                    }
                 }
             }
             
         }else{
-            self.bottomTipLbl.text=@"下一班预计发车时间:";
-            CGFloat bottomTipWidth=[self.bottomTipLbl.text sizeWithFont:[UIFont systemFontOfSize: BottomTip_Label_FontSize]].width;
-            self.bottomNextTimeLbl.frame=CGRectMake(bottomTipWidth, BottomTip_Label_Origin_Y, BottomTip_Label_Width, BottomTip_Label_Height);
-            self.bottomNextTimeLbl.text=responseDic[@"msg"];
+            self.bottomTipLbl.text=[NSString stringWithFormat:@"下一班预计发车时间:%@",responseDic[@"msg"]];
         }
         
     }];
     [request startAsynchronous];
 }
 
+#pragma mark - clear and reset -
 - (void)resetContainerView{
     [self clear];
     for (int i=0; i<self.dataSource.count; i++) {
