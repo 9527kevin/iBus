@@ -88,13 +88,13 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     };
     
     self.didSelectRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
-        int stationNo=indexPath.row+1;
-        LineDynamicStateController *lineDynamicStateCtrller=[[[LineDynamicStateController alloc] init] autorelease];
+        LineDynamicStateController *lineDynamicStateCtrller=[[LineDynamicStateController alloc] init];
         lineDynamicStateCtrller.lineId=self.lineId;
         lineDynamicStateCtrller.identifier=self.identifier;
-        lineDynamicStateCtrller.stationNo=stationNo;
+        lineDynamicStateCtrller.stationNo=[self.dataSource[indexPath.row][@"orderNo"] intValue];
         lineDynamicStateCtrller.stationName=self.dataSource[indexPath.row][@"stationName"];
         [self.navigationController pushViewController:lineDynamicStateCtrller animated:YES];
+        [lineDynamicStateCtrller release];
     };
 }
 

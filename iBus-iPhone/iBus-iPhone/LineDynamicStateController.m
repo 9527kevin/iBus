@@ -71,12 +71,6 @@
     self.bottomTipLbl.font=[UIFont systemFontOfSize:BottomTip_Label_FontSize];
     [self.view addSubview:self.bottomTipLbl];
     
-    //bottom next-bus coming time
-//    _bottomNextTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(BottomNextTime_Label_Origin_X, BottomNextTime_Label_Origin_Y, BottomNextTime_Label_Width, BottomNextTime_Label_Height)];
-//    self.bottomNextTimeLbl.font=[UIFont systemFontOfSize:BottomNextTime_Label_FontSize];
-//    self.bottomNextTimeLbl.textColor=[UIColor redColor];
-//    [self.view addSubview:self.bottomNextTimeLbl];
-    
     //hack container view
     _GCContainerViewArray=[[NSMutableArray alloc] init];
 }
@@ -89,11 +83,13 @@
     self.dataSource=[StationDao getDynamicStationList:self.lineId
                                          andStationId:[NSNumber numberWithInt:self.stationNo]
                                         andIdentifier:self.identifier];
+    NSLog(@"%@",self.dataSource);
+    
     [self getStationIndex];
     
     [self layoutDynamicStationSubviews];
     
-    [self sendRequest4GetDynamicStateInfo];     //first load
+//    [self sendRequest4GetDynamicStateInfo];     //first load
     [self startRefreshTimer];
 }
 
@@ -222,7 +218,7 @@
         NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
                                                                 options:NSJSONReadingAllowFragments
                                                                     error:nil];
-        NSLog(@"%@",responseDic);
+        NSLog(@"%@",@"123");
         
         //exist bus info
         if ([responseDic[@"success"] boolValue]==true && responseDic[@"rows"] && [responseDic[@"rows"] count]>0) {

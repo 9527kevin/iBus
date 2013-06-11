@@ -10,6 +10,11 @@
 #import "FetchLineInfoOperation.h"
 #import "LineDao.h"
 
+#import "BusQueryController.h"
+#import "SettingController.h"
+#import "AboutController.h"
+#import "FollowingStationListController.h"
+
 @interface MenuContainerController ()
 
 //menu buttons
@@ -22,6 +27,9 @@
 
 @property (nonatomic,assign) TAGS_OF_MENUITEM tagOfCurrentSelectedMenuItem;
 
+//store all menu controllers
+@property (nonatomic,retain) NSMutableDictionary *menuCtrllerDic;
+
 @end
 
 @implementation MenuContainerController
@@ -33,6 +41,7 @@
     [_findFriendView release],_findFriendView=nil;
     [_mapShowView release],_mapShowView=nil;
     [_settingView release],_settingView=nil;
+    [_menuCtrllerDic release],_menuCtrllerDic=nil;
     
     [super dealloc];
 }
@@ -46,7 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    _menuCtrllerDic=[[NSMutableDictionary alloc] init];
 	[self registerTapEventsForMenuItems];
     
     //fetch basic data
@@ -200,41 +209,7 @@
     
     self.tagOfCurrentSelectedMenuItem=gestureRecognizer.view.tag;
     
-    switch (gestureRecognizer.view.tag) {
-        case TAG_BUSQUERY:
-            NSLog(@"%d",TAG_BUSQUERY);
-            [self.parentViewController performSelector:@selector(revealToggle:)];
-            break;
-            
-        case TAG_MAP:
-            NSLog(@"%d",TAG_MAP);
-            [self.parentViewController performSelector:@selector(revealToggle:)];
-            break;
-            
-        case TAG_BUSZOOM:
-            NSLog(@"%d",TAG_BUSZOOM);
-            [self.parentViewController performSelector:@selector(revealToggle:)];
-            break;
-            
-        case TAG_FRIENDS:
-            NSLog(@"%d",TAG_FRIENDS);
-            [self.parentViewController performSelector:@selector(revealToggle:)];
-            break;
-            
-        case TAG_ABOUT:
-            NSLog(@"%d",TAG_ABOUT);
-            [self.parentViewController performSelector:@selector(revealToggle:)];
-            break;
-            
-        case TAG_SETTING:
-            NSLog(@"%d",TAG_SETTING);
-            [self.parentViewController performSelector:@selector(revealToggle:)];
-            break;
-            
-        default:
-            break;
-    }
-    
+    ((ZUUIRevealController*)((AppDelegate*)appDelegateObj).zuuiRevealCtrller).frontViewController=[self getMenuCtrllerFromMenuCtrllerDictionaryWithTag:gestureRecognizer.view.tag];
 }
 
 - (void)fetchLineInfoAsync{
@@ -242,6 +217,59 @@
         FetchLineInfoOperation *fenchLineInfoOperation=[[[FetchLineInfoOperation alloc] init] autorelease];
         [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
     }
+}
+
+- (UINavigationController*)getMenuCtrllerFromMenuCtrllerDictionaryWithTag:(TAGS_OF_MENUITEM)tag{
+    NSString *key=[NSString stringWithFormat:@"%d",tag];
+    if(self.menuCtrllerDic[key]){
+        return self.menuCtrllerDic[key];
+    }
+
+    //if not , create and return
+    UINavigationController *navCtrller=nil;
+
+    switch (tag) {
+        case TAG_BUSQUERY:
+        {
+            BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
+            navCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
+        }
+            break;
+            
+        case TAG_MAP:
+            NSLog(@"%d",TAG_MAP);
+            break;
+            
+        case TAG_BUSZOOM:
+        {
+            FollowingStationListController *followingStationListCtrller=[[[FollowingStationListController alloc] init] autorelease];
+            navCtrller=[[[UINavigationController alloc] initWithRootViewController:followingStationListCtrller] autorelease];
+        }
+            break;
+            
+        case TAG_FRIENDS:
+            NSLog(@"%d",TAG_FRIENDS);
+            break;
+            
+        case TAG_ABOUT:
+            NSLog(@"%d",TAG_ABOUT);
+            break;
+            
+        case TAG_SETTING:
+        {
+            SettingController *settingCtrller=[[[SettingController alloc] init] autorelease];
+            navCtrller=[[[UINavigationController alloc] initWithRootViewController:settingCtrller] autorelease];
+        }
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+    
+    [self.menuCtrllerDic setObject:navCtrller forKey:key];
+    
+    return navCtrller;
 }
 
 

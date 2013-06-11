@@ -14,7 +14,7 @@ UITableViewDataSource,
 UITableViewDelegate
 >
 
-@property (nonatomic,retain) NSMutableArray *dataSource;
+@property (nonatomic,retain) NSMutableDictionary *dataSource;
 @property (nonatomic,retain) UITableView *tableView;
 
 @end

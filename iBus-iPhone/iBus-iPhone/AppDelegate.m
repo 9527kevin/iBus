@@ -7,14 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "ZUUIRevealController.h"
 #import "MenuContainerController.h"
 #import "BusQueryController.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface AppDelegate ()
 
-@property (nonatomic,retain) ZUUIRevealController *zuuiRevealCtrller;
+
 
 
 @end
@@ -33,10 +32,10 @@
     
     [self initOperationQueueCenter];
     
-    //front controller
+    //rear controller
     MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
         
-    //rear controller
+    //front controller
     BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
     UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
     
