@@ -21,7 +21,9 @@
 //hack cotainer view array
 @property (nonatomic,retain) NSMutableArray *GCContainerViewArray;
 
-@property (nonatomic,retain) NSTimer *timer;
+@property (nonatomic,assign) NSTimer *timer;
+
+@property (nonatomic,assign) int realStationNo;
 
 @end
 
@@ -36,9 +38,6 @@
     [_dataSource release],_dataSource=nil;
     [_stationName release],_stationName=nil;
     [_GCContainerViewArray release],_GCContainerViewArray=nil;
-    
-    //stop timer
-    [self stopRefreshTimer];
     
     [super dealloc];
 }
@@ -79,17 +78,23 @@
 {
     [super viewDidLoad];
     self.navigationItem.title=self.stationName;
-	
+    [self overrideNavLeftBackButton];
+
+    if ([self.identifier isEqualToString:@"1"]) {
+        self.realStationNo=self.stationNo;
+    }else{
+        self.realStationNo=[StationDao getReverseStationNoWithLineId:self.lineId
+                                                andOriginalStationId:[NSNumber numberWithInt:self.stationNo]];
+    }
+    
+    
     self.dataSource=[StationDao getDynamicStationList:self.lineId
                                          andStationId:[NSNumber numberWithInt:self.stationNo]
                                         andIdentifier:self.identifier];
-    NSLog(@"%@",self.dataSource);
     
     [self getStationIndex];
-    
     [self layoutDynamicStationSubviews];
-    
-//    [self sendRequest4GetDynamicStateInfo];     //first load
+    [self sendRequest4GetDynamicStateInfo];     //first load
     [self startRefreshTimer];
 }
 
@@ -202,7 +207,7 @@
     [distanceLbl setBackgroundColor:[UIColor clearColor]];
     distanceLbl.font=[UIFont systemFontOfSize:TipInContainerView_Label_FontSize];
     distanceLbl.textColor=TipInContainerView_Label_TextColor;
-    distanceLbl.textAlignment=NSTextAlignmentCenter;
+    distanceLbl.textAlignment=NSTextAlignmentLeft;
     distanceLbl.text=distance;
     [self.containerView addSubview:distanceLbl];
     
@@ -210,7 +215,8 @@
 }
 
 - (void)sendRequest4GetDynamicStateInfo{
-    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DestinationDistance,self.lineId,self.identifier,self.stationNo]];
+    
+    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DestinationDistance,self.lineId,self.identifier,self.realStationNo]];
     __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
 
     [request setCompletionBlock:^{
@@ -218,20 +224,16 @@
         NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
                                                                 options:NSJSONReadingAllowFragments
                                                                     error:nil];
-        NSLog(@"%@",@"123");
         
         //exist bus info
         if ([responseDic[@"success"] boolValue]==true && responseDic[@"rows"] && [responseDic[@"rows"] count]>0) {
             
             [self resetContainerView];
             
-            self.dataSource=[StationDao getDynamicStationList:self.lineId
-                                                  andStationId:[NSNumber numberWithInt:self.stationNo]
-                                                 andIdentifier:self.identifier];
-            
             //rows
             NSArray *busArray=responseDic[@"rows"];
             for (NSDictionary *busInfo in busArray) {
+                NSLog(@"%@",busInfo);
                 NSString *disStr=busInfo[@"dis"];
                 if (disStr && disStr.length>0) {
                     
@@ -277,7 +279,7 @@
                     
                     //out of dynamic container view station list
                     if (self.currentStationIndex-[busInfo[@"stationNo"] intValue]<0) {
-                        self.bottomTipLbl.text=[NSString stringWithFormat:@"距本站%d之前有下一班公交",Dynamic_Station_List_Count-1];
+                        self.bottomTipLbl.text=[NSString stringWithFormat:@"站点列表外有下一班公交,请切换就近查询"];
                     }
                 }
             }
@@ -313,13 +315,13 @@
 }
 
 - (void)startRefreshTimer{
-    if (self.timer == nil)
-    {
+    if (self.timer == nil){
         _timer = [NSTimer scheduledTimerWithTimeInterval:DynamicRefresh_Frequency
                                                   target:self
                                                 selector:@selector(sendRequest4GetDynamicStateInfo)
                                                 userInfo:nil
                                                  repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     }
 }
 
@@ -327,8 +329,23 @@
     if (self.timer != nil)
     {
         [self.timer invalidate];
-        self.timer = nil;
     }
+}
+
+- (void)overrideNavLeftBackButton{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"返回"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleBack)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    [backButton release];
+}
+
+- (void)handleBack{
+    //can not stop timer in dealloc func because it will nerver invoke!
+    [self stopRefreshTimer];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

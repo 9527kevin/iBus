@@ -31,6 +31,9 @@
 SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 ) WHERE orderno = ?"
 
+#define SELECT_COUNT_STATION_WITH_LINEID \
+@"SELECT COUNT(1) FROM stationInfo WHERE lineId = ?"
+
 //count : wheather in the middle or not
 #define SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL \
 @"SELECT COUNT(1) FROM stationInfo WHERE lineId = ? AND orderno <= ?  ORDER BY orderno ASC "
@@ -69,5 +72,8 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 + (NSMutableArray *)getDynamicStationList:(NSString*)lineId
                              andStationId:(NSNumber*)stationId
                             andIdentifier:(NSString*)identifier;
+
++ (int)getReverseStationNoWithLineId:(NSString*)lineId
+                andOriginalStationId:(NSNumber*)stationId;
 
 @end

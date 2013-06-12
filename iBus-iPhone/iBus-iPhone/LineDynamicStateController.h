@@ -22,7 +22,7 @@
 #define Toptip_CountDownTime_Label_Origin_X \
 Toptip_Distance_Label_Origin_X - Toptip_CountDownTime_Label_Width -5.0f
 #define Toptip_CountDownTime_Label_Origin_Y 0.0f
-#define Toptip_CountDownTime_Label_Width 50.0f
+#define Toptip_CountDownTime_Label_Width 55.0f
 
 //the label of distance and countdown time showing in the view
 #define TipInContainerView_Label_Height 20.0f

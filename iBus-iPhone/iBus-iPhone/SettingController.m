@@ -43,7 +43,6 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 }
 
 #pragma mark - private methods -
-#pragma mark - private methods -
 - (void)initNavigationController{
     if ([self.navigationController.parentViewController respondsToSelector:@selector(revealGesture:)] && [self.navigationController.parentViewController respondsToSelector:@selector(revealToggle:)])
 	{
@@ -60,8 +59,7 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 	}
 }
 
-#pragma mark - UITableView Data source and delegate -
-#pragma mark - table view delegate and datasource -
+#pragma mark - UITableView data source and delegate -
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;
 }

@@ -110,6 +110,7 @@
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
             FMResultSet *resultSet=nil;
+            int itemCount=0;
             
             //judge
             BOOL isMiddle=YES;
@@ -117,10 +118,17 @@
             resultSet=[db executeQuery:sql,lineId,stationId];
             if ([resultSet next]) {
                 isMiddle=[resultSet intForColumnIndex:0]>=Dynamic_Station_List_Count?YES:NO;
+                itemCount=[resultSet intForColumnIndex:0];
             }
             
             if (isMiddle) {         //in the middle
-                NSNumber *offset =[NSNumber numberWithInt:[stationId intValue] - 8];
+                NSNumber *offset ;
+                if ([identifier isEqualToString:@"1"]) {            //order by asc
+                    offset = [NSNumber numberWithInt:[stationId intValue] - 8];
+                }else{                                              //order by desc
+                    offset = [NSNumber numberWithInt:itemCount - 8];
+                }
+                
                 sql=[identifier isEqualToString:@"1"]?SELECT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL:SELECT_DYNAMIC_STATIONLIST_ORDER_DESC_SQL;
                 resultSet=[db executeQuery:sql,lineId,stationId,offset];
             }else{                  //start or end
@@ -148,6 +156,38 @@
     }];
     
     return stationArray;
+}
+
+/*
+ * reverse station no, if count is 30 , stationId :28 then return 3 (30 + 1 - 28)
+ */
++ (int)getReverseStationNoWithLineId:(NSString*)lineId
+                andOriginalStationId:(NSNumber*)stationId{
+    if (!lineId || [lineId isEqualToString:@""]) {
+        return -1;
+    }
+    
+    __block int rowsCount=0;
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=[db executeQuery:SELECT_COUNT_STATION_WITH_LINEID,lineId];
+            if ([resultSet next]) {
+                NSString *countStr=[resultSet stringForColumnIndex:0];
+                if (countStr) {
+                    rowsCount=[countStr intValue];
+                }
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return rowsCount + 1 - [stationId intValue];
 }
 
 #pragma mark - inner methods -
