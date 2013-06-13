@@ -44,6 +44,8 @@
             stationInfo[@"stationLat"]=item[@"lat"];
             stationInfo[@"orderNo"]=item[@"id"];
             stationInfo[@"lineId"]=responseDic[@"msgBean"][@"id"];
+            stationInfo[@"identifier_1_favorite"]=[NSNumber numberWithInt:0];
+            stationInfo[@"identifier_2_favorite"]=[NSNumber numberWithInt:0];
             [stationList addObject:stationInfo];
         }
         

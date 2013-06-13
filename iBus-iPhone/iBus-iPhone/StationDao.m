@@ -56,7 +56,8 @@
                  @"stationLog":[resultSet stringForColumn:@"stationLog"],
                  @"stationLat":[resultSet stringForColumn:@"stationLat"],
                  @"orderNo" : [resultSet stringForColumn:@"orderNo"],
-                 @"lineId" : [resultSet stringForColumn:@"lineId"]
+                 @"lineId" : [resultSet stringForColumn:@"lineId"],
+                 @"identifier" : identifier
                  }]];
             }
         }
@@ -87,7 +88,8 @@
                  @"stationLog":[resultSet stringForColumn:@"stationLog"],
                  @"stationLat":[resultSet stringForColumn:@"stationLat"],
                  @"orderNo" : [resultSet stringForColumn:@"orderNo"],
-                 @"lineId" : [resultSet stringForColumn:@"lineId"]
+                 @"lineId" : [resultSet stringForColumn:@"lineId"],
+                 @"identifier" : identifier
                  };
             }
         }
@@ -188,6 +190,69 @@
     }];
     
     return rowsCount + 1 - [stationId intValue];
+}
+
++ (void)favoriteWithLineId:(NSString*)lineId
+             andIdentifier:(NSString*)identifier
+                andOrderNo:(NSInteger)orderNo{
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            NSString *sql=[identifier isEqualToString:@"1"]?UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1:UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
+            [db executeUpdate:sql,[NSNumber numberWithBool:YES],lineId,orderNo];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+}
+
++ (void)unfavoriteWithLineId:(NSString*)lineId
+               andIdentifier:(NSString*)identifier
+                  andOrderNo:(NSInteger)orderNo{
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            NSString *sql=[identifier isEqualToString:@"1"]?UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1:UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
+            [db executeUpdate:sql,[NSNumber numberWithBool:YES],lineId,orderNo];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+}
+
++ (BOOL)isFavoriteWithLineId:(NSString*)lineId
+               andIdentifier:(NSString*)identifier
+                  andOrderNo:(NSInteger)orderNo{
+    __block int isFavorite=NO;
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            
+#warning lineId,orderNo 有问题
+            NSString *sql=([identifier isEqualToString:@"1"])?CHECK_ISFAVORITE_IDENTIFIER_1:CHECK_ISFAVORITE_IDENTIFIER_2;
+            
+            FMResultSet *resultSet=[db executeQuery:sql,lineId,orderNo];
+            if ([resultSet next]) {
+                isFavorite=[resultSet boolForColumnIndex:0];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return isFavorite;
 }
 
 #pragma mark - inner methods -

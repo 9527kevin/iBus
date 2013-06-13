@@ -36,6 +36,11 @@
 		7740B1E01748AFC800D98529 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7740B1DF1748AFC800D98529 /* Default-568h@2x.png */; };
 		7740B1EE1748B4DB00D98529 /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1ED1748B4DB00D98529 /* BaseController.m */; };
 		7740B1F11748B4F900D98529 /* MenuContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740B1F01748B4F900D98529 /* MenuContainerController.m */; };
+		7742E155176955720032BE9B /* ConfigCategoryDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7742E154176955720032BE9B /* ConfigCategoryDao.m */; };
+		7742E158176955A10032BE9B /* ConfigItemDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7742E157176955A10032BE9B /* ConfigItemDao.m */; };
+		7742E15B17698DEE0032BE9B /* BasicDataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7742E15A17698DEE0032BE9B /* BasicDataOperation.m */; };
+		7742E15E1769BE1D0032BE9B /* favoriteBtn_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 7742E15C1769BE1D0032BE9B /* favoriteBtn_highlight.png */; };
+		7742E15F1769BE1D0032BE9B /* favoriteBtn_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7742E15D1769BE1D0032BE9B /* favoriteBtn_normal.png */; };
 		778546E2176465830020AE10 /* stationBusMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E1176465830020AE10 /* stationBusMarker.png */; };
 		778546EA17647ED50020AE10 /* arrowStation.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E917647ED50020AE10 /* arrowStation.png */; };
 		77935CCA1765B2B100B68BA6 /* screenShot_Images in Resources */ = {isa = PBXBuildFile; fileRef = 77935CC91765B2B100B68BA6 /* screenShot_Images */; };
@@ -124,6 +129,14 @@
 		7740B1F01748B4F900D98529 /* MenuContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuContainerController.m; sourceTree = "<group>"; };
 		7740B1F41748BC5C00D98529 /* GlobalDefinitionForBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForBusiness.h; sourceTree = "<group>"; };
 		7740B1F51748E4FE00D98529 /* GlobalDefinitionForUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForUI.h; sourceTree = "<group>"; };
+		7742E153176955720032BE9B /* ConfigCategoryDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigCategoryDao.h; sourceTree = "<group>"; };
+		7742E154176955720032BE9B /* ConfigCategoryDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigCategoryDao.m; sourceTree = "<group>"; };
+		7742E156176955A10032BE9B /* ConfigItemDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigItemDao.h; sourceTree = "<group>"; };
+		7742E157176955A10032BE9B /* ConfigItemDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigItemDao.m; sourceTree = "<group>"; };
+		7742E15917698DEE0032BE9B /* BasicDataOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicDataOperation.h; sourceTree = "<group>"; };
+		7742E15A17698DEE0032BE9B /* BasicDataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicDataOperation.m; sourceTree = "<group>"; };
+		7742E15C1769BE1D0032BE9B /* favoriteBtn_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favoriteBtn_highlight.png; sourceTree = "<group>"; };
+		7742E15D1769BE1D0032BE9B /* favoriteBtn_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favoriteBtn_normal.png; sourceTree = "<group>"; };
 		778546E1176465830020AE10 /* stationBusMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stationBusMarker.png; sourceTree = "<group>"; };
 		778546E917647ED50020AE10 /* arrowStation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowStation.png; sourceTree = "<group>"; };
 		77935CC91765B2B100B68BA6 /* screenShot_Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = screenShot_Images; sourceTree = "<group>"; };
@@ -211,6 +224,10 @@
 				7715B5511752004F002B4487 /* CREATE_SQL.h */,
 				77DEB0F91758524D00E93D1D /* StationDao.h */,
 				77DEB0FA1758524D00E93D1D /* StationDao.m */,
+				7742E153176955720032BE9B /* ConfigCategoryDao.h */,
+				7742E154176955720032BE9B /* ConfigCategoryDao.m */,
+				7742E156176955A10032BE9B /* ConfigItemDao.h */,
+				7742E157176955A10032BE9B /* ConfigItemDao.m */,
 			);
 			name = Dao;
 			sourceTree = "<group>";
@@ -492,6 +509,8 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7742E15C1769BE1D0032BE9B /* favoriteBtn_highlight.png */,
+				7742E15D1769BE1D0032BE9B /* favoriteBtn_normal.png */,
 				778546E917647ED50020AE10 /* arrowStation.png */,
 				778546E1176465830020AE10 /* stationBusMarker.png */,
 				771A3E871762DD6D000EBB44 /* stationMarker.png */,
@@ -527,6 +546,8 @@
 				77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */,
 				77DEB0FC175854F600E93D1D /* FetchStationInfoOperation.h */,
 				77DEB0FD175854F600E93D1D /* FetchStationInfoOperation.m */,
+				7742E15917698DEE0032BE9B /* BasicDataOperation.h */,
+				7742E15A17698DEE0032BE9B /* BasicDataOperation.m */,
 			);
 			name = OperateQueue;
 			sourceTree = "<group>";
@@ -618,6 +639,8 @@
 				778546E2176465830020AE10 /* stationBusMarker.png in Resources */,
 				778546EA17647ED50020AE10 /* arrowStation.png in Resources */,
 				77935CCA1765B2B100B68BA6 /* screenShot_Images in Resources */,
+				7742E15E1769BE1D0032BE9B /* favoriteBtn_highlight.png in Resources */,
+				7742E15F1769BE1D0032BE9B /* favoriteBtn_normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +712,9 @@
 				77E71A431765DF6500120F92 /* FollowingStationListController.m in Sources */,
 				77E71A471765DFAD00120F92 /* SettingController.m in Sources */,
 				77E71A4B1765E41300120F92 /* AboutController.m in Sources */,
+				7742E155176955720032BE9B /* ConfigCategoryDao.m in Sources */,
+				7742E158176955A10032BE9B /* ConfigItemDao.m in Sources */,
+				7742E15B17698DEE0032BE9B /* BasicDataOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

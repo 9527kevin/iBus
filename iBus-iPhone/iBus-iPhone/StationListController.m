@@ -53,10 +53,6 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     [self initBlocks];
     self.navigationItem.title=[NSString stringWithFormat:@"%@-站点列表",self.lineName];
     self.dataSource=[StationDao getStationListWithLineId:self.lineId andIdentifier:self.identifier];
-    
-//    [self loadCountDownTimeAsync];
-    
-//    [self registerNotification];
 }
 
 - (void)didReceiveMemoryWarning

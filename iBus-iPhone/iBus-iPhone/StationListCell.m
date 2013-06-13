@@ -7,13 +7,14 @@
 //
 
 #import "StationListCell.h"
+#import "StationDao.h"
 
 @interface StationListCell ()
 
 @property (nonatomic,retain) UIImageView        *stationImgView;
 @property (nonatomic,retain) UILabel            *stationNameLbl;
 @property (nonatomic,retain) UIButton           *mapBtn;
-@property (nonatomic,retain) UILabel            *countdownTimeLbl;  //倒计时显示
+@property (nonatomic,retain) UIButton           *favoriteBtn;
 
 @end
 
@@ -23,7 +24,6 @@
     [_stationImgView release],_stationImgView=nil;
     [_stationNameLbl release],_stationNameLbl=nil;
     [_stationInfo release],_stationInfo=nil;
-    [_countdownTimeLbl release],_countdownTimeLbl=nil;
     
     [super dealloc];
 }
@@ -41,6 +41,12 @@
         self.mapBtn.frame=CGRectMake(Map_Button_Origin_X, Map_Button_Origin_Y, Map_Button_Width, Map_Button_Height);
         [self.mapBtn setBackgroundImage:[UIImage imageNamed:@"mapBtn.png"] forState:UIControlStateNormal];
         [self addSubview:self.mapBtn];
+        
+        _favoriteBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        self.favoriteBtn.frame=CGRectMake(Favorite_Button_Origin_X, Favorite_Button_Origin_Y, Favorite_Button_Width, Favorite_Button_Height);
+        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_normal.png"]
+                                    forState:UIControlStateNormal];
+        [self addSubview:self.favoriteBtn];
     }
     return self;
 }
@@ -48,7 +54,6 @@
 - (void)prepareForReuse{
     [super prepareForReuse];
     self.stationNameLbl.text=nil;
-    self.countdownTimeLbl.text=nil;
 }
 
 - (void)initSubViewsWithModel:(NSMutableDictionary*)modelInfo{
@@ -59,21 +64,20 @@
     _stationNameLbl.text=modelInfo[@"stationName"];
     [self addSubview:self.stationNameLbl];
     
+    Boolean isFavorities=[StationDao isFavoriteWithLineId:self.stationInfo[@"lineId"]
+                                            andIdentifier:self.stationInfo[@"identifier"] andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
     
-//    if (modelInfo[@"countDownTime"]) {
-//        NSLog(@"%@",self.stationInfo[@"countDownTime"]);
-//        
-//        _countdownTimeLbl=[[UILabel alloc] initWithFrame:CGRectMake(CountDown_Label_Origin_X, CountDown_Label_Origin_Y, CountDown_Label_Width, CountDown_Label_Height)];
-//        _countdownTimeLbl.backgroundColor=[UIColor redColor];
-//        _countdownTimeLbl.backgroundColor=[UIColor clearColor];
-//        _countdownTimeLbl.textAlignment=NSTextAlignmentRight;
-//        _countdownTimeLbl.text=[NSString stringWithFormat:@"%@分钟",self.stationInfo[@"countDownTime"]];
-//        [_countdownTimeLbl setFont:[UIFont systemFontOfSize:CountDown_Label_FontSize]];
-//        [self addSubview:self.countdownTimeLbl];
-//    }else{
-//        NSLog(@"Nil!!!!!");
-//    }
+    if (isFavorities) {
+        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_normal.png"]
+                                    forState:UIControlStateNormal];
+    }else{
+        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_highlight.png"]
+                                    forState:UIControlStateNormal];
+    }
     
+    //register events for favorite button
+    [self.favoriteBtn addTarget:self action:@selector(handleFavorite:)
+               forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -82,6 +86,21 @@
     
 }
 
+- (void)handleFavorite:(UIButton*)sender{
+    Boolean isFavorities=[StationDao isFavoriteWithLineId:self.stationInfo[@"lineId"]
+                                            andIdentifier:self.stationInfo[@"identifier"] andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
+    
+    if (isFavorities) {
+        [StationDao unfavoriteWithLineId:self.stationInfo[@"lineId"]
+                           andIdentifier:self.stationInfo[@"identifier"]
+                              andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
+    }else{
+        [StationDao favoriteWithLineId:self.stationInfo[@"lineId"]
+                         andIdentifier:self.stationInfo[@"identifier"]
+                            andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
+
+    }
+}
 
 
 /*

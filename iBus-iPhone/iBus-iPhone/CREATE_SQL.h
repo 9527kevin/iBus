@@ -43,12 +43,32 @@
     stationLog text,                            \
     stationLat text,                            \
     orderNo integer,                            \
+    identifier_1_favorite integer,              \
+    identifier_2_favorite integer,              \
     lineId text                                 \
 )"
 
-//LINEINFO_CREATE_TABLE_SQL,      \
+#define CONFIGCATEGORY_CREATE_TABLE_SQL \
+@"CREATE TABLE configCategory (                 \
+    autoId integer PRIMARY KEY autoincrement,   \
+    categoryId text,                            \
+    categoryName text,                          \
+    sectionNo integer                           \
+)"
 
-#define CREATE_TABLE_SQL_ARRAY \
-@[                              \
-STATIONINFO_CREATE_TABLE_SQL    \
+#define CONFIGITEM_CREATE_TABLE_SQL \
+@"CREATE TABLE configItem (                     \
+    autoId integer PRIMARY KEY autoincrement,   \
+    itemKey text,                               \
+    itemValue text,                             \
+    categoryId text                             \
+)"
+
+//LINEINFO_CREATE_TABLE_SQL,                    \
+STATIONINFO_CREATE_TABLE_SQL                    \
+CONFIGCATEGORY_CREATE_TABLE_SQL,                \
+
+#define CREATE_TABLE_SQL_ARRAY                  \
+@[                                              \
+    CONFIGITEM_CREATE_TABLE_SQL                 \
 ]

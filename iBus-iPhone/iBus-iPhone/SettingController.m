@@ -7,6 +7,10 @@
 //
 
 #import "SettingController.h"
+#import "ConfigCategoryDao.h"
+#import "ConfigItemDao.h"
+
+#import "LineListController.h"
 
 static NSString *settingTableViewCell = @"settingTableViewCell";
 
@@ -15,6 +19,12 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 @end
 
 @implementation SettingController
+
+- (void)dealloc{
+    [_dataSource release],_dataSource=nil;
+    
+    [super dealloc];
+}
 
 - (void)loadView{
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
@@ -61,25 +71,16 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 
 #pragma mark - UITableView data source and delegate -
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return self.categoryArray.count;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    switch (section) {
-        case 0:
-            return @"公交设置";
-            
-        case 1:
-            return @"应用设置";
-            
-        default:
-            return @"";
-    }
+    return self.categoryArray[section][@"categoryName"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    return ((NSArray*)(self.dataSource[[NSString stringWithFormat:@"%d",section]])).count;
+    return ((NSMutableArray*)(self.dataSource[[NSNumber numberWithInt:section]])).count;
 }
 
 
@@ -89,46 +90,36 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     UITableViewCell *cell=nil;
     
     cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:settingTableViewCell];
-    cell.textLabel.text=self.dataSource[[NSString stringWithFormat:@"%d",indexPath.section]][indexPath.row];
+    cell.textLabel.text=[((NSMutableDictionary*)self.dataSource[[NSNumber numberWithInt:indexPath.section]][indexPath.row]) allKeys][0];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50.0;
+    return 40.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.section) {
-        case 0:                 //公交设置
-        {
-            
-        }
-            
-            break;
-            
-        case 1:                 //应用设置
-        {
-            
-        }
-            break;
-            
-        default:
-            break;
+    NSNumber *sectionKey=[NSNumber numberWithInt:indexPath.section];
+    NSString *itemKey=[((NSMutableDictionary*)self.dataSource[sectionKey][indexPath.row]) allKeys][0];
+    if ([itemKey isEqualToString:Setting_Key_DefaultLine]) {
+        LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+        [self.navigationController pushViewController:lineListCtrller animated:YES];
+    }else if ([itemKey isEqualToString:Setting_Key_FollowStation]){
+        LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+        [self.navigationController pushViewController:lineListCtrller animated:YES];
     }
     
 }
 
 - (void)initDataSource{
-    _dataSource = [NSMutableDictionary dictionary];
+    _dataSource = [[NSMutableDictionary alloc] init];
+    _categoryArray=[ConfigCategoryDao getAll];
+    for (NSDictionary *category in self.categoryArray) {
+        NSMutableArray *configItems=[ConfigItemDao getItemWithCategoryId:category[@"categoryId"]];
+        self.dataSource[category[@"sectionNo"]]=configItems;
+    }
     
-    //section 0
-    NSArray *section_0=[[[NSArray alloc] initWithObjects: @"默认线路", @"关注站点", nil] autorelease];
-    [self.dataSource setObject:section_0 forKey:@"0"];
-    
-    //section 1
-    NSArray *section_1=[[[NSArray alloc] initWithObjects:@"刷新频率", @"同步数据", nil] autorelease];
-    [self.dataSource setObject:section_1 forKey:@"1"];
 }
 
 

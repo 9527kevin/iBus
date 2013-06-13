@@ -52,6 +52,11 @@ http://www.baidu.com
 //刷新频率
 #define DynamicRefresh_Frequency 20
 
+//setting keys
+#define Setting_Key_DefaultLine @"默认线路"
+#define Setting_Key_FollowStation @"关注站点"
+#define Setting_Key_RefreshFrequency @"刷新频率"
+
 /******************************Messages*******************************/
 #define Notification_Of_LineList @"Notification_Of_LineList"
 

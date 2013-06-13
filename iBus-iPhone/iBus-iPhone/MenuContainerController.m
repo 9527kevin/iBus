@@ -8,8 +8,9 @@
 
 #import "MenuContainerController.h"
 #import "FetchLineInfoOperation.h"
+#import "BasicDataOperation.h"
 #import "LineDao.h"
-
+#import "ConfigCategoryDao.h"
 #import "BusQueryController.h"
 #import "SettingController.h"
 #import "AboutController.h"
@@ -60,6 +61,8 @@
     
     //fetch basic data
     [self fetchLineInfoAsync];
+    //init basic data
+    [self initBasicData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -212,12 +215,6 @@
     ((ZUUIRevealController*)((AppDelegate*)appDelegateObj).zuuiRevealCtrller).frontViewController=[self getMenuCtrllerFromMenuCtrllerDictionaryWithTag:gestureRecognizer.view.tag];
 }
 
-- (void)fetchLineInfoAsync{
-    if (![LineDao checkIsInited]) {
-        FetchLineInfoOperation *fenchLineInfoOperation=[[[FetchLineInfoOperation alloc] init] autorelease];
-        [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
-    }
-}
 
 - (UINavigationController*)getMenuCtrllerFromMenuCtrllerDictionaryWithTag:(TAGS_OF_MENUITEM)tag{
     NSString *key=[NSString stringWithFormat:@"%d",tag];
@@ -270,6 +267,20 @@
     [self.menuCtrllerDic setObject:navCtrller forKey:key];
     
     return navCtrller;
+}
+
+- (void)fetchLineInfoAsync{
+    if (![LineDao checkIsInited]) {
+        FetchLineInfoOperation *fenchLineInfoOperation=[[[FetchLineInfoOperation alloc] init] autorelease];
+        [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
+    }
+}
+
+- (void)initBasicData{
+    if (![ConfigCategoryDao checkIsInited]) {
+        BasicDataOperation *basicDataOperation=[[[BasicDataOperation alloc] init] autorelease];
+        [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:basicDataOperation];
+    }
 }
 
 

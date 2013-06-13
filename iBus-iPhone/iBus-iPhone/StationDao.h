@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define INSERT_STATIONINFO_SQL \
-@"INSERT INTO stationInfo(stationName,stationLog,stationLat,orderNo,lineId) VALUES(:stationName,:stationLog,:stationLat,:orderNo,:lineId)"
+@"INSERT INTO stationInfo(stationName,stationLog,stationLat,orderNo,lineId,identifier_1_favorite,identifier_2_favorite) VALUES(:stationName,:stationLog,:stationLat,:orderNo,:lineId:identifier_1_favorite,:identifier_2_favorite)"
 
 #define CHECK_EXISTS_STATIONINFO_SQL \
 @"SELECT COUNT(1) FROM stationInfo "
@@ -33,6 +33,35 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 
 #define SELECT_COUNT_STATION_WITH_LINEID \
 @"SELECT COUNT(1) FROM stationInfo WHERE lineId = ?"
+
+//favorite
+#define UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1 \
+@"UPDATE stationInfo SET identifier_1_favorite = ? WHERE stationName =  \
+    (                                                                   \
+    SELECT staitonName FROM (                                           \
+        SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+                    ) WHERE orderno = ?                                 \
+    )                                                                   \
+"
+
+#define UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2 \
+@"UPDATE stationInfo SET identifier_1_favorite = ? WHERE stationName =  \
+    (                                                                   \
+    SELECT staitonName FROM (                                           \
+        SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+                    ) WHERE orderno = ?                                 \
+    )                                                                   \
+"
+
+#define CHECK_ISFAVORITE_IDENTIFIER_1 \
+@"SELECT identifier_1_favorite FROM (               \
+    SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+) WHERE orderno = ?"
+
+#define CHECK_ISFAVORITE_IDENTIFIER_2 \
+@"SELECT identifier_2_favorite FROM (               \
+    SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+) WHERE orderno = ?"
 
 //count : wheather in the middle or not
 #define SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL \
@@ -75,5 +104,17 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 
 + (int)getReverseStationNoWithLineId:(NSString*)lineId
                 andOriginalStationId:(NSNumber*)stationId;
+
++ (void)favoriteWithLineId:(NSString*)lineId
+             andIdentifier:(NSString*)identifier
+                andOrderNo:(NSInteger)orderNo;
+
++ (void)unfavoriteWithLineId:(NSString*)lineId
+               andIdentifier:(NSString*)identifier
+                  andOrderNo:(NSInteger)orderNo;
+
++ (BOOL)isFavoriteWithLineId:(NSString*)lineId
+               andIdentifier:(NSString*)identifier
+                  andOrderNo:(NSInteger)orderNo;
 
 @end
