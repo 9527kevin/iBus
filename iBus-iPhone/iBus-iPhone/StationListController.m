@@ -16,8 +16,6 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
 
 @interface StationListController ()
 
-//@property (nonatomic,assign) int asyncCallbackCount;
-
 @end
 
 @implementation StationListController
@@ -26,7 +24,6 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     [_lineId release],_lineId=nil;
     [_lineName release],_lineName=nil;
     [_identifier release],_identifier=nil;
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:Notification_For_LoadCountDownTimeCallbackCompleted object:nil];
     
     [super dealloc];
 }
@@ -104,115 +101,44 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         [cell setBackgroundColor:[UIColor whiteColor]];
     }
     
-//    //if is entry station , set background color: red to show warnning!
-//    NSMutableDictionary *stationInfo=self.dataSource[indexPath.row];
-//    if (stationInfo[@"entryStation"]) {
-//        if ([stationInfo[@"entryStation"] boolValue]==YES) {
-//            [cell setBackgroundColor:[UIColor redColor]];
-//        }
-//    }
-    
 }
 
-//- (void)loadCountDownTimeAsync{
-//    if (self.dataSource.count>0) {
-//        
-//        //init counter
-//        self.asyncCallbackCount=0;
-//        
-//        for (int i=0; i<self.dataSource.count; i++) {
-//            __block NSMutableArray *blockedDataSource=self.dataSource;
-//            __block NSMutableDictionary *stationInfo=blockedDataSource[i];
-//            __block StationListController *blockedStationListCtrller=self;
-//            
-//            NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DestinationDistance,self.lineId,self.identifier,stationInfo[@"orderNo"]]];
-//            
-//            __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
-//            
-//            [request setCompletionBlock:^{
-//                
-//                //add counter once invoked callback func
-//                blockedStationListCtrller.asyncCallbackCount++;
-//                
-//                NSData *responseData=[request responseData];
-//                NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
-//                                                                          options:NSJSONReadingAllowFragments
-//                                                                            error:nil];
-//                //exist bus info
-//                if ([responseDic[@"success"] boolValue]==true && responseDic[@"rows"] && [responseDic[@"rows"] count]>0) {
-//                    NSDictionary *busInfo=responseDic[@"rows"][0];
-//                    NSString *disStr=busInfo[@"dis"];
-//                    if (disStr && disStr.length>0) {
-//                        
-//                        NSRange startRange=[disStr rangeOfString:@"约"
-//                                                         options:NSBackwardsSearch];
-//                        
-//                        if ([disStr length]<startRange.location+1) {
-//                            return;
-//                        }
-//                        
-//                        disStr=[disStr substringFromIndex:startRange.location+1];
-//                        NSRange endRange=[disStr rangeOfString:@"分钟"];
-//                        
-//                        if ([disStr length]<endRange.location) {
-//                            return;
-//                        }
-//                        
-//                        //count down time(minute)
-//                        NSString *countDownTimeStr=[disStr substringToIndex:endRange.location];
-//                        
-//                        NSLog(@"%@",countDownTimeStr);
-//                        
-//                        stationInfo[@"countDownTime"]=countDownTimeStr;
-//                        
-//                    }
-//                    
-//                    //current station
-//                    if ([busInfo[@"stationNo"] intValue]==0) {
-//                        stationInfo[@"entryStation"]=[NSNumber numberWithBool:YES];
-//                    }else{
-//                        stationInfo[@"entryStation"]=[NSNumber numberWithBool:NO];
-//                    }
-//                }
-//                
-//                //unmatched condition before, repair it!
-//                if (!stationInfo[@"countDownTime"]) {
-//                    stationInfo[@"countDownTime"]=@"0";
-//                }
-//                
-//                //if all callback funcs have completely, launch a notification
-//                if (self.dataSource.count==self.asyncCallbackCount) {
-//                    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_For_LoadCountDownTimeCallbackCompleted object:nil];
-//                }
-//                
-//            }];
-//            
-//            [request startAsynchronous];
-//        }
-//        
-//    }
-//}
-//
-//- (void)registerNotification{
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:Notification_For_LoadCountDownTimeCallbackCompleted object:nil];
-//}
-//
-//- (void)notificationHandler:(NSNotification *)notification{
-//    [self testPrintCountDownTime];
-//    
-//    //reload data source
-//    [self.tableView reloadData];
-//}
-//
-//
-///**
-// * test for printing countdown time
-// */
-//- (void)testPrintCountDownTime{
-//    for (NSMutableDictionary *stationInfo in self.dataSource) {
-//        NSLog(@"%@",stationInfo[@"countDownTime"]);
-//    }
-//}
+#pragma mark - private methods -
+- (void)initNavBarRightItem{
+#warning query from db
+    BOOL isLineFavorite=NO;
+    
+    NSString *barBtnItemText=nil;
+    if (isLineFavorite) {
+        barBtnItemText = @"取消收藏";
+    }else{
+        barBtnItemText = @"添加收藏";
+    }
+    UIBarButtonItem *favoriteButton = [[UIBarButtonItem alloc] initWithTitle:barBtnItemText
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(handleFavorite:)];
+    
+    self.navigationItem.leftBarButtonItem = favoriteButton;
+    [favoriteButton release];
+}
 
+- (void)handleFavorite:(id)sender{
+    UIBarButtonItem *favoriteButton=(UIBarButtonItem*)sender;
+    
+#warning query from db
+    BOOL isLineFavorite=NO;
+    
+    NSString *barBtnItemText=nil;
+    if (isLineFavorite) {
+        //do unfavorite
+        barBtnItemText = @"添加收藏";
+    }else{
+        //do favorite
+        barBtnItemText = @"取消收藏";
+    }
+    
+    favoriteButton.title=barBtnItemText;
+}
 
 @end

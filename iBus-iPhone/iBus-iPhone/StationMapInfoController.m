@@ -53,7 +53,7 @@
     
     self.stationInfo=[StationDao getStationInfoWithLineId:self.lineId
                                             andIdentifier:self.identifier
-                                               andOrderNo:self.stationNo];
+                                               andOrderNo:[NSNumber numberWithInt:self.stationNo]];
     
     if (self.stationInfo) {
         center_log=[self.stationInfo[@"stationLog"] doubleValue] / Default_Div_Time;

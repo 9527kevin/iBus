@@ -27,7 +27,7 @@
 #define Favorite_Button_Width 24.0f
 #define Favorite_Button_Height 24.0f
 #define Favorite_Button_Origin_X Map_Button_Origin_X - Favorite_Button_Width -10.0f
-#define Favorite_Button_Origin_Y 5.0f
+#define Favorite_Button_Origin_Y 12.0f
 
 
 @interface StationListCell : BaseCell

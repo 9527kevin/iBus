@@ -89,7 +89,7 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     
     UITableViewCell *cell=nil;
     
-    cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:settingTableViewCell];
+    cell=[[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:settingTableViewCell] autorelease];
     cell.textLabel.text=[((NSMutableDictionary*)self.dataSource[[NSNumber numberWithInt:indexPath.section]][indexPath.row]) allKeys][0];
     
     return cell;

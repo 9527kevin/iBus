@@ -183,7 +183,7 @@
     //bus marker image view
     CGRect currentStationMarkerFrame=CGRectMake(StationEntryMark_ImageView_Origin_X, StationEntryMark_ImageView_Margin+(StationEntryMark_ImageView_Margin+Station_Label_Height)*realStationNo, StationEntryMark_ImageView_Width, StationEntryMark_ImageView_Height);
     
-    UIImageView *stationMarkerImgView=[[UIImageView alloc] initWithFrame:currentStationMarkerFrame];
+    UIImageView *stationMarkerImgView=[[[UIImageView alloc] initWithFrame:currentStationMarkerFrame] autorelease];
     stationMarkerImgView.image=[UIImage imageNamed:@"stationBusMarker.png"];
     [self.containerView addSubview:stationMarkerImgView];
     
@@ -239,7 +239,7 @@
                     
                     //count down time
                     NSString *countDownTimeStr=nil;
-                    NSString *tmpDisForCountDownTime=[disStr copy];
+                    NSString *tmpDisForCountDownTime=[NSString stringWithFormat:@"%@",disStr];
                     NSRange startRange=[tmpDisForCountDownTime rangeOfString:@"约"
                                                                      options:NSBackwardsSearch];
                     if ([tmpDisForCountDownTime length]>=startRange.location+1) {
@@ -254,7 +254,7 @@
                     
                     //distance
                     NSString *distanceStr=nil;
-                    NSString *tmpDisFordistance=[disStr copy];
+                    NSString *tmpDisFordistance=[NSString stringWithFormat:@"%@",disStr];;
                     startRange=[tmpDisFordistance rangeOfString:@"约"];
                     if ([tmpDisFordistance length]>=startRange.location+1) {
                         tmpDisFordistance=[tmpDisFordistance substringFromIndex:startRange.location+1];
@@ -271,6 +271,7 @@
                         }
                     }
                     
+                    
                     //show
                     [self setStationMarker:self.currentStationIndex-[busInfo[@"stationNo"] intValue]
                                andDistance:distanceStr
@@ -281,7 +282,9 @@
                     if (self.currentStationIndex-[busInfo[@"stationNo"] intValue]<0) {
                         self.bottomTipLbl.text=[NSString stringWithFormat:@"站点列表外有下一班公交,请切换就近查询"];
                     }
+                    
                 }
+                
             }
             
         }else{

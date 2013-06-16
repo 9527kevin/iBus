@@ -26,14 +26,16 @@
  identifier:2
  */
 #define LINEINFO_CREATE_TABLE_SQL \
-@"CREATE TABLE lineInfo (   \
-    lineId text,            \
-    lineName text,          \
-    firstTime text,         \
-    lastTime text,          \
-    edgeStation_1 text,     \
-    edgeStation_2 text,     \
-    identifier text         \
+@"CREATE TABLE lineInfo (                       \
+    lineId text,                                \
+    lineName text,                              \
+    firstTime text,                             \
+    lastTime text,                              \
+    edgeStation_1 text,                         \
+    edgeStation_2 text,                         \
+    identifier text,                            \
+    identifier_1_favorite integer,              \
+    identifier_2_favorite integer,              \
 )"
 
 #define STATIONINFO_CREATE_TABLE_SQL \

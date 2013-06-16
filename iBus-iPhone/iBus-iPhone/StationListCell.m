@@ -44,8 +44,6 @@
         
         _favoriteBtn=[UIButton buttonWithType:UIButtonTypeCustom];
         self.favoriteBtn.frame=CGRectMake(Favorite_Button_Origin_X, Favorite_Button_Origin_Y, Favorite_Button_Width, Favorite_Button_Height);
-        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_normal.png"]
-                                    forState:UIControlStateNormal];
         [self addSubview:self.favoriteBtn];
     }
     return self;
@@ -57,7 +55,7 @@
 }
 
 - (void)initSubViewsWithModel:(NSMutableDictionary*)modelInfo{
-    _stationInfo=[modelInfo retain];
+    _stationInfo=modelInfo;
     
     _stationNameLbl=[[UILabel alloc] initWithFrame:CGRectMake(Station_Name_Label_Origin_X, Station_Name_Label_Origin_Y, Station_Name_Label_Width, Station_Name_Label_Height)];
     _stationNameLbl.backgroundColor=[UIColor clearColor];
@@ -65,13 +63,14 @@
     [self addSubview:self.stationNameLbl];
     
     Boolean isFavorities=[StationDao isFavoriteWithLineId:self.stationInfo[@"lineId"]
-                                            andIdentifier:self.stationInfo[@"identifier"] andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
+                                            andIdentifier:self.stationInfo[@"identifier"]
+                                               andOrderNo:self.stationInfo[@"orderNo"]];
     
     if (isFavorities) {
-        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_normal.png"]
+        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_highlight.png"]
                                     forState:UIControlStateNormal];
     }else{
-        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_highlight.png"]
+        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_normal.png"]
                                     forState:UIControlStateNormal];
     }
     
@@ -88,16 +87,21 @@
 
 - (void)handleFavorite:(UIButton*)sender{
     Boolean isFavorities=[StationDao isFavoriteWithLineId:self.stationInfo[@"lineId"]
-                                            andIdentifier:self.stationInfo[@"identifier"] andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
+                                            andIdentifier:self.stationInfo[@"identifier"]
+                                               andOrderNo:self.stationInfo[@"orderNo"]];
     
     if (isFavorities) {
         [StationDao unfavoriteWithLineId:self.stationInfo[@"lineId"]
                            andIdentifier:self.stationInfo[@"identifier"]
-                              andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
+                              andOrderNo:self.stationInfo[@"orderNo"]];
+        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_normal.png"]
+                                    forState:UIControlStateNormal];
     }else{
         [StationDao favoriteWithLineId:self.stationInfo[@"lineId"]
                          andIdentifier:self.stationInfo[@"identifier"]
-                            andOrderNo:[self.stationInfo[@"orderNo"] intValue]];
+                            andOrderNo:self.stationInfo[@"orderNo"]];
+        [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_highlight.png"]
+                                    forState:UIControlStateNormal];
 
     }
 }

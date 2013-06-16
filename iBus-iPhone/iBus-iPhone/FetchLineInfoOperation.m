@@ -34,7 +34,7 @@
     [request startSynchronous];
     NSData *responseData=[request responseData];
     NSDictionary *responseDic=[NSJSONSerialization JSONObjectWithData:responseData
-                                options:NSJSONReadingAllowFragments
+                                                              options:NSJSONReadingAllowFragments
                                                                 error:nil];
     
     NSMutableDictionary *lineInfo=nil;
@@ -54,7 +54,8 @@
         lineInfo[@"edgeStation_1"]=responseDic[@"msgBean"][@"SStation"];
         lineInfo[@"edgeStation_2"]=responseDic[@"msgBean"][@"EStation"];
         lineInfo[@"identifier"]=@"1";
-        
+        lineInfo[@"identifier_1_favorite"]=[NSNumber numberWithInt:0];
+        lineInfo[@"identifier_2_favorite"]=[NSNumber numberWithInt:0];
     }
     
     return lineInfo;

@@ -73,15 +73,15 @@
 }
 
 + (NSMutableDictionary*)getStationInfoWithLineId:(NSString*)lineId
-                            andIdentifier:(NSString*)identifier
-                               andOrderNo:(NSInteger)orderNo{
+                                   andIdentifier:(NSString*)identifier
+                                      andOrderNo:(NSNumber*)orderNo{
     __block NSDictionary *stationInfo=nil;
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
             FMResultSet *resultSet=nil;
             NSString *sql=[identifier isEqualToString:@"1"]?SELECT_STATIONINFO_WITH_LINEID_AND_ORDER_ASC_SQL:SELECT_STATIONINFO_WITH_LINEID_AND_ORDER_DESC_SQL;
-            resultSet=[db executeQuery:sql,lineId,[NSString stringWithFormat:@"%d",orderNo]];
+            resultSet=[db executeQuery:sql,lineId,orderNo];
             if ([resultSet next]) {
                 stationInfo= @{
                  @"stationName": [resultSet stringForColumn:@"stationName"],
@@ -194,12 +194,12 @@
 
 + (void)favoriteWithLineId:(NSString*)lineId
              andIdentifier:(NSString*)identifier
-                andOrderNo:(NSInteger)orderNo{
+                andOrderNo:(NSNumber*)orderNo{
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
             NSString *sql=[identifier isEqualToString:@"1"]?UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1:UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
-            [db executeUpdate:sql,[NSNumber numberWithBool:YES],lineId,orderNo];
+            [db executeUpdate:sql,[NSNumber numberWithInt:1],lineId,orderNo,lineId];
         }
         @catch (NSException *exception) {
             NSLog(@"%@",[exception reason]);
@@ -212,12 +212,12 @@
 
 + (void)unfavoriteWithLineId:(NSString*)lineId
                andIdentifier:(NSString*)identifier
-                  andOrderNo:(NSInteger)orderNo{
+                  andOrderNo:(NSNumber*)orderNo{
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
             NSString *sql=[identifier isEqualToString:@"1"]?UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1:UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
-            [db executeUpdate:sql,[NSNumber numberWithBool:YES],lineId,orderNo];
+            [db executeUpdate:sql,[NSNumber numberWithInt:0],lineId,orderNo,lineId];
         }
         @catch (NSException *exception) {
             NSLog(@"%@",[exception reason]);
@@ -230,15 +230,13 @@
 
 + (BOOL)isFavoriteWithLineId:(NSString*)lineId
                andIdentifier:(NSString*)identifier
-                  andOrderNo:(NSInteger)orderNo{
+                  andOrderNo:(NSNumber*)orderNo{
     __block int isFavorite=NO;
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
-            
-#warning lineId,orderNo 有问题
             NSString *sql=([identifier isEqualToString:@"1"])?CHECK_ISFAVORITE_IDENTIFIER_1:CHECK_ISFAVORITE_IDENTIFIER_2;
-            
+                        
             FMResultSet *resultSet=[db executeQuery:sql,lineId,orderNo];
             if ([resultSet next]) {
                 isFavorite=[resultSet boolForColumnIndex:0];
@@ -252,7 +250,7 @@
         }
     }];
     
-    return isFavorite;
+    return (isFavorite==0)?NO:YES;
 }
 
 #pragma mark - inner methods -

@@ -38,29 +38,29 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 #define UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1 \
 @"UPDATE stationInfo SET identifier_1_favorite = ? WHERE stationName =  \
     (                                                                   \
-    SELECT staitonName FROM (                                           \
+    SELECT stationName FROM (                                           \
         SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
                     ) WHERE orderno = ?                                 \
-    )                                                                   \
+    ) AND lineId = ?                                                    \
 "
 
 #define UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2 \
-@"UPDATE stationInfo SET identifier_1_favorite = ? WHERE stationName =  \
+@"UPDATE stationInfo SET identifier_2_favorite = ? WHERE stationName =  \
     (                                                                   \
-    SELECT staitonName FROM (                                           \
-        SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+    SELECT stationName FROM (                                           \
+        SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC\
                     ) WHERE orderno = ?                                 \
-    )                                                                   \
+    ) AND lineId = ?                                                    \
 "
 
 #define CHECK_ISFAVORITE_IDENTIFIER_1 \
-@"SELECT identifier_1_favorite FROM (               \
-    SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+@"SELECT identifier_1_favorite FROM (                                   \
+    SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC     \
 ) WHERE orderno = ?"
 
 #define CHECK_ISFAVORITE_IDENTIFIER_2 \
-@"SELECT identifier_2_favorite FROM (               \
-    SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno ASC \
+@"SELECT identifier_2_favorite FROM (                                   \
+    SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC    \
 ) WHERE orderno = ?"
 
 //count : wheather in the middle or not
@@ -96,7 +96,7 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 
 + (NSMutableDictionary*)getStationInfoWithLineId:(NSString*)lineId
                                    andIdentifier:(NSString*)identifier
-                                      andOrderNo:(NSInteger)orderNo;
+                                      andOrderNo:(NSNumber*)orderNo;
 
 + (NSMutableArray *)getDynamicStationList:(NSString*)lineId
                              andStationId:(NSNumber*)stationId
@@ -107,14 +107,14 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 
 + (void)favoriteWithLineId:(NSString*)lineId
              andIdentifier:(NSString*)identifier
-                andOrderNo:(NSInteger)orderNo;
+                andOrderNo:(NSNumber*)orderNo;
 
 + (void)unfavoriteWithLineId:(NSString*)lineId
                andIdentifier:(NSString*)identifier
-                  andOrderNo:(NSInteger)orderNo;
+                  andOrderNo:(NSNumber*)orderNo;
 
 + (BOOL)isFavoriteWithLineId:(NSString*)lineId
                andIdentifier:(NSString*)identifier
-                  andOrderNo:(NSInteger)orderNo;
+                  andOrderNo:(NSNumber*)orderNo;
 
 @end
