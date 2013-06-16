@@ -9,6 +9,7 @@
 #import "StationListController.h"
 #import "StationListCell.h"
 #import "StationDao.h"
+#import "LineDao.h"
 #import "StationMapInfoController.h"
 #import "LineDynamicStateController.h"
 
@@ -28,7 +29,9 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     [super dealloc];
 }
 
-- (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView andTableViewFrame:(CGRect)frame{
+- (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
+          andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
+                     andTableViewFrame:(CGRect)frame{
     self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
     if (self) {
         self.tableViewFrame=frame;
@@ -47,9 +50,11 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initNavBarRightItem];
     [self initBlocks];
     self.navigationItem.title=[NSString stringWithFormat:@"%@-站点列表",self.lineName];
-    self.dataSource=[StationDao getStationListWithLineId:self.lineId andIdentifier:self.identifier];
+    self.dataSource=[StationDao getStationListWithLineId:self.lineId
+                                           andIdentifier:self.identifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,8 +110,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 #pragma mark - private methods -
 - (void)initNavBarRightItem{
-#warning query from db
-    BOOL isLineFavorite=NO;
+    BOOL isLineFavorite=[LineDao isFavoriteWithLineId:self.lineId
+                                        andIdentifier:self.identifier];
     
     NSString *barBtnItemText=nil;
     if (isLineFavorite) {
@@ -119,22 +124,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                                   target:self
                                                                   action:@selector(handleFavorite:)];
     
-    self.navigationItem.leftBarButtonItem = favoriteButton;
+    self.navigationItem.rightBarButtonItem = favoriteButton;
     [favoriteButton release];
 }
 
 - (void)handleFavorite:(id)sender{
     UIBarButtonItem *favoriteButton=(UIBarButtonItem*)sender;
     
-#warning query from db
-    BOOL isLineFavorite=NO;
+    BOOL isLineFavorite=[LineDao isFavoriteWithLineId:self.lineId
+                                        andIdentifier:self.identifier];
     
     NSString *barBtnItemText=nil;
     if (isLineFavorite) {
-        //do unfavorite
+        [LineDao unfavoriteWithLineId:self.lineId
+                        andIdentifier:self.identifier];
         barBtnItemText = @"添加收藏";
     }else{
-        //do favorite
+        [LineDao favoriteWithLineId:self.lineId
+                      andIdentifier:self.identifier];
         barBtnItemText = @"取消收藏";
     }
     

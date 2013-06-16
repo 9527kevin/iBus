@@ -90,9 +90,18 @@
 - (void)initDatabase{
     NSLog(@"DB Path---->:%@",PATH_OF_DB);
     if (!fileExistsAtPath(PATH_OF_DB)) {
+#if TARGET_IPHONE_SIMULATOR
         [[DBHelper sharedInstance] initWithCreatingTablesForDatabase:PATH_OF_DB
                                                          andSQLArray:CREATE_TABLE_SQL_ARRAY];
+#elif TARGET_OS_IPHONE
+        NSString *resourcePath =[[NSBundle mainBundle] pathForResource:@"BusDB"
+                                                                ofType:@"db"];
+
+        NSData *dbFile = [NSData dataWithContentsOfFile:resourcePath];
+        [[NSFileManager defaultManager] createFileAtPath:PATH_OF_DB contents:dbFile attributes:nil];
+#endif
     }
+
 }
 
 - (void)initOperationQueueCenter{
