@@ -42,6 +42,13 @@
 #define CHECK_LINE_WITH_LINEID_ISFAVORITE_IDENTIFIER_2 \
 @"SELECT identifier_2_favorite FROM lineInfo WHERE lineId = ? "
 
+#define SELECT_ALL_FAVORITES_LINEINFO \
+@"SELECT *,'identifier_1_favorite' as identifier_favorite               \
+    FROM lineInfo WHERE identifier_1_favorite = 1                       \
+UNION ALL                                                               \
+SELECT *,'identifier_2_favorite' as identifier_favorite                 \
+    FROM lineInfo WHERE identifier_2_favorite = 1"
+
 
 @interface LineDao : NSObject
 
@@ -65,5 +72,7 @@
 
 + (BOOL)isFavoriteWithLineId:(NSString*)lineId
                andIdentifier:(NSString*)identifier;
+
++ (NSMutableArray*)getAllFavorites;
 
 @end

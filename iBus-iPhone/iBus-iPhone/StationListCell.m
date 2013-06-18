@@ -62,9 +62,9 @@
     _stationNameLbl.text=modelInfo[@"stationName"];
     [self addSubview:self.stationNameLbl];
     
-    Boolean isFavorities=[StationDao isFavoriteWithLineId:self.stationInfo[@"lineId"]
-                                            andIdentifier:self.stationInfo[@"identifier"]
-                                               andOrderNo:self.stationInfo[@"orderNo"]];
+    Boolean isFavorities=[self.stationInfo[@"identifier"] isEqualToString:@"1"] ?
+                         [self.stationInfo[@"identifier_1_favorite"] boolValue] :
+                         [self.stationInfo[@"identifier_2_favorite"] boolValue];
     
     if (isFavorities) {
         [self.favoriteBtn setBackgroundImage:[UIImage imageNamed:@"favoriteBtn_highlight.png"]
@@ -75,13 +75,16 @@
     }
     
     //register events for favorite button
-    [self.favoriteBtn addTarget:self action:@selector(handleFavorite:)
+    [self.favoriteBtn addTarget:self
+                         action:@selector(handleFavorite:)
                forControlEvents:UIControlEventTouchUpInside];
     
+    [self.mapBtn addTarget:self.delegate
+                    action:@selector(handleMapButton:)
+          forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)resizeSubViews{
-    
     
 }
 
@@ -106,14 +109,12 @@
     }
 }
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (void)handleMapButton:(NSMutableDictionary*)stationInfo{
+    if ([self.delegate respondsToSelector:@selector(showMapViewController:)]) {
+        [self.delegate showMapViewController:self.stationInfo];
+    }
 }
-*/
+
+
 
 @end

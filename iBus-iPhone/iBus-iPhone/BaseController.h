@@ -10,5 +10,6 @@
 
 @interface BaseController : UIViewController
 
+- (void)initNavigationController;
 
 @end

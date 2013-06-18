@@ -45,6 +45,8 @@ NO)
                                                     MainWidth,\
                                                     MainHeight)
 
+#define Default_TableView_BackgroundColor ColorWithRGBA(235, 235, 235, 1.0)
+
 
 #define fileExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x]
 #define removerItemAtPath(x) [[NSFileManager defaultManager] removeItemAtPath:x error:nil]

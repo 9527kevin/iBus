@@ -19,3 +19,5 @@ Now the service it provides  can only be available for users who are in **Jiangn
 the project uses **[cocoapod](http://cocoapods.org/)** to manage all the third-party Libraries.So you must promise that you have installed **cocoapod**.
 
 
+##advantage
+* build-in line/bus and some basic data base in app

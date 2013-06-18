@@ -35,4 +35,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initNavigationController{
+    if ([self.navigationController.parentViewController respondsToSelector:@selector(revealGesture:)] && [self.navigationController.parentViewController respondsToSelector:@selector(revealToggle:)])
+	{
+		UIPanGestureRecognizer *navigationBarPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.navigationController.parentViewController
+                                                                                                            action:@selector(revealGesture:)];
+		[self.navigationController.navigationBar addGestureRecognizer:navigationBarPanGestureRecognizer];
+		
+        //left bar button item
+        UIButton *menuBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuBtn.png"] forState:UIControlStateNormal];
+        menuBtn.frame=CGRectMake(0, 0, 30.0f, 30.0f);
+        [menuBtn addTarget:self.navigationController.parentViewController
+                    action:@selector(revealToggle:)
+          forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *menuBarBtn=[[[UIBarButtonItem alloc]initWithCustomView:menuBtn] autorelease];
+        self.navigationItem.leftBarButtonItem=menuBarBtn;
+	}
+}
+
 @end

@@ -18,10 +18,10 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 
 @interface LineListController () <UIFolderTableViewDelegate>
 
-@property (nonatomic,retain) SubLineViewController *subLineViewCtrller;
-@property (nonatomic,retain) NSDictionary *currentLineInfo;
+@property (nonatomic,retain) SubLineViewController  *subLineViewCtrller;
+@property (nonatomic,retain) NSDictionary           *currentLineInfo;
 
-@property (nonatomic,retain) UIView *currentSelectedView;
+@property (nonatomic,retain) UIView                 *currentSelectedView;
 
 
 @end

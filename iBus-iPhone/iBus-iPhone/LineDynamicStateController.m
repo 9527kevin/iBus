@@ -233,7 +233,6 @@
             //rows
             NSArray *busArray=responseDic[@"rows"];
             for (NSDictionary *busInfo in busArray) {
-                NSLog(@"%@",busInfo);
                 NSString *disStr=busInfo[@"dis"];
                 if (disStr && disStr.length>0) {
                     

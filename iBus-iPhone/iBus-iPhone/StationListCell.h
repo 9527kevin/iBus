@@ -30,8 +30,19 @@
 #define Favorite_Button_Origin_Y 12.0f
 
 
+@protocol StationListCellDelegate;
+
 @interface StationListCell : BaseCell
 
 @property (nonatomic,retain) NSMutableDictionary *stationInfo;
+@property (nonatomic,assign) id<StationListCellDelegate> delegate;
+
+@end
+
+@protocol StationListCellDelegate <NSObject>
+
+@optional
+
+- (void)showMapViewController:(NSMutableDictionary*)stationInfo;
 
 @end

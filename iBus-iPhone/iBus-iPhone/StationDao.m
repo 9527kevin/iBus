@@ -57,7 +57,9 @@
                  @"stationLat":[resultSet stringForColumn:@"stationLat"],
                  @"orderNo" : [resultSet stringForColumn:@"orderNo"],
                  @"lineId" : [resultSet stringForColumn:@"lineId"],
-                 @"identifier" : identifier
+                 @"identifier" : identifier,
+                 @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
                  }]];
             }
         }
@@ -89,7 +91,9 @@
                  @"stationLat":[resultSet stringForColumn:@"stationLat"],
                  @"orderNo" : [resultSet stringForColumn:@"orderNo"],
                  @"lineId" : [resultSet stringForColumn:@"lineId"],
-                 @"identifier" : identifier
+                 @"identifier" : identifier,
+                 @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
                  };
             }
         }
@@ -198,7 +202,9 @@
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
-            NSString *sql=[identifier isEqualToString:@"1"]?UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1:UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
+            NSString *sql=[identifier isEqualToString:@"1"] ?
+            UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1 :
+            UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
             [db executeUpdate:sql,[NSNumber numberWithInt:1],lineId,orderNo,lineId];
         }
         @catch (NSException *exception) {
@@ -216,7 +222,9 @@
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
-            NSString *sql=[identifier isEqualToString:@"1"]?UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1:UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
+            NSString *sql=[identifier isEqualToString:@"1"] ?
+            UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_1 :
+            UPDATE_STATION_FAVORITE_WITH_LINEID_ORDERNO_IDENTIFIER_2;
             [db executeUpdate:sql,[NSNumber numberWithInt:0],lineId,orderNo,lineId];
         }
         @catch (NSException *exception) {
@@ -235,7 +243,9 @@
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
-            NSString *sql=([identifier isEqualToString:@"1"])?CHECK_ISFAVORITE_IDENTIFIER_1:CHECK_ISFAVORITE_IDENTIFIER_2;
+            NSString *sql=([identifier isEqualToString:@"1"]) ?
+            CHECK_ISFAVORITE_IDENTIFIER_1 :
+            CHECK_ISFAVORITE_IDENTIFIER_2;
                         
             FMResultSet *resultSet=[db executeQuery:sql,lineId,orderNo];
             if ([resultSet next]) {
@@ -251,6 +261,38 @@
     }];
     
     return (isFavorite==0)?NO:YES;
+}
+
++ (NSMutableArray*)getAllFavorites{
+    __block NSMutableArray *stationArray=[NSMutableArray array];
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=nil;
+            resultSet=[db executeQuery:SELECT_ALL_FAVORITES_STATIONINFO];
+            while ([resultSet next]) {
+                [stationArray addObject:[NSMutableDictionary dictionaryWithDictionary:
+                                         @{
+                                         @"stationName": [resultSet stringForColumn:@"stationName"],
+                                         @"stationLog":[resultSet stringForColumn:@"stationLog"],
+                                         @"stationLat":[resultSet stringForColumn:@"stationLat"],
+                                         @"orderNo" : [resultSet stringForColumn:@"orderNo"],
+                                         @"lineId" : [resultSet stringForColumn:@"lineId"],
+                                         @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
+                                         @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                                         @"identifier_favorite":[resultSet stringForColumn:@"identifier_favorite"]
+                                         }]];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return stationArray;
 }
 
 #pragma mark - inner methods -

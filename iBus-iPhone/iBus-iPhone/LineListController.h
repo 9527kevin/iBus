@@ -12,7 +12,7 @@
 
 @interface LineListController : BaseController<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic,retain) NSMutableArray *dataSource;
-@property (nonatomic,retain) UIFolderTableView *tableView;
+@property (nonatomic,retain) NSMutableArray     *dataSource;
+@property (nonatomic,retain) UIFolderTableView  *tableView;
 
 @end

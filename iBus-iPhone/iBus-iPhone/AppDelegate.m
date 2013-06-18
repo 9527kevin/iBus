@@ -82,7 +82,7 @@
 - (void)configDefaultUIAppearance{
 //    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor darkGrayColor], UITextAttributeTextColor, [UIColor whiteColor], UITextAttributeTextShadowColor, nil];
 //    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
-    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
+    [[UINavigationBar appearance] setTintColor:ColorWithRGBA(36, 160, 73, 1.0)];
 //    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setBackgroundColor:[UIColor lightGrayColor]];
 }

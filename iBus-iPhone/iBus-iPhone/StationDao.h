@@ -63,6 +63,13 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
     SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC    \
 ) WHERE orderno = ?"
 
+#define SELECT_ALL_FAVORITES_STATIONINFO \
+@"SELECT *,'identifier_1_favorite' as identifier_favorite               \
+    FROM stationInfo WHERE identifier_1_favorite = 1                    \
+UNION ALL                                                               \
+SELECT *,'identifier_2_favorite' as identifier_favorite                 \
+    FROM stationInfo WHERE identifier_2_favorite = 1"
+
 //count : wheather in the middle or not
 #define SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL \
 @"SELECT COUNT(1) FROM stationInfo WHERE lineId = ? AND orderno <= ?  ORDER BY orderno ASC "
@@ -116,5 +123,7 @@ SELECT * FROM stationInfo WHERE lineId = ? ORDER BY orderno DESC \
 + (BOOL)isFavoriteWithLineId:(NSString*)lineId
                andIdentifier:(NSString*)identifier
                   andOrderNo:(NSNumber*)orderNo;
+
++ (NSMutableArray*)getAllFavorites;
 
 @end

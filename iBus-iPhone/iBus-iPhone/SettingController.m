@@ -44,6 +44,8 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 	[self initNavigationController];
     [self initDataSource];
     [self.tableView reloadData];
+    self.tableView.backgroundView=nil;
+    self.tableView.backgroundColor=Default_TableView_BackgroundColor;
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,19 +56,8 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 
 #pragma mark - private methods -
 - (void)initNavigationController{
-    if ([self.navigationController.parentViewController respondsToSelector:@selector(revealGesture:)] && [self.navigationController.parentViewController respondsToSelector:@selector(revealToggle:)])
-	{
-		UIPanGestureRecognizer *navigationBarPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.navigationController.parentViewController
-                                                                                                            action:@selector(revealGesture:)];
-		[self.navigationController.navigationBar addGestureRecognizer:navigationBarPanGestureRecognizer];
-		
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"导航菜单"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self.navigationController.parentViewController
-                                                                                action:@selector(revealToggle:)];
-        
-        self.navigationItem.title=@"设置";
-	}
+    [super initNavigationController];
+    self.navigationItem.title=@"设置";
 }
 
 #pragma mark - UITableView data source and delegate -
@@ -91,7 +82,7 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     
     cell=[[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:settingTableViewCell] autorelease];
     cell.textLabel.text=[((NSMutableDictionary*)self.dataSource[[NSNumber numberWithInt:indexPath.section]][indexPath.row]) allKeys][0];
-    
+    cell.textLabel.font=[UIFont systemFontOfSize:17.0f];
     return cell;
 }
 

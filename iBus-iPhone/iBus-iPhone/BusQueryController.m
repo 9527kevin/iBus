@@ -48,19 +48,8 @@
 
 #pragma mark - private methods -
 - (void)initNavigationController{
-    if ([self.navigationController.parentViewController respondsToSelector:@selector(revealGesture:)] && [self.navigationController.parentViewController respondsToSelector:@selector(revealToggle:)])
-	{
-		UIPanGestureRecognizer *navigationBarPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.navigationController.parentViewController
-                                                                                                            action:@selector(revealGesture:)];
-		[self.navigationController.navigationBar addGestureRecognizer:navigationBarPanGestureRecognizer];
-		
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"导航菜单"
-                                                                                 style:UIBarButtonItemStylePlain
-                                                                                target:self.navigationController.parentViewController
-                                                                                action:@selector(revealToggle:)];
-        
-        self.navigationItem.title=@"公交查询";
-	}
+    [super initNavigationController];
+    self.navigationItem.title=@"公交查询";
 }
 
 - (void)initQueryMenuItems{

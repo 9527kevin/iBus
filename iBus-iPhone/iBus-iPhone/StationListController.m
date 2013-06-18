@@ -7,7 +7,6 @@
 //
 
 #import "StationListController.h"
-#import "StationListCell.h"
 #import "StationDao.h"
 #import "LineDao.h"
 #import "StationMapInfoController.h"
@@ -81,6 +80,7 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
         
         [cell initSubViewsWithModel:self.dataSource[indexPath.row]];
         [cell resizeSubViews];
+        cell.delegate=self;
         
         return cell;
     };
@@ -146,6 +146,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }
     
     favoriteButton.title=barBtnItemText;
+}
+
+#pragma mark - StationListCell delegate -
+- (void)showMapViewController:(NSMutableDictionary*)stationInfo{
+    StationMapInfoController *stationMapCtrller=[[[StationMapInfoController alloc] init] autorelease];
+    
+    stationMapCtrller.lineId=stationInfo[@"lineId"];
+    stationMapCtrller.identifier=stationInfo[@"identifier"];
+    stationMapCtrller.stationNo=[stationInfo[@"stationNo"] intValue];
+    
+    [self.navigationController pushViewController:stationMapCtrller
+                                         animated:YES];
 }
 
 @end

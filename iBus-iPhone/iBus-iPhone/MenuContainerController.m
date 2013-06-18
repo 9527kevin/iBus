@@ -14,7 +14,7 @@
 #import "BusQueryController.h"
 #import "SettingController.h"
 #import "AboutController.h"
-#import "FollowingStationListController.h"
+#import "FavoriteListController.h"
 
 @interface MenuContainerController ()
 
@@ -239,7 +239,7 @@
             
         case TAG_BUSZOOM:
         {
-            FollowingStationListController *followingStationListCtrller=[[[FollowingStationListController alloc] init] autorelease];
+            FavoriteListController *followingStationListCtrller=[[[FavoriteListController alloc] init] autorelease];
             navCtrller=[[[UINavigationController alloc] initWithRootViewController:followingStationListCtrller] autorelease];
         }
             break;

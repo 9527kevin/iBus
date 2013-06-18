@@ -7,10 +7,14 @@
 //
 
 #import "ELTableViewController.h"
+#import "StationListCell.h"
 
 #define Notification_For_LoadCountDownTimeCallbackCompleted @"Notification_For_LoadCountDownTimeCallbackCompleted"
 
 @interface StationListController : ELTableViewController
+<
+StationListCellDelegate
+>
 
 @property (nonatomic,copy) NSString *lineId;
 @property (nonatomic,copy) NSString *lineName;

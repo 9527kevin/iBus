@@ -45,7 +45,7 @@
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
-            FMResultSet *resultSet=[db executeQueryWithFormat:SELECT_LINEINFO_SQL,lineId];
+            FMResultSet *resultSet=[db executeQuery:SELECT_LINEINFO_SQL,lineId];
             if ([resultSet next]) {
                 result=@{
                          @"lineId": [resultSet stringForColumn:@"lineId"],
@@ -164,6 +164,38 @@
     }];
     
     return (isFavorite==0)?NO:YES;
+}
+
++ (NSMutableArray*)getAllFavorites{
+    __block NSMutableArray *lineArray=[NSMutableArray array];
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=[db executeQuery:SELECT_ALL_FAVORITES_LINEINFO];
+            while ([resultSet next]) {
+                [lineArray addObject:
+                 @{
+                 @"lineId": [resultSet stringForColumn:@"lineId"],
+                 @"lineName":[resultSet stringForColumn:@"lineName"],
+                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
+                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
+                 @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
+                 @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
+                 @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                 @"identifier_favorite":[resultSet stringForColumn:@"identifier_favorite"]
+                 }];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return lineArray;
 }
 
 

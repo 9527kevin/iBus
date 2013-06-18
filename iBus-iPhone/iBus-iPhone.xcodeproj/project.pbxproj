@@ -41,6 +41,10 @@
 		7742E15B17698DEE0032BE9B /* BasicDataOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7742E15A17698DEE0032BE9B /* BasicDataOperation.m */; };
 		7742E15E1769BE1D0032BE9B /* favoriteBtn_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 7742E15C1769BE1D0032BE9B /* favoriteBtn_highlight.png */; };
 		7742E15F1769BE1D0032BE9B /* favoriteBtn_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7742E15D1769BE1D0032BE9B /* favoriteBtn_normal.png */; };
+		776B481C176ED55100475EE5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 776B481B176ED55100475EE5 /* Icon@2x.png */; };
+		776B481E176ED5E500475EE5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 776B481D176ED5E400475EE5 /* Icon.png */; };
+		776B4820176F0EA200475EE5 /* refreshBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 776B481F176F0EA200475EE5 /* refreshBtn.png */; };
+		776B4822176F0FB700475EE5 /* menuBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 776B4821176F0FB700475EE5 /* menuBtn.png */; };
 		778024D5176DA12A00B6C06E /* BusDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 778024D4176DA12A00B6C06E /* BusDB.db */; };
 		778546E2176465830020AE10 /* stationBusMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E1176465830020AE10 /* stationBusMarker.png */; };
 		778546EA17647ED50020AE10 /* arrowStation.png in Resources */ = {isa = PBXBuildFile; fileRef = 778546E917647ED50020AE10 /* arrowStation.png */; };
@@ -65,7 +69,6 @@
 		77A9A6EF1750C63A00263B54 /* StationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A9A6EE1750C63A00263B54 /* StationListController.m */; };
 		77C481F41759C39700AA00A3 /* mapBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C481F31759C39700AA00A3 /* mapBtn.png */; };
 		77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C481F7175A2AAB00AA00A3 /* MapHelper.m */; };
-		77C481FA175A3F0A00AA00A3 /* refreshBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C481F9175A3F0A00AA00A3 /* refreshBtn.png */; };
 		77DEB0FB1758524D00E93D1D /* StationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FA1758524D00E93D1D /* StationDao.m */; };
 		77DEB0FE175854F600E93D1D /* FetchStationInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FD175854F600E93D1D /* FetchStationInfoOperation.m */; };
 		77DEB10117587C2000E93D1D /* StationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB10017587C2000E93D1D /* StationListCell.m */; };
@@ -75,7 +78,7 @@
 		77DEB6371754A21000FD4594 /* busPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB6361754A21000FD4594 /* busPlaceHolder.png */; };
 		77DEB63A1754AA3100FD4594 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB6381754AA3100FD4594 /* arrow_left.png */; };
 		77DEB63D1754AB2600FD4594 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB63C1754AB2600FD4594 /* arrow_right.png */; };
-		77E71A431765DF6500120F92 /* FollowingStationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A421765DF6500120F92 /* FollowingStationListController.m */; };
+		77E71A431765DF6500120F92 /* FavoriteListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A421765DF6500120F92 /* FavoriteListController.m */; };
 		77E71A471765DFAD00120F92 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A461765DFAD00120F92 /* SettingController.m */; };
 		77E71A4B1765E41300120F92 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A4A1765E41300120F92 /* AboutController.m */; };
 		77EABAAB174A3935006C9E03 /* BusQueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EABAAA174A3935006C9E03 /* BusQueryController.m */; };
@@ -138,6 +141,10 @@
 		7742E15A17698DEE0032BE9B /* BasicDataOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicDataOperation.m; sourceTree = "<group>"; };
 		7742E15C1769BE1D0032BE9B /* favoriteBtn_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favoriteBtn_highlight.png; sourceTree = "<group>"; };
 		7742E15D1769BE1D0032BE9B /* favoriteBtn_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favoriteBtn_normal.png; sourceTree = "<group>"; };
+		776B481B176ED55100475EE5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		776B481D176ED5E400475EE5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		776B481F176F0EA200475EE5 /* refreshBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshBtn.png; sourceTree = "<group>"; };
+		776B4821176F0FB700475EE5 /* menuBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBtn.png; sourceTree = "<group>"; };
 		778024D4176DA12A00B6C06E /* BusDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = BusDB.db; sourceTree = "<group>"; };
 		778546E1176465830020AE10 /* stationBusMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stationBusMarker.png; sourceTree = "<group>"; };
 		778546E917647ED50020AE10 /* arrowStation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowStation.png; sourceTree = "<group>"; };
@@ -169,7 +176,6 @@
 		77C481F51759FB0400AA00A3 /* GlobalDefinitionForMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitionForMap.h; sourceTree = "<group>"; };
 		77C481F6175A2AAB00AA00A3 /* MapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapHelper.h; sourceTree = "<group>"; };
 		77C481F7175A2AAB00AA00A3 /* MapHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapHelper.m; sourceTree = "<group>"; };
-		77C481F9175A3F0A00AA00A3 /* refreshBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshBtn.png; sourceTree = "<group>"; };
 		77DEB0F91758524D00E93D1D /* StationDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDao.h; sourceTree = "<group>"; };
 		77DEB0FA1758524D00E93D1D /* StationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDao.m; sourceTree = "<group>"; };
 		77DEB0FC175854F600E93D1D /* FetchStationInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchStationInfoOperation.h; sourceTree = "<group>"; };
@@ -184,8 +190,8 @@
 		77DEB6361754A21000FD4594 /* busPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busPlaceHolder.png; sourceTree = "<group>"; };
 		77DEB6381754AA3100FD4594 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		77DEB63C1754AB2600FD4594 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
-		77E71A411765DF6500120F92 /* FollowingStationListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingStationListController.h; sourceTree = "<group>"; };
-		77E71A421765DF6500120F92 /* FollowingStationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingStationListController.m; sourceTree = "<group>"; };
+		77E71A411765DF6500120F92 /* FavoriteListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteListController.h; sourceTree = "<group>"; };
+		77E71A421765DF6500120F92 /* FavoriteListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteListController.m; sourceTree = "<group>"; };
 		77E71A451765DFAD00120F92 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		77E71A461765DFAD00120F92 /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		77E71A491765E41300120F92 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
@@ -270,6 +276,8 @@
 		7740B1BD1748AFC800D98529 = {
 			isa = PBXGroup;
 			children = (
+				776B481D176ED5E400475EE5 /* Icon.png */,
+				776B481B176ED55100475EE5 /* Icon@2x.png */,
 				7740B1CF1748AFC800D98529 /* iBus-iPhone */,
 				7740B1C81748AFC800D98529 /* Frameworks */,
 				7740B1C71748AFC800D98529 /* Products */,
@@ -349,8 +357,8 @@
 		7740B1E71748B3FD00D98529 /* MyBusZoom */ = {
 			isa = PBXGroup;
 			children = (
-				77E71A411765DF6500120F92 /* FollowingStationListController.h */,
-				77E71A421765DF6500120F92 /* FollowingStationListController.m */,
+				77E71A411765DF6500120F92 /* FavoriteListController.h */,
+				77E71A421765DF6500120F92 /* FavoriteListController.m */,
 			);
 			name = MyBusZoom;
 			sourceTree = "<group>";
@@ -520,12 +528,13 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				776B4821176F0FB700475EE5 /* menuBtn.png */,
+				776B481F176F0EA200475EE5 /* refreshBtn.png */,
 				7742E15C1769BE1D0032BE9B /* favoriteBtn_highlight.png */,
 				7742E15D1769BE1D0032BE9B /* favoriteBtn_normal.png */,
 				778546E917647ED50020AE10 /* arrowStation.png */,
 				778546E1176465830020AE10 /* stationBusMarker.png */,
 				771A3E871762DD6D000EBB44 /* stationMarker.png */,
-				77C481F9175A3F0A00AA00A3 /* refreshBtn.png */,
 				77C481F31759C39700AA00A3 /* mapBtn.png */,
 				77DEB10217589EF700E93D1D /* busStation.png */,
 				772A63421755F08500FBF5E6 /* DownAccessory.png */,
@@ -645,7 +654,6 @@
 				7737BBBE17573C92001D5CE8 /* about.png in Resources */,
 				77DEB10317589EF700E93D1D /* busStation.png in Resources */,
 				77C481F41759C39700AA00A3 /* mapBtn.png in Resources */,
-				77C481FA175A3F0A00AA00A3 /* refreshBtn.png in Resources */,
 				771A3E881762DD6D000EBB44 /* stationMarker.png in Resources */,
 				778546E2176465830020AE10 /* stationBusMarker.png in Resources */,
 				778546EA17647ED50020AE10 /* arrowStation.png in Resources */,
@@ -653,6 +661,10 @@
 				7742E15E1769BE1D0032BE9B /* favoriteBtn_highlight.png in Resources */,
 				7742E15F1769BE1D0032BE9B /* favoriteBtn_normal.png in Resources */,
 				778024D5176DA12A00B6C06E /* BusDB.db in Resources */,
+				776B481C176ED55100475EE5 /* Icon@2x.png in Resources */,
+				776B481E176ED5E500475EE5 /* Icon.png in Resources */,
+				776B4820176F0EA200475EE5 /* refreshBtn.png in Resources */,
+				776B4822176F0FB700475EE5 /* menuBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,7 +733,7 @@
 				77DEB10117587C2000E93D1D /* StationListCell.m in Sources */,
 				77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */,
 				77FDD8E51761ED8D001E5A77 /* LineDynamicStateController.m in Sources */,
-				77E71A431765DF6500120F92 /* FollowingStationListController.m in Sources */,
+				77E71A431765DF6500120F92 /* FavoriteListController.m in Sources */,
 				77E71A471765DFAD00120F92 /* SettingController.m in Sources */,
 				77E71A4B1765E41300120F92 /* AboutController.m in Sources */,
 				7742E155176955720032BE9B /* ConfigCategoryDao.m in Sources */,
