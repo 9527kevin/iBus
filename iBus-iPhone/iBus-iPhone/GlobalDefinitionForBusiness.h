@@ -50,7 +50,7 @@ http://www.baidu.com
 
 #define Dynamic_Station_List_Count 8
 //刷新频率
-#define DynamicRefresh_Frequency 20
+//#define DynamicRefresh_Frequency 20
 
 //setting keys
 #define Setting_Key_DefaultLine @"默认线路"

@@ -11,6 +11,7 @@
 #import "ConfigItemDao.h"
 
 #import "LineListController.h"
+#import "RefreshFrequencyController.h"
 
 static NSString *settingTableViewCell = @"settingTableViewCell";
 
@@ -99,6 +100,9 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     }else if ([itemKey isEqualToString:Setting_Key_FollowStation]){
         LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
         [self.navigationController pushViewController:lineListCtrller animated:YES];
+    }else if([itemKey isEqualToString:Setting_Key_RefreshFrequency]){
+        RefreshFrequencyController *refreshFrequencyCtrller=[[[RefreshFrequencyController alloc] init] autorelease];
+        [self.navigationController pushViewController:refreshFrequencyCtrller animated:YES];
     }
     
 }

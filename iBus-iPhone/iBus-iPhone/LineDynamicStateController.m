@@ -8,6 +8,7 @@
 
 #import "LineDynamicStateController.h"
 #import "StationDao.h"
+#import "ConfigItemDao.h"
 
 @interface LineDynamicStateController ()
 
@@ -49,7 +50,7 @@
     //top tip
     UILabel *topTipLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Toptip_StationList_Label_Origin_X, Toptip_StationList_Label_Origin_Y, Toptip_Label_Width, Toptip_Label_Height)] autorelease];
     topTipLbl.font=[UIFont systemFontOfSize:Toptip_Label_FontSize];
-    topTipLbl.text=@"公交位置";
+    topTipLbl.text=@"公交站点";
     [self.view addSubview:topTipLbl];
     
     UILabel *countDownTimeLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Toptip_CountDownTime_Label_Origin_X, Toptip_CountDownTime_Label_Origin_Y, Toptip_CountDownTime_Label_Width, Toptip_Label_Height)] autorelease];
@@ -78,7 +79,7 @@
 {
     [super viewDidLoad];
     self.navigationItem.title=self.stationName;
-    [self overrideNavLeftBackButton];
+    [self initNavLeftBackButton];
 
     if ([self.identifier isEqualToString:@"1"]) {
         self.realStationNo=self.stationNo;
@@ -311,14 +312,10 @@
 }
 
 #pragma mark - NSTimer -
-- (void)initAndStartScheduleTask{
-    [NSTimer scheduledTimerWithTimeInterval:DynamicRefresh_Frequency target:self selector:@selector(sendRequest4GetDynamicStateInfo) userInfo:nil repeats:YES];
-    
-}
-
 - (void)startRefreshTimer{
     if (self.timer == nil){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:DynamicRefresh_Frequency
+        int refreshFrequency=[[ConfigItemDao get:Setting_Key_RefreshFrequency] intValue];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:refreshFrequency
                                                   target:self
                                                 selector:@selector(sendRequest4GetDynamicStateInfo)
                                                 userInfo:nil
@@ -332,16 +329,6 @@
     {
         [self.timer invalidate];
     }
-}
-
-- (void)overrideNavLeftBackButton{
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"返回"
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(handleBack)];
-    
-    self.navigationItem.leftBarButtonItem = backButton;
-    [backButton release];
 }
 
 - (void)handleBack{

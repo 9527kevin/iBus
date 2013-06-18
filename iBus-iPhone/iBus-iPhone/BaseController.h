@@ -12,4 +12,12 @@
 
 - (void)initNavigationController;
 
+- (void)initNavLeftBackButton;
+
+- (void)initNavRightBarButton;
+
+- (void)handleBack:(id)sender;
+
+- (void)handleRightBarButton:(id)sender;
+
 @end

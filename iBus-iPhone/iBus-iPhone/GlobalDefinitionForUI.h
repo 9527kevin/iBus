@@ -30,22 +30,23 @@ NO)
 #define removerAtItem(x) [[NSFileManager defaultManager] removeItemAtPath:x error:nil]
 #define appDelegateObj [[UIApplication sharedApplication] delegate]
 
-#define Default_TableView_Frame CGRectMake(ZERO_Original_X,\
-                                            ZERO_Original_Y,\
-                                            MainWidth,\
+#define Default_TableView_Frame CGRectMake(ZERO_Original_X,                 \
+                                            ZERO_Original_Y,                \
+                                            MainWidth,                      \
                                 MainHeight-NavigationBarHeight)
 
-#define TableView_Frame_WithTabBarHeight CGRectMake(ZERO_Original_X,\
-                                                    ZERO_Original_Y,\
-                                                    MainWidth,\
+#define TableView_Frame_WithTabBarHeight CGRectMake(ZERO_Original_X,        \
+                                                    ZERO_Original_Y,        \
+                                                    MainWidth,              \
                                         MainHeight-NavigationBarHeight)
 
-#define Default_Frame_WithoutStatusBar CGRectMake(ZERO_Original_X,\
-                                                    ZERO_Original_Y,\
-                                                    MainWidth,\
+#define Default_Frame_WithoutStatusBar CGRectMake(ZERO_Original_X,          \
+                                                    ZERO_Original_Y,        \
+                                                    MainWidth,              \
                                                     MainHeight)
 
 #define Default_TableView_BackgroundColor ColorWithRGBA(235, 235, 235, 1.0)
+#define Default_Theme_Color ColorWithRGBA(36, 160, 73, 1.0)
 
 
 #define fileExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x]

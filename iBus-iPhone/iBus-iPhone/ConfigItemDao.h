@@ -18,7 +18,7 @@
 @"INSERT INTO configItem(itemKey,itemValue,categoryId) VALUES(:itemKey,:itemValue,:categoryId)"
 
 #define UPDATE_CONFIGITEM_BY_ITEMKEY \
-@"UPDATE configItem SET itemValue = ? WHERE itemKey = ?"
+@"UPDATE configItem SET itemValue = :itemValue WHERE itemKey = :itemKey"
 
 #define DELETE_CONFIGITEM_BY_ITEMKEY \
 @"DELETE FROM configItem WHERE itemKey = ?"
@@ -30,7 +30,7 @@
 
 + (NSMutableArray*)getItemWithCategoryId:(NSString*)categoryId;
 
-+ (NSMutableDictionary*)get:(NSString*)key;
++ (NSString*)get:(NSString*)key;
 
 + (void)add:(NSMutableDictionary*)configItem;
 

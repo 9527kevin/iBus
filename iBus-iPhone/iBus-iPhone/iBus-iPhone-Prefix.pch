@@ -22,4 +22,5 @@
     #import "DBHelper.h"
     #import "AppDelegate.h"
     #import "MapHelper.h"
+    #import "SVProgressHUD.h"
 #endif

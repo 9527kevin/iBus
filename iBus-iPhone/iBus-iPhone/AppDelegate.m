@@ -49,6 +49,8 @@
     
     [GMSServices provideAPIKey:@"AIzaSyBwalOcYe-ONBL-TmFN66_sXncJFfI-T8A"];
     
+    [NSThread sleepForTimeInterval:2];
+    
     return YES;
 }
 
@@ -80,16 +82,12 @@
 }
 
 - (void)configDefaultUIAppearance{
-//    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor darkGrayColor], UITextAttributeTextColor, [UIColor whiteColor], UITextAttributeTextShadowColor, nil];
-//    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
-    [[UINavigationBar appearance] setTintColor:ColorWithRGBA(36, 160, 73, 1.0)];
-//    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-//    [[UINavigationBar appearance] setBackgroundColor:[UIColor lightGrayColor]];
+    [[UINavigationBar appearance] setTintColor:Default_Theme_Color];
 }
 
 - (void)initDatabase{
-    NSLog(@"DB Path---->:%@",PATH_OF_DB);
     if (!fileExistsAtPath(PATH_OF_DB)) {
+        
 #if TARGET_IPHONE_SIMULATOR
         [[DBHelper sharedInstance] initWithCreatingTablesForDatabase:PATH_OF_DB
                                                          andSQLArray:CREATE_TABLE_SQL_ARRAY];

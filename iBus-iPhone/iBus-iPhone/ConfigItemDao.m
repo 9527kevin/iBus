@@ -35,14 +35,14 @@
     return itemArr;
 }
 
-+ (NSMutableDictionary*)get:(NSString*)key{
-    __block NSMutableDictionary *itemDic=[NSMutableDictionary dictionary];
++ (NSString*)get:(NSString*)key{
+    __block NSString *itemVal=nil;;
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
-            FMResultSet *resultSet=[db executeQuery:SELECT_CONFIGITEM_BY_CATEGORYID,key];
+            FMResultSet *resultSet=[db executeQuery:SELECT_CONFIGITEM_BY_ITEMKEY,key];
             if ([resultSet next]) {
-                itemDic[[resultSet stringForColumn:@"itemKey"]]=[resultSet stringForColumn:@"itemValue"];
+                itemVal=[resultSet stringForColumn:@"itemValue"];
             }
         }
         @catch (NSException *exception) {
@@ -53,7 +53,7 @@
         }
     }];
     
-    return itemDic;
+    return itemVal;
 }
 
 + (void)set:(NSMutableDictionary*)configItem{

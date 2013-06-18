@@ -49,6 +49,7 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initNavLeftBackButton];
     [self initNavBarRightItem];
     [self initBlocks];
     self.navigationItem.title=[NSString stringWithFormat:@"%@-站点列表",self.lineName];

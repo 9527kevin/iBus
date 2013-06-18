@@ -54,4 +54,30 @@
 	}
 }
 
+- (void)initNavLeftBackButton{
+    UIButton *backBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame=CGRectMake(0, 0, 30, 30);
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"backBtn.png"]
+                       forState:UIControlStateNormal];
+    [backBtn addTarget:self
+                action:@selector(handleBack:)
+      forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBarBtnItem=[[[UIBarButtonItem alloc] initWithCustomView:backBtn] autorelease];
+    
+    self.navigationItem.leftBarButtonItem = backBarBtnItem;
+}
+
+- (void)handleBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)initNavRightBarButton{
+    
+}
+
+- (void)handleRightBarButton:(id)sender{
+    
+}
+
 @end
