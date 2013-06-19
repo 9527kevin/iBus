@@ -80,6 +80,7 @@
     [super viewDidLoad];
     self.navigationItem.title=self.stationName;
     [self initNavLeftBackButton];
+    [self initNavRightBarButton];
 
     if ([self.identifier isEqualToString:@"1"]) {
         self.realStationNo=self.stationNo;
@@ -106,6 +107,20 @@
 }
 
 #pragma mark - private methods -
+- (void)initNavRightBarButton{
+    //right bar button item
+    UIButton *refreshBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [refreshBtn  setBackgroundImage:[UIImage imageNamed:@"refreshBtn.png"] forState:UIControlStateNormal];
+    refreshBtn.frame=CGRectMake(0, 0, 30.0f, 30.0f);
+    [refreshBtn addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *refreshBarBtn=[[[UIBarButtonItem alloc]initWithCustomView:refreshBtn] autorelease];
+    self.navigationItem.rightBarButtonItem=refreshBarBtn;
+}
+
+- (void)handleRefresh:(id)sender{
+    [self sendRequest4GetDynamicStateInfo];
+}
+
 - (void)getStationIndex{
     for (int i=0; i<self.dataSource.count; i++) {
         if ([self.dataSource[i][@"orderNo"] intValue]==self.stationNo) {

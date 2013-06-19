@@ -155,7 +155,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     stationMapCtrller.lineId=stationInfo[@"lineId"];
     stationMapCtrller.identifier=stationInfo[@"identifier"];
-    stationMapCtrller.stationNo=[stationInfo[@"stationNo"] intValue];
+    stationMapCtrller.stationNo=[stationInfo[@"orderNo"] intValue];
     
     [self.navigationController pushViewController:stationMapCtrller
                                          animated:YES];

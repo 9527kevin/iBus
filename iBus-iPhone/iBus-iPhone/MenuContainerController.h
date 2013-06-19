@@ -8,22 +8,27 @@
 
 #import "BaseController.h"
 
-#define Default_MenuItem_Margin_Top NavigationBarHeight+3.0f
+#define Default_MenuItem_Margin_Top NavigationBarHeight
+#define Default_MenuItem_View_Height (MainHeight - Default_MenuItem_Margin_Top) / 4
 #define Default_MenuItem_View_Width  180.0f
-#define Default_MenuItem_View_Height 68.0f
+//#define Default_MenuItem_View_Height 68.0f
 
 #define Default_MenuItem_View_Origin_X 0.0f
 
 #define Default_MenuItem_Label_Origin_X 60.0f
-#define Default_MenuItem_Label_Origin_Y 10.0f
+#define Default_MenuItem_Label_Origin_Y \
+(Default_MenuItem_View_Height - Default_MenuItem_Label_Height) / 2
+
 #define Default_MenuItem_Label_Width 140.0f
-#define Default_MenuItem_Label_Height 50.0f
-#define Default_MenuItem_Label_FontSize 20.0f
+#define Default_MenuItem_Label_Height 60.0f
+#define Default_MenuItem_Label_FontSize 24.0f
 
 #define Default_MenuItem_View_Line_Splitor 1.0f
 
 #define Default_MenuItem_ImageView_Origin_X 10.0f
-#define Default_MenuItem_ImageView_Origin_Y 15.0f
+#define Default_MenuItem_ImageView_Origin_Y \
+(Default_MenuItem_View_Height - Default_MenuItem_ImageView_Height) / 2
+
 #define Default_MenuItem_ImageView_Width 40.0f
 #define Default_MenuItem_ImageView_Height 40.0f
 

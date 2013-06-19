@@ -20,4 +20,6 @@
 
 - (void)handleRightBarButton:(id)sender;
 
+- (void)revealToggle:(id)sender;
+
 @end

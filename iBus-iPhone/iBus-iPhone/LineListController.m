@@ -53,7 +53,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 	self.dataSource=[LineDao getLineList];
     [self.tableView reloadData];
     
-    [self fetchStationInfoAsync];
+//    [self fetchStationInfoAsync];
 }
 
 - (void)didReceiveMemoryWarning
@@ -159,12 +159,12 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     [self.navigationController pushViewController:stationListCtrller animated:YES];
 }
 
-- (void)fetchStationInfoAsync{
-    if (![StationDao checkIsInited]) {
-        FetchStationInfoOperation *fenchLineInfoOperation=[[[FetchStationInfoOperation alloc] init] autorelease];
-        [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
-    }
-}
+//- (void)fetchStationInfoAsync{
+//    if (![StationDao checkIsInited]) {
+//        FetchStationInfoOperation *fenchLineInfoOperation=[[[FetchStationInfoOperation alloc] init] autorelease];
+//        [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:fenchLineInfoOperation];
+//    }
+//}
 
 
 @end

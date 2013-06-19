@@ -13,8 +13,7 @@
 
 @interface AppDelegate ()
 
-
-
+@property (nonatomic,retain) PKRevealController *revealCtrller;
 
 @end
 
@@ -31,17 +30,11 @@
     [self initDatabase];
     
     [self initOperationQueueCenter];
+
+    [self initPKRevealControllers];
     
-    //rear controller
-    MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
-        
-    //front controller
-    BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
-    UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
-    
-    self.zuuiRevealCtrller=[[[ZUUIRevealController alloc] initWithFrontViewController:busQueryNavCtrller rearViewController:menuContaonerCtrller] autorelease];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.window.rootViewController=self.zuuiRevealCtrller;
+    self.window.rootViewController=self.revealCtrller;
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     
@@ -88,22 +81,47 @@
 - (void)initDatabase{
     if (!fileExistsAtPath(PATH_OF_DB)) {
         
-#if TARGET_IPHONE_SIMULATOR
-        [[DBHelper sharedInstance] initWithCreatingTablesForDatabase:PATH_OF_DB
-                                                         andSQLArray:CREATE_TABLE_SQL_ARRAY];
-#elif TARGET_OS_IPHONE
+//#if TARGET_IPHONE_SIMULATOR
+//        [[DBHelper sharedInstance] initWithCreatingTablesForDatabase:PATH_OF_DB
+//                                                         andSQLArray:CREATE_TABLE_SQL_ARRAY];
+//#elif TARGET_OS_IPHONE
+//        NSString *resourcePath =[[NSBundle mainBundle] pathForResource:@"BusDB"
+//                                                                ofType:@"db"];
+//
+//        NSData *dbFile = [NSData dataWithContentsOfFile:resourcePath];
+//        [[NSFileManager defaultManager] createFileAtPath:PATH_OF_DB contents:dbFile attributes:nil];
+//#endif
+        
         NSString *resourcePath =[[NSBundle mainBundle] pathForResource:@"BusDB"
                                                                 ofType:@"db"];
-
+        
         NSData *dbFile = [NSData dataWithContentsOfFile:resourcePath];
         [[NSFileManager defaultManager] createFileAtPath:PATH_OF_DB contents:dbFile attributes:nil];
-#endif
     }
 
 }
 
 - (void)initOperationQueueCenter{
     _operationQueueCenter=[[NSOperationQueue alloc] init];
+}
+
+- (void)initPKRevealControllers{
+    NSDictionary *options = @{
+            PKRevealControllerAllowsOverdrawKey : [NSNumber numberWithBool:YES],
+            PKRevealControllerDisablesFrontViewInteractionKey : [NSNumber numberWithBool:YES]
+                            };
+    
+    //rear controller
+    MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
+    
+    //front controller
+    BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
+    UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
+    
+    _revealCtrller = [PKRevealController revealControllerWithFrontViewController:busQueryNavCtrller
+                                                              leftViewController:menuContaonerCtrller
+                                                                         options:options];
+
 }
 
 @end

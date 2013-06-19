@@ -52,6 +52,19 @@
         UIBarButtonItem *menuBarBtn=[[[UIBarButtonItem alloc]initWithCustomView:menuBtn] autorelease];
         self.navigationItem.leftBarButtonItem=menuBarBtn;
 	}
+    
+    if (self.navigationController.revealController.type & PKRevealControllerTypeLeft)
+    {
+        //left bar button item
+        UIButton *menuBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuBtn.png"] forState:UIControlStateNormal];
+        menuBtn.frame=CGRectMake(0, 0, 30.0f, 30.0f);
+        [menuBtn addTarget:self
+                    action:@selector(revealToggle:)
+          forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *menuBarBtn=[[[UIBarButtonItem alloc]initWithCustomView:menuBtn] autorelease];
+        self.navigationItem.leftBarButtonItem=menuBarBtn;
+    }
 }
 
 - (void)initNavLeftBackButton{
@@ -78,6 +91,17 @@
 
 - (void)handleRightBarButton:(id)sender{
     
+}
+
+- (void)revealToggle:(id)sender{
+    if (self.navigationController.revealController.focusedController == self.navigationController.revealController.leftViewController)
+    {
+        [self.navigationController.revealController showViewController:self.navigationController.revealController.frontViewController];
+    }
+    else
+    {
+        [self.navigationController.revealController showViewController:self.navigationController.revealController.leftViewController];
+    }
 }
 
 @end

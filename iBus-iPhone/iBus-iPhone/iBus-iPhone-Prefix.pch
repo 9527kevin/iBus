@@ -23,4 +23,5 @@
     #import "AppDelegate.h"
     #import "MapHelper.h"
     #import "SVProgressHUD.h"
+    #import "PKRevealController.h"
 #endif

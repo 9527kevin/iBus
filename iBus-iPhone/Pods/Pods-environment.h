@@ -10,7 +10,7 @@
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 1
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
-#define COCOAPODS_VERSION_PATCH_AFNetworking 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking 1
 
 // ASIHTTPRequest
 #define COCOAPODS_POD_AVAILABLE_ASIHTTPRequest
@@ -35,6 +35,12 @@
 #define COCOAPODS_VERSION_MAJOR_ASIHTTPRequest_S3 1
 #define COCOAPODS_VERSION_MINOR_ASIHTTPRequest_S3 8
 #define COCOAPODS_VERSION_PATCH_ASIHTTPRequest_S3 1
+
+// Appirater
+#define COCOAPODS_POD_AVAILABLE_Appirater
+#define COCOAPODS_VERSION_MAJOR_Appirater 1
+#define COCOAPODS_VERSION_MINOR_Appirater 0
+#define COCOAPODS_VERSION_PATCH_Appirater 3
 
 // FMDB
 #define COCOAPODS_POD_AVAILABLE_FMDB
@@ -163,6 +169,13 @@
 #define COCOAPODS_VERSION_MINOR_Nimbus_WebController 0
 #define COCOAPODS_VERSION_PATCH_Nimbus_WebController 0
 
+// PKRevealController
+#define COCOAPODS_POD_AVAILABLE_PKRevealController
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 1.0b2.
+
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
 #define COCOAPODS_VERSION_MAJOR_Reachability 3
@@ -174,10 +187,4 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 0
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 0
-
-// ZUUIRevealController
-#define COCOAPODS_POD_AVAILABLE_ZUUIRevealController
-#define COCOAPODS_VERSION_MAJOR_ZUUIRevealController 0
-#define COCOAPODS_VERSION_MINOR_ZUUIRevealController 9
-#define COCOAPODS_VERSION_PATCH_ZUUIRevealController 6
 

@@ -49,7 +49,7 @@
     
     //tip imageview and label
     UIImageView *tipImgView=[[[UIImageView alloc] initWithFrame:Tip_ImgView_Frame] autorelease];
-    tipImgView.image=[UIImage imageNamed:@"tip.png"];
+    tipImgView.image=[UIImage imageNamed:@"tipImg.png"];
     [self.view addSubview:tipImgView];
     
     UILabel *tipLbl=[[[UILabel alloc] initWithFrame:Tip_Label_Frame] autorelease];

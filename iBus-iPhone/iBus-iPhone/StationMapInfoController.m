@@ -36,7 +36,8 @@
 {
     [super viewDidLoad];
 	[self initNavLeftBackButton];
-    [self drawLineOnMap];
+    self.navigationItem.title=[NSString stringWithFormat:@"%@-地理位置",self.stationInfo[@"stationName"]];
+//    [self drawLineOnMap];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,23 +83,22 @@
     // Creates a marker in the center of the map.
     _marker = [[GMSMarker alloc] init];
     self.marker.position = CLLocationCoordinate2DMake(mapGeodetic.lat,mapGeodetic.log);
-    self.marker.title = Map_Title;
+    self.marker.title = [NSString stringWithFormat:Map_Title,self.stationInfo[@"stationName"]];
     self.marker.snippet = Map_Snippet;
     self.marker.map = self.mapView;
     
 }
 
 - (void)drawLineOnMap{
-    NSMutableArray *stationList=[StationDao getStationListWithLineId:self.lineId andIdentifier:self.identifier];
+    NSMutableDictionary *stationInfo=[StationDao getStationInfoWithLineId:self.lineId
+                                                            andIdentifier:self.identifier
+                                                               andOrderNo:[NSNumber numberWithInt:self.stationNo]];
     
     GMSMutablePath *path = [GMSMutablePath path];
-    for (NSDictionary *stationInfo in stationList) {
-        if (stationInfo[@"stationLat"] && stationInfo[@"stationLog"]) {
-            MarsGeodetic mapGeodetic=[MapHelper transformWithWGLat:[stationInfo[@"stationLat"] doubleValue] / Default_Div_Time
-                                                          andWGLon:[stationInfo[@"stationLog"] doubleValue] / Default_Div_Time];
-            [path addCoordinate:CLLocationCoordinate2DMake(mapGeodetic.lat,mapGeodetic.log)];
-        }
-        
+    if (stationInfo[@"stationLat"] && stationInfo[@"stationLog"]) {
+        MarsGeodetic mapGeodetic=[MapHelper transformWithWGLat:[stationInfo[@"stationLat"] doubleValue] / Default_Div_Time
+                                                      andWGLon:[stationInfo[@"stationLog"] doubleValue] / Default_Div_Time];
+        [path addCoordinate:CLLocationCoordinate2DMake(mapGeodetic.lat,mapGeodetic.log)];
     }
     
     GMSPolyline *rectangle = [GMSPolyline polylineWithPath:path];

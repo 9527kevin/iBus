@@ -79,7 +79,7 @@
                          action:@selector(handleFavorite:)
                forControlEvents:UIControlEventTouchUpInside];
     
-    [self.mapBtn addTarget:self.delegate
+    [self.mapBtn addTarget:self
                     action:@selector(handleMapButton:)
           forControlEvents:UIControlEventTouchUpInside];
 }
@@ -109,7 +109,7 @@
     }
 }
 
-- (void)handleMapButton:(NSMutableDictionary*)stationInfo{
+- (void)handleMapButton:(id)sender{
     if ([self.delegate respondsToSelector:@selector(showMapViewController:)]) {
         [self.delegate showMapViewController:self.stationInfo];
     }

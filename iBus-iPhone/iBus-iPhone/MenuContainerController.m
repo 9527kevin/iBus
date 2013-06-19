@@ -56,13 +56,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.revealController setMinimumWidth:180.0f maximumWidth:180.0f forViewController:self];
     _menuCtrllerDic=[[NSMutableDictionary alloc] init];
 	[self registerTapEventsForMenuItems];
     
     //fetch basic data
-    [self fetchLineInfoAsync];
+//    [self fetchLineInfoAsync];
     //init basic data
-    [self initBasicData];
+//    [self initBasicData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,24 +95,24 @@
     busQueryLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
     [self.busQueryMenuView addSubview:busQueryLbl];
     
-    //查看地图
-    _mapShowView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+Default_MenuItem_View_Height+Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
-    self.mapShowView.backgroundColor=Default_MenuItem_NormalColor;
-    
-    UIImageView *mapShowImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
-    mapShowImgView.image=[UIImage imageNamed:@"map.png"];
-    [self.mapShowView addSubview:mapShowImgView];
-    [self.mapShowView setTag:TAG_MAP];
-    [menuContainerView addSubview:self.mapShowView];
-    
-    UILabel *mapShowLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
-    mapShowLbl.text=@"查看地图";
-    mapShowLbl.backgroundColor=[UIColor clearColor];
-    mapShowLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
-    [self.mapShowView addSubview:mapShowLbl];
+//    //查看地图
+//    _mapShowView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+Default_MenuItem_View_Height+Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+//    self.mapShowView.backgroundColor=Default_MenuItem_NormalColor;
+//    
+//    UIImageView *mapShowImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+//    mapShowImgView.image=[UIImage imageNamed:@"map.png"];
+//    [self.mapShowView addSubview:mapShowImgView];
+//    [self.mapShowView setTag:TAG_MAP];
+//    [menuContainerView addSubview:self.mapShowView];
+//    
+//    UILabel *mapShowLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
+//    mapShowLbl.text=@"查看地图";
+//    mapShowLbl.backgroundColor=[UIColor clearColor];
+//    mapShowLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
+//    [self.mapShowView addSubview:mapShowLbl];
     
     //我的巴士空间
-    _myBusZoomView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+2*Default_MenuItem_View_Height+2*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+    _myBusZoomView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+1*Default_MenuItem_View_Height+1*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
     self.myBusZoomView.backgroundColor=Default_MenuItem_NormalColor;
     
     UIImageView *busZoomImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
@@ -127,24 +128,24 @@
     [self.myBusZoomView addSubview:myBusZoomLbl];
     
     
-    //附近的人
-    _findFriendView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+3*Default_MenuItem_View_Height+3*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
-    self.findFriendView.backgroundColor=Default_MenuItem_NormalColor;
-    
-    UIImageView *findFriendImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
-    findFriendImgView.image=[UIImage imageNamed:@"friends.png"];
-    [self.findFriendView addSubview:findFriendImgView];
-    [self.findFriendView setTag:TAG_FRIENDS];
-    [menuContainerView addSubview:self.findFriendView];
-    
-    UILabel *findFriendLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
-    findFriendLbl.text=@"附近的人";
-    findFriendLbl.backgroundColor=[UIColor clearColor];
-    findFriendLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
-    [self.findFriendView addSubview:findFriendLbl];
+//    //附近的人
+//    _findFriendView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+3*Default_MenuItem_View_Height+3*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+//    self.findFriendView.backgroundColor=Default_MenuItem_NormalColor;
+//    
+//    UIImageView *findFriendImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+//    findFriendImgView.image=[UIImage imageNamed:@"friends.png"];
+//    [self.findFriendView addSubview:findFriendImgView];
+//    [self.findFriendView setTag:TAG_FRIENDS];
+//    [menuContainerView addSubview:self.findFriendView];
+//    
+//    UILabel *findFriendLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
+//    findFriendLbl.text=@"附近的人";
+//    findFriendLbl.backgroundColor=[UIColor clearColor];
+//    findFriendLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
+//    [self.findFriendView addSubview:findFriendLbl];
     
     //关于
-    _aboutView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+4*Default_MenuItem_View_Height+4*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+    _aboutView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+2*Default_MenuItem_View_Height+2*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
     self.aboutView.backgroundColor=Default_MenuItem_NormalColor;
     
     UIImageView *aboutImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
@@ -160,7 +161,7 @@
     [self.aboutView addSubview:aboutLbl];
     
     //设置
-    _settingView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+5*Default_MenuItem_View_Height+5*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+    _settingView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+3*Default_MenuItem_View_Height+3*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
     self.settingView.backgroundColor=Default_MenuItem_NormalColor;
     
     UIImageView *settingImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
@@ -212,7 +213,9 @@
     
     self.tagOfCurrentSelectedMenuItem=gestureRecognizer.view.tag;
     
-    ((ZUUIRevealController*)((AppDelegate*)appDelegateObj).zuuiRevealCtrller).frontViewController=[self getMenuCtrllerFromMenuCtrllerDictionaryWithTag:gestureRecognizer.view.tag];
+    self.revealController.frontViewController=[self getMenuCtrllerFromMenuCtrllerDictionaryWithTag:gestureRecognizer.view.tag];
+    
+    [self.revealController showViewController:self.revealController.frontViewController];
 }
 
 
@@ -249,7 +252,10 @@
             break;
             
         case TAG_ABOUT:
-            NSLog(@"%d",TAG_ABOUT);
+        {
+            AboutController *aboutCtrller=[[[AboutController alloc] init] autorelease];
+            navCtrller=[[[UINavigationController alloc] initWithRootViewController:aboutCtrller] autorelease];
+        }
             break;
             
         case TAG_SETTING:
