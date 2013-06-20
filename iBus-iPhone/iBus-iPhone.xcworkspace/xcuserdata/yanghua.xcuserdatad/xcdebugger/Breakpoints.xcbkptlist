@@ -2,19 +2,4 @@
 <Bucket
    type = "0"
    version = "1.0">
-   <FileBreakpoints>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iBus-iPhone/StationListCell.m"
-         timestampString = "393319087.572633"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "92"
-         endingLineNumber = "92"
-         landmarkName = "-handleFavorite:"
-         landmarkType = "5">
-      </FileBreakpoint>
-   </FileBreakpoints>
 </Bucket>

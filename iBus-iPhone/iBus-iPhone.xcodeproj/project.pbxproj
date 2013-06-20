@@ -11,6 +11,9 @@
 		7715B5501751FD82002B4487 /* LineDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B54F1751FD82002B4487 /* LineDao.m */; };
 		7715B55417520B07002B4487 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B55317520B07002B4487 /* DBHelper.m */; };
 		771A3E881762DD6D000EBB44 /* stationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 771A3E871762DD6D000EBB44 /* stationMarker.png */; };
+		77284E551772947A0083CBED /* shareBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77284E541772947A0083CBED /* shareBtn.png */; };
+		77284E581772D9590083CBED /* AboutDeveloperController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77284E571772D9590083CBED /* AboutDeveloperController.m */; };
+		77284E5E1772D9940083CBED /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77284E5D1772D9940083CBED /* ShareController.m */; };
 		772A63391755C06300FBF5E6 /* FolderCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A63341755C06300FBF5E6 /* FolderCoverView.m */; };
 		772A633A1755C06300FBF5E6 /* UIFolderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A63361755C06300FBF5E6 /* UIFolderTableView.m */; };
 		772A633B1755C06300FBF5E6 /* UIView+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A63381755C06300FBF5E6 /* UIView+screenshot.m */; };
@@ -98,6 +101,11 @@
 		7715B55217520B07002B4487 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		7715B55317520B07002B4487 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		771A3E871762DD6D000EBB44 /* stationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stationMarker.png; sourceTree = "<group>"; };
+		77284E541772947A0083CBED /* shareBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareBtn.png; sourceTree = "<group>"; };
+		77284E561772D9590083CBED /* AboutDeveloperController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutDeveloperController.h; sourceTree = "<group>"; };
+		77284E571772D9590083CBED /* AboutDeveloperController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutDeveloperController.m; sourceTree = "<group>"; };
+		77284E5C1772D9940083CBED /* ShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareController.h; sourceTree = "<group>"; };
+		77284E5D1772D9940083CBED /* ShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareController.m; sourceTree = "<group>"; };
 		772A63331755C06300FBF5E6 /* FolderCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCoverView.h; sourceTree = "<group>"; };
 		772A63341755C06300FBF5E6 /* FolderCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCoverView.m; sourceTree = "<group>"; };
 		772A63351755C06300FBF5E6 /* UIFolderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFolderTableView.h; sourceTree = "<group>"; };
@@ -539,6 +547,7 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				77284E541772947A0083CBED /* shareBtn.png */,
 				77450B741770538C003BE8D1 /* submitBtn.png */,
 				77450B72177012BF003BE8D1 /* tipImg.png */,
 				77450B68176FFDD9003BE8D1 /* menuBtn.png */,
@@ -567,6 +576,10 @@
 			children = (
 				77E71A491765E41300120F92 /* AboutController.h */,
 				77E71A4A1765E41300120F92 /* AboutController.m */,
+				77284E561772D9590083CBED /* AboutDeveloperController.h */,
+				77284E571772D9590083CBED /* AboutDeveloperController.m */,
+				77284E5C1772D9940083CBED /* ShareController.h */,
+				77284E5D1772D9940083CBED /* ShareController.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -682,6 +695,7 @@
 				77450B71177000D5003BE8D1 /* Default@2x.png in Resources */,
 				77450B73177012BF003BE8D1 /* tipImg.png in Resources */,
 				77450B751770538C003BE8D1 /* submitBtn.png in Resources */,
+				77284E551772947A0083CBED /* shareBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +771,8 @@
 				7742E158176955A10032BE9B /* ConfigItemDao.m in Sources */,
 				7742E15B17698DEE0032BE9B /* BasicDataOperation.m in Sources */,
 				77450B65176FEB8A003BE8D1 /* RefreshFrequencyController.m in Sources */,
+				77284E581772D9590083CBED /* AboutDeveloperController.m in Sources */,
+				77284E5E1772D9940083CBED /* ShareController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

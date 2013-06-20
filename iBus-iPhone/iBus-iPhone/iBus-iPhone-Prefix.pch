@@ -24,4 +24,7 @@
     #import "MapHelper.h"
     #import "SVProgressHUD.h"
     #import "PKRevealController.h"
+    #import "NimbusCore.h"
+    #import "NimbusWebController.h"
+    #import <QuartzCore/QuartzCore.h>
 #endif

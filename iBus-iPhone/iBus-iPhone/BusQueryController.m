@@ -37,6 +37,7 @@
     [super viewDidLoad];
     
 	[self initNavigationController];
+    self.navigationItem.title=@"公交查询";
     [self registerEventsForQueryMenuItems];
 }
 
@@ -47,10 +48,6 @@
 }
 
 #pragma mark - private methods -
-- (void)initNavigationController{
-    [super initNavigationController];
-    self.navigationItem.title=@"公交查询";
-}
 
 - (void)initQueryMenuItems{
     //按线路查询
@@ -73,7 +70,7 @@
 }
 
 - (void)registerEventsForQueryMenuItems{
-    [self.queryByLineBtn addTarget:self action:@selector(Button_QueryByLine_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.queryByLineBtn addTarget:self action:@selector(Button_QueryByLine_TouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     
 //    [self.queryByStationBtn addTarget:self action:@selector() forControlEvents:UIControlEventTouchUpInside];
 //    

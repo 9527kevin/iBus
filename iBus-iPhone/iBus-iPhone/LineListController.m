@@ -44,6 +44,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initNavigationController];
     self.tableView=[[[UIFolderTableView alloc] initWithFrame:Default_TableView_Frame style:UITableViewStylePlain] autorelease];
     [self.view addSubview:self.tableView];
     self.tableView.dataSource=self;
