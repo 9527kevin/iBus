@@ -6,13 +6,13 @@ Now the service it provides  can only be available for users who are in **Jiangn
 
 ##screen shot
 
-* single
+* menus
 
-![dynamicStationImage](http://img.my.csdn.net/uploads/201306/10/1370848332_5953.png)
+![menus](http://img.my.csdn.net/uploads/201306/20/1371728604_8405.PNG)
 
-* multi
+* bus room
 
-![dynamicStationImage](http://img.my.csdn.net/uploads/201306/10/1370853465_9965.png)
+![busroom](http://img.my.csdn.net/uploads/201306/20/1371728590_6339.PNG)
 
 ##build & test
 
