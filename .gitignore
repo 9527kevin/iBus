@@ -3,3 +3,4 @@
 *.xcodeproj/xcuserdata
 *project.pbxproj
 .DS_Store
+*SNSApiOAuthConst.*

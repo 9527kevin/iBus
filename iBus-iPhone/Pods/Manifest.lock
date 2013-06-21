@@ -69,6 +69,8 @@ PODS:
     - Nimbus/Core
   - PKRevealController (1.0b2)
   - Reachability (3.1.0)
+  - SinaWeibo (0.0.1):
+    - JSONKit
   - SVProgressHUD (0.9)
 
 DEPENDENCIES:
@@ -78,10 +80,11 @@ DEPENDENCIES:
   - Google-Maps-iOS-SDK
   - Nimbus
   - PKRevealController
+  - SinaWeibo
   - SVProgressHUD
 
 SPEC CHECKSUMS:
-  AFNetworking: 8f204b1ffb21a4ef0f36c83f1e4f052561626bea
+  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
   Appirater: 1c146af7b0ef3e2114a17db2e185f94367f63a99
   ASIHTTPRequest: a411b8d0f006ed8fc24248be6a0c4ad2abc9b101
   FMDB: 66010e9b750838dea71748df591fc118598f21c7
@@ -90,6 +93,7 @@ SPEC CHECKSUMS:
   Nimbus: 3cab0289af9fab0674a95c0d161c223bd47697c6
   PKRevealController: 631e6a3db833a0c660203c2dba0963109549ec8a
   Reachability: ba94ecd4eaa037be3d0588b38956672588530c5b
+  SinaWeibo: d7cb18c0b5880a95c1b203842ab8dfdd0da106dc
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
 
 COCOAPODS: 0.19.1
