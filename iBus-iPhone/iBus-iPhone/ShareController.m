@@ -8,28 +8,56 @@
 
 #import "ShareController.h"
 
+
 @interface ShareController ()
 
 @end
 
 @implementation ShareController
 
-- (void)loadView{
-    self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
-    self.view.backgroundColor=Default_TableView_BackgroundColor;
+- (void)dealloc{
     
+    [super dealloc];
 }
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - private methods -
+- (void)registerAtNotification{
+    [Default_Notification_Center addObserver:self selector:@selector(handleAtNotification:) name:Notification_For_AtSomebody object:nil];
+}
+
+- (void)handleAtNotification:(NSNotification*)notification{
+    //    NSDictionary *followedInfo=(NSDictionary*)[notification object];
+    //    [self.followedList addObject:followed];
+    //    self.publishTxtView.text=[NSString stringWithFormat:@"%@ @%@ ",self.publishTxtView.text,followedInfo[@"userName"]];
+}
+
+#pragma mark - overriding methods -
+- (BOOL)isAuthorized{
+    return NO;
+}
+
+- (void)login{
+    
+}
+
+- (void)logout{
+    
+}
+
+- (void)share{
+    
 }
 
 @end

@@ -96,5 +96,8 @@ typedef enum {
 }ENUM_About_Tags;
 
 @interface AboutController : BaseController
+<
+UIActionSheetDelegate
+>
 
 @end

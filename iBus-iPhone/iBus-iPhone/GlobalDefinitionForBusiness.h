@@ -8,16 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-/*
---站点查询：http://112.2.33.3:7106/BusAndroid/android.do?command=toSway&stationName=军师巷
---线路选择：http://112.2.33.3:7106/BusAndroid/android.do?command=toSsta&stationName=军师巷
---线路详情：http://112.2.33.3:7106/BusAndroid/android.do?command=toLs&lineId=453&inDown=1
---各车辆距离站点信息：http://112.2.33.3:7106/BusAndroid/android.do?command=toDis&lineId=453&inDown=1&stationNo=26
---站点查询：http://112.2.33.3:7106//BusAndroid/android.do?command=toHcnt&sstation=东山总站&estation=军师巷
-换成建议：http://112.2.33.3:7106/BusAndroid/android.do?command=toRet&flag=0&lineId=453&inDown=0
---模糊查询：http://112.2.33.3:7106//BusAndroid/android.do?command=toHcSta&sstation=军师巷&estation=东山总站
- */
-
 
 //站点查询
 #define Url_StationSearch \
@@ -50,14 +40,13 @@ http://www.baidu.com
 
 #define Dynamic_Station_List_Count 8
 //刷新频率
-//#define DynamicRefresh_Frequency 20
 
 //setting keys
-#define Setting_Key_DefaultLine @"默认线路"
-#define Setting_Key_FollowStation @"关注站点"
-#define Setting_Key_RefreshFrequency @"刷新频率"
+#define Setting_Key_DefaultLine         @"默认线路"
+#define Setting_Key_FollowStation       @"关注站点"
+#define Setting_Key_RefreshFrequency    @"刷新频率"
 
 /******************************Messages*******************************/
-#define Notification_Of_LineList @"Notification_Of_LineList"
+#define Notification_Of_LineList        @"Notification_Of_LineList"
 
-
+#define Notification_For_AtSomebody     @"Notification_For_AtSomebody"

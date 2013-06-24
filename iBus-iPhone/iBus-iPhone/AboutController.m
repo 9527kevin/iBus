@@ -10,12 +10,23 @@
 #import "NIAttributedLabel.h"
 #import "AboutDeveloperController.h"
 #import "ShareController.h"
+#import "SharedToSinaWeiboController.h"
+#import "SharedToWeixinController.h"
+#import "Appirater.h"
 
 @interface AboutController ()
+
+@property (nonatomic,retain) UIActionSheet *shareActionSheet;
 
 @end
 
 @implementation AboutController
+
+- (void)dealloc{
+    [_shareActionSheet release],_shareActionSheet=nil;
+    
+    [super dealloc];
+}
 
 - (void)loadView{
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
@@ -62,6 +73,9 @@
     [commentBtn setTitle:@"  给应用评分" forState:UIControlStateNormal];
     commentBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
     commentBtn.tag=Tag_Comment;
+    [commentBtn addTarget:self
+                 action:@selector(Buttons_TouchUpInside:)
+       forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:commentBtn];
     
     //copy right and reserved
@@ -81,6 +95,14 @@
     rightReserved.font=[UIFont systemFontOfSize:RightReserved_Label_FontSize];
     rightReserved.text=@"All rights reserved.";
     [self.view addSubview:rightReserved];
+    
+    //share
+    _shareActionSheet=[[UIActionSheet alloc] initWithTitle:@"分享应用"
+                                                  delegate:self
+                                         cancelButtonTitle:@"取消"
+                                    destructiveButtonTitle:nil
+                                         otherButtonTitles:@"分享到新浪微博",@"分享到微信", nil];
+    [self.view addSubview:self.shareActionSheet];
 }
 
 - (void)viewDidLoad
@@ -110,17 +132,47 @@
             break;
             
         case Tag_Share:
-            
+        {
+            [self.shareActionSheet showInView:self.view];
+            return;
+        }
             break;
             
         case Tag_Comment:
-            
+        {
+            [Appirater userDidSignificantEvent:YES];
+            return;
+        }
         default:
             break;
     }
     
     [self.navigationController pushViewController:viewController animated:YES];
     
+}
+
+#pragma mark - UIActionSheet delegate -
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    ShareController *shareCtrller=nil;
+    switch (buttonIndex) {
+        case 0:
+        {
+            shareCtrller=[[[SharedToSinaWeiboController alloc] init] autorelease];
+        }
+            break;
+            
+        case 1:
+        {
+            shareCtrller=[[[SharedToWeixinController alloc] init] autorelease];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    UINavigationController *shareNavCtrller=[[[UINavigationController alloc] initWithRootViewController:shareCtrller] autorelease];
+    [self.navigationController presentViewController:shareNavCtrller animated:YES completion:nil];
 }
 
 

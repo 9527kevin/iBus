@@ -27,4 +27,10 @@
     #import "NimbusCore.h"
     #import "NimbusWebController.h"
     #import <QuartzCore/QuartzCore.h>
+    #import "UIControl+BlockKits.h"
+    #import "MTStatusBarOverlay.h"
+    #import "iBusTool.h"
+    #import "Reachability.h"
+    #import "ChinesePinYinAddress.h"
+    #import "ExtensionMethods.h"
 #endif

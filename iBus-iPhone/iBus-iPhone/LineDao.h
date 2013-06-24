@@ -56,10 +56,6 @@ SELECT *,'identifier_2_favorite' as identifier_favorite                 \
 
 + (void)add:(NSMutableArray*)lineArray;
 
-+ (void)remove:(NSMutableArray*)lineIdArray;
-
-+ (void)removeAll;
-
 + (NSDictionary*)getLineInfoWithId:(NSString*)lineId;
 
 + (NSMutableArray*)getLineList;

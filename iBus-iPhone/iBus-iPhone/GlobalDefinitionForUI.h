@@ -48,13 +48,18 @@ NO)
 #define Default_TableView_BackgroundColor ColorWithRGBA(235, 235, 235, 1.0)
 #define Default_Theme_Color ColorWithRGBA(36, 160, 73, 1.0)
 
+#define Default_HeadImg_Size CGSizeMake(30.0f, 30.0f)
+
+#define Middle_HeadImg_Size CGSizeMake(50.0f, 50.0f)
+
 
 #define fileExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x]
 #define removerItemAtPath(x) [[NSFileManager defaultManager] removeItemAtPath:x error:nil]
 #define appDelegateObj [[UIApplication sharedApplication] delegate]
 
-#define UserDefault [NSUserDefaults standardUserDefaults]
-#define NSFileDefaultManager [NSFileManager defaultManager]
+#define UserDefault                         [NSUserDefaults standardUserDefaults]
+#define NSFileDefaultManager                [NSFileManager defaultManager]
+#define Default_Notification_Center         [NSNotificationCenter defaultCenter]
 
 
 //common paths

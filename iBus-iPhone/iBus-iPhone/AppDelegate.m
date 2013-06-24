@@ -11,6 +11,7 @@
 //#import "BusQueryController.h"
 #import "LineListController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "Appirater.h"
 
 @interface AppDelegate ()
 
@@ -28,6 +29,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self configAppirater];
+    
     [self initDatabase];
     
     [self initOperationQueueCenter];
@@ -44,6 +47,8 @@
     [GMSServices provideAPIKey:@"AIzaSyBwalOcYe-ONBL-TmFN66_sXncJFfI-T8A"];
     
     [NSThread sleepForTimeInterval:2];
+    
+    [Appirater appLaunched:YES];
     
     return YES;
 }
@@ -62,7 +67,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -127,5 +132,15 @@
                                                                          options:options];
 
 }
+
+- (void)configAppirater{
+    [Appirater setAppId:AppID];
+    [Appirater setDaysUntilPrompt:1];
+    [Appirater setUsesUntilPrompt:10];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:YES];
+}
+
 
 @end

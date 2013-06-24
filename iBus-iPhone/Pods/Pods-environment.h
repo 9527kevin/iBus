@@ -73,6 +73,12 @@
 // Please contact the author.
 // Version: 1.5pre.
 
+// MTStatusBarOverlay
+#define COCOAPODS_POD_AVAILABLE_MTStatusBarOverlay
+#define COCOAPODS_VERSION_MAJOR_MTStatusBarOverlay 0
+#define COCOAPODS_VERSION_MINOR_MTStatusBarOverlay 9
+#define COCOAPODS_VERSION_PATCH_MTStatusBarOverlay 1
+
 // Nimbus
 #define COCOAPODS_POD_AVAILABLE_Nimbus
 #define COCOAPODS_VERSION_MAJOR_Nimbus 1
