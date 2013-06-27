@@ -7,8 +7,6 @@
 //
 
 #import "BusQueryController.h"
-
-//test
 #import "LineListController.h"
 
 @interface BusQueryController ()

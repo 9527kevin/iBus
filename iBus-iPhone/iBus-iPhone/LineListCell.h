@@ -8,26 +8,46 @@
 
 #import "BaseCell.h"
 
-#define BUSPLACEHOLDER_IMAGEVIEW_ORIGIN_X 0.0f
-#define BUSPLACEHOLDER_IMAGEVIEW_ORIGIN_Y 10.0f
-#define BUSPLACEHOLDER_IMAGEVIEW_WAndH 40.0f
+#define BusPlaceHolder_ImageView_Origin_X           0.0f
+#define BusPlaceHolder_ImageView_Origin_Y           10.0f
+#define BusPlaceHolder_ImageView_WAndH              40.0f
+#define BusPlaceHolder_ImageView_Frame CGRectMake (                         \
+                                        BusPlaceHolder_ImageView_Origin_X,  \
+                                        BusPlaceHolder_ImageView_Origin_Y,  \
+                                        BusPlaceHolder_ImageView_WAndH,     \
+                                        BusPlaceHolder_ImageView_WAndH      \
+                                        )
 
 
-#define ARROW_IMAGEVIEW_WIDTH 18.0f
-#define ARROW_IMAGEVIEW_HEIGHT 10.0f
-#define ARROW_IMAGEVIEW_ORIGIN_X MainWidth-30.0f
-#define ARROW_IMAGEVIEW_ORIGIN_Y 27.0f
+#define Arrow_ImageView_Width                       18.0f
+#define Arrow_ImageView_Height                      10.0f
+#define Arrow_ImageView_Origin_X                    MainWidth - 30.0f
+#define Arrow_ImageView_Origin_Y                    27.0f
+#define Arrow_ImageView_Frame CGRectMake (                                  \
+                                            Arrow_ImageView_Origin_X,       \
+                                            Arrow_ImageView_Origin_Y,       \
+                                            Arrow_ImageView_Width,          \
+                                            Arrow_ImageView_Height          \
+                                         )
 
-#define LINE_NAME_LABEL_ORIGIN_X 45.0f
-#define LINE_NAME_LABEL_ORIGIN_Y 7.0f
-#define LINE_NAME_LABEL_WIDTH 70.0
-#define LINE_NAME_LABEL_HEIGHT 50.0f
+#define Line_Name_Label_Origin_X                    45.0f
+#define Line_Name_Label_Origin_Y                    7.0f
+#define Line_Name_Label_Width                       70.0
+#define Line_Name_Label_Height                      50.0f
+#define Line_Name_Label_Frame CGRectMake (                                  \
+                                            Line_Name_Label_Origin_X,       \
+                                            Line_Name_Label_Origin_Y,       \
+                                            Line_Name_Label_Width,          \
+                                            Line_Name_Label_Height          \
+                                          )
 
 
-#define Refresh_Button_Width 25.0f
-#define Refresh_Button_Height 25.0f
-#define Refresh_Button_Origin_X ARROW_IMAGEVIEW_ORIGIN_X - Refresh_Button_Width -13.0f
-#define Refresh_Button_Origin_Y 18.0f
+#define Refresh_Button_Width                        25.0f
+#define Refresh_Button_Height                       25.0f
+#define Refresh_Button_Origin_X \
+Arrow_ImageView_Origin_X - Refresh_Button_Width -13.0f
+
+#define Refresh_Button_Origin_Y                     18.0f
 
 
 @interface LineListCell : BaseCell

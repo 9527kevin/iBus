@@ -29,8 +29,13 @@
 }
 
 - (void)loadView{
+    //app icon
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
     self.view.backgroundColor=Default_TableView_BackgroundColor;
+    
+    UIImageView *appIconImgView=[[[UIImageView alloc] initWithFrame:AppIcon_ImageView_Frame] autorelease];
+    appIconImgView.image=[UIImage imageNamed:@"icon@2x.png"];
+    [self.view addSubview:appIconImgView];
     
     //app name
     NIAttributedLabel *appNameLbl=[[[NIAttributedLabel alloc] initWithFrame:AppName_Label_Frame] autorelease];
@@ -52,6 +57,9 @@
     [developerBtn addTarget:self
                      action:@selector(Buttons_TouchUpInside:)
            forControlEvents:UIControlEventTouchUpInside];
+    [developerBtn addTarget:self
+                     action:@selector(Buttons_TouchDown:)
+           forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:developerBtn];
     
     //分享
@@ -121,6 +129,7 @@
 #pragma mark - private methods -
 - (void)Buttons_TouchUpInside:(id)sender{
     UIButton *btn=(UIButton*)sender;
+    btn.backgroundColor=Default_Theme_Color;
     UIViewController *viewController=nil;
     switch (btn.tag) {
             
@@ -151,6 +160,11 @@
     
 }
 
+- (void)Buttons_TouchDown:(id)sender{
+    UIButton *btn=(UIButton*)sender;
+    btn.backgroundColor=Default_TableView_BackgroundColor;
+}
+
 #pragma mark - UIActionSheet delegate -
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     ShareController *shareCtrller=nil;
@@ -171,8 +185,10 @@
             break;
     }
     
-    UINavigationController *shareNavCtrller=[[[UINavigationController alloc] initWithRootViewController:shareCtrller] autorelease];
-    [self.navigationController presentViewController:shareNavCtrller animated:YES completion:nil];
+    if (shareCtrller) {
+        UINavigationController *shareNavCtrller=[[[UINavigationController alloc] initWithRootViewController:shareCtrller] autorelease];
+        [self.navigationController presentViewController:shareNavCtrller animated:YES completion:nil];
+    }
 }
 
 

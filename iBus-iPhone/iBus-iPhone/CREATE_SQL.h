@@ -15,12 +15,12 @@
 //e.g:
 /*
  清安线:
- //顺序方向
+ //去程
  edgeStation_1:水阁路客运站
  edgeStation_2:安德门
  identifier:1   
  
- //逆序方向
+ //回程
  edgeStation_1:安德门
  edgeStation_2:水阁路客运站
  identifier:2
@@ -66,11 +66,11 @@
     categoryId text                             \
 )"
 
-//LINEINFO_CREATE_TABLE_SQL,                    \
-STATIONINFO_CREATE_TABLE_SQL                    \
-CONFIGCATEGORY_CREATE_TABLE_SQL,                \
 
 #define CREATE_TABLE_SQL_ARRAY                  \
 @[                                              \
+    LINEINFO_CREATE_TABLE_SQL,                  \
+    STATIONINFO_CREATE_TABLE_SQL,               \
+    CONFIGCATEGORY_CREATE_TABLE_SQL,            \
     CONFIGITEM_CREATE_TABLE_SQL                 \
 ]

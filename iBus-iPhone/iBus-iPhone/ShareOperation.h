@@ -14,11 +14,11 @@
 MTStatusBarOverlayDelegate
 >
 
-@property (nonatomic,copy) NSString*                content;
+@property (nonatomic,copy) NSString                 *content;
 @property (atomic,assign)  BOOL                     imageSupportSwitch;
 @property (atomic,assign)  BOOL                     completed;
 @property (atomic,assign)  BOOL                     canceledAfterError;
-@property (nonatomic,retain) MTStatusBarOverlay*    overlay;
+@property (nonatomic,retain) MTStatusBarOverlay     *overlay;
 
 - (id)initOperationWithContent:(NSString*)content
          andImageSupportSwitch:(BOOL)yesOrNo;

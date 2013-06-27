@@ -10,35 +10,35 @@
 
 
 //站点查询
-#define Url_StationSearch \
+#define Url_StationSearch                                                   \
 @"http://112.2.33.3:7106/BusAndroid/android.do?command=toSsta&stationName=%@"
 
 //线路列表
-#define Url_BusLineList \
+#define Url_BusLineList                                                     \
 http://www.baidu.com
 
 //线路详情
-#define Url_DetailOfLine \
+#define Url_DetailOfLine                                                    \
 @"http://112.2.33.3:7106/BusAndroid/android.do?command=toLs&lineId=%@&inDown=1"
 
 //线路换乘
-#define Url_LineExchange \
+#define Url_LineExchange                                                    \
 @"http://112.2.33.3:7106//BusAndroid/android.do?command=toHcnt&sstation=%@&estation=%@"
 
 //到站距离
 //inDown:0/1
-#define Url_DestinationDistance \
+#define Url_DestinationDistance                                             \
 @"http://112.2.33.3:7106/BusAndroid/android.do?command=toDis&lineId=%@&inDown=%@&stationNo=%d"
 
 //站点模糊匹配
-#define Url_StationFuzzyQuery \
+#define Url_StationFuzzyQuery                                               \
 @"http://112.2.33.3:7106/BusAndroid/android.do?command=toSway&stationName=%@"
 
 //线路模糊匹配
-#define Url_LineFuzzyQuery \
+#define Url_LineFuzzyQuery                                                  \
 @"http://112.2.33.3:7106//BusAndroid/android.do?command=toHcSta&sstation=%@&estation=%@"
 
-#define Dynamic_Station_List_Count 8
+#define Dynamic_Station_List_Count      8
 //刷新频率
 
 //setting keys
@@ -50,3 +50,5 @@ http://www.baidu.com
 #define Notification_Of_LineList        @"Notification_Of_LineList"
 
 #define Notification_For_AtSomebody     @"Notification_For_AtSomebody"
+
+#define Notification_For_Favorited      @"Notification_For_Favorited"

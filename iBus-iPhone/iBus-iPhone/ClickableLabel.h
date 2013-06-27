@@ -10,9 +10,7 @@
 
 @protocol ClickEventDelegate;
 
-@interface ClickableLabel : UILabel{
-    id<ClickEventDelegate> lblDelegate;
-}
+@interface ClickableLabel : UILabel
 
 @property (nonatomic,assign) id<ClickEventDelegate> lblDelegate;
 

@@ -33,17 +33,18 @@
     reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _stationImgView=[[UIImageView alloc] initWithFrame:CGRectMake(Station_ImageView_Origin_X, Station_ImageView_Origin_Y, Station_ImageView_Width, Station_ImageView_Height)];
+        _stationImgView=[[UIImageView alloc] initWithFrame:Station_ImageView_Frame];
         self.stationImgView.image=[UIImage imageNamed:@"busStation.png"];
         [self addSubview:self.stationImgView];
         
         _mapBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        self.mapBtn.frame=CGRectMake(Map_Button_Origin_X, Map_Button_Origin_Y, Map_Button_Width, Map_Button_Height);
-        [self.mapBtn setBackgroundImage:[UIImage imageNamed:@"mapBtn.png"] forState:UIControlStateNormal];
+        self.mapBtn.frame=Map_Button_Frame;
+        [self.mapBtn setBackgroundImage:[UIImage imageNamed:@"mapBtn.png"]
+                               forState:UIControlStateNormal];
         [self addSubview:self.mapBtn];
         
         _favoriteBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        self.favoriteBtn.frame=CGRectMake(Favorite_Button_Origin_X, Favorite_Button_Origin_Y, Favorite_Button_Width, Favorite_Button_Height);
+        self.favoriteBtn.frame=Favorite_Button_Frame;
         [self addSubview:self.favoriteBtn];
     }
     return self;
@@ -57,7 +58,7 @@
 - (void)initSubViewsWithModel:(NSMutableDictionary*)modelInfo{
     _stationInfo=modelInfo;
     
-    _stationNameLbl=[[UILabel alloc] initWithFrame:CGRectMake(Station_Name_Label_Origin_X, Station_Name_Label_Origin_Y, Station_Name_Label_Width, Station_Name_Label_Height)];
+    _stationNameLbl=[[UILabel alloc] initWithFrame:Station_Name_Label_Frame];
     _stationNameLbl.backgroundColor=[UIColor clearColor];
     _stationNameLbl.text=modelInfo[@"stationName"];
     [self addSubview:self.stationNameLbl];
@@ -107,6 +108,8 @@
                                     forState:UIControlStateNormal];
 
     }
+    
+    [Default_Notification_Center postNotificationName:Notification_For_Favorited object:nil];
 }
 
 - (void)handleMapButton:(id)sender{

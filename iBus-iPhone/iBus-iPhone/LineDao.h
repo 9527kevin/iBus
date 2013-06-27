@@ -8,45 +8,45 @@
 
 #import <Foundation/Foundation.h>
 
-#define SELECT_LINEINFO_SQL \
+#define SELECT_LINEINFO_SQL                                                 \
 @"SELECT * FROM lineInfo WHERE lineId = ? "
 
-#define SELECT_ALL_LINEINFO_SQL \
+#define SELECT_ALL_LINEINFO_SQL                                             \
 @"SELECT * FROM lineInfo "
 
-#define DELETE_LINEINFO_SQL \
+#define DELETE_LINEINFO_SQL                                                 \
 @"DELETE FROM lineInfo WHERE lineId = ? "
 
-#define DELETE_ALL_LINEINFO_SQL \
+#define DELETE_ALL_LINEINFO_SQL                                             \
 @"DELETE FROM lineInfo "
 
-#define INSERT_LINEINFO_SQL \
+#define INSERT_LINEINFO_SQL                                                 \
 @"INSERT INTO lineInfo(lineId,lineName,firstTime,lastTime,edgeStation_1,edgeStation_2,identifier,identifier_1_favorite,identifier_2_favorite) VALUES(:lineId,:lineName,:firstTime,:lastTime,:edgeStation_1,:edgeStation_2,:identifier,:identifier_1_favorite,:identifier_2_favorite)"
 
-#define UPDATE_LINEINFO_SQL \
+#define UPDATE_LINEINFO_SQL                                                 \
 @"UPDATE lineInfo SET lineName = ? WHERE lineId = ?"
 
-#define CHECK_EXISTS_LINEINFO_SQL \
+#define CHECK_EXISTS_LINEINFO_SQL                                           \
 @"SELECT COUNT(1) FROM lineInfo "
 
 //favorite
-#define UPDATE_LINE_FAVORITE_WITH_LINEID_IDENTIFIER_1 \
+#define UPDATE_LINE_FAVORITE_WITH_LINEID_IDENTIFIER_1                       \
 @"UPDATE lineInfo SET identifier_1_favorite = ? WHERE lineId = ?"
 
-#define UPDATE_LINE_FAVORITE_WITH_LINEID_IDENTIFIER_2 \
+#define UPDATE_LINE_FAVORITE_WITH_LINEID_IDENTIFIER_2                       \
 @"UPDATE lineInfo SET identifier_2_favorite = ? WHERE lineId = ?"
 
-#define CHECK_LINE_WITH_LINEID_ISFAVORITE_IDENTIFIER_1 \
+#define CHECK_LINE_WITH_LINEID_ISFAVORITE_IDENTIFIER_1                      \
 @"SELECT identifier_1_favorite FROM lineInfo WHERE lineId = ? "
 
-#define CHECK_LINE_WITH_LINEID_ISFAVORITE_IDENTIFIER_2 \
+#define CHECK_LINE_WITH_LINEID_ISFAVORITE_IDENTIFIER_2                      \
 @"SELECT identifier_2_favorite FROM lineInfo WHERE lineId = ? "
 
-#define SELECT_ALL_FAVORITES_LINEINFO \
-@"SELECT *,'identifier_1_favorite' as identifier_favorite               \
-    FROM lineInfo WHERE identifier_1_favorite = 1                       \
-UNION ALL                                                               \
-SELECT *,'identifier_2_favorite' as identifier_favorite                 \
+#define SELECT_ALL_FAVORITES_LINEINFO                                       \
+@"SELECT *,'identifier_1_favorite' as identifier_favorite                   \
+    FROM lineInfo WHERE identifier_1_favorite = 1                           \
+UNION ALL                                                                   \
+SELECT *,'identifier_2_favorite' as identifier_favorite                     \
     FROM lineInfo WHERE identifier_2_favorite = 1"
 
 

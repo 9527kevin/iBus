@@ -11,31 +11,33 @@
 
 @implementation UIPlaceHolderTextView
 
-@synthesize placeholderLabel;
-@synthesize placeholder;
-@synthesize placeholderColor;
-
 -(void)dealloc{
-	[[NSNotificationCenter defaultCenter]removeObserver:self];
-	[placeholderLabel release];		
-	[placeholderColor release];		
-	[placeholder release];			
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[_placeholderLabel release],_placeholderLabel=nil;
+	[_placeholderColor release],_placeholderColor=nil;
+	[_placeholder release],_placeholder=nil;
 	[super dealloc];
 }
 
-//当Nib文件被加载时，Nib会向每个对象发送一条该消息，以允许对象实现自己的处理逻辑
+
 -(void)awakeFromNib{
 	[super awakeFromNib];
 	[self setPlaceholder:@""];
 	[self setPlaceholderColor:[UIColor lightGrayColor]];
-	[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textChanged:)
+                                                 name:UITextViewTextDidChangeNotification
+                                               object:nil];
 }
 	 
  -(id)initWithFrame:(CGRect)frame{
 	if (self=[super initWithFrame:frame]) {
 		[self setPlaceholder:@""];
 		[self setPlaceholderColor:[UIColor lightGrayColor]];
-		[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textChanged:)
+                                                     name:UITextViewTextDidChangeNotification
+                                                   object:nil];
 	}
 	 
 	 return self;
@@ -71,7 +73,7 @@
 		  self.placeholderLabel.textColor=self.placeholderColor;
 		  self.placeholderLabel.alpha=0;
 		  self.placeholderLabel.tag=999;
-		  [self addSubview:placeholderLabel];
+		  [self addSubview:self.placeholderLabel];
 			[tmpLabel release];
 		}
 								
@@ -80,7 +82,7 @@
 		[self sendSubviewToBack:self.placeholderLabel];
 	}
 
-	if([self.text length]==0&&[self.placeholder length]>0){
+	if([self.text length]==0 && [self.placeholder length]>0){
 		[[self viewWithTag:999] setAlpha:1];
 	}
 	[super drawRect:rect];

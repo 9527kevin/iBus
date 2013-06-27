@@ -8,8 +8,18 @@
 
 #import "BaseController.h"
 
+#define AppIcon_ImageView_Origin_X (MainWidth - AppIcon_ImageView_Width) / 2
+#define AppIcon_ImageView_Origin_Y 20.0f
+#define AppIcon_ImageView_Width 117.0f
+#define AppIcon_ImageView_Height 117.0f
+#define AppIcon_ImageView_Frame CGRectMake  (   AppIcon_ImageView_Origin_X, \
+                                                AppIcon_ImageView_Origin_Y, \
+                                                AppIcon_ImageView_Width,    \
+                                                AppIcon_ImageView_Height    \
+                                            )
+
 #define AppName_Label_Origin_X (MainWidth - AppName_Label_Width) / 2
-#define AppName_Label_Origin_Y 130.0f
+#define AppName_Label_Origin_Y 135.0f
 #define AppName_Label_Width 240.0f
 #define AppName_Label_Height 45.0f
 #define AppName_Label_FontSize 33.0f

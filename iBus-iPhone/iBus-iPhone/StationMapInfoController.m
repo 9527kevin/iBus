@@ -12,9 +12,9 @@
 
 @interface StationMapInfoController ()
 
-@property (nonatomic,retain) GMSMarker *marker;
-@property (nonatomic,retain) NSDictionary *stationInfo;
-@property (nonatomic,retain) GMSMapView *mapView;
+@property (nonatomic,retain) GMSMarker      *marker;
+@property (nonatomic,retain) NSDictionary   *stationInfo;
+@property (nonatomic,retain) GMSMapView     *mapView;
 
 @end
 
@@ -37,7 +37,6 @@
     [super viewDidLoad];
 	[self initNavLeftBackButton];
     self.navigationItem.title=[NSString stringWithFormat:@"%@-地理位置",self.stationInfo[@"stationName"]];
-//    [self drawLineOnMap];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,9 +58,6 @@
     if (self.stationInfo) {
         center_log=[self.stationInfo[@"stationLog"] doubleValue] / Default_Div_Time;
         center_lat=[self.stationInfo[@"stationLat"] doubleValue] / Default_Div_Time;
-        
-        NSLog(@"lat:%f",center_lat);
-        NSLog(@"log:%f",center_log);
         
         zoom=16;
     }else{

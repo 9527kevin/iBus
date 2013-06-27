@@ -9,25 +9,69 @@
 #import "BaseController.h"
 #import "LineListController.h"
 
-#define EDGESTATION_VIEW_HEIGHT 30.0f+1.0f
+#define EdgeStation_View_Height 40.0f+1.0f
 
-#define ARROW_WIDTH 70.0f
-#define ARROW_HEIGHT 16.0f
-#define ARROW_ORIGIN_X (MainWidth * 0.5)- (ARROW_WIDTH/2)
-#define ARROW_ORIGIN_Y 7.0f
+#define Root_View_Frame CGRectMake  (                                       \
+                                        0.0f,                               \
+                                        0.0f,                               \
+                                        MainWidth,                          \
+                                        (EdgeStation_View_Height) * 2       \
+                                    )
 
-#define EDGESTATION_LABEL_FONTSIZE 13.0f
+//go view
+#define Go_View_Frame CGRectMake    (                                       \
+                                        0.0f,                               \
+                                        0.0f,                               \
+                                        MainWidth,                          \
+                                        EdgeStation_View_Height             \
+                                    )
 
-#define EDGESTATION_LABEL_WIDTH 110.0f
-#define EDGESTATION_LABEL_HEIGHT 30.0f
+//back view
+#define Back_View_Frame CGRectMake  (                                       \
+                                        0.0f,                               \
+                                        (EdgeStation_View_Height) + 1.0f,   \
+                                        MainWidth,                          \
+                                        EdgeStation_View_Height             \
+                                    )
+                                        
 
-#define EDGESTATION_LABEL1_ORIGIN_X 3.0f
-#define EDGESTATION_LABEL1_ORIGIN_Y 0
-#define EDGESTATION_LABEL2_ORIGIN_X MainWidth-EDGESTATION_LABEL_WIDTH-10.0f
-#define EDGESTATION_LABEL2_ORIGIN_Y 0
+#define Arrow_Width 70.0f
+#define Arrow_Height 16.0f
+#define Arrow_Origin_X (MainWidth * 0.5)- (Arrow_Width/2)
+#define Arrow_Origin_Y 11.0f
+#define Arrow_Frame CGRectMake  (                                           \
+                                    Arrow_Origin_X,                         \
+                                    Arrow_Origin_Y,                         \
+                                    Arrow_Width,                            \
+                                    Arrow_Height                            \
+                                )
 
-#define EDGESTATION_VIEW_NORMAL_COLOR ColorWithRGBA(233, 233, 233, 1)
-#define EDGESTATION_VIEW_HIGHLIGHT_COLOR [UIColor grayColor]
+#define EdgeStation_Label_FontSize 13.0f
+#define EdgeStation_Label_Width 110.0f
+#define EdgeStation_Label_Height 30.0f
+
+#define EdgeStation_Label1_Origin_X 3.0f
+#define EdgeStation_Label1_Origin_Y 7.0f
+#define EdgeStation_Label1_Frame CGRectMake (                               \
+                                                EdgeStation_Label1_Origin_X,\
+                                                EdgeStation_Label1_Origin_Y,\
+                                                EdgeStation_Label_Width,    \
+                                                EdgeStation_Label_Height    \
+                                            )
+
+#define EdgeStation_Label2_Origin_X MainWidth - EdgeStation_Label_Width - 10.0f
+#define EdgeStation_Label2_Origin_Y 7.0f
+#define EdgeStation_Label2_Frame CGRectMake (                               \
+                                                EdgeStation_Label2_Origin_X,\
+                                                EdgeStation_Label2_Origin_Y,\
+                                                EdgeStation_Label_Width,    \
+                                                EdgeStation_Label_Height    \
+                                            )
+
+
+#define EdgeStation_View_Normal_Color ColorWithRGBA(233, 233, 233, 1)
+#define EdgeStation_View_Highlight_Color [UIColor grayColor]
+
 
 typedef enum {
     TAG_LEFT_TO_RIGHT=1001,

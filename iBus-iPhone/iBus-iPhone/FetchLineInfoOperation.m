@@ -19,7 +19,7 @@
     //send request to fetch line info
     for (int i=335; i<=530; i++) {
         NSMutableDictionary *lineInfo=[self getLineInfoWithLineId:[NSString stringWithFormat:@"%d",i]];
-        lineInfo!=nil?[lineInfoArray addObject:lineInfo]:nil;
+        lineInfo!=nil ? [lineInfoArray addObject:lineInfo] : nil;
     }
     
     //insert into db

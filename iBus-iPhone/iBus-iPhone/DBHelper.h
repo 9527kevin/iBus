@@ -3,7 +3,7 @@
 //  NanJingUniversity
 //
 //  Created by yanghua_kobe on 12/9/12.
-//  Copyright (c) 2012 wisedu. All rights reserved.
+//  Copyright (c) 2012 yanghua. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

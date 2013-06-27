@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-#define SELECT_ALLCONFIGCATEGORY \
+#define SELECT_ALLCONFIGCATEGORY                                            \
 @"SELECT * FROM configCategory ORDER BY sectionNo ASC"
 
-#define SELECT_CONFIGCATEGORY_BY_SECTIONNO \
+#define SELECT_CONFIGCATEGORY_BY_SECTIONNO                                  \
 @"SELECT * FROM configCategory WHERE sectionNo = ?"
 
-#define INSERT_CONFIGCATEGORY \
+#define INSERT_CONFIGCATEGORY                                               \
 @"INSERT INTO configCategory(categoryId,categoryName,sectionNo) VALUES(:categoryId, :categoryName, :sectionNo)"
 
-#define CHECK_EXISTS_CONFIGCATEGORY_SQL \
+#define CHECK_EXISTS_CONFIGCATEGORY_SQL                                     \
 @"SELECT COUNT(1) FROM configCategory "
 
 @interface ConfigCategoryDao : NSObject

@@ -8,22 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-#define SELECT_CONFIGITEM_BY_CATEGORYID \
+#define SELECT_CONFIGITEM_BY_CATEGORYID                                     \
 @"SELECT * FROM configItem WHERE categoryId = ?"
 
-#define SELECT_CONFIGITEM_BY_ITEMKEY \
+#define SELECT_CONFIGITEM_BY_ITEMKEY                                        \
 @"SELECT * FROM configItem WHERE itemKey = ?"
 
-#define INSERT_CONFIGITEM \
+#define INSERT_CONFIGITEM                                                   \
 @"INSERT INTO configItem(itemKey,itemValue,categoryId) VALUES(:itemKey,:itemValue,:categoryId)"
 
-#define UPDATE_CONFIGITEM_BY_ITEMKEY \
+#define UPDATE_CONFIGITEM_BY_ITEMKEY                                        \
 @"UPDATE configItem SET itemValue = :itemValue WHERE itemKey = :itemKey"
 
-#define DELETE_CONFIGITEM_BY_ITEMKEY \
+#define DELETE_CONFIGITEM_BY_ITEMKEY                                        \
 @"DELETE FROM configItem WHERE itemKey = ?"
 
-#define CHECK_CONFIGITEM_EXISTS \
+#define CHECK_CONFIGITEM_EXISTS                                             \
 @"SELECT COUNT(1) FROM configItem WHERE itemKey = ?"
 
 @interface ConfigItemDao : NSObject

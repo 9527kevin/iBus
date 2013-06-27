@@ -37,6 +37,8 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     [self.view addSubview:self.tableView];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
+    self.tableView.backgroundView=nil;
+    self.tableView.backgroundColor=Default_TableView_BackgroundColor;
 }
 
 - (void)viewDidLoad
@@ -45,8 +47,6 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 	[self initNavigationController];
     [self initDataSource];
     [self.tableView reloadData];
-    self.tableView.backgroundView=nil;
-    self.tableView.backgroundColor=Default_TableView_BackgroundColor;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +59,22 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 - (void)initNavigationController{
     [super initNavigationController];
     self.navigationItem.title=@"设置";
+}
+
+- (void) unselectCurrentRow{
+    // Animate the deselection
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow]
+                                  animated:YES];
+}
+
+- (void)initDataSource{
+    _dataSource = [[NSMutableDictionary alloc] init];
+    _categoryArray=[ConfigCategoryDao getAll];
+    for (NSDictionary *category in self.categoryArray) {
+        NSMutableArray *configItems=[ConfigItemDao getItemWithCategoryId:category[@"categoryId"]];
+        self.dataSource[category[@"sectionNo"]]=configItems;
+    }
+    
 }
 
 #pragma mark - UITableView data source and delegate -
@@ -96,26 +112,23 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     NSString *itemKey=[((NSMutableDictionary*)self.dataSource[sectionKey][indexPath.row]) allKeys][0];
     if ([itemKey isEqualToString:Setting_Key_DefaultLine]) {
         LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+        lineListCtrller.isSetting=YES;
         [self.navigationController pushViewController:lineListCtrller animated:YES];
     }else if ([itemKey isEqualToString:Setting_Key_FollowStation]){
         LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+        lineListCtrller.isSetting=YES;
         [self.navigationController pushViewController:lineListCtrller animated:YES];
     }else if([itemKey isEqualToString:Setting_Key_RefreshFrequency]){
         RefreshFrequencyController *refreshFrequencyCtrller=[[[RefreshFrequencyController alloc] init] autorelease];
         [self.navigationController pushViewController:refreshFrequencyCtrller animated:YES];
     }
     
-}
-
-- (void)initDataSource{
-    _dataSource = [[NSMutableDictionary alloc] init];
-    _categoryArray=[ConfigCategoryDao getAll];
-    for (NSDictionary *category in self.categoryArray) {
-        NSMutableArray *configItems=[ConfigItemDao getItemWithCategoryId:category[@"categoryId"]];
-        self.dataSource[category[@"sectionNo"]]=configItems;
-    }
+    // After one second, unselect the current row
+    [self performSelector:@selector(unselectCurrentRow)
+               withObject:nil afterDelay:1.0];
     
 }
+
 
 
 @end

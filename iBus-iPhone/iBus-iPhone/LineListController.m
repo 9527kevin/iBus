@@ -44,7 +44,13 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initNavigationController];
+    
+    if (self.isSetting) {
+        [self initNavLeftBackButton];
+    }else{
+        [self initNavigationController];
+    }
+    
     self.tableView=[[[UIFolderTableView alloc] initWithFrame:Default_TableView_Frame style:UITableViewStylePlain] autorelease];
     [self.view addSubview:self.tableView];
     self.tableView.dataSource=self;
@@ -64,7 +70,8 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 }
 
 #pragma mark - Table view data source -
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"%d",self.dataSource.count);
     return self.dataSource.count;
@@ -74,7 +81,8 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     return 60.0f;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LineListCell *cell=(LineListCell*)[tableView dequeueReusableCellWithIdentifier:lineCellIdentifier];
     if (!cell) {
@@ -99,17 +107,15 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     
     self.tableView.scrollEnabled = NO;
     UIFolderTableView *folderTableView = (UIFolderTableView *)tableView;
-    [folderTableView openFolderAtIndexPath:indexPath WithContentView:subVC.view
+    [folderTableView openFolderAtIndexPath:indexPath
+                           WithContentView:subVC.view
                                  openBlock:^(UIView *subClassView, CFTimeInterval duration, CAMediaTimingFunction *timingFunction){
-                                     // opening actions
                                  }
                                 closeBlock:^(UIView *subClassView, CFTimeInterval duration, CAMediaTimingFunction *timingFunction){
-                                    // closing actions
                                 }
                            completionBlock:^{
-                               // completed actions
-                               self.tableView.scrollEnabled = YES;
-                               [currentCell changeArrowWithUp:NO];
+                                    self.tableView.scrollEnabled = YES;
+                                    [currentCell changeArrowWithUp:NO];
                            }];
     
     [subVC release];
@@ -117,21 +123,20 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 
 -(CGFloat)tableView:(UIFolderTableView *)tableView xForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 72.0f;
+    return (EdgeStation_View_Height) * 2;
 }
-
 
 - (void)handleGesture:(UISwipeGestureRecognizer*)gestureRecognizer{
     if (gestureRecognizer.state==UIGestureRecognizerStateBegan) {
-        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_HIGHLIGHT_COLOR;
+        [gestureRecognizer view].backgroundColor=EdgeStation_View_Highlight_Color;
     }else if(gestureRecognizer.state==UIGestureRecognizerStateEnded){
-        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_HIGHLIGHT_COLOR;
+        [gestureRecognizer view].backgroundColor=EdgeStation_View_Highlight_Color;
     }else if (gestureRecognizer.state==UIGestureRecognizerStateCancelled){
-        [gestureRecognizer view].backgroundColor=EDGESTATION_VIEW_NORMAL_COLOR;
+        [gestureRecognizer view].backgroundColor=EdgeStation_View_Normal_Color;
     }
     
     if (self.currentSelectedView!=gestureRecognizer.view) {
-        self.currentSelectedView.backgroundColor=EDGESTATION_VIEW_NORMAL_COLOR;
+        self.currentSelectedView.backgroundColor=EdgeStation_View_Normal_Color;
     }
     
     self.currentSelectedView=gestureRecognizer.view;

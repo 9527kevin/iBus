@@ -28,15 +28,15 @@
 
 #pragma mark - to be override -
 - (void)initSubViews{
-    //to be override...
+    
 }
 
 - (void)initSubViewsWithModel:(NSDictionary*)modelInfo{
-    //to be override...
+    
 }
 
 - (void)resizeSubViews{
-    //to be override...
+    
 }
 
 @end

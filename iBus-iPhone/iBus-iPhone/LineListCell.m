@@ -34,13 +34,12 @@
     
     if (self) {
         self.selectionStyle=UITableViewCellSelectionStyleNone;
-        _busImgView=[[UIImageView alloc] initWithFrame:CGRectMake(BUSPLACEHOLDER_IMAGEVIEW_ORIGIN_X, BUSPLACEHOLDER_IMAGEVIEW_ORIGIN_Y, BUSPLACEHOLDER_IMAGEVIEW_WAndH, BUSPLACEHOLDER_IMAGEVIEW_WAndH)];
+        _busImgView=[[UIImageView alloc] initWithFrame:BusPlaceHolder_ImageView_Frame];
         self.busImgView.image=[UIImage imageNamed:@"busPlaceHolder.png"];
         [self addSubview:self.busImgView];
         
-        _arrowImageView=[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_IMAGEVIEW_ORIGIN_X, ARROW_IMAGEVIEW_ORIGIN_Y, ARROW_IMAGEVIEW_WIDTH, ARROW_IMAGEVIEW_HEIGHT)];
+        _arrowImageView=[[UIImageView alloc] initWithFrame:Arrow_ImageView_Frame];
         [self addSubview:self.arrowImageView];
-        
     }
     
     return self;
@@ -54,8 +53,7 @@
 - (void)initSubViewsWithModel:(NSDictionary*)modelInfo{
     _lineInfo=[modelInfo retain];
     
-    
-    _lineNameLbl=[[UILabel alloc] initWithFrame:CGRectMake(LINE_NAME_LABEL_ORIGIN_X, LINE_NAME_LABEL_ORIGIN_Y, LINE_NAME_LABEL_WIDTH, LINE_NAME_LABEL_HEIGHT)];
+    _lineNameLbl=[[UILabel alloc] initWithFrame:Line_Name_Label_Frame];
     self.lineNameLbl.text=self.lineInfo[@"lineName"];
     self.lineNameLbl.font=[UIFont systemFontOfSize:18.0f];
     [self addSubview:self.lineNameLbl];
@@ -65,15 +63,6 @@
     
 }
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 - (void)changeArrowWithUp:(BOOL)up
 {

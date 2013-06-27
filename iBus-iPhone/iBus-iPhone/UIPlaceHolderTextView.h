@@ -1,4 +1,4 @@
-//	带有水印输入提示的UITextView
+//	
 //  UIPlaceHolderTextView.h
 //  RenRenTest
 //
@@ -9,16 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UIPlaceHolderTextView : UITextView {
-	NSString *placeholder;
-	UIColor *placeholderColor;
-	
-	UILabel *placeholderLabel;
-}
+@interface UIPlaceHolderTextView : UITextView 
 
-@property (nonatomic,retain) UILabel *placeholderLabel;
-@property (nonatomic,copy) NSString *placeholder;
-@property (nonatomic,retain) UIColor *placeholderColor;
+@property (nonatomic,retain) UILabel    *placeholderLabel;
+@property (nonatomic,copy) NSString     *placeholder;
+@property (nonatomic,retain) UIColor    *placeholderColor;
 
 -(void)textChanged:(NSNotification *)nofification;
 

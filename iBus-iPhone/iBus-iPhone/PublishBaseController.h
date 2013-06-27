@@ -34,8 +34,8 @@
                                         At_Button_Height                \
                                     )
 
-#define Default_Fill_Txt \
-@"我正在使用 #江宁掌上公交(iPhone版)# 应用，它支持实时查询公交的"\
+#define Default_Fill_Txt                                                \
+@"我正在使用 #江宁掌上公交(iPhone版)# 应用，它支持实时查询公交的"                \
 "位置，收藏经常乘坐的线路、经常上下的站点。方便又省时，快去下载吧！"
 
 @protocol PublishBaseControllerDelegate;
@@ -47,13 +47,13 @@ ClickEventDelegate,
 UIActionSheetDelegate
 >
 
-@property (nonatomic,copy)   NSString *publishingContent;
-@property (nonatomic,retain) UIPlaceHolderTextView *publishTxtView;
+@property (nonatomic,copy)   NSString               *publishingContent;
+@property (nonatomic,retain) UIPlaceHolderTextView  *publishTxtView;
 @property (nonatomic,assign) id<PublishBaseControllerDelegate> delegate;
-@property (nonatomic,retain) NSArray *photoArray;
-@property (nonatomic,retain) NSMutableArray *followedList;
+@property (nonatomic,retain) NSArray                *photoArray;
+@property (nonatomic,retain) NSMutableArray         *followedList;
 
-@property (nonatomic,retain) UIButton *atBtn;
+@property (nonatomic,retain) UIButton               *atBtn;
 
 
 @end

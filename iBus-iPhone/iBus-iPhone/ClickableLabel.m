@@ -10,8 +10,6 @@
 
 @implementation ClickableLabel
 
-@synthesize lblDelegate;
-
 -(void)dealloc{
     [super dealloc];
 }
@@ -35,11 +33,9 @@
           withEvent:(UIEvent *)event{
     UITouch *touch=[touches anyObject];
     CGPoint point=[touch locationInView:self];
-    if (point.x>=0 &&
-        point.y>=0 &&
-        point.x<=self.frame.size.width &&
+    if (point.x>=0 && point.y>=0 && point.x<=self.frame.size.width &&
         point.y<=self.frame.size.height) {
-        [lblDelegate doClickAtTarget:self];
+        [self.lblDelegate doClickAtTarget:self];
     }
 }
 

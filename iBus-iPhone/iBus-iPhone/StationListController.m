@@ -74,7 +74,8 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     self.cellForRowAtIndexPathDelegate=^(UITableView *tableView, NSIndexPath *indexPath){
         StationListCell *cell=(StationListCell*)[tableView dequeueReusableCellWithIdentifier:stationListIdentifier];
         if (!cell) {
-            cell=[[[StationListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stationListIdentifier] autorelease];
+            cell=[[[StationListCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                         reuseIdentifier:stationListIdentifier] autorelease];
         }
         
         cell.stationInfo=self.dataSource[indexPath.row];
@@ -94,6 +95,10 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
         lineDynamicStateCtrller.stationName=self.dataSource[indexPath.row][@"stationName"];
         [self.navigationController pushViewController:lineDynamicStateCtrller animated:YES];
         [lineDynamicStateCtrller release];
+        
+        // After one second, unselect the current row
+        [self performSelector:@selector(unselectCurrentRow)
+                   withObject:nil afterDelay:1.0];
     };
 }
 
@@ -101,7 +106,7 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row % 2 == 1){
-        [cell setBackgroundColor:ColorWithRGBA(235, 235, 235, 1.0)];
+        [cell setBackgroundColor:Default_TableView_BackgroundColor];
     }
     else{
         [cell setBackgroundColor:[UIColor whiteColor]];
@@ -109,44 +114,57 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 
-#pragma mark - private methods -
+- (void) unselectCurrentRow
+{
+    // Animate the deselection
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow]
+                                  animated:YES];
+}
+
 - (void)initNavBarRightItem{
     BOOL isLineFavorite=[LineDao isFavoriteWithLineId:self.lineId
                                         andIdentifier:self.identifier];
     
-    NSString *barBtnItemText=nil;
+    NSString *imgResourceName=@"";
     if (isLineFavorite) {
-        barBtnItemText = @"取消收藏";
+        imgResourceName=@"collectionedBtn.png";
     }else{
-        barBtnItemText = @"添加收藏";
+        imgResourceName=@"collectionBtn.png";
     }
-    UIBarButtonItem *favoriteButton = [[UIBarButtonItem alloc] initWithTitle:barBtnItemText
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(handleFavorite:)];
     
-    self.navigationItem.rightBarButtonItem = favoriteButton;
+    UIButton *favoriteButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [favoriteButton  setBackgroundImage:[UIImage imageNamed:imgResourceName]
+                               forState:UIControlStateNormal];
+    favoriteButton.frame=CGRectMake(0, 0, 30.0f, 30.0f);
+    [favoriteButton addTarget:self
+                       action:@selector(handleFavorite:)
+             forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *favoriteButtonItem=[[[UIBarButtonItem alloc] initWithCustomView:favoriteButton] autorelease];
+    self.navigationItem.rightBarButtonItem=favoriteButtonItem;
+    
     [favoriteButton release];
 }
 
 - (void)handleFavorite:(id)sender{
-    UIBarButtonItem *favoriteButton=(UIBarButtonItem*)sender;
+    UIButton *favoriteButton=(UIButton*)sender;
     
     BOOL isLineFavorite=[LineDao isFavoriteWithLineId:self.lineId
                                         andIdentifier:self.identifier];
     
-    NSString *barBtnItemText=nil;
     if (isLineFavorite) {
         [LineDao unfavoriteWithLineId:self.lineId
                         andIdentifier:self.identifier];
-        barBtnItemText = @"添加收藏";
+        [favoriteButton  setBackgroundImage:[UIImage imageNamed:@"collectionBtn.png"]
+                                   forState:UIControlStateNormal];
     }else{
         [LineDao favoriteWithLineId:self.lineId
                       andIdentifier:self.identifier];
-        barBtnItemText = @"取消收藏";
+        [favoriteButton  setBackgroundImage:[UIImage imageNamed:@"collectionedBtn.png"]
+                                   forState:UIControlStateNormal];
     }
-    
-    favoriteButton.title=barBtnItemText;
+        
+    //send message
+    [Default_Notification_Center postNotificationName:Notification_For_Favorited object:nil];
 }
 
 #pragma mark - StationListCell delegate -

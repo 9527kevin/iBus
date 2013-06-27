@@ -3,7 +3,7 @@
 //  NanJingUniversity
 //
 //  Created by yanghua_kobe on 12/9/12.
-//  Copyright (c) 2012 wisedu. All rights reserved.
+//  Copyright (c) 2012 yanghua. All rights reserved.
 //
 
 #import "DBHelper.h"
@@ -27,11 +27,14 @@ static DBHelper *_dbHelperInstance;
 }
 
 #pragma mark - private methods -
-- (void)initWithCreatingTablesForDatabase:(NSString*)databasePath andSQLArray:(NSArray*)sqlArr{
+- (void)initWithCreatingTablesForDatabase:(NSString*)databasePath
+                              andSQLArray:(NSArray*)sqlArr{
     FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:databasePath];
     [dbQueue inDatabase:^(FMDatabase *db) {
         if (![db open]) {
-            @throw [[[NSException alloc]initWithName:@"FMDatabase Error" reason:@"Can not open Database" userInfo:nil]autorelease];
+            @throw [[[NSException alloc]initWithName:@"FMDatabase Error"
+                                              reason:@"Can not open Database"
+                                            userInfo:nil]autorelease];
         }
         
         for (NSString *createSQL in sqlArr) {

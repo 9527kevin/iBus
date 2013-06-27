@@ -17,12 +17,11 @@
 @implementation RelationshipCell
 
 - (void)dealloc{
-    [super dealloc];
-    
     [_nickName release],_nickName=nil;
-    
     [_nickNameLbl release],_nickNameLbl=nil;
     [_headImgView release],_headImgView=nil;
+    
+    [super dealloc];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style
@@ -33,13 +32,13 @@
     if (self) {
         //head image
         _headImgView=[[UIImageView alloc] init];
-        _headImgView.frame=HeadImgView_Frame;
+        _headImgView.frame=Head_ImgView_Frame;
         [self addSubview:_headImgView];
         
         //nick name
         _nickNameLbl=[[UILabel alloc] initWithFrame:CGRectZero];
-        _nickNameLbl.font=[UIFont systemFontOfSize:NickNameTxtView_FontSize];
-        _nickNameLbl.frame=NickNameTxtView_Frame;
+        _nickNameLbl.font=[UIFont systemFontOfSize:NickName_TxtView_FontSize];
+        _nickNameLbl.frame=NickName_TxtView_Frame;
         [self addSubview:_nickNameLbl];
     }
     

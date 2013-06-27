@@ -35,28 +35,28 @@
 }
 
 - (void)loadView{
-    self.view=[[[UIView alloc] initWithFrame:CGRectMake(0, 0, MainWidth, 60.0f)] autorelease];
-    self.view.backgroundColor=[UIColor blackColor];
+    self.view=[[[UIView alloc] initWithFrame:Root_View_Frame] autorelease];
+    self.view.backgroundColor=[UIColor whiteColor];
     
     //left to right
-    _leftToRightView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, MainWidth, EDGESTATION_VIEW_HEIGHT)] ;
+    _leftToRightView=[[UIView alloc] initWithFrame:Go_View_Frame] ;
     [self.leftToRightView setTag:TAG_LEFT_TO_RIGHT];
-    [self.leftToRightView setBackgroundColor:EDGESTATION_VIEW_NORMAL_COLOR];
-    UIImageView *arrowToRightImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_ORIGIN_X, ARROW_ORIGIN_Y, ARROW_WIDTH, ARROW_HEIGHT)] autorelease];
+    [self.leftToRightView setBackgroundColor:EdgeStation_View_Normal_Color];
+    UIImageView *arrowToRightImgView=[[[UIImageView alloc] initWithFrame:Arrow_Frame] autorelease];
     arrowToRightImgView.image=[UIImage imageNamed:@"arrow_right.png"];
     [self.leftToRightView addSubview:arrowToRightImgView];
     
     
     //l to r 1
-    UILabel *edgeStationLbl1_ltor=[[[UILabel alloc] initWithFrame:CGRectMake(EDGESTATION_LABEL1_ORIGIN_X, EDGESTATION_LABEL1_ORIGIN_Y, EDGESTATION_LABEL_WIDTH, EDGESTATION_VIEW_HEIGHT)] autorelease ];
-    [edgeStationLbl1_ltor setFont:[UIFont systemFontOfSize:EDGESTATION_LABEL_FONTSIZE]];
+    UILabel *edgeStationLbl1_ltor=[[[UILabel alloc] initWithFrame:EdgeStation_Label1_Frame] autorelease ];
+    [edgeStationLbl1_ltor setFont:[UIFont systemFontOfSize:EdgeStation_Label_FontSize]];
     edgeStationLbl1_ltor.backgroundColor=[UIColor clearColor];
     edgeStationLbl1_ltor.text=self.lineInfo[@"edgeStation_1"];
     [self.leftToRightView addSubview:edgeStationLbl1_ltor];
     
     //l to r 2
-    UILabel *edgeStationLbl2_ltor=[[[UILabel alloc] initWithFrame:CGRectMake(EDGESTATION_LABEL2_ORIGIN_X, EDGESTATION_LABEL2_ORIGIN_Y, EDGESTATION_LABEL_WIDTH, EDGESTATION_VIEW_HEIGHT)] autorelease ];
-    [edgeStationLbl2_ltor setFont:[UIFont systemFontOfSize:EDGESTATION_LABEL_FONTSIZE]];
+    UILabel *edgeStationLbl2_ltor=[[[UILabel alloc] initWithFrame:EdgeStation_Label2_Frame] autorelease ];
+    [edgeStationLbl2_ltor setFont:[UIFont systemFontOfSize:EdgeStation_Label_FontSize]];
     edgeStationLbl2_ltor.backgroundColor=[UIColor clearColor];
     edgeStationLbl2_ltor.text=self.lineInfo[@"edgeStation_2"];
     [self.leftToRightView addSubview:edgeStationLbl2_ltor];
@@ -65,28 +65,27 @@
     
     
     //right to left
-    _rightToLeftView=[[UIView alloc] initWithFrame:CGRectMake(0, EDGESTATION_VIEW_HEIGHT+1, MainWidth, EDGESTATION_VIEW_HEIGHT)];
+    _rightToLeftView=[[UIView alloc] initWithFrame:Back_View_Frame];
     [self.rightToLeftView setTag:TAG_RIGHT_TO_LEFT];
-    [self.rightToLeftView setBackgroundColor:EDGESTATION_VIEW_NORMAL_COLOR];
-    UIImageView *arrowToLeftImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(ARROW_ORIGIN_X, ARROW_ORIGIN_Y, ARROW_WIDTH, ARROW_HEIGHT)] autorelease];
-    arrowToLeftImgView.image=[UIImage imageNamed:@"arrow_left.png"];
+    [self.rightToLeftView setBackgroundColor:EdgeStation_View_Normal_Color];
+    UIImageView *arrowToLeftImgView=[[[UIImageView alloc] initWithFrame:Arrow_Frame] autorelease];
+    arrowToLeftImgView.image=[UIImage imageNamed:@"arrow_right.png"];
     [self.rightToLeftView addSubview:arrowToLeftImgView];
     
     
     //r to l 1
-    UILabel *edgeStationLbl1_rtol=[[[UILabel alloc] initWithFrame:CGRectMake(EDGESTATION_LABEL1_ORIGIN_X, EDGESTATION_LABEL1_ORIGIN_Y, EDGESTATION_LABEL_WIDTH, EDGESTATION_VIEW_HEIGHT)] autorelease ];
-    [edgeStationLbl1_rtol setFont:[UIFont systemFontOfSize:EDGESTATION_LABEL_FONTSIZE]];
+    UILabel *edgeStationLbl1_rtol=[[[UILabel alloc] initWithFrame:EdgeStation_Label1_Frame] autorelease ];
+    [edgeStationLbl1_rtol setFont:[UIFont systemFontOfSize:EdgeStation_Label_FontSize]];
     edgeStationLbl1_rtol.backgroundColor=[UIColor clearColor];
     edgeStationLbl1_rtol.text=self.lineInfo[@"edgeStation_2"];
     [self.rightToLeftView addSubview:edgeStationLbl1_rtol];
     
     //r to l 2
-    UILabel *edgeStationLbl2_rtol=[[[UILabel alloc] initWithFrame:CGRectMake(EDGESTATION_LABEL2_ORIGIN_X, EDGESTATION_LABEL2_ORIGIN_Y, EDGESTATION_LABEL_WIDTH, EDGESTATION_VIEW_HEIGHT)] autorelease ];
-    [edgeStationLbl2_rtol setFont:[UIFont systemFontOfSize:EDGESTATION_LABEL_FONTSIZE]];
+    UILabel *edgeStationLbl2_rtol=[[[UILabel alloc] initWithFrame:EdgeStation_Label2_Frame] autorelease ];
+    [edgeStationLbl2_rtol setFont:[UIFont systemFontOfSize:EdgeStation_Label_FontSize]];
     edgeStationLbl2_rtol.backgroundColor=[UIColor clearColor];
     edgeStationLbl2_rtol.text=self.lineInfo[@"edgeStation_1"];
     [self.rightToLeftView addSubview:edgeStationLbl2_rtol];
-    
     
     [self.view addSubview:self.rightToLeftView];
 }

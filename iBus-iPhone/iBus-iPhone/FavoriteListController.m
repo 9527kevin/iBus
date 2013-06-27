@@ -21,6 +21,7 @@ static NSString *cellForFavoriteIdentifier = @"cellForFavoriteIdentifier";
 @implementation FavoriteListController
 
 - (void)dealloc{
+    [Default_Notification_Center removeObserver:self name:Notification_For_Favorited object:nil];
     
     [super dealloc];
 }
@@ -43,6 +44,7 @@ static NSString *cellForFavoriteIdentifier = @"cellForFavoriteIdentifier";
 	[self initNavigationController];
     [self initDataSource];
     [self.tableView reloadData];
+    [self registerNotification];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,14 +111,40 @@ static NSString *cellForFavoriteIdentifier = @"cellForFavoriteIdentifier";
     
     NSString *txt=nil;
     if ([stationInfo[@"identifier_favorite"] isEqualToString:@"identifier_1_favorite"]) {
-        txt=[NSString stringWithFormat:@"%@-%@-%@",stationInfo[@"stationName"],lineInfo[@"lineName"],@"去程"];
+        txt=[NSString stringWithFormat:
+                                        @"%@-%@-%@",
+                                        stationInfo[@"stationName"],
+                                        lineInfo[@"lineName"],
+                                        @"去程"];
     }else if ([stationInfo[@"identifier_favorite"] isEqualToString:@"identifier_2_favorite"]){
-        txt=[NSString stringWithFormat:@"%@-%@-%@",stationInfo[@"stationName"],lineInfo[@"lineName"],@"回程"];
+        txt=[NSString stringWithFormat:
+                                        @"%@-%@-%@",
+                                        stationInfo[@"stationName"],
+                                        lineInfo[@"lineName"],
+                                        @"回程"];
     }else{
         txt=@"";
     }
     
     return txt;
+}
+
+- (void) unselectCurrentRow{
+    // Animate the deselection
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow]
+                                  animated:YES];
+}
+
+/*
+ about notification
+ */
+- (void)registerNotification{
+    [Default_Notification_Center addObserver:self selector:@selector(handleNotification:) name:Notification_For_Favorited object:nil];
+}
+
+- (void)handleNotification:(NSNotification*)notification{
+    //refresh table view data
+    [self handleRefresh:nil];
 }
 
 #pragma mark - UITableView data source and delegate -
@@ -194,8 +222,6 @@ static NSString *cellForFavoriteIdentifier = @"cellForFavoriteIdentifier";
     UIViewController *pushingCtrller=nil;
     NSDictionary *dic=nil;
     
-    
-    
     switch (indexPath.section) {
         case 0:
         {
@@ -227,7 +253,12 @@ static NSString *cellForFavoriteIdentifier = @"cellForFavoriteIdentifier";
         default:
             break;
     }
+    
     [self.navigationController pushViewController:pushingCtrller animated:YES];
+    
+    // After one second, unselect the current row
+    [self performSelector:@selector(unselectCurrentRow)
+               withObject:nil afterDelay:1.0];
 }
 
 

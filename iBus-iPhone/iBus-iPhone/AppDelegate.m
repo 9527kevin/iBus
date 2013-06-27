@@ -81,7 +81,10 @@
 }
 
 - (void)configDefaultUIAppearance{
-    [[UINavigationBar appearance] setTintColor:Default_Theme_Color];
+//    [[UINavigationBar appearance] setTintColor:Default_Theme_Color];
+    UIImage *toolBarBackgroundImg=[UIImage imageNamed:@"NavBarBG.png"];
+    
+    [[UINavigationBar appearance] setBackgroundImage:toolBarBackgroundImg forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)initDatabase{
@@ -138,8 +141,8 @@
     [Appirater setDaysUntilPrompt:1];
     [Appirater setUsesUntilPrompt:10];
     [Appirater setSignificantEventsUntilPrompt:-1];
-    [Appirater setTimeBeforeReminding:2];
-    [Appirater setDebug:YES];
+    [Appirater setTimeBeforeReminding:7];
+    [Appirater setDebug:NO];
 }
 
 

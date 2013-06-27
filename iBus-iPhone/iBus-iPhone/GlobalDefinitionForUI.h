@@ -18,8 +18,8 @@
 #define TabBarHeight 49
 #define NavigationBarHeight 44
 
-#define isIPhone5 \
-([UIScreen instancesRespondToSelector:@selector(currentMode)] ? \
+#define isIPhone5                                                           \
+([UIScreen instancesRespondToSelector:@selector(currentMode)] ?             \
 CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : \
 NO)
 
@@ -65,7 +65,7 @@ NO)
 //common paths
 #define PATH_OF_APP_HOME    NSHomeDirectory()
 #define PATH_OF_TEMP        NSTemporaryDirectory()
-#define PATH_OF_DOCUMENT    \
+#define PATH_OF_DOCUMENT                                                    \
 [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
 //db path

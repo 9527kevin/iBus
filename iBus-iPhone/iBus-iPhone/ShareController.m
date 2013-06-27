@@ -16,6 +16,9 @@
 @implementation ShareController
 
 - (void)dealloc{
+    [Default_Notification_Center removeObserver:self
+                                           name:Notification_For_AtSomebody
+                                         object:nil];
     
     [super dealloc];
 }
@@ -34,7 +37,10 @@
 
 #pragma mark - private methods -
 - (void)registerAtNotification{
-    [Default_Notification_Center addObserver:self selector:@selector(handleAtNotification:) name:Notification_For_AtSomebody object:nil];
+    [Default_Notification_Center addObserver:self
+                                    selector:@selector(handleAtNotification:)
+                                        name:Notification_For_AtSomebody
+                                      object:nil];
 }
 
 - (void)handleAtNotification:(NSNotification*)notification{

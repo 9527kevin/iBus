@@ -81,16 +81,16 @@
     
 
     //公交查询
-    _busQueryMenuView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+    _busQueryMenuView=[[UIView alloc] initWithFrame:BusQuery_Menu_View_Frame];
     self.busQueryMenuView.backgroundColor=Default_MenuItem_NormalColor;
     
-    UIImageView *busQueryImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    UIImageView *busQueryImgView=[[[UIImageView alloc] initWithFrame:Default_MenuItem_ImageView_Frame] autorelease];
     busQueryImgView.image=[UIImage imageNamed:@"busQuery.png"];
     [self.busQueryMenuView addSubview:busQueryImgView];
     [self.busQueryMenuView setTag:TAG_BUSQUERY];
     [menuContainerView addSubview:self.busQueryMenuView];
     
-    UILabel *busQueryLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
+    UILabel *busQueryLbl=[[[UILabel alloc] initWithFrame:Default_MenuItem_Label_Frame] autorelease];
     busQueryLbl.text=@"公交查询";
     busQueryLbl.backgroundColor=[UIColor clearColor];
     busQueryLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
@@ -113,16 +113,16 @@
 //    [self.mapShowView addSubview:mapShowLbl];
     
     //我的巴士空间
-    _myBusZoomView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+1*Default_MenuItem_View_Height+1*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+    _myBusZoomView=[[UIView alloc] initWithFrame:MyBusRoom_Menu_View_Frame];
     self.myBusZoomView.backgroundColor=Default_MenuItem_NormalColor;
     
-    UIImageView *busZoomImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    UIImageView *busZoomImgView=[[[UIImageView alloc] initWithFrame:Default_MenuItem_ImageView_Frame] autorelease];
     busZoomImgView.image=[UIImage imageNamed:@"busZoom.png"];
     [self.myBusZoomView addSubview:busZoomImgView];
     [self.myBusZoomView setTag:TAG_BUSZOOM];
     [menuContainerView addSubview:self.myBusZoomView];
     
-    UILabel *myBusZoomLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
+    UILabel *myBusZoomLbl=[[[UILabel alloc] initWithFrame:Default_MenuItem_Label_Frame] autorelease];
     myBusZoomLbl.text=@"巴士空间";
     myBusZoomLbl.backgroundColor=[UIColor clearColor];
     myBusZoomLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
@@ -146,32 +146,32 @@
 //    [self.findFriendView addSubview:findFriendLbl];
     
     //关于
-    _aboutView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+2*Default_MenuItem_View_Height+2*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+    _aboutView=[[UIView alloc] initWithFrame:About_Menu_View_Frame];
     self.aboutView.backgroundColor=Default_MenuItem_NormalColor;
     
-    UIImageView *aboutImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    UIImageView *aboutImgView=[[[UIImageView alloc] initWithFrame:Default_MenuItem_ImageView_Frame] autorelease];
     aboutImgView.image=[UIImage imageNamed:@"about.png"];
     [self.aboutView addSubview:aboutImgView];
     [self.aboutView setTag:TAG_ABOUT];
     [menuContainerView addSubview:self.aboutView];
     
-    UILabel *aboutLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
+    UILabel *aboutLbl=[[[UILabel alloc] initWithFrame:Default_MenuItem_Label_Frame] autorelease];
     aboutLbl.text=@"关于应用";
     aboutLbl.backgroundColor=[UIColor clearColor];
     aboutLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];
     [self.aboutView addSubview:aboutLbl];
     
     //设置
-    _settingView=[[UIView alloc] initWithFrame:CGRectMake(Default_MenuItem_View_Origin_X, Default_MenuItem_Margin_Top+3*Default_MenuItem_View_Height+3*Default_MenuItem_View_Line_Splitor, Default_MenuItem_View_Width, Default_MenuItem_View_Height)];
+    _settingView=[[UIView alloc] initWithFrame:Setting_Menu_View_Frame];
     self.settingView.backgroundColor=Default_MenuItem_NormalColor;
     
-    UIImageView *settingImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Default_MenuItem_ImageView_Origin_X, Default_MenuItem_ImageView_Origin_Y, Default_MenuItem_ImageView_Width, Default_MenuItem_ImageView_Height)] autorelease];
+    UIImageView *settingImgView=[[[UIImageView alloc] initWithFrame:Default_MenuItem_ImageView_Frame] autorelease];
     settingImgView.image=[UIImage imageNamed:@"setting.png"];
     [self.settingView addSubview:settingImgView];
     [self.settingView setTag:TAG_SETTING];
     [menuContainerView addSubview:self.settingView];
     
-    UILabel *settingLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Default_MenuItem_Label_Origin_X, Default_MenuItem_Label_Origin_Y, Default_MenuItem_Label_Width, Default_MenuItem_Label_Height)] autorelease];
+    UILabel *settingLbl=[[[UILabel alloc] initWithFrame:Default_MenuItem_Label_Frame] autorelease];
     settingLbl.text=@"应用设置";
     settingLbl.backgroundColor=[UIColor clearColor];
     settingLbl.font=[UIFont systemFontOfSize:Default_MenuItem_Label_FontSize];

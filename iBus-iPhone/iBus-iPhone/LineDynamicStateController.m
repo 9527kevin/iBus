@@ -13,7 +13,6 @@
 @interface LineDynamicStateController ()
 
 @property (nonatomic,retain) UIView *containerView;
-@property (nonatomic,retain) UILabel *bottomNextTimeLbl;
 @property (nonatomic,retain) UILabel *bottomTipLbl;
 
 @property (nonatomic,retain) NSMutableArray *dataSource;
@@ -35,7 +34,6 @@
     [_lineId release],_lineId=nil;
     [_containerView release],_containerView=nil;
     [_bottomTipLbl release],_bottomTipLbl=nil;
-    [_bottomNextTimeLbl release],_bottomNextTimeLbl=nil;
     [_dataSource release],_dataSource=nil;
     [_stationName release],_stationName=nil;
     [_GCContainerViewArray release],_GCContainerViewArray=nil;
@@ -98,6 +96,8 @@
     [self layoutDynamicStationSubviews];
     [self sendRequest4GetDynamicStateInfo];     //first load
     [self startRefreshTimer];
+    
+    NSLog(@"%f",Dynamic_State_ContainerView_Height);
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,7 +154,7 @@
 
 - (void)initStationDirectionArrow{
     UIImageView *stationDirectionArrowImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Arrow_ImageView_Origin_X, Arrow_ImageView_Origin_Y, Arrow_ImageView_Width, Arrow_ImageView_Height)] autorelease];
-    stationDirectionArrowImgView.image=[UIImage imageNamed:@"arrowStation.png"];
+    stationDirectionArrowImgView.image=[UIImage imageNamed:@"arrowStation-568h@2x.png"];
     [self.containerView addSubview:stationDirectionArrowImgView];
 }
 
@@ -324,6 +324,8 @@
     for (NSObject *subViewObj in self.GCContainerViewArray) {
         [(UIView*)subViewObj removeFromSuperview];
     }
+    
+    self.bottomTipLbl.text=@"";
 }
 
 #pragma mark - NSTimer -

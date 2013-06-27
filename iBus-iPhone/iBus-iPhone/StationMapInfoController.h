@@ -11,8 +11,8 @@
 
 @interface StationMapInfoController : BaseController
 
-@property (nonatomic,assign) NSInteger stationNo;
-@property (nonatomic,copy) NSString *identifier;
-@property (nonatomic,copy) NSString *lineId;
+@property (nonatomic,assign) NSInteger      stationNo;
+@property (nonatomic,copy) NSString         *identifier;
+@property (nonatomic,copy) NSString         *lineId;
 
 @end

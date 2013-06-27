@@ -9,7 +9,7 @@
 #import "ELTableViewController.h"
 #import "StationListCell.h"
 
-#define Notification_For_LoadCountDownTimeCallbackCompleted @"Notification_For_LoadCountDownTimeCallbackCompleted"
+#define Notification_For_LoadCountDownTimeCallbackCompleted                 \       @"Notification_For_LoadCountDownTimeCallbackCompleted"
 
 @interface StationListController : ELTableViewController
 <

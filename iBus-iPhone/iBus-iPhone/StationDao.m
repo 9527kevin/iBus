@@ -120,7 +120,7 @@
             
             //judge
             BOOL isMiddle=YES;
-            NSString *sql=[identifier isEqualToString:@"1"]?SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL:SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_DESC_SQL;
+            NSString *sql=[identifier isEqualToString:@"1"] ?SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL:SELECT_COUNT_DYNAMIC_STATIONLIST_ORDER_DESC_SQL;
             resultSet=[db executeQuery:sql,lineId,stationId];
             if ([resultSet next]) {
                 isMiddle=[resultSet intForColumnIndex:0]>=Dynamic_Station_List_Count?YES:NO;
@@ -135,10 +135,10 @@
                     offset = [NSNumber numberWithInt:itemCount - 8];
                 }
                 
-                sql=[identifier isEqualToString:@"1"]?SELECT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL:SELECT_DYNAMIC_STATIONLIST_ORDER_DESC_SQL;
+                sql=[identifier isEqualToString:@"1"] ?SELECT_DYNAMIC_STATIONLIST_ORDER_ASC_SQL:SELECT_DYNAMIC_STATIONLIST_ORDER_DESC_SQL;
                 resultSet=[db executeQuery:sql,lineId,stationId,offset];
             }else{                  //start or end
-                sql=[identifier isEqualToString:@"1"]?SELECT_DYNAMIC_STATIONLIST_ORDER_ASC_END_SQL:SELECT_DYNAMIC_STATIONLIST_ORDER_DESC_END_SQL;
+                sql=[identifier isEqualToString:@"1"] ?SELECT_DYNAMIC_STATIONLIST_ORDER_ASC_END_SQL:SELECT_DYNAMIC_STATIONLIST_ORDER_DESC_END_SQL;
                 resultSet=[db executeQuery:sql,lineId,stationId];
             }
             
