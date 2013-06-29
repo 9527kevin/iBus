@@ -71,3 +71,12 @@ NO)
 //db path
 #define Database_Name @"BusDB.db"
 #define PATH_OF_DB [PATH_OF_DOCUMENT stringByAppendingPathComponent:Database_Name]
+
+//url scheme
+#define URL_OF_SHEME @"iBus" 
+
+#define AppID @"667862622"
+
+#define URL_OF_AppStore @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@"
+
+#define Resource_OF_AdImage @"AppAd.png"

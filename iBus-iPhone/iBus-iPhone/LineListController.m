@@ -73,7 +73,6 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%d",self.dataSource.count);
     return self.dataSource.count;
 }
 

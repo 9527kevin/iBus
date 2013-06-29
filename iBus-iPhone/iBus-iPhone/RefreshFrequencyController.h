@@ -63,8 +63,7 @@
                                       )  
 
 #define Tip_Label_FontSize                      13.0f
-#define Tip_Label_Origin_X                                                  \
-((Tip_ImgView_Origin_X) + Tip_ImgView_Width + 2.0f) 
+#define Tip_Label_Origin_X Frequency_TextView_Origin_X 
 
 #define Tip_Label_Origin_Y Tip_ImgView_Origin_Y 
 #define Tip_Label_Width MainWidth 

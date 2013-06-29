@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define AppID @"com.freedom.iBus-iPhone"
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (retain, nonatomic) UIWindow *window;

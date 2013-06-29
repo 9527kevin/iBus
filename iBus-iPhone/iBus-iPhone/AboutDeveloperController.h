@@ -8,12 +8,14 @@
 
 #import "BaseController.h"
 #import "NIAttributedLabel.h"
+#import <MessageUI/MessageUI.h>
 
 @protocol NIAttributedLabelDelegate;
 
 @interface AboutDeveloperController : BaseController
 <
-NIAttributedLabelDelegate
+NIAttributedLabelDelegate,
+MFMailComposeViewControllerDelegate
 >
 
 

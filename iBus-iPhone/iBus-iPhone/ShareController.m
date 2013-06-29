@@ -16,17 +16,14 @@
 @implementation ShareController
 
 - (void)dealloc{
-    [Default_Notification_Center removeObserver:self
-                                           name:Notification_For_AtSomebody
-                                         object:nil];
     
     [super dealloc];
 }
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,19 +32,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - private methods -
-- (void)registerAtNotification{
-    [Default_Notification_Center addObserver:self
-                                    selector:@selector(handleAtNotification:)
-                                        name:Notification_For_AtSomebody
-                                      object:nil];
-}
 
-- (void)handleAtNotification:(NSNotification*)notification{
-    //    NSDictionary *followedInfo=(NSDictionary*)[notification object];
-    //    [self.followedList addObject:followed];
-    //    self.publishTxtView.text=[NSString stringWithFormat:@"%@ @%@ ",self.publishTxtView.text,followedInfo[@"userName"]];
-}
 
 #pragma mark - overriding methods -
 - (BOOL)isAuthorized{

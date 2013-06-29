@@ -52,3 +52,5 @@ http://www.baidu.com
 #define Notification_For_AtSomebody     @"Notification_For_AtSomebody"
 
 #define Notification_For_Favorited      @"Notification_For_Favorited"
+
+#define Notification_For_URL_Scheme     @"Notification_For_URL_Scheme"

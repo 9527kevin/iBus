@@ -16,6 +16,8 @@
 PublishBaseControllerDelegate
 >
 
+@property (nonatomic,retain) NSMutableArray *followedList;
+
 - (BOOL)isAuthorized;
 
 - (void)login;
@@ -23,5 +25,7 @@ PublishBaseControllerDelegate
 - (void)logout;
 
 - (void)share;
+
+
 
 @end

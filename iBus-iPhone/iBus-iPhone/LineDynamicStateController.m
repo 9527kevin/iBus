@@ -97,7 +97,6 @@
     [self sendRequest4GetDynamicStateInfo];     //first load
     [self startRefreshTimer];
     
-    NSLog(@"%f",Dynamic_State_ContainerView_Height);
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,7 +153,7 @@
 
 - (void)initStationDirectionArrow{
     UIImageView *stationDirectionArrowImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Arrow_ImageView_Origin_X, Arrow_ImageView_Origin_Y, Arrow_ImageView_Width, Arrow_ImageView_Height)] autorelease];
-    stationDirectionArrowImgView.image=[UIImage imageNamed:@"arrowStation-568h@2x.png"];
+    stationDirectionArrowImgView.image=[UIImage imageNamed:@"arrowStation.png"];
     [self.containerView addSubview:stationDirectionArrowImgView];
 }
 
@@ -345,10 +344,11 @@
     if (self.timer != nil)
     {
         [self.timer invalidate];
+        self.timer=nil;
     }
 }
 
-- (void)handleBack{
+- (void)handleBack:(id)sender{
     //can not stop timer in dealloc func because it will nerver invoke!
     [self stopRefreshTimer];
     [self.navigationController popViewControllerAnimated:YES];

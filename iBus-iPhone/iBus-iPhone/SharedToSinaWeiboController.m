@@ -20,6 +20,9 @@
 
 - (void)dealloc{
     [_sinaWeiboManager release],_sinaWeiboManager=nil;
+    [Default_Notification_Center removeObserver:self
+                                           name:Notification_For_URL_Scheme
+                                         object:nil];
     
     [super dealloc];
 }
@@ -31,11 +34,10 @@
     [super viewDidLoad];
     self.navigationItem.title=@"分享到新浪微博";
 	[self initSinaweiboManager];
+    [self registerSSOCallbackNotification];
     
     if (![self isAuthorized]) {
         [self login];
-    }else{
-        
     }
 }
 
@@ -67,6 +69,7 @@
                                                appSecret:kAppSecret
                                           appRedirectURI:kAppRedirectURI
                                              andDelegate:self];
+    self.sinaWeiboManager.ssoCallbackScheme=URL_OF_SHEME;
     
     //exists login info
     NSDictionary *sinaweiboInfo=[UserDefault objectForKey:@"SinaWeiboAuthData"];
@@ -76,8 +79,22 @@
         self.sinaWeiboManager.accessToken = sinaweiboInfo[@"AccessTokenKey"];
         self.sinaWeiboManager.expirationDate = sinaweiboInfo[@"ExpirationDateKey"];
         self.sinaWeiboManager.userID = sinaweiboInfo[@"UserIDKey"];
+        
     }
 }
+
+- (void)registerSSOCallbackNotification{
+    [Default_Notification_Center addObserver:self
+                                    selector:@selector(handleSSOCallbackNotification:)
+                                        name:Notification_For_URL_Scheme
+                                      object:nil];
+}
+
+- (void)handleSSOCallbackNotification:(NSNotification*)notification{
+    NSURL *url=(NSURL*)[notification object];
+    [self.sinaWeiboManager handleOpenURL:url];
+}
+
 
 #pragma mark - SinaWeiboDelegate Delegate -
 - (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo{
@@ -101,18 +118,19 @@
 }
 
 - (void)sinaweibo:(SinaWeibo *)sinaweibo logInDidFailWithError:(NSError *)error{
-    
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+    }
 }
 
 - (void)sinaweibo:(SinaWeibo *)sinaweibo accessTokenInvalidOrExpired:(NSError *)error{
-    
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+    }
 }
-
-
 
 #pragma mark - PublishBaseControllerDelegate -
 - (void)publishBtn_handle:(id)sender{
-    //check 
     if (self.publishTxtView.text.length==0) {
         [SVProgressHUD showErrorWithStatus:@"还是说点什么吧"];
         return;
@@ -120,19 +138,19 @@
     
     ShareToSinaWeiboOperation *operation=[[[ShareToSinaWeiboOperation alloc]
                                            initOperationWithContent:self.publishTxtView.text
-                                           andImageSupportSwitch:NO] autorelease];
+                                           andImageSupportSwitch:self.imageSwitch] autorelease];
     [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:operation];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)atBtn_handle:(id)sender{
-    FollowedSinaweiboController *followedListCtrller=[[[FollowedSinaweiboController alloc] initWithRefreshHeaderViewEnabled:NO
-                                                                                               andLoadMoreFooterViewEnabled:NO
-                                                                                                          andTableViewFrame:TableView_Frame_WithTabBarHeight] autorelease];
-    
-    //register a notification to notification center
-//    [self registerAtNotification];
+    FollowedSinaweiboController *followedListCtrller=
+    [[[FollowedSinaweiboController alloc] initWithRefreshHeaderViewEnabled:NO
+      
+                                              andLoadMoreFooterViewEnabled:YES
+      
+                                                         andTableViewFrame:TableView_Frame_WithTabBarHeight] autorelease];
     
     UINavigationController *followedListNavCtrller=[[[UINavigationController alloc] initWithRootViewController:followedListCtrller] autorelease];
     

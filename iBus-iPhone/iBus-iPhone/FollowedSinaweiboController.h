@@ -7,8 +7,16 @@
 //
 
 #import "ELTableViewController.h"
+#import "SinaWeibo.h"
+#import "SNSApiOAuthConst.h"
+
+@protocol SinaWeiboRequestDelegate;
 
 @interface FollowedSinaweiboController : ELTableViewController
+<
+SinaWeiboRequestDelegate,
+SinaWeiboDelegate
+>
 
 @property (nonatomic,retain) NSMutableDictionary    *userGroupedDictionary;
 @property (nonatomic,retain) NSMutableArray         *allIndexCharacter;

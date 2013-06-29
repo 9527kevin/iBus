@@ -16,6 +16,11 @@ typedef enum{
 	TAG_TOOLBAR_TOPIC
 }TAGS;
 
+typedef enum {
+    TAG_CLICKED_LABEL_CLEAR,
+    TAG_CLICKED_LABEL_IMGSWITCH,
+}TAGS_OF_CLICKED_LABEL;
+
 typedef enum{
     ACTION_TYPE_PUBLISHINGCONTENT,
     ACTION_TYPE_PHOTO
@@ -23,12 +28,15 @@ typedef enum{
 
 @interface PublishBaseController ()
 
-@property (nonatomic,retain) UIView * tipbarView;
-@property (nonatomic,retain) UIView *toolbarView;
-@property (nonatomic,retain) ClickableLabel *strLengthLabel;
-@property (nonatomic,retain) UIButton *delBtn;
+@property (nonatomic,retain) UIView                 *tipbarView;
+@property (nonatomic,retain) UIView                 *toolbarView;
+@property (nonatomic,retain) ClickableLabel         *strLengthLabel;
+@property (nonatomic,retain) UIButton               *delBtn;
 
-@property (nonatomic,assign) ACTION_TYPE currentActionType;
+@property (nonatomic,assign) ACTION_TYPE            currentActionType;
+
+@property (nonatomic,retain) UIButton               *checkboxBtn;
+
 
 @end
 
@@ -46,6 +54,9 @@ typedef enum{
     [Default_Notification_Center removeObserver:self
                                            name:Notification_For_AtSomebody
                                          object:nil];
+    
+    [Default_Notification_Center removeObserver:self];
+    
 	[super dealloc];
 }
 
@@ -60,15 +71,20 @@ typedef enum{
 {
     [super viewDidLoad];
 	[self.view addSubview:self.publishTxtView];
-	[self.publishTxtView becomeFirstResponder];
 	[self.view addSubview:self.tipbarView];
 	[self.tipbarView addSubview:self.strLengthLabel];
 	[self.tipbarView addSubview:self.delBtn];
 	[self.view addSubview:self.toolbarView];
-    [self.toolbarView addSubview:self.atBtn];
+    
 	
     [self setLeftBarButtonForNavigationBar];
     [self setRightBarButtonForNavigationBar];
+    
+    [self registerKeyboardNotification];
+    [self registerAtNotification];
+    [self.publishTxtView becomeFirstResponder];
+    
+    self.imageSwitch=YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,7 +152,7 @@ typedef enum{
     CGFloat X_tipbarView=_publishTxtView.frame.origin.x;
     CGFloat y_tipbarView=_publishTxtView.frame.origin.y+_publishTxtView.frame.size.height;
     
-    _tipbarView=[[UIView alloc]initWithFrame:CGRectMake(X_tipbarView, y_tipbarView, _publishTxtView.frame.size.width, 30)];
+    _tipbarView=[[UIView alloc]initWithFrame:CGRectMake(X_tipbarView, y_tipbarView, _publishTxtView.frame.size.width, Tip_View_Height)];
     _tipbarView.backgroundColor=[UIColor whiteColor];
     
     //设置提示字符数的Label
@@ -149,15 +165,20 @@ typedef enum{
     _strLengthLabel.textColor=ColorWithRGBA(105, 105, 105, 1.0);
     _strLengthLabel.text=[NSString stringWithFormat:@"%d",STRLENGTH];
     _strLengthLabel.textAlignment=NSTextAlignmentLeft;
+    _strLengthLabel.tag=TAG_CLICKED_LABEL_CLEAR;
     
     //删除按钮图片
-    _delBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom frame:CGRectMake(x_lbl+self.strLengthLabel.frame.size.width, 5, 16, 16) imgName:@"deleteBtn.png" eventTarget:self touchUpFunc:@selector(doClickAtTarget:) touchDownFunc:nil];
+    _delBtn=[UIButton initButtonInstanceWithType:UIButtonTypeCustom frame:CGRectMake(x_lbl+self.strLengthLabel.frame.size.width, 5, 16, 16)
+                                         imgName:@"deleteBtn.png"
+                                     eventTarget:self
+                                     touchUpFunc:@selector(doClickAtTarget:)
+                                   touchDownFunc:nil];
     
     _delBtn.hidden=YES;
     
     CGFloat x_toolBarView=_publishTxtView.frame.origin.x;
     CGFloat y_toolBarView=_publishTxtView.frame.origin.y+_publishTxtView.frame.size.height+_tipbarView.frame.size.height+4;
-    _toolbarView=[[UIView alloc]initWithFrame:CGRectMake(x_toolBarView, y_toolBarView, _publishTxtView.frame.size.width, 34)];
+    _toolbarView=[[UIView alloc]initWithFrame:CGRectMake(x_toolBarView, y_toolBarView, _publishTxtView.frame.size.width, Tool_View_Height)];
     
     
     //----------------------toolBar items------------------
@@ -170,12 +191,30 @@ typedef enum{
                                     touchUpFunc:@selector(toolBarBotton_touchUpInside:)
                                   touchDownFunc:nil];
     _atBtn.tag=TAG_TOOLBAR_AT;
+    [self.toolbarView addSubview:self.atBtn];
+    
+    //image switch
+    _checkboxBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.checkboxBtn.frame=CheckBox_Button_Frame;
+    [self.checkboxBtn setBackgroundImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
+    [self.checkboxBtn addTarget:self
+                         action:@selector(checkBox_Button_touchUpInside:)
+               forControlEvents:UIControlEventTouchUpInside];
+    [self.toolbarView addSubview:self.checkboxBtn];
+    
+    //tip lbl
+    ClickableLabel *imgTipLbl=[[[ClickableLabel alloc] initWithFrame:Imgtip_Label_Frame] autorelease];
+    imgTipLbl.text=@"附带应用二维码图片";
+    imgTipLbl.font=[UIFont systemFontOfSize:Imgtip_Label_FontSize];
+    imgTipLbl.textColor=[UIColor grayColor];
+    imgTipLbl.backgroundColor=[UIColor clearColor];
+    imgTipLbl.tag=TAG_CLICKED_LABEL_IMGSWITCH;
+    [imgTipLbl setLblDelegate:self];
+    [self.toolbarView addSubview:imgTipLbl];
+    
 }
 
 #pragma mark - UITextViewDelegate -
-/*
- *显示输入剩余可输入字符个数
- */
 -(void)textViewDidChange:(UITextView *)textView{
 	int avaliableStrLength=STRLENGTH-[self.publishTxtView.text length];
 	if (avaliableStrLength<=20&&avaliableStrLength>0) {
@@ -199,18 +238,34 @@ typedef enum{
 #pragma mark -
 #pragma mark Click Event Delegate
 -(void)doClickAtTarget:(ClickableLabel *)label{
-    if ([self.publishTxtView.text length]==0) {
-        return;
-    }
     
-    self.currentActionType=ACTION_TYPE_PUBLISHINGCONTENT;
-    UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@""
-                                                           delegate:self
-                                                  cancelButtonTitle:@"取消"
-                                             destructiveButtonTitle:@"清空所有內容"
-                                                  otherButtonTitles:nil];
-    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
-    [actionSheet release];
+    switch (label.tag) {
+        case TAG_CLICKED_LABEL_CLEAR:
+        {
+            if ([self.publishTxtView.text length]==0) {
+                return;
+            }
+            
+            self.currentActionType=ACTION_TYPE_PUBLISHINGCONTENT;
+            UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:@""
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"取消"
+                                                     destructiveButtonTitle:@"清空所有內容"
+                                                          otherButtonTitles:nil];
+            [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+            [actionSheet release];
+        }
+            break;
+            
+        case TAG_CLICKED_LABEL_IMGSWITCH:
+        {
+            [self checkBox_Button_touchUpInside:nil];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark -
@@ -267,9 +322,6 @@ typedef enum{
 }
 
 -(void)closeButton_touchUpInside{
-    UIButton *btn=(UIButton*)self.navigationItem.leftBarButtonItem.customView;
-	[btn setBackgroundImage:[UIImage imageNamed:@"closeBtn.png"] forState:UIControlStateNormal];
-	
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -307,6 +359,81 @@ typedef enum{
     self.strLengthLabel.text=[NSString stringWithFormat:@"%d",STRLENGTH];
 }
 
+- (void)checkBox_Button_touchUpInside:(id)sender{
+    if (self.imageSwitch==YES) {
+        [self.checkboxBtn setBackgroundImage:[UIImage imageNamed:@"unchecked.png"]
+                                    forState:UIControlStateNormal];
+        self.imageSwitch=NO;
+    }else{
+        [self.checkboxBtn setBackgroundImage:[UIImage imageNamed:@"checked.png"]
+                                    forState:UIControlStateNormal];
+        self.imageSwitch=YES;
+    }
+}
+
+#pragma mark - at(@) notification -
+- (void)registerAtNotification{
+    [Default_Notification_Center addObserver:self
+                                    selector:@selector(handleAtNotification:)
+                                        name:Notification_For_AtSomebody
+                                      object:nil];
+}
+
+- (void)handleAtNotification:(NSNotification*)notification{
+    NSDictionary *followedInfo=(NSDictionary*)[notification object];
+    [self.followedList addObject:followedInfo];
+    self.publishTxtView.text = [NSString stringWithFormat:@"%@ @%@",self.publishTxtView.text,followedInfo[@"userName"]];
+    [self textViewDidChange:self.publishTxtView];
+}
+
+#pragma mark - keyboard notification -
+- (void)registerKeyboardNotification{
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+#ifdef __IPHONE_5_0
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version >= 5.0) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    }
+#endif
+    
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    
+    // Get the duration of the animation.
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    
+    float publishTxtView_newHeight = MainHeight - NavigationBarHeight - keyboardRect.size.height - Tip_View_Height - Tool_View_Height;
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        self.publishTxtView.frame=CGRectMake(self.publishTxtView.frame.origin.x,
+                                             self.publishTxtView.frame.origin.y,
+                                             self.publishTxtView.frame.size.width,
+                                             publishTxtView_newHeight);
+        
+        self.tipbarView.frame=CGRectMake(self.tipbarView.frame.origin.x,
+                                         publishTxtView_newHeight,
+                                         self.tipbarView.frame.size.width,
+                                         Tip_View_Height);
+        
+        self.toolbarView.frame=CGRectMake(self.toolbarView.frame.origin.x,
+                                          publishTxtView_newHeight + Tip_View_Height,
+                                          self.toolbarView.frame.size.width,
+                                          Tool_View_Height);
+        
+    }];
+    
+    
+    
+    
+}
 
 
 @end

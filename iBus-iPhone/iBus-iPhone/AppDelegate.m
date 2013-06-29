@@ -80,6 +80,22 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url{
+    //send message, now is for sina weibo  SSO
+    [Default_Notification_Center postNotificationName:Notification_For_URL_Scheme object:url];
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation{
+    //send message, now is for sina weibo  SSO
+    [Default_Notification_Center postNotificationName:Notification_For_URL_Scheme object:url];
+    return YES;
+}
+
 - (void)configDefaultUIAppearance{
 //    [[UINavigationBar appearance] setTintColor:Default_Theme_Color];
     UIImage *toolBarBackgroundImg=[UIImage imageNamed:@"NavBarBG.png"];

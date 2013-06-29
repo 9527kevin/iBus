@@ -44,6 +44,8 @@
                                    httpMethod:HTTP_METHOD_POST
                                      delegate:self];
     }else{
+        requestParms[@"pic"]=[UIImage imageNamed:Resource_OF_AdImage];
+        requestParms[@"status"]=[NSString stringWithFormat:@"%@ (请扫描大图)",self.content];
         [self.sinaWeiboManager requestWithURL:API_statuses_upload
                                        params:requestParms
                                    httpMethod:HTTP_METHOD_POST

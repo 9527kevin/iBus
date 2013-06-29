@@ -29,12 +29,12 @@
 }
 
 - (void)loadView{
-    //app icon
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
     self.view.backgroundColor=Default_TableView_BackgroundColor;
     
+    //app icon
     UIImageView *appIconImgView=[[[UIImageView alloc] initWithFrame:AppIcon_ImageView_Frame] autorelease];
-    appIconImgView.image=[UIImage imageNamed:@"icon@2x.png"];
+    appIconImgView.image=[UIImage imageNamed:@"IconForAbout.png"];
     [self.view addSubview:appIconImgView];
     
     //app name
@@ -49,7 +49,8 @@
     
     //关于开发者
     UIButton *developerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    developerBtn.backgroundColor=Default_Theme_Color;
+    [developerBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG.png"] forState:UIControlStateNormal];
+    [developerBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG_hl.png"] forState:UIControlStateHighlighted];
     developerBtn.frame=Developer_Button_Frame;
     [developerBtn setTitle:@"  关于开发者" forState:UIControlStateNormal];
     developerBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
@@ -57,16 +58,17 @@
     [developerBtn addTarget:self
                      action:@selector(Buttons_TouchUpInside:)
            forControlEvents:UIControlEventTouchUpInside];
-    [developerBtn addTarget:self
-                     action:@selector(Buttons_TouchDown:)
-           forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:developerBtn];
     
     //分享
     UIButton *shareBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    shareBtn.backgroundColor=Default_Theme_Color;
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG.png"]
+                        forState:UIControlStateNormal];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG_hl.png"]
+                        forState:UIControlStateHighlighted];
     shareBtn.frame=Share_Button_Frame;
-    [shareBtn setTitle:@"  与更多的人分享" forState:UIControlStateNormal];
+    [shareBtn setTitle:@"  与更多的人分享"
+              forState:UIControlStateNormal];
     shareBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
     shareBtn.tag=Tag_Share;
     [shareBtn addTarget:self
@@ -76,9 +78,13 @@
     
     //评分
     UIButton *commentBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    commentBtn.backgroundColor=Default_Theme_Color;
+    [commentBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG.png"]
+                          forState:UIControlStateNormal];
+    [commentBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG_hl.png"]
+                          forState:UIControlStateHighlighted];
     commentBtn.frame=Comment_Button_Frame;
-    [commentBtn setTitle:@"  给应用评分" forState:UIControlStateNormal];
+    [commentBtn setTitle:@"  给应用评分"
+                forState:UIControlStateNormal];
     commentBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
     commentBtn.tag=Tag_Comment;
     [commentBtn addTarget:self
@@ -109,7 +115,7 @@
                                                   delegate:self
                                          cancelButtonTitle:@"取消"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"分享到新浪微博",@"分享到微信", nil];
+                                         otherButtonTitles:@"分享到新浪微博", nil];
     [self.view addSubview:self.shareActionSheet];
 }
 
@@ -149,20 +155,17 @@
             
         case Tag_Comment:
         {
-            [Appirater userDidSignificantEvent:YES];
+            [Appirater rateApp];
             return;
         }
         default:
             break;
     }
     
-    [self.navigationController pushViewController:viewController animated:YES];
+    if (viewController) {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
     
-}
-
-- (void)Buttons_TouchDown:(id)sender{
-    UIButton *btn=(UIButton*)sender;
-    btn.backgroundColor=Default_TableView_BackgroundColor;
 }
 
 #pragma mark - UIActionSheet delegate -
@@ -177,7 +180,7 @@
             
         case 1:
         {
-            shareCtrller=[[[SharedToWeixinController alloc] init] autorelease];
+            
         }
             break;
             

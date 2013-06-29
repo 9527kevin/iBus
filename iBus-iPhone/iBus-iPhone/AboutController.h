@@ -10,8 +10,8 @@
 
 #define AppIcon_ImageView_Origin_X (MainWidth - AppIcon_ImageView_Width) / 2
 #define AppIcon_ImageView_Origin_Y 20.0f
-#define AppIcon_ImageView_Width 117.0f
-#define AppIcon_ImageView_Height 117.0f
+#define AppIcon_ImageView_Width 114.0f
+#define AppIcon_ImageView_Height 114.0f
 #define AppIcon_ImageView_Frame CGRectMake  (   AppIcon_ImageView_Origin_X, \
                                                 AppIcon_ImageView_Origin_Y, \
                                                 AppIcon_ImageView_Width,    \

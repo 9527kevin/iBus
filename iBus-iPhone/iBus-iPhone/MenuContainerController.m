@@ -238,7 +238,6 @@
             break;
             
         case TAG_MAP:
-            NSLog(@"%d",TAG_MAP);
             break;
             
         case TAG_BUSZOOM:
@@ -249,7 +248,6 @@
             break;
             
         case TAG_FRIENDS:
-            NSLog(@"%d",TAG_FRIENDS);
             break;
             
         case TAG_ABOUT:
