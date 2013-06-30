@@ -61,6 +61,20 @@ ELTableViewController (It's multifunction UITableViewController that I Contribut
 * share to Sina weibo
 * share to Tencent weixin (next step)
 
+##license
+Copyright (c) 2013 yanghua_kobe. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+```
+http://www.apache.org/licenses/LICENSE-2.0
+```
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+
+##warning & attention
+the source code can be used for communicating and studying. anyone and any organization can not use it to get commercial purposes!
+
 #Contact
 
 any problem, let me know:
