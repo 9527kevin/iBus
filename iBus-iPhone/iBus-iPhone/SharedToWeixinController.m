@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad
 {
+    super.delegate=self;
     [super viewDidLoad];
 	self.navigationItem.title=@"分享到微信";
 }
