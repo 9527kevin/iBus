@@ -54,5 +54,6 @@ install_resource 'Google-Maps-iOS-SDK/GoogleMaps.framework/Versions/A/Resources/
 install_resource 'Nimbus/src/overview/resources/NimbusOverviewer.bundle'
 install_resource 'Nimbus/src/photos/resources/NimbusPhotos.bundle'
 install_resource 'Nimbus/src/webcontroller/resources/NimbusWebController.bundle'
+install_resource 'SIAlertView/SIAlertView/SIAlertView.bundle'
 install_resource 'SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle'
 install_resource 'SinaWeibo/sinaweibo_ios_sdk&demo/sinaweibo_ios_sdk/SinaWeibo/SinaWeibo.bundle'

@@ -115,7 +115,7 @@
                                                   delegate:self
                                          cancelButtonTitle:@"取消"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"分享到新浪微博", nil];
+                                         otherButtonTitles:@"分享到新浪微博", @"分享到微信", nil];
     [self.view addSubview:self.shareActionSheet];
 }
 
@@ -180,7 +180,7 @@
             
         case 1:
         {
-            
+            shareCtrller =[[[SharedToWeixinController alloc] init] autorelease];
         }
             break;
             
@@ -190,7 +190,9 @@
     
     if (shareCtrller) {
         UINavigationController *shareNavCtrller=[[[UINavigationController alloc] initWithRootViewController:shareCtrller] autorelease];
-        [self.navigationController presentViewController:shareNavCtrller animated:YES completion:nil];
+        [self.navigationController presentViewController:shareNavCtrller
+                                                animated:YES
+                                              completion:nil];
     }
 }
 

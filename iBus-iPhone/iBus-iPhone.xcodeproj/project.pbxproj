@@ -62,6 +62,13 @@
 		77450B69176FFDD9003BE8D1 /* menuBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77450B68176FFDD9003BE8D1 /* menuBtn.png */; };
 		77450B73177012BF003BE8D1 /* tipImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 77450B72177012BF003BE8D1 /* tipImg.png */; };
 		77450B751770538C003BE8D1 /* submitBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77450B741770538C003BE8D1 /* submitBtn.png */; };
+		774C36001782B72400809466 /* hybrid_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FA1782B72400809466 /* hybrid_hl.png */; };
+		774C36011782B72400809466 /* hybrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FB1782B72400809466 /* hybrid.png */; };
+		774C36021782B72400809466 /* normal_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FC1782B72400809466 /* normal_hl.png */; };
+		774C36031782B72400809466 /* normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FD1782B72400809466 /* normal.png */; };
+		774C36041782B72400809466 /* terrain_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FE1782B72400809466 /* terrain_hl.png */; };
+		774C36051782B72400809466 /* terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FF1782B72400809466 /* terrain.png */; };
+		774C360B1782D01A00809466 /* marker_car.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C360A1782D01A00809466 /* marker_car.png */; };
 		7767F2C2177D3A31002B46C9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7767F2BF177D3A31002B46C9 /* Default-568h@2x.png */; };
 		7767F2C3177D3A31002B46C9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7767F2C0177D3A31002B46C9 /* Default.png */; };
 		7767F2C4177D3A31002B46C9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7767F2C1177D3A31002B46C9 /* Default@2x.png */; };
@@ -70,6 +77,7 @@
 		7767F2CF177D7D45002B46C9 /* aboutBtnBG_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 7767F2CD177D7D45002B46C9 /* aboutBtnBG_hl.png */; };
 		7767F2D0177D7D45002B46C9 /* aboutBtnBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 7767F2CE177D7D45002B46C9 /* aboutBtnBG.png */; };
 		776B4820176F0EA200475EE5 /* refreshBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 776B481F176F0EA200475EE5 /* refreshBtn.png */; };
+		776EB85A1781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 776EB8591781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a */; };
 		776FDD131777DB890058595E /* iBusTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 776FDD121777DB890058595E /* iBusTool.m */; };
 		776FDD171777E1EA0058595E /* ChinesePinYinAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 776FDD161777E1EA0058595E /* ChinesePinYinAddress.m */; };
 		776FDD1B1777EDC30058595E /* deleteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 776FDD1A1777EDC30058595E /* deleteBtn.png */; };
@@ -110,7 +118,6 @@
 		77C481F8175A2AAB00AA00A3 /* MapHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C481F7175A2AAB00AA00A3 /* MapHelper.m */; };
 		77D31AB717746D240012B816 /* SharedToSinaWeiboController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D31AB617746D240012B816 /* SharedToSinaWeiboController.m */; };
 		77D31ABA17746D3D0012B816 /* SharedToWeixinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D31AB917746D3D0012B816 /* SharedToWeixinController.m */; };
-		77D31ABF17747F460012B816 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D31ABC17747F460012B816 /* libWeChatSDK.a */; };
 		77DEB0FB1758524D00E93D1D /* StationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FA1758524D00E93D1D /* StationDao.m */; };
 		77DEB0FE175854F600E93D1D /* FetchStationInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB0FD175854F600E93D1D /* FetchStationInfoOperation.m */; };
 		77DEB10117587C2000E93D1D /* StationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB10017587C2000E93D1D /* StationListCell.m */; };
@@ -212,6 +219,13 @@
 		77450B68176FFDD9003BE8D1 /* menuBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBtn.png; sourceTree = "<group>"; };
 		77450B72177012BF003BE8D1 /* tipImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tipImg.png; sourceTree = "<group>"; };
 		77450B741770538C003BE8D1 /* submitBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submitBtn.png; sourceTree = "<group>"; };
+		774C35FA1782B72400809466 /* hybrid_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hybrid_hl.png; sourceTree = "<group>"; };
+		774C35FB1782B72400809466 /* hybrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hybrid.png; sourceTree = "<group>"; };
+		774C35FC1782B72400809466 /* normal_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_hl.png; sourceTree = "<group>"; };
+		774C35FD1782B72400809466 /* normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal.png; sourceTree = "<group>"; };
+		774C35FE1782B72400809466 /* terrain_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain_hl.png; sourceTree = "<group>"; };
+		774C35FF1782B72400809466 /* terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrain.png; sourceTree = "<group>"; };
+		774C360A1782D01A00809466 /* marker_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_car.png; sourceTree = "<group>"; };
 		7767F2BF177D3A31002B46C9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7767F2C0177D3A31002B46C9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7767F2C1177D3A31002B46C9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -220,6 +234,7 @@
 		7767F2CD177D7D45002B46C9 /* aboutBtnBG_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutBtnBG_hl.png; sourceTree = "<group>"; };
 		7767F2CE177D7D45002B46C9 /* aboutBtnBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutBtnBG.png; sourceTree = "<group>"; };
 		776B481F176F0EA200475EE5 /* refreshBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshBtn.png; sourceTree = "<group>"; };
+		776EB8591781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
 		776FDD111777DB890058595E /* iBusTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iBusTool.h; sourceTree = "<group>"; };
 		776FDD121777DB890058595E /* iBusTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iBusTool.m; sourceTree = "<group>"; };
 		776FDD151777E1EA0058595E /* ChinesePinYinAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChinesePinYinAddress.h; sourceTree = "<group>"; };
@@ -275,7 +290,6 @@
 		77D31AB617746D240012B816 /* SharedToSinaWeiboController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedToSinaWeiboController.m; sourceTree = "<group>"; };
 		77D31AB817746D3D0012B816 /* SharedToWeixinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedToWeixinController.h; sourceTree = "<group>"; };
 		77D31AB917746D3D0012B816 /* SharedToWeixinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedToWeixinController.m; sourceTree = "<group>"; };
-		77D31ABC17747F460012B816 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		77D31ABD17747F460012B816 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		77D31ABE17747F460012B816 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		77DEB0F91758524D00E93D1D /* StationDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDao.h; sourceTree = "<group>"; };
@@ -319,7 +333,7 @@
 				7740B1CA1748AFC800D98529 /* UIKit.framework in Frameworks */,
 				7740B1CC1748AFC800D98529 /* Foundation.framework in Frameworks */,
 				32D5BB778C5B43F0B93FBB59 /* libPods.a in Frameworks */,
-				77D31ABF17747F460012B816 /* libWeChatSDK.a in Frameworks */,
+				776EB85A1781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,26 +581,40 @@
 		7740B1F21748BBE300D98529 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				776FDD24177857330058595E /* ExtensionMethods.h */,
-				776FDD25177857330058595E /* ExtensionMethods.m */,
 				7715B55217520B07002B4487 /* DBHelper.h */,
-				7715B55317520B07002B4487 /* DBHelper.m */,
-				77A9A6C11750A2BD00263B54 /* ELTableViewController */,
-				772A63321755C03000FBF5E6 /* Floder */,
+				776FDD24177857330058595E /* ExtensionMethods.h */,
 				7740B1F41748BC5C00D98529 /* GlobalDefinitionForBusiness.h */,
 				77C481F51759FB0400AA00A3 /* GlobalDefinitionForMap.h */,
 				7740B1F51748E4FE00D98529 /* GlobalDefinitionForUI.h */,
 				776FDD111777DB890058595E /* iBusTool.h */,
-				776FDD121777DB890058595E /* iBusTool.m */,
-				77A9A6DB1750ADC700263B54 /* IconDownloader */,
 				77C481F6175A2AAB00AA00A3 /* MapHelper.h */,
-				77C481F7175A2AAB00AA00A3 /* MapHelper.m */,
-				77A9A5471750A1D300263B54 /* RefreshAndLoadMore */,
 				772342F31775986C004496F2 /* UIControl+BlockKits.h */,
+				7715B55317520B07002B4487 /* DBHelper.m */,
+				776FDD25177857330058595E /* ExtensionMethods.m */,
+				776FDD121777DB890058595E /* iBusTool.m */,
+				77C481F7175A2AAB00AA00A3 /* MapHelper.m */,
 				772342F41775986C004496F2 /* UIControl+BlockKits.m */,
+				77A9A6C11750A2BD00263B54 /* ELTableViewController */,
+				772A63321755C03000FBF5E6 /* Floder */,
+				77A9A6DB1750ADC700263B54 /* IconDownloader */,
+				77A9A5471750A1D300263B54 /* RefreshAndLoadMore */,
 				77D31ABB17747F170012B816 /* WeixinSDK */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		774C35F91782B70400809466 /* mapImages */ = {
+			isa = PBXGroup;
+			children = (
+				774C360A1782D01A00809466 /* marker_car.png */,
+				774C35FA1782B72400809466 /* hybrid_hl.png */,
+				774C35FB1782B72400809466 /* hybrid.png */,
+				774C35FC1782B72400809466 /* normal_hl.png */,
+				774C35FD1782B72400809466 /* normal.png */,
+				774C35FE1782B72400809466 /* terrain_hl.png */,
+				774C35FF1782B72400809466 /* terrain.png */,
+			);
+			name = mapImages;
 			sourceTree = "<group>";
 		};
 		776FDD141777E1CC0058595E /* PinyinIndex */ = {
@@ -645,6 +673,7 @@
 		77A9A6C51750AC1000263B54 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				774C35F91782B70400809466 /* mapImages */,
 				778024D3176DA11900B6C06E /* others */,
 				77935CC91765B2B100B68BA6 /* screenShot_Images */,
 				772A6350175618CB00FBF5E6 /* menuItem */,
@@ -683,7 +712,7 @@
 		77D31ABB17747F170012B816 /* WeixinSDK */ = {
 			isa = PBXGroup;
 			children = (
-				77D31ABC17747F460012B816 /* libWeChatSDK.a */,
+				776EB8591781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a */,
 				77D31ABD17747F460012B816 /* WXApi.h */,
 				77D31ABE17747F460012B816 /* WXApiObject.h */,
 			);
@@ -896,6 +925,13 @@
 				7733EBE3177EAA38007C67A1 /* AppAd.png in Resources */,
 				7733EBE5177EFAFA007C67A1 /* busStation.png in Resources */,
 				7733EBE7177EFD86007C67A1 /* IconForAbout.png in Resources */,
+				774C36001782B72400809466 /* hybrid_hl.png in Resources */,
+				774C36011782B72400809466 /* hybrid.png in Resources */,
+				774C36021782B72400809466 /* normal_hl.png in Resources */,
+				774C36031782B72400809466 /* normal.png in Resources */,
+				774C36041782B72400809466 /* terrain_hl.png in Resources */,
+				774C36051782B72400809466 /* terrain.png in Resources */,
+				774C360B1782D01A00809466 /* marker_car.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,6 +1051,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1030,6 +1067,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1045,6 +1083,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1053,6 +1092,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1062,8 +1102,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7DD7B459E986410FA3291522 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yang Hua (VB3W2Z26LZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBus-iPhone/iBus-iPhone-Prefix.pch";
 				INFOPLIST_FILE = "iBus-iPhone/iBus-iPhone-Info.plist";
@@ -1073,6 +1113,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1082,8 +1123,8 @@
 			baseConfigurationReference = 7DD7B459E986410FA3291522 /* Pods.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yang Hua (VB3W2Z26LZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBus-iPhone/iBus-iPhone-Prefix.pch";
 				INFOPLIST_FILE = "iBus-iPhone/iBus-iPhone-Info.plist";
@@ -1093,6 +1134,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

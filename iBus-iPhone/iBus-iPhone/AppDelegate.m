@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MenuContainerController.h"
-//#import "BusQueryController.h"
+#import "BusQueryController.h"
 #import "LineListController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "Appirater.h"
@@ -140,13 +140,13 @@
     MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
     
     //front controller
-//    BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
-//    UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
+    BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
+    UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
     
-    LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
-    UINavigationController *lineListNavCtrller=[[[UINavigationController alloc] initWithRootViewController:lineListCtrller] autorelease];
+//    LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+//    UINavigationController *lineListNavCtrller=[[[UINavigationController alloc] initWithRootViewController:lineListCtrller] autorelease];
     
-    _revealCtrller = [PKRevealController revealControllerWithFrontViewController:lineListNavCtrller
+    _revealCtrller = [PKRevealController revealControllerWithFrontViewController:busQueryNavCtrller
                                                               leftViewController:menuContaonerCtrller
                                                                          options:options];
 

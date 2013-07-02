@@ -7,7 +7,15 @@
 //
 
 #import "ShareOperation.h"
+#import "WXApi.h"
+#import "SNSApiOAuthConst.h"
 
 @interface ShareToWeixinOperation : ShareOperation
+<
+WXApiDelegate
+>
+{
+    enum WXScene _scene;
+}
 
 @end

@@ -7,7 +7,13 @@
 //
 
 #import "ShareController.h"
+#import "WXApi.h"
+#import "SNSApiOAuthConst.h"
 
 @interface SharedToWeixinController : ShareController
+<
+WXApiDelegate
+>
+
 
 @end
