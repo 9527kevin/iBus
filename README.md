@@ -32,6 +32,21 @@ Now the service it provides  can only be available for users who are in **Jiangn
 
 ![g5](http://img.my.csdn.net/uploads/201306/30/1372560584_8863.png)
 
+#next version (preview)
+
+* group 1
+
+![ng1](http://img.my.csdn.net/uploads/201307/08/1373294776_5206.png)
+
+* group 2
+
+![ng2](http://img.my.csdn.net/uploads/201307/08/1373294777_7137.png)
+
+* group 3
+
+![ng3](http://img.my.csdn.net/uploads/201307/08/1373294778_6359.png)
+
+
 ##build & test
 
 the project uses **[cocoapod](http://cocoapods.org/)** to manage all the third-party Libraries.So you must promise that you have installed **cocoapod**.
