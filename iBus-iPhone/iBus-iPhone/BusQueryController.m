@@ -9,94 +9,111 @@
 #import "BusQueryController.h"
 #import "LineListController.h"
 #import "SIAlertView.h"
+#import "LineDao.h"
+
+typedef enum {
+    BY_LINENAME         =0,
+    BY_STATIONNAME      =1,
+    BY_EXCHANGE         =2
+}ENUM_QueryType;
 
 @interface BusQueryController ()
 
-@property (nonatomic,retain) UIButton               *queryByLineBtn;
-@property (nonatomic,retain) UIButton               *queryByStationBtn;
-@property (nonatomic,retain) UIButton               *queryByExchangeBtn;
+@property (nonatomic,retain) UIButton               *querySelectBtn;
+@property (nonatomic,retain) UITextField            *queryTxtField;
+@property (nonatomic,retain) UIButton               *queryBtn;
 
-@property (nonatomic,retain) NSArray                *menuItemArray;
+@property (nonatomic,retain) NSMutableArray         *queryDataSource;
+@property (nonatomic,assign) ENUM_QueryType         queryType;
 
 @end
 
 @implementation BusQueryController
 
 - (void)dealloc{
-    [_menuItemArray release],_menuItemArray=nil;
+    [_queryTxtField release],_queryTxtField=nil;
     
     [super dealloc];
 }
 
 - (void)loadView{
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
-    self.view.backgroundColor=[UIColor whiteColor];
-    [self initQueryMenuItems];
+    self.view.backgroundColor=Default_TableView_BackgroundColor;
+    
+    _querySelectBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.querySelectBtn setBackgroundImage:[[UIImage imageNamed:@"defaultThemeColor.png"]
+                                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 1, 1) resizingMode:UIImageResizingModeTile]
+                                   forState:UIControlStateNormal];
+    self.querySelectBtn.frame=QuerySelect_Button_Frame;
+    [self.querySelectBtn setTitle:@"按线路查询" forState:UIControlStateNormal];
+    [self.querySelectBtn.titleLabel setFont:[UIFont systemFontOfSize:QuerySelect_Button_FontSize]];
+    [self.querySelectBtn addTarget:self
+                            action:@selector(menuBtn_touchUpInside:)
+                  forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.querySelectBtn];
+    
+    _queryTxtField=[[UITextField alloc] initWithFrame:Query_TextField_Frame];
+    self.queryTxtField.placeholder=@"";
+    self.queryTxtField.font=[UIFont systemFontOfSize:Query_TextField_FontSize];
+    [self.queryTxtField setAdjustsFontSizeToFitWidth:YES];
+    self.queryTxtField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;
+    self.queryTxtField.delegate=self;
+    self.queryTxtField.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:self.queryTxtField];
+    
+    _queryBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.queryBtn setBackgroundImage:[[UIImage imageNamed:@"defaultThemeColor.png"]
+                                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 1, 1) resizingMode:UIImageResizingModeTile]
+                                   forState:UIControlStateNormal];
+    self.queryBtn.frame=Query_Button_Frame;
+    [self.queryBtn setTitle:@"查 询" forState:UIControlStateNormal];
+    [self.queryBtn.titleLabel setFont:[UIFont systemFontOfSize:Query_Button_FontSize]];
+    [self.queryBtn addTarget:self
+                      action:@selector(queryButton_touchUpInside:)
+            forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.queryBtn];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.queryType=BY_LINENAME;             //init query type
 	[self initNavigationController];
     self.navigationItem.title=@"公交查询";
-    [self initMenuItems];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - private methods -
-
-- (void)initQueryMenuItems{
-    //按线路查询
-    _queryByLineBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.queryByLineBtn.frame=CGRectMake(50, 50, 100, 40);
-    [self.queryByLineBtn setTitle:@"按线路查询" forState:UIControlStateNormal];
-    [self.queryByLineBtn addTarget:self
-                            action:@selector(menuBtn_touchUpInside:)
-                  forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.queryByLineBtn];
-    
-    //按站点查询
-    _queryByStationBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.queryByStationBtn.frame=CGRectMake(50, 150, 100, 40);
-    [self.queryByStationBtn setTitle:@"按站点查询" forState:UIControlStateNormal];
-    [self.queryByStationBtn addTarget:self
-                               action:@selector(menuBtn_touchUpInside:)
-                     forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.queryByStationBtn];
-    
-    //换乘查询
-    _queryByExchangeBtn=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.queryByExchangeBtn.frame=CGRectMake(50, 250, 100, 40);
-    [self.queryByExchangeBtn setTitle:@"换乘查询" forState:UIControlStateNormal];
-    [self.queryByExchangeBtn addTarget:self
-                               action:@selector(menuBtn_touchUpInside:)
-                     forControlEvents:UIControlEventTouchUpInside];
-
-    [self.view addSubview:self.queryByExchangeBtn];
-}
-
 - (void)menuBtn_touchUpInside:(id)sender{
-    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"查询类型" andMessage:@""];
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"查询类型"
+                                                     andMessage:@"请选择以下的查询类型"];
     [alertView addButtonWithTitle:@"按线路查询"
-                             type:SIAlertViewButtonTypeDestructive
+                             type:SIAlertViewButtonTypeDefault
                           handler:^(SIAlertView *alertView) {
-                              NSLog(@"Button1 Clicked");
+                              [self.querySelectBtn setTitle:@"按线路查询"
+                                                   forState:UIControlStateNormal];
+                              self.queryTxtField.placeholder=@"请输入线路名称";
+                              self.queryType=BY_LINENAME;
                           }];
     [alertView addButtonWithTitle:@"按站点查询"
                              type:SIAlertViewButtonTypeDefault
                           handler:^(SIAlertView *alertView) {
-                              NSLog(@"Button2 Clicked");
+                              [self.querySelectBtn setTitle:@"按站点查询"
+                                                   forState:UIControlStateNormal];
+                              self.queryTxtField.placeholder=@"请输入站点名称";
+                              self.queryType=BY_STATIONNAME;
                           }];
-    [alertView addButtonWithTitle:@"换乘查询"
+    [alertView addButtonWithTitle:@"按换乘查询"
                              type:SIAlertViewButtonTypeDefault
                           handler:^(SIAlertView *alertView) {
-                              NSLog(@"Button3 Clicked");
+                              [self.querySelectBtn setTitle:@"按换乘查询"
+                                                   forState:UIControlStateNormal];
+                              self.queryTxtField.placeholder=@"示例:从安德门到托乐嘉";
+                              self.queryType=BY_EXCHANGE;
                           }];
     
     alertView.titleColor = [UIColor grayColor];
@@ -104,39 +121,73 @@
     alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
     
     alertView.willShowHandler = ^(SIAlertView *alertView) {
-        
     };
     
     alertView.didShowHandler = ^(SIAlertView *alertView) {
-        NSLog(@"%@, didShowHandler2", alertView);
     };
     
     alertView.willDismissHandler = ^(SIAlertView *alertView) {
-        NSLog(@"%@, willDismissHandler2", alertView);
     };
     
     alertView.didDismissHandler = ^(SIAlertView *alertView) {
-        NSLog(@"%@, didDismissHandler2", alertView);
     };
     
     [alertView show];
     
 }
 
-- (void)Button_QueryByLine_TouchUpInside:(id)sender{
+- (void)queryButton_touchUpInside:(id)sender{
+    NSString *queryStr=self.queryTxtField.text;
+        
+    switch (self.queryType) {
+        case BY_LINENAME:
+            [self queryLineWithLineName:queryStr];
+            break;
+            
+        case BY_STATIONNAME:
+            [self queryLineWithStationName:queryStr];
+            break;
+            
+        case BY_EXCHANGE:
+            [self queryLineWithStationExchange:queryStr];
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (!self.queryDataSource) {
+        [SVProgressHUD showErrorWithStatus:@"无匹配结果!"];
+        return;
+    }
+    
     LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+    lineListCtrller.dataSource=self.queryDataSource;
+    lineListCtrller.isSetting=YES;
     [self.navigationController pushViewController:lineListCtrller animated:YES];
 }
 
-- (void)initMenuItems{
-    _menuItemArray=[[NSArray alloc] initWithObjects:
-                    
-                    nil];
+
+- (void)queryLineWithLineName:(NSString*)queryStr{
+    self.queryDataSource=[LineDao queryLineWithLineName:queryStr];
 }
 
-- (void)menuItem_touchUpInside:(id)sender{
-    
+- (void)queryLineWithStationName:(NSString*)queryStr{
+    self.queryDataSource=[LineDao queryLineWithStationName:queryStr];
 }
+
+- (void)queryLineWithStationExchange:(NSString*)queryStr{
+#warning split the querystr
+    NSString *startStation=@"";
+    NSString *endStation=@"";
+    
+    self.queryDataSource=[LineDao queryLineWithStartStation:startStation
+                                              andEndStation:endStation];
+}
+
+
+
+
 
 
 

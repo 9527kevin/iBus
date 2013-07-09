@@ -126,4 +126,6 @@ SELECT *,'identifier_2_favorite' as identifier_favorite                 \
 
 + (NSMutableArray*)getAllFavorites;
 
+
+
 @end

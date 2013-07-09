@@ -92,7 +92,9 @@
 
 - (void)handleSSOCallbackNotification:(NSNotification*)notification{
     NSURL *url=(NSURL*)[notification object];
-    [self.sinaWeiboManager handleOpenURL:url];
+    if ([url.scheme isEqualToString:@"iBus"]) {
+        [self.sinaWeiboManager handleOpenURL:url];
+    }
 }
 
 

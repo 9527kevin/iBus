@@ -15,5 +15,6 @@
 WXApiDelegate
 >
 
+@property (nonatomic,assign) enum WXScene scene;
 
 @end

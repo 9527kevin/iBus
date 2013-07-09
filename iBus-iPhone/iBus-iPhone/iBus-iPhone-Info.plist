@@ -49,7 +49,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>weixin</string>
+			<string>江宁掌上公交</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wx262e0f71f8460d73</string>

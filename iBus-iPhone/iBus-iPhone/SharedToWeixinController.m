@@ -27,10 +27,10 @@
 {
     super.delegate=self;
     [super viewDidLoad];
+    self.atBtn.hidden=YES;                              //hidden "@" button
 	self.navigationItem.title=@"分享到微信";
     [WXApi registerApp:WX_AppID];
     [self registerWeixinCallbackNotification];
-    [self authorize];                               //request for authorizing!
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,45 +49,24 @@
 
 - (void)handleWeixinCallbackNotification:(NSNotification*)notification{
     NSURL *url=(NSURL*)[notification object];
-    [WXApi handleOpenURL:url delegate:self];
-}
-
-- (void)authorize{
-    SendAuthReq* req = [[[SendAuthReq alloc] init] autorelease];
-    req.scope = @"post_timeline";
-    req.state = @"iBus-iPhone";
-    
-    [WXApi sendReq:req];
+    if ([url.scheme isEqualToString:WX_AppID]) {
+        [WXApi handleOpenURL:url delegate:self];
+    }
 }
 
 #pragma mark - weixin delegate -
 -(void) onResp:(BaseResp*)resp{
-    if([resp isKindOfClass:[SendAuthResp class]]){
-        NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
-        NSString *strMsg = [NSString stringWithFormat:@"Auth结果:%d", resp.errCode];
+    
+    if([resp isKindOfClass:[SendMessageToWXResp class]]){
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [alert release];
-        
-        switch (resp.errCode) {
-            case 0:                                         //success
-                [SVProgressHUD showSuccessWithStatus:@"授权成功!"];
-                break;
-                
-            default:
-                [SVProgressHUD showErrorWithStatus:@"授权失败!"];
-                break;
+        if (resp.errCode==0) {
+            [SVProgressHUD showSuccessWithStatus:@"成功分享到微信!"];
+        }else{
+            [SVProgressHUD showSuccessWithStatus:@"分享到微信失败!"];
         }
         
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
-}
-
--(void) onSentAuthRequest:(NSString *)userName
-              accessToken:(NSString *)token
-               expireDate:(NSDate *)expireDate
-                 errorMsg:(NSString *)errMsg{
-    NSLog(@"%@",errMsg);
 }
 
 #pragma mark - publish base controller delegate -
@@ -97,12 +76,16 @@
         return;
     }
     
+    if (!([WXApi isWXAppInstalled]  && [WXApi isWXAppSupportApi]) ) {
+        [SVProgressHUD showErrorWithStatus:@"当前系统中没有安装[微信]应用或微信版本不支持分享，请安装或升级[微信]!"];
+        return;
+    }
+    
     ShareToWeixinOperation *operation=[[[ShareToWeixinOperation alloc]
                                            initOperationWithContent:self.publishTxtView.text
-                                           andImageSupportSwitch:self.imageSwitch] autorelease];
+                                           andImageSupportSwitch:self.imageSwitch
+                                            andScene:self.scene] autorelease];
     [((AppDelegate*)appDelegateObj).operationQueueCenter addOperation:operation];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)atBtn_handle:(id)sender{

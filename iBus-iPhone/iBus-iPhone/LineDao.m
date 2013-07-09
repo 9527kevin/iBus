@@ -198,6 +198,105 @@
     return lineArray;
 }
 
++ (NSMutableArray*)queryLineWithLineName:(NSString*)lineName{
+    __block NSMutableArray *lineArray=[NSMutableArray array];
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=[db executeQuery:SELECT_LINE_LIST_WITH_LINENAME,
+                                    [NSString stringWithFormat:@"%%%@%%",lineName]];
+            while ([resultSet next]) {
+                [lineArray addObject:
+                 @{
+                 @"lineId": [resultSet stringForColumn:@"lineId"],
+                 @"lineName":[resultSet stringForColumn:@"lineName"],
+                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
+                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
+                 @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
+                 @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
+                 @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                 }];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return lineArray;
+}
+
++ (NSMutableArray*)queryLineWithStationName:(NSString*)stationName{
+    __block NSMutableArray *lineArray=[NSMutableArray array];
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=[db executeQuery:SELECT_LINE_LIST_WITH_STATIONNAME,[NSString stringWithFormat:@"%%%@%%",stationName]];
+            while ([resultSet next]) {
+                [lineArray addObject:
+                 @{
+                 @"lineId": [resultSet stringForColumn:@"lineId"],
+                 @"lineName":[resultSet stringForColumn:@"lineName"],
+                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
+                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
+                 @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
+                 @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
+                 @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                 }];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return lineArray;
+}
+
++ (NSMutableArray*)queryLineWithStartStation:(NSString*)sStationName
+                               andEndStation:(NSString*)eStationName{
+    __block NSMutableArray *lineArray=[NSMutableArray array];
+    FMDatabaseQueue *dbQueue=[FMDatabaseQueue databaseQueueWithPath:PATH_OF_DB];
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        @try {
+            FMResultSet *resultSet=[db executeQuery:SELECT_LINE_LIST_WITH_STATIONS,
+                                    [NSString stringWithFormat:@"%%%@%%",sStationName],
+                                    [NSString stringWithFormat:@"%%%@%%",eStationName],
+                                    [NSString stringWithFormat:@"%%%@%%",sStationName],
+                                    [NSString stringWithFormat:@"%%%@%%",eStationName]];
+            while ([resultSet next]) {
+                [lineArray addObject:
+                 @{
+                 @"lineId": [resultSet stringForColumn:@"lineId"],
+                 @"lineName":[resultSet stringForColumn:@"lineName"],
+                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
+                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
+                 @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
+                 @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
+                 @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                 }];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@",[exception reason]);
+        }
+        @finally {
+            [db close];
+        }
+    }];
+    
+    return lineArray;
+}
+
 
 #pragma mark - inner methods -
 + (void)addLineInfo:(NSMutableDictionary*)lineInfo{

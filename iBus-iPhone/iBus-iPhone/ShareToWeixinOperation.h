@@ -11,11 +11,12 @@
 #import "SNSApiOAuthConst.h"
 
 @interface ShareToWeixinOperation : ShareOperation
-<
-WXApiDelegate
->
-{
-    enum WXScene _scene;
-}
+
+@property (nonatomic,assign) enum WXScene scene;
+
+
+- (id)initOperationWithContent:(NSString *)content
+         andImageSupportSwitch:(BOOL)yesOrNo
+                      andScene:(enum WXScene)scene;
 
 @end

@@ -49,6 +49,29 @@ UNION ALL                                                                   \
 SELECT *,'identifier_2_favorite' as identifier_favorite                     \
     FROM lineInfo WHERE identifier_2_favorite = 1"
 
+#define SELECT_LINE_LIST_WITH_LINENAME                                      \
+@"SELECT * FROM lineInfo                                                    \
+   WHERE lineName like ?"
+
+#define SELECT_LINE_LIST_WITH_STATIONNAME                                   \
+@"SELECT * FROM lineInfo                                                    \
+   WHERE lineId in                                                          \
+        ( SELECT lineId FROM stationInfo WHERE stationName like ? )         \
+"
+
+#define SELECT_LINE_LIST_WITH_STATIONS                                      \
+@"SELECT * FROM lineInfo                                                    \
+   WHERE lineId IN                                                          \
+    ( SELECT lineId FROM stationInfo s1, stationInfo s2                     \
+       WHERE s1.lineId = s2.lineId AND                                      \
+            (                                                               \
+                (s1.stationName like ? AND s2.stationName like ?)           \
+                OR                                                          \
+                (s2.stationName like ? AND s1.stationName like ?)           \
+            )                                                               \
+    )                                                                       \
+"
+
 
 @interface LineDao : NSObject
 
@@ -70,5 +93,13 @@ SELECT *,'identifier_2_favorite' as identifier_favorite                     \
                andIdentifier:(NSString*)identifier;
 
 + (NSMutableArray*)getAllFavorites;
+
+//for query
++ (NSMutableArray*)queryLineWithLineName:(NSString*)lineName;
+
++ (NSMutableArray*)queryLineWithStationName:(NSString*)stationName;
+
++ (NSMutableArray*)queryLineWithStartStation:(NSString*)sStationName
+                               andEndStation:(NSString*)eStationName;
 
 @end

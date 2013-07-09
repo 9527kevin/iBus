@@ -57,7 +57,11 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     self.tableView.delegate=self;
     self.tableView.folderDelegate=self;
     self.tableView.rowHeight=60.0f;
-	self.dataSource=[LineDao getLineList];
+    
+    if (!self.dataSource) {
+        self.dataSource=[LineDao getLineList];
+    }
+	
     [self.tableView reloadData];
     
 //    [self fetchStationInfoAsync];

@@ -24,6 +24,7 @@
 - (void)dealloc
 {
     [_operationQueueCenter release],_operationQueueCenter=nil;
+    
     [super dealloc];
 }
 
@@ -39,7 +40,6 @@
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController=self.revealCtrller;
-    // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     
     [self configDefaultUIAppearance];
