@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		32D5BB778C5B43F0B93FBB59 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C779380FAA884B0BB973B9B8 /* libPods.a */; };
+		77060811178E51F400464E13 /* popWindow.png in Resources */ = {isa = PBXBuildFile; fileRef = 77060810178E51F400464E13 /* popWindow.png */; };
+		77060813178E988700464E13 /* lineListGuide.png in Resources */ = {isa = PBXBuildFile; fileRef = 77060812178E988700464E13 /* lineListGuide.png */; };
 		7715B5501751FD82002B4487 /* LineDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B54F1751FD82002B4487 /* LineDao.m */; };
 		7715B55417520B07002B4487 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B55317520B07002B4487 /* DBHelper.m */; };
 		771A3E881762DD6D000EBB44 /* stationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 771A3E871762DD6D000EBB44 /* stationMarker.png */; };
@@ -79,6 +81,8 @@
 		7767F2D0177D7D45002B46C9 /* aboutBtnBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 7767F2CE177D7D45002B46C9 /* aboutBtnBG.png */; };
 		776B4820176F0EA200475EE5 /* refreshBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 776B481F176F0EA200475EE5 /* refreshBtn.png */; };
 		776EB85A1781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 776EB8591781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a */; };
+		776EDC0F178D578100BAC375 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 776EDC0E178D578100BAC375 /* UIImage+Utility.m */; };
+		776EDC13178D5C0A00BAC375 /* searchBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 776EDC12178D5C0A00BAC375 /* searchBtn.png */; };
 		776FDD131777DB890058595E /* iBusTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 776FDD121777DB890058595E /* iBusTool.m */; };
 		776FDD171777E1EA0058595E /* ChinesePinYinAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 776FDD161777E1EA0058595E /* ChinesePinYinAddress.m */; };
 		776FDD1B1777EDC30058595E /* deleteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 776FDD1A1777EDC30058595E /* deleteBtn.png */; };
@@ -135,6 +139,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77060810178E51F400464E13 /* popWindow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popWindow.png; sourceTree = "<group>"; };
+		77060812178E988700464E13 /* lineListGuide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineListGuide.png; sourceTree = "<group>"; };
 		7715B54E1751FD82002B4487 /* LineDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDao.h; sourceTree = "<group>"; };
 		7715B54F1751FD82002B4487 /* LineDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDao.m; sourceTree = "<group>"; };
 		7715B5511752004F002B4487 /* CREATE_SQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREATE_SQL.h; sourceTree = "<group>"; };
@@ -236,6 +242,9 @@
 		7767F2CE177D7D45002B46C9 /* aboutBtnBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutBtnBG.png; sourceTree = "<group>"; };
 		776B481F176F0EA200475EE5 /* refreshBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshBtn.png; sourceTree = "<group>"; };
 		776EB8591781706700CCF0A0 /* libWeChatSDK_armv7_armv7s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK_armv7_armv7s.a; sourceTree = "<group>"; };
+		776EDC0D178D578100BAC375 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
+		776EDC0E178D578100BAC375 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
+		776EDC12178D5C0A00BAC375 /* searchBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBtn.png; sourceTree = "<group>"; };
 		776FDD111777DB890058595E /* iBusTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iBusTool.h; sourceTree = "<group>"; };
 		776FDD121777DB890058595E /* iBusTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iBusTool.m; sourceTree = "<group>"; };
 		776FDD151777E1EA0058595E /* ChinesePinYinAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChinesePinYinAddress.h; sourceTree = "<group>"; };
@@ -464,6 +473,8 @@
 				772342F41775986C004496F2 /* UIControl+BlockKits.m */,
 				776FDD24177857330058595E /* ExtensionMethods.h */,
 				776FDD25177857330058595E /* ExtensionMethods.m */,
+				776EDC0D178D578100BAC375 /* UIImage+Utility.h */,
+				776EDC0E178D578100BAC375 /* UIImage+Utility.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -770,6 +781,9 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				77060812178E988700464E13 /* lineListGuide.png */,
+				77060810178E51F400464E13 /* popWindow.png */,
+				776EDC12178D5C0A00BAC375 /* searchBtn.png */,
 				7733EBE4177EFAFA007C67A1 /* busStation.png */,
 				7733EBDE177EA32A007C67A1 /* checked.png */,
 				7733EBDF177EA32A007C67A1 /* unchecked.png */,
@@ -956,6 +970,9 @@
 				774C36051782B72400809466 /* terrain.png in Resources */,
 				774C360B1782D01A00809466 /* marker_car.png in Resources */,
 				77330FC1178BA5220070D091 /* defaultThemeColor.png in Resources */,
+				776EDC13178D5C0A00BAC375 /* searchBtn.png in Resources */,
+				77060811178E51F400464E13 /* popWindow.png in Resources */,
+				77060813178E988700464E13 /* lineListGuide.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1064,7 @@
 				776FDD201778147F0058595E /* ShareToSinaWeiboOperation.m in Sources */,
 				776FDD23177814960058595E /* ShareToWeixinOperation.m in Sources */,
 				776FDD26177857330058595E /* ExtensionMethods.m in Sources */,
+				776EDC0F178D578100BAC375 /* UIImage+Utility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

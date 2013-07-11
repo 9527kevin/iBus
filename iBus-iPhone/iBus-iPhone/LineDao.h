@@ -62,7 +62,7 @@ SELECT *,'identifier_2_favorite' as identifier_favorite                     \
 #define SELECT_LINE_LIST_WITH_STATIONS                                      \
 @"SELECT * FROM lineInfo                                                    \
    WHERE lineId IN                                                          \
-    ( SELECT lineId FROM stationInfo s1, stationInfo s2                     \
+    ( SELECT s1.lineId FROM stationInfo s1, stationInfo s2                     \
        WHERE s1.lineId = s2.lineId AND                                      \
             (                                                               \
                 (s1.stationName like ? AND s2.stationName like ?)           \

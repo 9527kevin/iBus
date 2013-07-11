@@ -44,12 +44,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if (self.isSetting) {
-        [self initNavLeftBackButton];
-    }else{
-        [self initNavigationController];
-    }
+    [self initNavLeftBackButton];
     
     self.tableView=[[[UIFolderTableView alloc] initWithFrame:Default_TableView_Frame style:UITableViewStylePlain] autorelease];
     [self.view addSubview:self.tableView];

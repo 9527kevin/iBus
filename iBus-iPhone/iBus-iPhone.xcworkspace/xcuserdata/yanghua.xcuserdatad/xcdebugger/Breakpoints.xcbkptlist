@@ -20,13 +20,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iBus-iPhone/LineDao.m"
-         timestampString = "395053246.730591"
+         filePath = "iBus-iPhone/ShareToWeixinOperation.m"
+         timestampString = "395233690.253323"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "202"
-         endingLineNumber = "202"
-         landmarkName = "+queryLineWithLineName:"
+         startingLineNumber = "52"
+         endingLineNumber = "52"
+         landmarkName = "-main"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

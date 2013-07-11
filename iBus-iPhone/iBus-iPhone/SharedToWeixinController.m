@@ -27,6 +27,14 @@
 {
     super.delegate=self;
     [super viewDidLoad];
+    
+    //不支持照片分享到朋友圈
+    if (self.scene==WXSceneTimeline) {
+        self.checkboxBtn.hidden=YES;
+        self.imgTipLbl.hidden=YES;
+        self.imageSwitch=NO;
+    }
+    
     self.atBtn.hidden=YES;                              //hidden "@" button
 	self.navigationItem.title=@"分享到微信";
     [WXApi registerApp:WX_AppID];

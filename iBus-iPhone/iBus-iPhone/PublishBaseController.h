@@ -84,6 +84,8 @@ UIActionSheetDelegate
 @property (nonatomic,retain) NSMutableArray         *followedList;
 
 @property (nonatomic,retain) UIButton               *atBtn;
+@property (nonatomic,retain) UIButton               *checkboxBtn;
+@property (nonatomic,retain) ClickableLabel         *imgTipLbl;
 
 @property (nonatomic,assign) BOOL                   imageSwitch;
 

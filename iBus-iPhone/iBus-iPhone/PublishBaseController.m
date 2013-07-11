@@ -35,7 +35,7 @@ typedef enum{
 
 @property (nonatomic,assign) ACTION_TYPE            currentActionType;
 
-@property (nonatomic,retain) UIButton               *checkboxBtn;
+
 
 
 @end
@@ -203,14 +203,14 @@ typedef enum{
     [self.toolbarView addSubview:self.checkboxBtn];
     
     //tip lbl
-    ClickableLabel *imgTipLbl=[[[ClickableLabel alloc] initWithFrame:Imgtip_Label_Frame] autorelease];
-    imgTipLbl.text=@"附带应用二维码图片";
-    imgTipLbl.font=[UIFont systemFontOfSize:Imgtip_Label_FontSize];
-    imgTipLbl.textColor=[UIColor grayColor];
-    imgTipLbl.backgroundColor=[UIColor clearColor];
-    imgTipLbl.tag=TAG_CLICKED_LABEL_IMGSWITCH;
-    [imgTipLbl setLblDelegate:self];
-    [self.toolbarView addSubview:imgTipLbl];
+    _imgTipLbl=[[[ClickableLabel alloc] initWithFrame:Imgtip_Label_Frame] autorelease];
+    self.imgTipLbl.text=@"附带应用二维码图片";
+    self.imgTipLbl.font=[UIFont systemFontOfSize:Imgtip_Label_FontSize];
+    self.imgTipLbl.textColor=[UIColor grayColor];
+    self.imgTipLbl.backgroundColor=[UIColor clearColor];
+    self.imgTipLbl.tag=TAG_CLICKED_LABEL_IMGSWITCH;
+    [self.imgTipLbl setLblDelegate:self];
+    [self.toolbarView addSubview:self.imgTipLbl];
     
 }
 
