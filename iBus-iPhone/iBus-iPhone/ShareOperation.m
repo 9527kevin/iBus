@@ -16,6 +16,19 @@
     [super dealloc];
 }
 
+- (id)init{
+    if (self=[super init]) {
+        _content=@"";
+        _imageSupportSwitch=NO;
+        
+        _completed=NO;
+        _canceledAfterError=NO;
+        [self initMTStatusBarOverlay];
+    }
+    
+    return self;
+}
+
 - (id)initOperationWithContent:(NSString*)content
          andImageSupportSwitch:(BOOL)yesOrNo{
     

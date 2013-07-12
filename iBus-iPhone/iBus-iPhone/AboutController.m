@@ -115,7 +115,9 @@
                                                   delegate:self
                                          cancelButtonTitle:@"取消"
                                     destructiveButtonTitle:nil
-                                         otherButtonTitles:@"分享到新浪微博", nil];
+                                         otherButtonTitles: @"分享到新浪微博",
+                                                            @"分享给微信好友",
+                                                            @"分享到微信朋友圈", nil];
     [self.view addSubview:self.shareActionSheet];
 }
 
@@ -172,17 +174,26 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     ShareController *shareCtrller=nil;
     switch (buttonIndex) {
-        case 0:
+        case 0:                                         //新浪微博
         {
             shareCtrller=[[[SharedToSinaWeiboController alloc] init] autorelease];
         }
             break;
             
-        case 1:
+        case 1:                                         //微信好友
         {
-            
+            SharedToWeixinController *tmpCtrller=[[[SharedToWeixinController alloc] init] autorelease];
+            tmpCtrller.scene=WXSceneSession;
+            shareCtrller =tmpCtrller;
         }
             break;
+            
+        case 2:                                         //微信朋友圈
+        {
+            SharedToWeixinController *tmpCtrller=[[[SharedToWeixinController alloc] init] autorelease];
+            tmpCtrller.scene=WXSceneTimeline;
+            shareCtrller =tmpCtrller;
+        }
             
         default:
             break;
@@ -190,7 +201,9 @@
     
     if (shareCtrller) {
         UINavigationController *shareNavCtrller=[[[UINavigationController alloc] initWithRootViewController:shareCtrller] autorelease];
-        [self.navigationController presentViewController:shareNavCtrller animated:YES completion:nil];
+        [self.navigationController presentViewController:shareNavCtrller
+                                                animated:YES
+                                              completion:nil];
     }
 }
 

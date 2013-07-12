@@ -7,7 +7,16 @@
 //
 
 #import "ShareOperation.h"
+#import "WXApi.h"
+#import "SNSApiOAuthConst.h"
 
 @interface ShareToWeixinOperation : ShareOperation
+
+@property (nonatomic,assign) enum WXScene scene;
+
+
+- (id)initOperationWithContent:(NSString *)content
+         andImageSupportSwitch:(BOOL)yesOrNo
+                      andScene:(enum WXScene)scene;
 
 @end

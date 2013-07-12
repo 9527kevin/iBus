@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MenuContainerController.h"
-//#import "BusQueryController.h"
+#import "BusQueryController.h"
 #import "LineListController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "Appirater.h"
@@ -24,6 +24,7 @@
 - (void)dealloc
 {
     [_operationQueueCenter release],_operationQueueCenter=nil;
+    
     [super dealloc];
 }
 
@@ -39,7 +40,6 @@
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController=self.revealCtrller;
-    // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     
     [self configDefaultUIAppearance];
@@ -140,13 +140,13 @@
     MenuContainerController *menuContaonerCtrller=[[[MenuContainerController alloc] init] autorelease];
     
     //front controller
-//    BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
-//    UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
+    BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
+    UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
     
-    LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
-    UINavigationController *lineListNavCtrller=[[[UINavigationController alloc] initWithRootViewController:lineListCtrller] autorelease];
+//    LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+//    UINavigationController *lineListNavCtrller=[[[UINavigationController alloc] initWithRootViewController:lineListCtrller] autorelease];
     
-    _revealCtrller = [PKRevealController revealControllerWithFrontViewController:lineListNavCtrller
+    _revealCtrller = [PKRevealController revealControllerWithFrontViewController:busQueryNavCtrller
                                                               leftViewController:menuContaonerCtrller
                                                                          options:options];
 

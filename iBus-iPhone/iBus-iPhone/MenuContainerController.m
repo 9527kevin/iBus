@@ -11,7 +11,7 @@
 #import "BasicDataOperation.h"
 #import "LineDao.h"
 #import "ConfigCategoryDao.h"
-//#import "BusQueryController.h"
+#import "BusQueryController.h"
 #import "LineListController.h"
 #import "SettingController.h"
 #import "AboutController.h"
@@ -232,8 +232,9 @@
     switch (tag) {
         case TAG_BUSQUERY:
         {
-            LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
-            navCtrller=[[[UINavigationController alloc] initWithRootViewController:lineListCtrller] autorelease];
+//            LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
+            BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
+            navCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
         }
             break;
             

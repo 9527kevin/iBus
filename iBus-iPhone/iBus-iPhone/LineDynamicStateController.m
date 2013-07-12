@@ -107,7 +107,6 @@
 
 #pragma mark - private methods -
 - (void)initNavRightBarButton{
-    //right bar button item
     UIButton *refreshBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [refreshBtn  setBackgroundImage:[UIImage imageNamed:@"refreshBtn.png"] forState:UIControlStateNormal];
     refreshBtn.frame=CGRectMake(0, 0, 30.0f, 30.0f);

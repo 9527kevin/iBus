@@ -15,9 +15,4 @@
 @property (nonatomic,retain) NSMutableArray     *dataSource;
 @property (nonatomic,retain) UIFolderTableView  *tableView;
 
-/*
- 是否设置界面的调用
- */
-@property (nonatomic,assign) Boolean            isSetting;
-
 @end

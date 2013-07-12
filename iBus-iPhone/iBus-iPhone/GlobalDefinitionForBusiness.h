@@ -47,8 +47,6 @@ http://www.baidu.com
 #define Setting_Key_RefreshFrequency    @"刷新频率"
 
 /******************************Messages*******************************/
-#define Notification_Of_LineList        @"Notification_Of_LineList"
-
 #define Notification_For_AtSomebody     @"Notification_For_AtSomebody"
 
 #define Notification_For_Favorited      @"Notification_For_Favorited"

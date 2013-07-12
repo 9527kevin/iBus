@@ -112,11 +112,9 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     NSString *itemKey=[((NSMutableDictionary*)self.dataSource[sectionKey][indexPath.row]) allKeys][0];
     if ([itemKey isEqualToString:Setting_Key_DefaultLine]) {
         LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
-        lineListCtrller.isSetting=YES;
         [self.navigationController pushViewController:lineListCtrller animated:YES];
     }else if ([itemKey isEqualToString:Setting_Key_FollowStation]){
         LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
-        lineListCtrller.isSetting=YES;
         [self.navigationController pushViewController:lineListCtrller animated:YES];
     }else if([itemKey isEqualToString:Setting_Key_RefreshFrequency]){
         RefreshFrequencyController *refreshFrequencyCtrller=[[[RefreshFrequencyController alloc] init] autorelease];

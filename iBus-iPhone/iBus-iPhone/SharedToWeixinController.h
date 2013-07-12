@@ -7,7 +7,14 @@
 //
 
 #import "ShareController.h"
+#import "WXApi.h"
+#import "SNSApiOAuthConst.h"
 
 @interface SharedToWeixinController : ShareController
+<
+WXApiDelegate
+>
+
+@property (nonatomic,assign) enum WXScene scene;
 
 @end

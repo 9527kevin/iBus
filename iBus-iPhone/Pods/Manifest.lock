@@ -70,6 +70,7 @@ PODS:
     - Nimbus/Core
   - PKRevealController (1.0b2)
   - Reachability (3.1.0)
+  - SIAlertView (1.2)
   - SinaWeibo (0.0.1):
     - JSONKit
   - SVProgressHUD (0.9)
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - MTStatusBarOverlay
   - Nimbus
   - PKRevealController
+  - SIAlertView
   - SinaWeibo
   - SVProgressHUD
 
@@ -96,6 +98,7 @@ SPEC CHECKSUMS:
   Nimbus: 3cab0289af9fab0674a95c0d161c223bd47697c6
   PKRevealController: 631e6a3db833a0c660203c2dba0963109549ec8a
   Reachability: ba94ecd4eaa037be3d0588b38956672588530c5b
+  SIAlertView: fd188f66278761f4ff069f517c3deb2be16ecdcc
   SinaWeibo: d7cb18c0b5880a95c1b203842ab8dfdd0da106dc
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
 

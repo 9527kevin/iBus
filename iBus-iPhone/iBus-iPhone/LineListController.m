@@ -44,12 +44,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if (self.isSetting) {
-        [self initNavLeftBackButton];
-    }else{
-        [self initNavigationController];
-    }
+    [self initNavLeftBackButton];
     
     self.tableView=[[[UIFolderTableView alloc] initWithFrame:Default_TableView_Frame style:UITableViewStylePlain] autorelease];
     [self.view addSubview:self.tableView];
@@ -57,7 +52,11 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     self.tableView.delegate=self;
     self.tableView.folderDelegate=self;
     self.tableView.rowHeight=60.0f;
-	self.dataSource=[LineDao getLineList];
+    
+    if (!self.dataSource) {
+        self.dataSource=[LineDao getLineList];
+    }
+	
     [self.tableView reloadData];
     
 //    [self fetchStationInfoAsync];
