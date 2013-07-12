@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		32D5BB778C5B43F0B93FBB59 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C779380FAA884B0BB973B9B8 /* libPods.a */; };
 		77060811178E51F400464E13 /* popWindow.png in Resources */ = {isa = PBXBuildFile; fileRef = 77060810178E51F400464E13 /* popWindow.png */; };
-		77060813178E988700464E13 /* lineListGuide.png in Resources */ = {isa = PBXBuildFile; fileRef = 77060812178E988700464E13 /* lineListGuide.png */; };
 		7715B5501751FD82002B4487 /* LineDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B54F1751FD82002B4487 /* LineDao.m */; };
 		7715B55417520B07002B4487 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7715B55317520B07002B4487 /* DBHelper.m */; };
 		771A3E881762DD6D000EBB44 /* stationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 771A3E871762DD6D000EBB44 /* stationMarker.png */; };
@@ -37,6 +36,7 @@
 		772A63491755F08500FBF5E6 /* UpAccessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A63451755F08500FBF5E6 /* UpAccessory@2x.png */; };
 		772A634F1756181A00FBF5E6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A634E1756181A00FBF5E6 /* map.png */; };
 		772A6352175618EB00FBF5E6 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A6351175618EB00FBF5E6 /* friends.png */; };
+		772B1A1F17900D960085387C /* lineListGuide.png in Resources */ = {isa = PBXBuildFile; fileRef = 772B1A1E17900D960085387C /* lineListGuide.png */; };
 		77330FC1178BA5220070D091 /* defaultThemeColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 77330FC0178BA5220070D091 /* defaultThemeColor.png */; };
 		7733EBD7177E7623007C67A1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7733EBD6177E7623007C67A1 /* MessageUI.framework */; };
 		7733EBE0177EA32A007C67A1 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 7733EBDE177EA32A007C67A1 /* checked.png */; };
@@ -140,7 +140,6 @@
 
 /* Begin PBXFileReference section */
 		77060810178E51F400464E13 /* popWindow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popWindow.png; sourceTree = "<group>"; };
-		77060812178E988700464E13 /* lineListGuide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineListGuide.png; sourceTree = "<group>"; };
 		7715B54E1751FD82002B4487 /* LineDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDao.h; sourceTree = "<group>"; };
 		7715B54F1751FD82002B4487 /* LineDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDao.m; sourceTree = "<group>"; };
 		7715B5511752004F002B4487 /* CREATE_SQL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CREATE_SQL.h; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 		772A63451755F08500FBF5E6 /* UpAccessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UpAccessory@2x.png"; sourceTree = "<group>"; };
 		772A634E1756181A00FBF5E6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		772A6351175618EB00FBF5E6 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		772B1A1E17900D960085387C /* lineListGuide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineListGuide.png; sourceTree = "<group>"; };
 		77330FC0178BA5220070D091 /* defaultThemeColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultThemeColor.png; sourceTree = "<group>"; };
 		7733EBD6177E7623007C67A1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7733EBDE177EA32A007C67A1 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
@@ -781,7 +781,7 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				77060812178E988700464E13 /* lineListGuide.png */,
+				772B1A1E17900D960085387C /* lineListGuide.png */,
 				77060810178E51F400464E13 /* popWindow.png */,
 				776EDC12178D5C0A00BAC375 /* searchBtn.png */,
 				7733EBE4177EFAFA007C67A1 /* busStation.png */,
@@ -972,7 +972,7 @@
 				77330FC1178BA5220070D091 /* defaultThemeColor.png in Resources */,
 				776EDC13178D5C0A00BAC375 /* searchBtn.png in Resources */,
 				77060811178E51F400464E13 /* popWindow.png in Resources */,
-				77060813178E988700464E13 /* lineListGuide.png in Resources */,
+				772B1A1F17900D960085387C /* lineListGuide.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
