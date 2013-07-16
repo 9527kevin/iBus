@@ -4,11 +4,11 @@ This is a iPhone client provides common bus service. <br />
 
 Now the service it provides  can only be available for users who are in **Jiangning** Nanjing China.
 
-> iOS Support: **iOS 5.1 +**
+> iOS Support: **iOS 6.1 +**
 
 > iPhone Support: **iPhone 3GS / 4 / 4S / 5 / 5S or 6(maybe)** 
 
-> iTunes Store:  **it is waiting for review, hold on!!!**
+> iTunes Store:  **[江宁掌上公交](https://itunes.apple.com/cn/app/jiang-ning-zhang-shang-gong/id667862622?mt=8)**
 
 
 ##screen shot
@@ -40,7 +40,7 @@ Now the service it provides  can only be available for users who are in **Jiangn
 
 * group 2
 
-![ng2](http://img.my.csdn.net/uploads/201307/08/1373294777_7137.png)
+![ng2](http://img.my.csdn.net/uploads/201307/16/1373936909_8013.png)
 
 * group 3
 
