@@ -33,4 +33,6 @@
     #import "Reachability.h"
     #import "ChinesePinYinAddress.h"
     #import "ExtensionMethods.h"
+    #import "UIImage+Utility.h"
+    #import "ThemeManager.h"
 #endif

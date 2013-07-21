@@ -72,4 +72,13 @@
  */
 + (UIColor*)colorFromRGBHexString:(NSString*)colorString;
 
+/**
+ *	@brief	parse color from color string (r,g,b)
+ *
+ *	@param 	colorStr 	color string (pattern:r,g,b)
+ *
+ *	@return	a instance of UIColor
+ */
++ (UIColor*)parseColorFromStr:(NSString*)colorStr;
+
 @end

@@ -41,9 +41,7 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController=self.revealCtrller;
     [self.window makeKeyAndVisible];
-    
-    [self configDefaultUIAppearance];
-    
+        
     [GMSServices provideAPIKey:@"AIzaSyBwalOcYe-ONBL-TmFN66_sXncJFfI-T8A"];
     
     [NSThread sleepForTimeInterval:2];
@@ -96,12 +94,12 @@
     return YES;
 }
 
-- (void)configDefaultUIAppearance{
-//    [[UINavigationBar appearance] setTintColor:Default_Theme_Color];
-    UIImage *toolBarBackgroundImg=[UIImage imageNamed:@"NavBarBG.png"];
-    
-    [[UINavigationBar appearance] setBackgroundImage:toolBarBackgroundImg forBarMetrics:UIBarMetricsDefault];
-}
+//- (void)configDefaultUIAppearance{
+////    [[UINavigationBar appearance] setTintColor:Default_Theme_Color];
+//    UIImage *toolBarBackgroundImg=[UIImage imageNamed:@"NavBarBG.png"];
+//    
+//    [[UINavigationBar appearance] setBackgroundImage:toolBarBackgroundImg forBarMetrics:UIBarMetricsDefault];
+//}
 
 - (void)initDatabase{
     if (!fileExistsAtPath(PATH_OF_DB)) {
@@ -143,12 +141,10 @@
     BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
     UINavigationController *busQueryNavCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
     
-//    LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
-//    UINavigationController *lineListNavCtrller=[[[UINavigationController alloc] initWithRootViewController:lineListCtrller] autorelease];
-    
     _revealCtrller = [PKRevealController revealControllerWithFrontViewController:busQueryNavCtrller
                                                               leftViewController:menuContaonerCtrller
                                                                          options:options];
+    self.revealCtrller.revealPanGestureRecognizer.enabled=NO;
 
 }
 

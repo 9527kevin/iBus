@@ -8,10 +8,12 @@
 
 #import "RefreshFrequencyController.h"
 #import "ConfigItemDao.h"
+#import "NYSliderPopover.h"
 
 @interface RefreshFrequencyController ()
 
-@property (nonatomic,retain) UITextField *frequencyTxtview;
+@property (nonatomic,retain) UITextField            *frequencyTxtview;
+@property (nonatomic,retain) NYSliderPopover        *frequencySlider;
 
 @end
 
@@ -19,6 +21,7 @@
 
 - (void)dealloc{
     [_frequencyTxtview release],_frequencyTxtview=nil;
+    [_frequencySlider release],_frequencySlider=nil;
     
     [super dealloc];
 }
@@ -47,17 +50,26 @@
     unitLbl.font=[UIFont systemFontOfSize:Frequency_Label_FontSize];
     [self.view addSubview:unitLbl];
     
-    //tip imageview and label
-//    UIImageView *tipImgView=[[[UIImageView alloc] initWithFrame:Tip_ImgView_Frame] autorelease];
-//    tipImgView.image=[UIImage imageNamed:@"tipImg.png"];
-//    [self.view addSubview:tipImgView];
-    
     UILabel *tipLbl=[[[UILabel alloc] initWithFrame:Tip_Label_Frame] autorelease];
     tipLbl.text=@"提示:请输入10-60之间的任一整数";
     tipLbl.textColor=[UIColor grayColor];
     tipLbl.backgroundColor=[UIColor clearColor];
     tipLbl.font=[UIFont systemFontOfSize:Tip_Label_FontSize];
     [self.view addSubview:tipLbl];
+    
+    
+#warning TODO:UISlider
+    _frequencySlider=[[NYSliderPopover alloc] initWithFrame:Frequency_Slider_Frame];
+    [self.frequencySlider setThumbTintColor:[ThemeManager sharedInstance].themeColor];
+    [self.frequencySlider setMinimumTrackTintColor:[ThemeManager sharedInstance].themeColor];
+    [self.frequencySlider addTarget:self
+                        action:@selector(sliderValueChanged:)
+              forControlEvents:UIControlEventValueChanged];
+    self.frequencySlider.minimumValue=10;
+    self.frequencySlider.maximumValue=60;
+    
+    
+    [self.view addSubview:self.frequencySlider];
 }
 
 - (void)viewDidLoad
@@ -67,6 +79,7 @@
     [self initNavRightBarButton];
     self.navigationItem.title=@"设置-刷新频率";
     self.frequencyTxtview.text=[ConfigItemDao get:Setting_Key_RefreshFrequency];
+    self.frequencySlider.value=[[ConfigItemDao get:Setting_Key_RefreshFrequency] intValue];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,32 +104,45 @@
 }
 
 - (void)handleRightBarButton:(id)sender{
-    //validate
-    NSString *numStr=self.frequencyTxtview.text;
-    if (!numStr || [numStr isEqualToString:@""]) {
-        [SVProgressHUD showErrorWithStatus:@"刷新频率不能为空"];
-        return;
-    }
-    int num=[numStr intValue];
-    if (num<10 || num>60) {
-        [SVProgressHUD showErrorWithStatus:@"刷新频率超出正常范围"];
-        return;
-    }
+//    //validate
+//    NSString *numStr=self.frequencyTxtview.text;
+//    if (!numStr || [numStr isEqualToString:@""]) {
+//        [SVProgressHUD showErrorWithStatus:@"刷新频率不能为空"];
+//        return;
+//    }
+//    int num=[numStr intValue];
+//    if (num<10 || num>60) {
+//        [SVProgressHUD showErrorWithStatus:@"刷新频率超出正常范围"];
+//        return;
+//    }
     
     //update
-    
     NSMutableDictionary *keyValuePair=[NSMutableDictionary dictionary];
-    [keyValuePair setObject:Setting_Key_RefreshFrequency forKey:@"itemKey"];
-    [keyValuePair setObject:numStr forKey:@"itemValue"];
+    [keyValuePair setObject:Setting_Key_RefreshFrequency
+                     forKey:@"itemKey"];
+    [keyValuePair setObject:[NSNumber numberWithInt:(int)self.frequencySlider.value]
+                     forKey:@"itemValue"];
     [ConfigItemDao set:keyValuePair];
     
     NSString *newValue=[ConfigItemDao get:Setting_Key_RefreshFrequency];
-    if (newValue && [newValue isEqualToString:numStr]) {
+    if (newValue && ([newValue intValue] == (int)self.frequencySlider.value)) {
         [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         [self.frequencyTxtview resignFirstResponder];
     }else{
         [SVProgressHUD showErrorWithStatus:@"修改失败"];
     }
+}
+
+#pragma mark - frequency slider -
+- (void)sliderValueChanged:(id)sender
+{
+    [self updateSliderPopoverText];
+}
+
+- (void)updateSliderPopoverText
+{
+    self.frequencySlider.popover.textLabel.text = [NSString stringWithFormat:@"%.2f",
+                                                        self.frequencySlider.value];
 }
 
 #pragma mark - UITextField delegate -

@@ -194,5 +194,23 @@
 	return nil;
 }
 
++ (UIColor*)parseColorFromStr:(NSString*)colorStr{
+    if (!colorStr || [colorStr isEqualToString:@""]) {
+        return nil;
+    }
+    
+    NSArray *rgbParts=[colorStr split:@","];
+    
+    if (rgbParts.count==3) {
+        int p1=[rgbParts[0] intValue];
+        int p2=[rgbParts[1] intValue];
+        int p3=[rgbParts[2] intValue];
+        
+        return ColorWithRGBA(p1, p2, p3, 1.0f);
+    }
+    
+    return [UIColor whiteColor];
+}
+
 @end
 

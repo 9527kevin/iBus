@@ -34,7 +34,9 @@
  *	@return	generated image
  */
 + (UIImage *)imageWithPureColor:(UIColor *)tintColor
-                        andSize:(CGSize)imgSize
-;
+                        andSize:(CGSize)imgSize;
+
+
+
 
 @end

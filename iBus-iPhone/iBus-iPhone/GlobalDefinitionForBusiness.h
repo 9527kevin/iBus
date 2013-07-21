@@ -38,8 +38,12 @@ http://www.baidu.com
 #define Url_LineFuzzyQuery                                                  \
 @"http://112.2.33.3:7106//BusAndroid/android.do?command=toHcSta&sstation=%@&estation=%@"
 
+//TODO:待抓取
+#define Url_StaticDetailOfLine                                              \
+@"http://112.2.33.3:7106/pubserverT/bus/busQuery.do?command=lr&a=461"
+
+
 #define Dynamic_Station_List_Count      8
-//刷新频率
 
 //setting keys
 #define Setting_Key_DefaultLine         @"默认线路"
@@ -52,3 +56,5 @@ http://www.baidu.com
 #define Notification_For_Favorited      @"Notification_For_Favorited"
 
 #define Notification_For_URL_Scheme     @"Notification_For_URL_Scheme"
+
+#define Notification_For_ThemeChanged   @"Notification_For_ThemeChanged"

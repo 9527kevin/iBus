@@ -10,7 +10,6 @@
 #import "LineListController.h"
 #import "SIAlertView.h"
 #import "LineDao.h"
-#import "UIImage+Utility.h"
 
 typedef enum {
     BY_LINENAME         =0,
@@ -44,16 +43,19 @@ typedef enum {
     
     _querySelectBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     
-    UIImage *popWindowImg=[UIImage imageNamed:@"popWindow.png"];
-    UIImage *bgImg=[UIImage imageWithPureColor:Default_Theme_Color
-                                       andSize:QuerySelect_Button_Frame.size];
+//    UIImage *popWindowImg=[UIImage imageNamed:@"popWindow.png"];
+//    UIImage *bgImg=[UIImage imageWithPureColor:self.themeColor
+//                                       andSize:QuerySelect_Button_Frame.size];
+//    
+//    UIImage *megredQuerySelectBGImg=[UIImage mergeImage:popWindowImg
+//                                                toImage:bgImg
+//                                                 atZoom:CGRectMake(3, 7, 20, 20)];
+//    
+//    //test
+//    NSData *imgData=UIImagePNGRepresentation(megredQuerySelectBGImg);
+//    [imgData writeToFile:[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"ghi.png"] atomically:YES];
     
-    UIImage *megredQuerySelectBGImg=[UIImage mergeImage:popWindowImg
-                                                toImage:bgImg
-                                                 atZoom:CGRectMake(3, 7, 20, 20)];
     
-    [self.querySelectBtn setBackgroundImage:megredQuerySelectBGImg
-                                   forState:UIControlStateNormal];
     self.querySelectBtn.frame=QuerySelect_Button_Frame;
     [self.querySelectBtn setTitle:@"按线路" forState:UIControlStateNormal];
     [self.querySelectBtn.titleLabel setFont:[UIFont systemFontOfSize:QuerySelect_Button_FontSize]];
@@ -74,17 +76,21 @@ typedef enum {
     
     _queryBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     
-    UIImage *incomingImg=[UIImage imageNamed:@"searchBtn.png"];
+//    UIImage *incomingImg=[UIImage imageNamed:@"searchBtn.png"];
+//    
+//    UIImage *originalImg=[UIImage imageWithPureColor:self.themeColor
+//                                             andSize:Query_Button_Frame.size];
+//        
+//    UIImage *mergedBackgroundImg=[UIImage mergeImage:incomingImg
+//                                             toImage:originalImg
+//                                              atZoom:CGRectMake(70, 5, 25, 25)];
+//    
+//    NSData *imgData_1=UIImagePNGRepresentation(mergedBackgroundImg);
+//    [imgData_1 writeToFile:[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"lmn.png"] atomically:YES];
+//    NSLog(@"aaaaaaaa%@",PATH_OF_DOCUMENT);
     
-    UIImage *originalImg=[UIImage imageWithPureColor:Default_Theme_Color
-                                             andSize:Query_Button_Frame.size];
     
-    UIImage *mergedBackgroundImg=[UIImage mergeImage:incomingImg
-                                             toImage:originalImg
-                                              atZoom:CGRectMake(70, 5, 25, 25)];
     
-    [self.queryBtn setBackgroundImage:mergedBackgroundImg
-                             forState:UIControlStateNormal];
     self.queryBtn.frame=Query_Button_Frame;
     [self.queryBtn setTitle:@"查  询" forState:UIControlStateNormal];
     [self.queryBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:Query_Button_FontSize]];
@@ -110,6 +116,17 @@ typedef enum {
                         "示例三：从安德门 去 托乐 (支持模糊查询)\n";
     
     [self.view addSubview:self.tipLbl];
+}
+
+- (void)configUIAppearance{
+    [self.querySelectBtn setBackgroundImage:[[ThemeManager sharedInstance]  themedImageWithName:@"choseBtn.png"]
+                                   forState:UIControlStateNormal];
+    
+    [self.queryBtn setBackgroundImage:[[ThemeManager sharedInstance]  themedImageWithName:@"searchBtn.png"]
+                             forState:UIControlStateNormal];
+    
+    
+    [super configUIAppearance];
 }
 
 - (void)viewDidLoad

@@ -39,7 +39,7 @@
         [message setDescription:@"江宁掌上公交"];
         
         WXImageObject *ext = [WXImageObject object];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"AppAd" ofType:@"png"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"AppAd" ofType:@"jpeg"];
         ext.imageData = [NSData dataWithContentsOfFile:filePath] ;
         
         message.mediaObject = ext;

@@ -59,6 +59,7 @@
     [super viewDidLoad];
     [self.revealController setMinimumWidth:180.0f maximumWidth:180.0f forViewController:self];
     _menuCtrllerDic=[[NSMutableDictionary alloc] init];
+    self.revealController.revealPanGestureRecognizer.enabled=NO;
 	[self registerTapEventsForMenuItems];
     
     //fetch basic data
@@ -215,6 +216,7 @@
     self.tagOfCurrentSelectedMenuItem=gestureRecognizer.view.tag;
     
     self.revealController.frontViewController=[self getMenuCtrllerFromMenuCtrllerDictionaryWithTag:gestureRecognizer.view.tag];
+    self.revealController.revealPanGestureRecognizer.enabled=NO;
     
     [self.revealController showViewController:self.revealController.frontViewController];
 }
@@ -232,7 +234,6 @@
     switch (tag) {
         case TAG_BUSQUERY:
         {
-//            LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
             BusQueryController *busQueryCtrller=[[[BusQueryController alloc] init] autorelease];
             navCtrller=[[[UINavigationController alloc] initWithRootViewController:busQueryCtrller] autorelease];
         }

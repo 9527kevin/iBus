@@ -54,6 +54,7 @@ NO)
 
 
 #define fileExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x]
+#define dirExistsAtPath(x) [[NSFileManager defaultManager] fileExistsAtPath:x isDirectory:NULL]
 #define removerItemAtPath(x) [[NSFileManager defaultManager] removeItemAtPath:x error:nil]
 #define appDelegateObj [[UIApplication sharedApplication] delegate]
 
@@ -79,4 +80,4 @@ NO)
 
 #define URL_OF_AppStore @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@"
 
-#define Resource_OF_AdImage @"AppAd.png"
+#define Resource_OF_AdImage @"AppAd.jpeg"

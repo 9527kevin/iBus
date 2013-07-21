@@ -76,6 +76,14 @@
                                     )
 
 
+#define Frequency_Slider_Frame CGRectMake   (                               \
+                                            Frequency_TextView_Origin_X,    \
+                                            200,                            \
+                                            Frequency_TextView_Width,       \
+                                            40.0f                           \
+                                            )
+
+
 
 @interface RefreshFrequencyController : BaseController
 <

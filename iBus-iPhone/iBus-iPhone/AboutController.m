@@ -16,7 +16,11 @@
 
 @interface AboutController ()
 
-@property (nonatomic,retain) UIActionSheet *shareActionSheet;
+@property (nonatomic,retain) UIActionSheet              *shareActionSheet;
+@property (nonatomic,retain) NIAttributedLabel          *appNameLbl;
+@property (nonatomic,retain) UIButton                   *commentBtn;
+@property (nonatomic,retain) UIButton                   *shareBtn;
+@property (nonatomic,retain) UIButton                   *developerBtn;
 
 @end
 
@@ -24,6 +28,7 @@
 
 - (void)dealloc{
     [_shareActionSheet release],_shareActionSheet=nil;
+    [_appNameLbl release],_appNameLbl=nil;
     
     [super dealloc];
 }
@@ -38,59 +43,48 @@
     [self.view addSubview:appIconImgView];
     
     //app name
-    NIAttributedLabel *appNameLbl=[[[NIAttributedLabel alloc] initWithFrame:AppName_Label_Frame] autorelease];
-    appNameLbl.text=@"iBus For iPhone";
-    appNameLbl.font=[UIFont systemFontOfSize:AppName_Label_FontSize];
-    appNameLbl.strokeWidth=3.0f;
-    appNameLbl.backgroundColor=[UIColor clearColor];
-    appNameLbl.strokeColor=Default_Theme_Color;
+    _appNameLbl=[[NIAttributedLabel alloc] initWithFrame:AppName_Label_Frame];
+    self.appNameLbl.text=@"iBus For iPhone";
+    self.appNameLbl.font=[UIFont systemFontOfSize:AppName_Label_FontSize];
+    self.appNameLbl.strokeWidth=3.0f;
+    self.appNameLbl.backgroundColor=[UIColor clearColor];
     
-    [self.view addSubview:appNameLbl];
+    [self.view addSubview:self.appNameLbl];
     
     //关于开发者
-    UIButton *developerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [developerBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG.png"] forState:UIControlStateNormal];
-    [developerBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG_hl.png"] forState:UIControlStateHighlighted];
-    developerBtn.frame=Developer_Button_Frame;
-    [developerBtn setTitle:@"  关于开发者" forState:UIControlStateNormal];
-    developerBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
-    developerBtn.tag=Tag_Developer;
-    [developerBtn addTarget:self
+    _developerBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.developerBtn.frame=Developer_Button_Frame;
+    [self.developerBtn setTitle:@"  关于开发者" forState:UIControlStateNormal];
+    self.developerBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    self.developerBtn.tag=Tag_Developer;
+    [self.developerBtn addTarget:self
                      action:@selector(Buttons_TouchUpInside:)
            forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:developerBtn];
+    [self.view addSubview:self.developerBtn];
     
     //分享
-    UIButton *shareBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [shareBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG.png"]
-                        forState:UIControlStateNormal];
-    [shareBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG_hl.png"]
-                        forState:UIControlStateHighlighted];
-    shareBtn.frame=Share_Button_Frame;
-    [shareBtn setTitle:@"  与更多的人分享"
+    _shareBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.shareBtn.frame=Share_Button_Frame;
+    [self.shareBtn setTitle:@"  与更多的人分享"
               forState:UIControlStateNormal];
-    shareBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
-    shareBtn.tag=Tag_Share;
-    [shareBtn addTarget:self
+    self.shareBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    self.shareBtn.tag=Tag_Share;
+    [self.shareBtn addTarget:self
                  action:@selector(Buttons_TouchUpInside:)
        forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shareBtn];
+    [self.view addSubview:self.shareBtn];
     
     //评分
-    UIButton *commentBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [commentBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG.png"]
-                          forState:UIControlStateNormal];
-    [commentBtn setBackgroundImage:[UIImage imageNamed:@"aboutBtnBG_hl.png"]
-                          forState:UIControlStateHighlighted];
-    commentBtn.frame=Comment_Button_Frame;
-    [commentBtn setTitle:@"  给应用评分"
+    _commentBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.commentBtn.frame=Comment_Button_Frame;
+    [self.commentBtn setTitle:@"  给应用评分"
                 forState:UIControlStateNormal];
-    commentBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
-    commentBtn.tag=Tag_Comment;
-    [commentBtn addTarget:self
+    self.commentBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    self.commentBtn.tag=Tag_Comment;
+    [self.commentBtn addTarget:self
                  action:@selector(Buttons_TouchUpInside:)
        forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:commentBtn];
+    [self.view addSubview:self.commentBtn];
     
     //copy right and reserved
     UILabel *copyRightLbl=[[[UILabel alloc] initWithFrame:CopyRight_Label_Frame] autorelease];
@@ -121,6 +115,24 @@
     [self.view addSubview:self.shareActionSheet];
 }
 
+- (void)configUIAppearance{
+    self.appNameLbl.strokeColor=[[ThemeManager sharedInstance] themeColor];
+    [self.commentBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG.png"]
+                               forState:UIControlStateNormal];
+    [self.commentBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG_hl.png"]
+                               forState:UIControlStateHighlighted];
+    
+    [self.shareBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG.png"]
+                             forState:UIControlStateNormal];
+    [self.shareBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG_hl.png"]
+                             forState:UIControlStateHighlighted];
+    
+    [self.developerBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG.png"] forState:UIControlStateNormal];
+    [self.developerBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG_hl.png"] forState:UIControlStateHighlighted];
+    
+    [super configUIAppearance];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -137,7 +149,7 @@
 #pragma mark - private methods -
 - (void)Buttons_TouchUpInside:(id)sender{
     UIButton *btn=(UIButton*)sender;
-    btn.backgroundColor=Default_Theme_Color;
+    btn.backgroundColor=[[ThemeManager sharedInstance] themeColor];
     UIViewController *viewController=nil;
     switch (btn.tag) {
             

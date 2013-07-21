@@ -139,7 +139,10 @@ static NSString *cellForFavoriteIdentifier = @"cellForFavoriteIdentifier";
  about notification
  */
 - (void)registerNotification{
-    [Default_Notification_Center addObserver:self selector:@selector(handleNotification:) name:Notification_For_Favorited object:nil];
+    [Default_Notification_Center addObserver:self
+                                    selector:@selector(handleNotification:)
+                                        name:Notification_For_Favorited
+                                      object:nil];
 }
 
 - (void)handleNotification:(NSNotification*)notification{

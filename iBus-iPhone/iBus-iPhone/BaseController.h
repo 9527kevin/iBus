@@ -22,4 +22,6 @@
 
 - (void)revealToggle:(id)sender;
 
+- (void)configUIAppearance;
+
 @end

@@ -14,19 +14,37 @@
 
 @implementation BaseController
 
+- (void)dealloc{
+    [Default_Notification_Center removeObserver:self
+                                           name:Notification_For_ThemeChanged
+                                         object:nil];
+    
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
+    return self;
+}
+
+
+- (id)init{
+    if (self=[super init]) {
+        
+    }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self configUIAppearance];
+    [self registerThemeChangedNotification];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,6 +120,27 @@
     {
         [self.navigationController.revealController showViewController:self.navigationController.revealController.leftViewController];
     }
+}
+
+- (void)configUIAppearance{
+    NSLog(@"base config ui ");
+}
+
+#pragma mark - theme changed notification -
+- (void)registerThemeChangedNotification{
+    [Default_Notification_Center addObserver:self
+                                    selector:@selector(handleThemeChangedNotification:)
+                                        name:Notification_For_ThemeChanged
+                                      object:nil];
+}
+
+- (void)handleThemeChangedNotification:(NSNotification*)notification{
+    UIImage *navBarBackgroundImg=[[[ThemeManager sharedInstance] themedImageWithName:@"themeColor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 0.0f, 1.0f, 1.0f)
+                                                                                                                       resizingMode:UIImageResizingModeTile];
+    
+    [self.navigationController.navigationBar setBackgroundImage:navBarBackgroundImg
+                                                  forBarMetrics:UIBarMetricsDefault];
+    [self configUIAppearance];
 }
 
 @end
