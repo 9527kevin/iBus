@@ -47,7 +47,9 @@
     [dbQueue inDatabase:^(FMDatabase *db) {
         @try {
             FMResultSet *resultSet=nil;
-            NSString *sql=[identifier isEqualToString:@"1"]?SELECT_STATIONLIST_ORDER_ASC_SQL:SELECT_STATIONLIST_ORDER_DESC_SQL;
+            NSString *sql=[identifier isEqualToString:@"1"] ?
+                            SELECT_STATIONLIST_ORDER_ASC_SQL:
+                            SELECT_STATIONLIST_ORDER_DESC_SQL;
             resultSet=[db executeQuery:sql,lineId];
             while ([resultSet next]) {
                 [stationArray addObject:[NSMutableDictionary dictionaryWithDictionary:
