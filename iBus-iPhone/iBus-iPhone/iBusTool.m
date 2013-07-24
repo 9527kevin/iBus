@@ -325,6 +325,16 @@ static iBusTool *_global;
 	}
 }
 
+/*
+ *去除UITableView多余cell的分隔线
+ */
+- (void)setExtraCellLineHidden:(UITableView *)tableView{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+    [view release];
+}
+
 #pragma mark - text -
 /**
  *判断一个字符是不是中文

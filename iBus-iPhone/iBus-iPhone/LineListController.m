@@ -58,6 +58,7 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     }
 	
     [self.tableView reloadData];
+    [GlobalInstance setExtraCellLineHidden:self.tableView];
     
 //    [self fetchStationInfoAsync];
 }

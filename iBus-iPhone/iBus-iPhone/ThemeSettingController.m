@@ -45,8 +45,6 @@
         }
     }
     
-    
-    
 }
 
 - (void)viewDidLoad
@@ -76,23 +74,34 @@
     
     UIColor *currentThemeColor=[UIColor parseColorFromStr:((NSDictionary*)self.themeArr[index]).allValues[0]];
     [btn setBackgroundColor:currentThemeColor];
+    [btn setBackgroundImage:[UIImage imageNamed:@"cover.png"] forState:UIControlStateSelected];
+    
+    
     btn.tag=Tag_Start_Index + index;
     
     [btn addTarget:self
             action:@selector(themeButton_touchUpIndise:)
   forControlEvents:UIControlEventTouchUpInside];
     
+    //if current theme
+    if ([[ThemeManager sharedInstance].themeName isEqualToString:
+         ((NSDictionary*)self.themeArr[index]).allKeys[0]]) {
+        btn.selected=YES;
+        self.currentSelectedIndex=index;
+    }
+    
     return btn;
 }
 
 - (void)themeButton_touchUpIndise:(id)sender{
-#warning TODO:unselect
     //unselect
-    
+    UIButton *lastSelectedBtn=(UIButton*)[self.view viewWithTag:(Tag_Start_Index  + self.currentSelectedIndex)];
+    lastSelectedBtn.selected=NO;
     
     //select
     UIButton *selectedBtn=(UIButton*)sender;
     self.currentSelectedIndex=selectedBtn.tag - Tag_Start_Index;
+    selectedBtn.selected=YES;
     
     [[ThemeManager sharedInstance] changeTheme:((NSDictionary*)self.themeArr[self.currentSelectedIndex]).allKeys[0]];
     

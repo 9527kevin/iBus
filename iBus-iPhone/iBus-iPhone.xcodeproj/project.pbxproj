@@ -37,7 +37,6 @@
 		772A6352175618EB00FBF5E6 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 772A6351175618EB00FBF5E6 /* friends.png */; };
 		772B1A1F17900D960085387C /* lineListGuide.png in Resources */ = {isa = PBXBuildFile; fileRef = 772B1A1E17900D960085387C /* lineListGuide.png */; };
 		772FEFDC179A92B500AD51E2 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 772FEFDB179A92B500AD51E2 /* ThemeManager.m */; };
-		77330FC1178BA5220070D091 /* defaultThemeColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 77330FC0178BA5220070D091 /* defaultThemeColor.png */; };
 		7733EBD7177E7623007C67A1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7733EBD6177E7623007C67A1 /* MessageUI.framework */; };
 		7733EBE0177EA32A007C67A1 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 7733EBDE177EA32A007C67A1 /* checked.png */; };
 		7733EBE1177EA32A007C67A1 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 7733EBDF177EA32A007C67A1 /* unchecked.png */; };
@@ -64,6 +63,7 @@
 		77450B67176FF34B003BE8D1 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77450B66176FF34B003BE8D1 /* backBtn.png */; };
 		77450B69176FFDD9003BE8D1 /* menuBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77450B68176FFDD9003BE8D1 /* menuBtn.png */; };
 		77450B751770538C003BE8D1 /* submitBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77450B741770538C003BE8D1 /* submitBtn.png */; };
+		7748099F179FA23600164E24 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 7748099E179FA23600164E24 /* cover.png */; };
 		774C36001782B72400809466 /* hybrid_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FA1782B72400809466 /* hybrid_hl.png */; };
 		774C36011782B72400809466 /* hybrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FB1782B72400809466 /* hybrid.png */; };
 		774C36021782B72400809466 /* normal_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 774C35FC1782B72400809466 /* normal_hl.png */; };
@@ -189,7 +189,6 @@
 		772B1A1E17900D960085387C /* lineListGuide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineListGuide.png; sourceTree = "<group>"; };
 		772FEFDA179A92B500AD51E2 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
 		772FEFDB179A92B500AD51E2 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
-		77330FC0178BA5220070D091 /* defaultThemeColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultThemeColor.png; sourceTree = "<group>"; };
 		7733EBD6177E7623007C67A1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7733EBDE177EA32A007C67A1 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		7733EBDF177EA32A007C67A1 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
@@ -229,6 +228,7 @@
 		77450B66176FF34B003BE8D1 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		77450B68176FFDD9003BE8D1 /* menuBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBtn.png; sourceTree = "<group>"; };
 		77450B741770538C003BE8D1 /* submitBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submitBtn.png; sourceTree = "<group>"; };
+		7748099E179FA23600164E24 /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
 		774C35FA1782B72400809466 /* hybrid_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hybrid_hl.png; sourceTree = "<group>"; };
 		774C35FB1782B72400809466 /* hybrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hybrid.png; sourceTree = "<group>"; };
 		774C35FC1782B72400809466 /* normal_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_hl.png; sourceTree = "<group>"; };
@@ -458,22 +458,6 @@
 				772A634E1756181A00FBF5E6 /* map.png */,
 			);
 			name = menuItem;
-			sourceTree = "<group>";
-		};
-		77330FBE178BA5080070D091 /* Themes */ = {
-			isa = PBXGroup;
-			children = (
-				77330FBF178BA5120070D091 /* default */,
-			);
-			name = Themes;
-			sourceTree = "<group>";
-		};
-		77330FBF178BA5120070D091 /* default */ = {
-			isa = PBXGroup;
-			children = (
-				77330FC0178BA5220070D091 /* defaultThemeColor.png */,
-			);
-			name = default;
 			sourceTree = "<group>";
 		};
 		77330FC2178BBAB90070D091 /* Extensions */ = {
@@ -724,7 +708,6 @@
 			isa = PBXGroup;
 			children = (
 				7777363C1793E95D00DA2BCB /* ThemeResource */,
-				77330FBE178BA5080070D091 /* Themes */,
 				774C35F91782B70400809466 /* mapImages */,
 				778024D3176DA11900B6C06E /* others */,
 				772A6350175618CB00FBF5E6 /* menuItem */,
@@ -797,6 +780,7 @@
 		77DEB62F17549A4700FD4594 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7748099E179FA23600164E24 /* cover.png */,
 				772B1A1E17900D960085387C /* lineListGuide.png */,
 				77060810178E51F400464E13 /* popWindow.png */,
 				776EDC12178D5C0A00BAC375 /* searchBtn.png */,
@@ -990,13 +974,13 @@
 				774C36041782B72400809466 /* terrain_hl.png in Resources */,
 				774C36051782B72400809466 /* terrain.png in Resources */,
 				774C360B1782D01A00809466 /* marker_car.png in Resources */,
-				77330FC1178BA5220070D091 /* defaultThemeColor.png in Resources */,
 				776EDC13178D5C0A00BAC375 /* searchBtn.png in Resources */,
 				77060811178E51F400464E13 /* popWindow.png in Resources */,
 				772B1A1F17900D960085387C /* lineListGuide.png in Resources */,
 				7777363D1793E95D00DA2BCB /* ThemeResource in Resources */,
 				773C55271794DC5A00C6847B /* AppAd.jpeg in Resources */,
 				77F2226C1798F150006D378B /* BusDB.db in Resources */,
+				7748099F179FA23600164E24 /* cover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

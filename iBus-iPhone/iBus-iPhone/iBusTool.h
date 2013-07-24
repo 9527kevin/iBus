@@ -118,6 +118,9 @@
 //移除子视图
 -(void)removeChilds:(UIView*)view;
 
+//去除UITableView多余cell的分隔线
+- (void)setExtraCellLineHidden:(UITableView *)tableView;
+
 #pragma mark - text -
 //判断一个字符是不是中文
 - (BOOL)isChineseCharacter:(int)charWithASII;

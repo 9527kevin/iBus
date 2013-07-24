@@ -43,18 +43,6 @@ typedef enum {
     
     _querySelectBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     
-//    UIImage *popWindowImg=[UIImage imageNamed:@"popWindow.png"];
-//    UIImage *bgImg=[UIImage imageWithPureColor:self.themeColor
-//                                       andSize:QuerySelect_Button_Frame.size];
-//    
-//    UIImage *megredQuerySelectBGImg=[UIImage mergeImage:popWindowImg
-//                                                toImage:bgImg
-//                                                 atZoom:CGRectMake(3, 7, 20, 20)];
-//    
-//    //test
-//    NSData *imgData=UIImagePNGRepresentation(megredQuerySelectBGImg);
-//    [imgData writeToFile:[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"ghi.png"] atomically:YES];
-    
     
     self.querySelectBtn.frame=QuerySelect_Button_Frame;
     [self.querySelectBtn setTitle:@"按线路" forState:UIControlStateNormal];
@@ -75,21 +63,6 @@ typedef enum {
     [self.view addSubview:self.queryTxtField];
     
     _queryBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    
-//    UIImage *incomingImg=[UIImage imageNamed:@"searchBtn.png"];
-//    
-//    UIImage *originalImg=[UIImage imageWithPureColor:self.themeColor
-//                                             andSize:Query_Button_Frame.size];
-//        
-//    UIImage *mergedBackgroundImg=[UIImage mergeImage:incomingImg
-//                                             toImage:originalImg
-//                                              atZoom:CGRectMake(70, 5, 25, 25)];
-//    
-//    NSData *imgData_1=UIImagePNGRepresentation(mergedBackgroundImg);
-//    [imgData_1 writeToFile:[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"lmn.png"] atomically:YES];
-//    NSLog(@"aaaaaaaa%@",PATH_OF_DOCUMENT);
-    
-    
     
     self.queryBtn.frame=Query_Button_Frame;
     [self.queryBtn setTitle:@"查  询" forState:UIControlStateNormal];
@@ -132,7 +105,7 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.queryType=BY_LINENAME;             //init query type
+    self.queryType=BY_LINENAME;                         //init query type
     self.queryTxtField.placeholder=@"请输入线路名称";
 	[self initNavigationController];
     [self initNavRightBarButton];
@@ -194,18 +167,6 @@ typedef enum {
     alertView.titleColor = [UIColor grayColor];
     alertView.buttonFont = [UIFont boldSystemFontOfSize:15];
     alertView.transitionStyle = SIAlertViewTransitionStyleDropDown;
-    
-    alertView.willShowHandler = ^(SIAlertView *alertView) {
-    };
-    
-    alertView.didShowHandler = ^(SIAlertView *alertView) {
-    };
-    
-    alertView.willDismissHandler = ^(SIAlertView *alertView) {
-    };
-    
-    alertView.didDismissHandler = ^(SIAlertView *alertView) {
-    };
     
     [alertView show];
     
@@ -272,7 +233,7 @@ typedef enum {
     
     //replace multi backspace to single backspace
     NSArray* words = [queryStr componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceCharacterSet]];
-    if (words.count!=2) {
+    if (words.count!=2 || [words[0] isEqualToString:@""] || [words[1] isEqualToString:@""]) {
         [SVProgressHUD showErrorWithStatus:@"查询信息不合法!"];
         return;
     }
