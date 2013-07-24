@@ -13,7 +13,7 @@
 #define Unit_Label_Width                        40.0f
 #define Unit_Label_Height                       30.0f
 #define Unit_Label_Origin_X (MainWidth - Unit_Label_Width - 5.0f)
-#define Unit_Label_Origin_Y                     43.0f
+#define Unit_Label_Origin_Y                     41.0f
 #define Unit_Label_Frame CGRectMake (                                       \
                                         Unit_Label_Origin_X,                \
                                         Unit_Label_Origin_Y,                \
@@ -25,7 +25,7 @@
 
 #define Frequency_Slider_Origin_X               10.0f
 #define Frequency_Slider_Origin_Y               40.0f
-#define Frequency_Slider_Width  MainWidth - Unit_Label_Width - 15.0f
+#define Frequency_Slider_Width  MainWidth - Unit_Label_Width - 17.0f
 #define Frequency_Slider_Height                 30.0f
 
 #define Frequency_Slider_Frame CGRectMake   (                               \

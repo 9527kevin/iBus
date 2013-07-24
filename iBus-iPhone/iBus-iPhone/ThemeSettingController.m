@@ -94,6 +94,7 @@
 }
 
 - (void)themeButton_touchUpIndise:(id)sender{
+#warning TODO:第二个主题缺少两个图片
     //unselect
     UIButton *lastSelectedBtn=(UIButton*)[self.view viewWithTag:(Tag_Start_Index  + self.currentSelectedIndex)];
     lastSelectedBtn.selected=NO;
