@@ -12,6 +12,9 @@
 #import "LineListController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "Appirater.h"
+#import "YISplashScreen.h"
+#import "YISplashScreenAnimation.h"
+#import "ConfigItemDao.h"
 
 @interface AppDelegate ()
 
@@ -30,13 +33,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self configAppirater];
-    
     [self initDatabase];
+    
+    // show splash
+    [YISplashScreen show];
+    
+    [self configAppirater];
     
     [self initOperationQueueCenter];
 
     [self initPKRevealControllers];
+    
+    [self fadeOutLaunch];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController=self.revealCtrller;
@@ -44,9 +52,10 @@
         
     [GMSServices provideAPIKey:@"AIzaSyBwalOcYe-ONBL-TmFN66_sXncJFfI-T8A"];
     
-    [NSThread sleepForTimeInterval:2];
     
     [Appirater appLaunched:YES];
+    
+    
     
     return YES;
 }
@@ -94,13 +103,6 @@
     return YES;
 }
 
-//- (void)configDefaultUIAppearance{
-////    [[UINavigationBar appearance] setTintColor:Default_Theme_Color];
-//    UIImage *toolBarBackgroundImg=[UIImage imageNamed:@"NavBarBG.png"];
-//    
-//    [[UINavigationBar appearance] setBackgroundImage:toolBarBackgroundImg forBarMetrics:UIBarMetricsDefault];
-//}
-
 - (void)initDatabase{
     if (!fileExistsAtPath(PATH_OF_DB)) {
         
@@ -120,6 +122,7 @@
         
         NSData *dbFile = [NSData dataWithContentsOfFile:resourcePath];
         [[NSFileManager defaultManager] createFileAtPath:PATH_OF_DB contents:dbFile attributes:nil];
+        NSLog(@"%@",PATH_OF_DB);
     }
 
 }
@@ -155,6 +158,43 @@
     [Appirater setSignificantEventsUntilPrompt:-1];
     [Appirater setTimeBeforeReminding:7];
     [Appirater setDebug:NO];
+}
+
+- (void)fadeOutLaunch{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                            withAnimation:UIStatusBarAnimationFade];
+    
+    NSLog(@"%@",[ConfigItemDao get:@"启动动画"]);
+    int animationFlag=[[ConfigItemDao get:@"启动动画"] intValue];
+    
+    switch (animationFlag) {
+        case 0:
+        {
+            [YISplashScreen hideWithAnimations:^(CALayer* splashLayer) {
+                [CATransaction begin];
+                [CATransaction setAnimationDuration:0.7];
+                [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+                [CATransaction setCompletionBlock:^{
+                    
+                }];
+                
+                splashLayer.position = CGPointMake(splashLayer.position.x, splashLayer.position.y-splashLayer.bounds.size.height);
+                
+                [CATransaction commit];
+            }];
+        }
+            break;
+        
+        case 1:
+            [YISplashScreen hide];
+            break;
+            
+        case 2:
+        {
+            [YISplashScreen hideWithAnimations:[YISplashScreenAnimation pageCurlAnimation]];
+        }
+            break;
+    }
 }
 
 

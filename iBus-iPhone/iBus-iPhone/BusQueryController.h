@@ -40,7 +40,7 @@
 #define Query_Button_Origin_X  (MainWidth - Query_Button_Width) / 2
 
 #define Query_Button_Origin_Y \
-(QuerySelect_Button_Origin_X + QuerySelect_Button_Height + 30.0f)
+(QuerySelect_Button_Origin_X + QuerySelect_Button_Height + 40.0f)
 
 #define Query_Button_Width                      280.0f
 #define Query_Button_Height                     35.0f

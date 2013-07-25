@@ -13,6 +13,7 @@
 #import "LineListController.h"
 #import "RefreshFrequencyController.h"
 #import "ThemeSettingController.h"
+#import "LaunchSettingController.h"
 
 static NSString *settingTableViewCell = @"settingTableViewCell";
 
@@ -119,10 +120,16 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
         [self.navigationController pushViewController:lineListCtrller animated:YES];
     }else if([itemKey isEqualToString:Setting_Key_RefreshFrequency]){
         RefreshFrequencyController *refreshFrequencyCtrller=[[[RefreshFrequencyController alloc] init] autorelease];
-        [self.navigationController pushViewController:refreshFrequencyCtrller animated:YES];
+        [self.navigationController pushViewController:refreshFrequencyCtrller
+                                             animated:YES];
     }else if ([itemKey isEqualToString:@"主题设置"]){
         ThemeSettingController *themeSettingCtrller=[[[ThemeSettingController alloc] init] autorelease];
-        [self.navigationController pushViewController:themeSettingCtrller animated:YES];
+        [self.navigationController pushViewController:themeSettingCtrller
+                                             animated:YES];
+    }else if([itemKey isEqualToString:@"启动动画"]){
+        LaunchSettingController *launchSettingCtrller=[[[LaunchSettingController alloc] init] autorelease];
+        [self.navigationController pushViewController:launchSettingCtrller
+                                             animated:YES];
     }
     
     // After one second, unselect the current row

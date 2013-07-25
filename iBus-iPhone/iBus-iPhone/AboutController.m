@@ -119,16 +119,11 @@
     self.appNameLbl.strokeColor=[[ThemeManager sharedInstance] themeColor];
     [self.commentBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG.png"]
                                forState:UIControlStateNormal];
-    [self.commentBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG_hl.png"]
-                               forState:UIControlStateHighlighted];
     
     [self.shareBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG.png"]
                              forState:UIControlStateNormal];
-    [self.shareBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG_hl.png"]
-                             forState:UIControlStateHighlighted];
     
     [self.developerBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG.png"] forState:UIControlStateNormal];
-    [self.developerBtn setBackgroundImage:[[ThemeManager sharedInstance] themedImageWithName:@"aboutBtnBG_hl.png"] forState:UIControlStateHighlighted];
     
     [super configUIAppearance];
 }
