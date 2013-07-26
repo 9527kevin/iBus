@@ -50,12 +50,12 @@
                 result=@{
                          @"lineId": [resultSet stringForColumn:@"lineId"],
                          @"lineName":[resultSet stringForColumn:@"lineName"],
-                         @"firstTime":[resultSet stringForColumn:@"firstTime"],
-                         @"lastTime" : [resultSet stringForColumn:@"lastTime"],
                          @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
                          @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
                          @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
-                         @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                         @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                         @"identifier_1_schedule":[resultSet stringForColumn:@"identifier_1_schedule"],
+                         @"identifier_2_schedule" : [resultSet stringForColumn:@"identifier_2_schedule"]
                          };
             }
         }
@@ -81,12 +81,12 @@
                  @{
                  @"lineId": [resultSet stringForColumn:@"lineId"],
                  @"lineName":[resultSet stringForColumn:@"lineName"],
-                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
-                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
                  @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
                  @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
                  @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
-                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                 @"identifier_1_schedule":[resultSet stringForColumn:@"identifier_1_schedule"],
+                 @"identifier_2_schedule" : [resultSet stringForColumn:@"identifier_2_schedule"]
                  }];
             }
         }
@@ -177,13 +177,12 @@
                  @{
                  @"lineId": [resultSet stringForColumn:@"lineId"],
                  @"lineName":[resultSet stringForColumn:@"lineName"],
-                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
-                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
                  @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
                  @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
                  @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
                  @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
-                 @"identifier_favorite":[resultSet stringForColumn:@"identifier_favorite"]
+                 @"identifier_1_schedule":[resultSet stringForColumn:@"identifier_1_schedule"],
+                 @"identifier_2_schedule" : [resultSet stringForColumn:@"identifier_2_schedule"]
                  }];
             }
         }
@@ -210,12 +209,12 @@
                  @{
                  @"lineId": [resultSet stringForColumn:@"lineId"],
                  @"lineName":[resultSet stringForColumn:@"lineName"],
-                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
-                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
                  @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
                  @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
                  @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
-                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                 @"identifier_1_schedule":[resultSet stringForColumn:@"identifier_1_schedule"],
+                 @"identifier_2_schedule" : [resultSet stringForColumn:@"identifier_2_schedule"]
                  }];
             }
         }
@@ -241,12 +240,12 @@
                  @{
                  @"lineId": [resultSet stringForColumn:@"lineId"],
                  @"lineName":[resultSet stringForColumn:@"lineName"],
-                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
-                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
                  @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
                  @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
                  @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
-                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                 @"identifier_1_schedule":[resultSet stringForColumn:@"identifier_1_schedule"],
+                 @"identifier_2_schedule" : [resultSet stringForColumn:@"identifier_2_schedule"]
                  }];
             }
         }
@@ -277,12 +276,12 @@
                  @{
                  @"lineId": [resultSet stringForColumn:@"lineId"],
                  @"lineName":[resultSet stringForColumn:@"lineName"],
-                 @"firstTime":[resultSet stringForColumn:@"firstTime"],
-                 @"lastTime" : [resultSet stringForColumn:@"lastTime"],
                  @"edgeStation_1":[resultSet stringForColumn:@"edgeStation_1"],
                  @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
                  @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
-                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"]
+                 @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                 @"identifier_1_schedule":[resultSet stringForColumn:@"identifier_1_schedule"],
+                 @"identifier_2_schedule" : [resultSet stringForColumn:@"identifier_2_schedule"]
                  }];
             }
         }

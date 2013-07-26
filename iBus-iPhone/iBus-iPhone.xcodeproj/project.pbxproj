@@ -125,6 +125,7 @@
 		77DEB62E175498E700FD4594 /* LineListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DEB62D175498E700FD4594 /* LineListCell.m */; };
 		77DEB63A1754AA3100FD4594 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB6381754AA3100FD4594 /* arrow_left.png */; };
 		77DEB63D1754AB2600FD4594 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB63C1754AB2600FD4594 /* arrow_right.png */; };
+		77E623A917A24FD3003E269F /* BusDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 77E623A817A24FD3003E269F /* BusDB.db */; };
 		77E71A431765DF6500120F92 /* FavoriteListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A421765DF6500120F92 /* FavoriteListController.m */; };
 		77E71A471765DFAD00120F92 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A461765DFAD00120F92 /* SettingController.m */; };
 		77E71A4B1765E41300120F92 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A4A1765E41300120F92 /* AboutController.m */; };
@@ -133,7 +134,6 @@
 		77EEE714179B88D30013784E /* NYSliderPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EEE712179B88D30013784E /* NYSliderPopover.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
 		77F0E3181753276A00F4C748 /* BaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E3171753276A00F4C748 /* BaseOperation.m */; };
 		77F0E31B175327B300F4C748 /* FetchLineInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */; };
-		77F2226C1798F150006D378B /* BusDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 77F2226B1798F150006D378B /* BusDB.db */; };
 		77F2226F17993218006D378B /* ThemeSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F2226E17993218006D378B /* ThemeSettingController.m */; };
 		77FDD8E51761ED8D001E5A77 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FDD8E41761ED8D001E5A77 /* LineDynamicStateController.m */; };
 /* End PBXBuildFile section */
@@ -313,6 +313,7 @@
 		77DEB62D175498E700FD4594 /* LineListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineListCell.m; sourceTree = "<group>"; };
 		77DEB6381754AA3100FD4594 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		77DEB63C1754AB2600FD4594 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
+		77E623A817A24FD3003E269F /* BusDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = BusDB.db; sourceTree = "<group>"; };
 		77E71A411765DF6500120F92 /* FavoriteListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteListController.h; sourceTree = "<group>"; };
 		77E71A421765DF6500120F92 /* FavoriteListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteListController.m; sourceTree = "<group>"; };
 		77E71A451765DFAD00120F92 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
@@ -329,7 +330,6 @@
 		77F0E3171753276A00F4C748 /* BaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOperation.m; sourceTree = "<group>"; };
 		77F0E319175327B300F4C748 /* FetchLineInfoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchLineInfoOperation.h; sourceTree = "<group>"; };
 		77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchLineInfoOperation.m; sourceTree = "<group>"; };
-		77F2226B1798F150006D378B /* BusDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = BusDB.db; sourceTree = "<group>"; };
 		77F2226D17993218006D378B /* ThemeSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeSettingController.h; sourceTree = "<group>"; };
 		77F2226E17993218006D378B /* ThemeSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeSettingController.m; sourceTree = "<group>"; };
 		77FDD8E31761ED8D001E5A77 /* LineDynamicStateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDynamicStateController.h; sourceTree = "<group>"; };
@@ -674,7 +674,7 @@
 		778024D3176DA11900B6C06E /* others */ = {
 			isa = PBXGroup;
 			children = (
-				77F2226B1798F150006D378B /* BusDB.db */,
+				77E623A817A24FD3003E269F /* BusDB.db */,
 				773C55261794DC5A00C6847B /* AppAd.jpeg */,
 				7733EBE6177EFD86007C67A1 /* IconForAbout.png */,
 			);
@@ -975,11 +975,11 @@
 				772B1A1F17900D960085387C /* lineListGuide.png in Resources */,
 				7777363D1793E95D00DA2BCB /* ThemeResource in Resources */,
 				773C55271794DC5A00C6847B /* AppAd.jpeg in Resources */,
-				77F2226C1798F150006D378B /* BusDB.db in Resources */,
 				7748099F179FA23600164E24 /* cover.png in Resources */,
 				7738C73C17A1215000E0C167 /* Default.png in Resources */,
 				7738C73E17A1215600E0C167 /* Default@2x.png in Resources */,
 				7738C74017A1215B00E0C167 /* Default-568h@2x.png in Resources */,
+				77E623A917A24FD3003E269F /* BusDB.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

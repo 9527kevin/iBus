@@ -29,25 +29,25 @@
 @"CREATE TABLE lineInfo (                       \
     lineId text,                                \
     lineName text,                              \
-    firstTime text,                             \
-    lastTime text,                              \
     edgeStation_1 text,                         \
     edgeStation_2 text,                         \
     identifier text,                            \
     identifier_1_favorite integer,              \
     identifier_2_favorite integer,              \
+    identifier_1_schedule text,                 \
+    identifier_2_schedule text                  \
 )"
 
 /*
  lineId                 - 线路编号
  lineName               - 线路名称
- firstTime              - 首班时间
- lastTime               - 尾班时间
  edgeStation_1          - 一端站点
  edgeStation_2          - 另一端站点
  identifier             - 去程/回程标识 （默认全是1,即去程 ，2，表示回程）
  identifier_1_favorite  - 去程线路是否被收藏（1表示收藏，0表示未收藏）【业务无关】
  identifier_2_favorite  - 回程线路是否被收藏（1表示收藏，0表示未收藏）【业务无关】
+ identifier_1_schedule  - 去程规划时间 "06:30-22:00"
+ identifier_2_schedule  - 回程规划时间 "07:20-21:00"
  */
 
 

@@ -42,7 +42,9 @@
                                                            forKey:UITextAttributeFont];
     [self.animationSegment setTitleTextAttributes:attributes
                                          forState:UIControlStateNormal];
-    [self.animationSegment addTarget:self action:@selector(segmentValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.animationSegment addTarget:self
+                              action:@selector(segmentValueChanged:)
+                    forControlEvents:UIControlEventValueChanged];
     
     
     [self.view addSubview:self.animationSegment];

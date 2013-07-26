@@ -21,7 +21,26 @@
 @"DELETE FROM lineInfo "
 
 #define INSERT_LINEINFO_SQL                                                 \
-@"INSERT INTO lineInfo(lineId,lineName,firstTime,lastTime,edgeStation_1,edgeStation_2,identifier,identifier_1_favorite,identifier_2_favorite) VALUES(:lineId,:lineName,:firstTime,:lastTime,:edgeStation_1,:edgeStation_2,:identifier,:identifier_1_favorite,:identifier_2_favorite)"
+@"INSERT INTO lineInfo(                                                     \
+                        lineId,                                             \
+                        lineName,                                           \
+                        edgeStation_1,                                      \
+                        edgeStation_2,                                      \
+                        identifier,                                         \
+                        identifier_1_favorite,                              \
+                        identifier_2_favorite,                              \
+                        identifier_1_schedule,                              \
+                        identifier_2_schedule                               \
+                        ) VALUES(                                           \
+                        :lineId,                                            \
+                        :lineName,                                          \
+                        :edgeStation_1,                                     \
+                        :edgeStation_2,                                     \
+                        :identifier,                                        \
+                        :identifier_1_favorite,                             \
+                        :identifier_2_favorite,                             \
+                        :identifier_1_schedule,                             \
+                        :identifier_2_schedule)"
 
 #define UPDATE_LINEINFO_SQL                                                 \
 @"UPDATE lineInfo SET lineName = ? WHERE lineId = ?"

@@ -124,7 +124,7 @@
         [[NSFileManager defaultManager] createFileAtPath:PATH_OF_DB contents:dbFile attributes:nil];
         NSLog(@"%@",PATH_OF_DB);
     }
-
+    NSLog(@"%@",PATH_OF_DB);
 }
 
 - (void)initOperationQueueCenter{

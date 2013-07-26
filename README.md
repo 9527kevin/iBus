@@ -6,9 +6,12 @@ Now the service it provides  can only be available for users who are in **Jiangn
 
 > iOS Support: **iOS 6.1 +**
 
-> iPhone Support: **iPhone(iPod touch) 3GS / 4 / 4S / 5 / 5S or 6(maybe)** 
+> device Support: **iPhone(iPod touch) 3GS / 4 / 4S / 5 / 5S or 6(maybe)** 
 
 > iTunes Store:  **[江宁掌上公交](https://itunes.apple.com/cn/app/jiang-ning-zhang-shang-gong/id667862622?mt=8)**
+
+> current version: **1.0.2(waiting for review)**
+
 
 
 ##screen shots (version 1.0.0)
@@ -32,7 +35,7 @@ Now the service it provides  can only be available for users who are in **Jiangn
 
 ![g5](http://img.my.csdn.net/uploads/201306/30/1372560584_8863.png)
 
-#version 1.0.1
+##version 1.0.1
 
 * group 1
 
@@ -45,6 +48,24 @@ Now the service it provides  can only be available for users who are in **Jiangn
 * group 3
 
 ![ng3](http://img.my.csdn.net/uploads/201307/08/1373294778_6359.png)
+
+##version 1.0.2(preview)
+
+* group 1
+
+![1.0.2_1](http://img.my.csdn.net/uploads/201307/26/1374835098_5871.png)
+
+* group 2
+
+![1.0.2_2](http://img.my.csdn.net/uploads/201307/26/1374835083_5499.png)
+
+* group 3
+
+![1.0.2_3](http://img.my.csdn.net/uploads/201307/26/1374835109_8978.png)
+
+* group 4
+
+![1.0.2_4](http://img.my.csdn.net/uploads/201307/26/1374835118_2132.png)
 
 
 ##build & test
