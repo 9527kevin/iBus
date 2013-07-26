@@ -93,9 +93,12 @@ ELTableViewController (It's multifunction UITableViewController that I Contribut
 * show the station's location on the Google Map
 * favorite the lines and stations which you want 
 * customize your refresh frequency
-* more advantage ….(will be supported)
 * share to Sina weibo
-* share to Tencent weixin (next step)
+* share to Tencent weixin
+* multi search conditions
+* multi themes and skins
+* several launch animation
+* audio station reporter(scheduled)
 
 ##license
 Copyright (c) 2013 yanghua. All rights reserved.
