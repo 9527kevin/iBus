@@ -7,6 +7,8 @@
 //
 
 #import "iBusTool.h"
+#import "iflyMSC/IFlySynthesizerView.h"
+#import "ConfigItemDao.h"
 
 @implementation iBusTool
 
@@ -346,7 +348,20 @@ static iBusTool *_global;
     return NO;
 }
 
-
+//朗读语音
+- (void)iFlySpeech:(NSString*)text
+         withAppID:(NSString*)appId{
+    BOOL isAudioSwitchOn=[[ConfigItemDao get:@"语音开关"] intValue] == 1 ? YES : NO;
+    if (!isAudioSwitchOn) {
+        return;
+    }
+    
+    NSString *initString = [NSString stringWithFormat:@"appid=%@",appId];
+    IFlySynthesizerView *_iFlySynthesizerView = [[IFlySynthesizerView alloc] initWithOrigin:CGPointMake(0, 0) params:initString];
+    [_iFlySynthesizerView startSpeaking:text];
+    _iFlySynthesizerView.hidden=YES;
+    [_iFlySynthesizerView release];
+}
 
 
 @end

@@ -125,4 +125,9 @@
 //判断一个字符是不是中文
 - (BOOL)isChineseCharacter:(int)charWithASII;
 
+#pragma mark - text to speech -
+//朗读语音
+- (void)iFlySpeech:(NSString*)text
+         withAppID:(NSString*)appId;
+
 @end

@@ -54,3 +54,6 @@
 #define Notification_For_URL_Scheme     @"Notification_For_URL_Scheme"
 
 #define Notification_For_ThemeChanged   @"Notification_For_ThemeChanged"
+
+#define Notification_For_LoadCountDownTimeCallbackCompleted                 \
+@"Notification_For_LoadCountDownTimeCallbackCompleted"

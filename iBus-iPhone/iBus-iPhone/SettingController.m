@@ -14,6 +14,7 @@
 #import "RefreshFrequencyController.h"
 #import "ThemeSettingController.h"
 #import "LaunchSettingController.h"
+#import "AudioSettingController.h"
 
 static NSString *settingTableViewCell = @"settingTableViewCell";
 
@@ -25,6 +26,7 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 
 - (void)dealloc{
     [_dataSource release],_dataSource=nil;
+    [_categoryArray release],_categoryArray=nil;
     
     [super dealloc];
 }
@@ -71,7 +73,7 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
 
 - (void)initDataSource{
     _dataSource = [[NSMutableDictionary alloc] init];
-    _categoryArray=[ConfigCategoryDao getAll];
+    _categoryArray=[[ConfigCategoryDao getAll] retain];
     for (NSDictionary *category in self.categoryArray) {
         NSMutableArray *configItems=[ConfigItemDao getItemWithCategoryId:category[@"categoryId"]];
         self.dataSource[category[@"sectionNo"]]=configItems;
@@ -115,20 +117,29 @@ static NSString *settingTableViewCell = @"settingTableViewCell";
     if ([itemKey isEqualToString:Setting_Key_DefaultLine]) {
         LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
         [self.navigationController pushViewController:lineListCtrller animated:YES];
+        
     }else if ([itemKey isEqualToString:Setting_Key_FollowStation]){
         LineListController *lineListCtrller=[[[LineListController alloc] init] autorelease];
         [self.navigationController pushViewController:lineListCtrller animated:YES];
+        
     }else if([itemKey isEqualToString:Setting_Key_RefreshFrequency]){
         RefreshFrequencyController *refreshFrequencyCtrller=[[[RefreshFrequencyController alloc] init] autorelease];
         [self.navigationController pushViewController:refreshFrequencyCtrller
                                              animated:YES];
+        
     }else if ([itemKey isEqualToString:@"主题设置"]){
         ThemeSettingController *themeSettingCtrller=[[[ThemeSettingController alloc] init] autorelease];
         [self.navigationController pushViewController:themeSettingCtrller
                                              animated:YES];
+        
     }else if([itemKey isEqualToString:@"启动动画"]){
         LaunchSettingController *launchSettingCtrller=[[[LaunchSettingController alloc] init] autorelease];
         [self.navigationController pushViewController:launchSettingCtrller
+                                             animated:YES];
+        
+    }else if([itemKey isEqualToString:@"语音设置"]){
+        AudioSettingController *audioSettingCtrller=[[[AudioSettingController alloc] init] autorelease];
+        [self.navigationController pushViewController:audioSettingCtrller
                                              animated:YES];
     }
     

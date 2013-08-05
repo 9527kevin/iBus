@@ -60,7 +60,6 @@ static ThemeManager                         *_themeManager=nil;
     }
     
     NSString *themePath=[Bundle_Path_Of_ThemeResource stringByAppendingPathComponent:themeName];
-    NSLog(@"------------------->%@",themePath);
     if (dirExistsAtPath(themePath)) {
         self.themePath=themePath;
         
@@ -95,8 +94,9 @@ static ThemeManager                         *_themeManager=nil;
     self.themePath=[Bundle_Path_Of_ThemeResource stringByAppendingPathComponent:self.themeName];
     
     //init UI
-    UIImage *navBarBackgroundImg=[[self themedImageWithName:@"themeColor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 0.0f, 1.0f, 1.0f)
-                                                                                              resizingMode:UIImageResizingModeTile];
+    UIImage *navBarBackgroundImg=[[self themedImageWithName:@"themeColor.png"]
+                                  resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 0.0f, 1.0f, 1.0f)
+                                                resizingMode:UIImageResizingModeTile];
     
     [[UINavigationBar appearance] setBackgroundImage:navBarBackgroundImg
                                        forBarMetrics:UIBarMetricsDefault];

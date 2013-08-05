@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-//the path in the sandbox
-#define Base_Path_Of_ThemeDir                                               \
-[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"Themes"]
-
-#define Bundle_Of_ThemeResource                         @"ThemeResource"
+#define Bundle_Of_ThemeResource                                @"ThemeResource"
 
 //the path in the bundle
 #define Bundle_Path_Of_ThemeResource                                        \
@@ -29,6 +25,5 @@
 - (NSString *)changeTheme:(NSString*)themeName;
 
 - (UIImage*)themedImageWithName:(NSString*)imgName;
-
 
 @end

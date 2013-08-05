@@ -126,6 +126,11 @@
 		77DEB63A1754AA3100FD4594 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB6381754AA3100FD4594 /* arrow_left.png */; };
 		77DEB63D1754AB2600FD4594 /* arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB63C1754AB2600FD4594 /* arrow_right.png */; };
 		77E623A917A24FD3003E269F /* BusDB.db in Resources */ = {isa = PBXBuildFile; fileRef = 77E623A817A24FD3003E269F /* BusDB.db */; };
+		77E623E417A29104003E269F /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E623E317A29104003E269F /* iflyMSC.framework */; };
+		77E623E617A29114003E269F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E623E517A29114003E269F /* SystemConfiguration.framework */; };
+		77E623E817A29125003E269F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E623E717A29125003E269F /* AudioToolbox.framework */; };
+		77E623EA17A29134003E269F /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E623E917A29134003E269F /* libz.1.2.5.dylib */; };
+		77E623EC17A29195003E269F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E623EB17A29195003E269F /* AddressBook.framework */; };
 		77E71A431765DF6500120F92 /* FavoriteListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A421765DF6500120F92 /* FavoriteListController.m */; };
 		77E71A471765DFAD00120F92 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A461765DFAD00120F92 /* SettingController.m */; };
 		77E71A4B1765E41300120F92 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E71A4A1765E41300120F92 /* AboutController.m */; };
@@ -135,6 +140,7 @@
 		77F0E3181753276A00F4C748 /* BaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E3171753276A00F4C748 /* BaseOperation.m */; };
 		77F0E31B175327B300F4C748 /* FetchLineInfoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */; };
 		77F2226F17993218006D378B /* ThemeSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F2226E17993218006D378B /* ThemeSettingController.m */; };
+		77F31D8D17ADFBA900C08749 /* AudioSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F31D8C17ADFBA900C08749 /* AudioSettingController.m */; };
 		77FDD8E51761ED8D001E5A77 /* LineDynamicStateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FDD8E41761ED8D001E5A77 /* LineDynamicStateController.m */; };
 /* End PBXBuildFile section */
 
@@ -314,6 +320,11 @@
 		77DEB6381754AA3100FD4594 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		77DEB63C1754AB2600FD4594 /* arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_right.png; sourceTree = "<group>"; };
 		77E623A817A24FD3003E269F /* BusDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = BusDB.db; sourceTree = "<group>"; };
+		77E623E317A29104003E269F /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = ../../../IOS/iphone_ui_1.036_51e8e0c1/lib/iflyMSC.framework; sourceTree = "<group>"; };
+		77E623E517A29114003E269F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		77E623E717A29125003E269F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		77E623E917A29134003E269F /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		77E623EB17A29195003E269F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		77E71A411765DF6500120F92 /* FavoriteListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteListController.h; sourceTree = "<group>"; };
 		77E71A421765DF6500120F92 /* FavoriteListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteListController.m; sourceTree = "<group>"; };
 		77E71A451765DFAD00120F92 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
@@ -332,6 +343,8 @@
 		77F0E31A175327B300F4C748 /* FetchLineInfoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchLineInfoOperation.m; sourceTree = "<group>"; };
 		77F2226D17993218006D378B /* ThemeSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeSettingController.h; sourceTree = "<group>"; };
 		77F2226E17993218006D378B /* ThemeSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeSettingController.m; sourceTree = "<group>"; };
+		77F31D8B17ADFBA900C08749 /* AudioSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSettingController.h; sourceTree = "<group>"; };
+		77F31D8C17ADFBA900C08749 /* AudioSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSettingController.m; sourceTree = "<group>"; };
 		77FDD8E31761ED8D001E5A77 /* LineDynamicStateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDynamicStateController.h; sourceTree = "<group>"; };
 		77FDD8E41761ED8D001E5A77 /* LineDynamicStateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDynamicStateController.m; sourceTree = "<group>"; };
 		7DD7B459E986410FA3291522 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -343,6 +356,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77E623EC17A29195003E269F /* AddressBook.framework in Frameworks */,
+				77E623EA17A29134003E269F /* libz.1.2.5.dylib in Frameworks */,
+				77E623E817A29125003E269F /* AudioToolbox.framework in Frameworks */,
+				77E623E617A29114003E269F /* SystemConfiguration.framework in Frameworks */,
+				77E623E417A29104003E269F /* iflyMSC.framework in Frameworks */,
 				7733EBD7177E7623007C67A1 /* MessageUI.framework in Frameworks */,
 				77A9A6E91750AFCF00263B54 /* QuartzCore.framework in Frameworks */,
 				77A9A6E71750AF6100263B54 /* CoreGraphics.framework in Frameworks */,
@@ -502,6 +520,11 @@
 		7740B1C81748AFC800D98529 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77E623EB17A29195003E269F /* AddressBook.framework */,
+				77E623E917A29134003E269F /* libz.1.2.5.dylib */,
+				77E623E717A29125003E269F /* AudioToolbox.framework */,
+				77E623E517A29114003E269F /* SystemConfiguration.framework */,
+				77E623E317A29104003E269F /* iflyMSC.framework */,
 				7733EBD6177E7623007C67A1 /* MessageUI.framework */,
 				77A9A6E81750AFCE00263B54 /* QuartzCore.framework */,
 				7740B1C91748AFC800D98529 /* UIKit.framework */,
@@ -585,6 +608,8 @@
 				77F2226E17993218006D378B /* ThemeSettingController.m */,
 				7738C74117A1359F00E0C167 /* LaunchSettingController.h */,
 				7738C74217A1359F00E0C167 /* LaunchSettingController.m */,
+				77F31D8B17ADFBA900C08749 /* AudioSettingController.h */,
+				77F31D8C17ADFBA900C08749 /* AudioSettingController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1079,6 +1104,7 @@
 				7738C72D17A10CF500E0C167 /* YISplashScreen.m in Sources */,
 				7738C72E17A10CF500E0C167 /* YISplashScreenAnimation.m in Sources */,
 				7738C74317A1359F00E0C167 /* LaunchSettingController.m in Sources */,
+				77F31D8D17ADFBA900C08749 /* AudioSettingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,6 +1186,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../IOS/iphone_ui_1.036_51e8e0c1/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBus-iPhone/iBus-iPhone-Prefix.pch";
 				INFOPLIST_FILE = "iBus-iPhone/iBus-iPhone-Info.plist";
@@ -1181,6 +1211,10 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../IOS/iphone_ui_1.036_51e8e0c1/lib\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBus-iPhone/iBus-iPhone-Prefix.pch";
 				INFOPLIST_FILE = "iBus-iPhone/iBus-iPhone-Info.plist";

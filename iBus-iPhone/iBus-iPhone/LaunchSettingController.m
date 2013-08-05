@@ -70,9 +70,9 @@
 #pragma mark - private methods -
 - (void)segmentValueChanged:(UISegmentedControl *)seg{
     int newValue=seg.selectedSegmentIndex;
-    [ConfigItemDao set:[NSMutableDictionary dictionaryWithObjects:
-                                @[@"启动动画",[NSNumber numberWithInt:newValue]]
-                            forKeys:@[@"itemKey",@"itemValue"]]];
+    [ConfigItemDao set:[NSMutableDictionary dictionaryWithObjects:@[@"启动动画",
+                                                    [NSNumber numberWithInt:newValue]]
+                                                          forKeys:@[@"itemKey",@"itemValue"]]];
 }
 
 @end

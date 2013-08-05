@@ -14,8 +14,8 @@ UITableViewDataSource,
 UITableViewDelegate
 >
 
-@property (nonatomic,retain) NSMutableArray *dataSourceForLine;
-@property (nonatomic,retain) NSMutableArray *dataSourceForStation;
-@property (nonatomic,retain) UITableView *tableView;
+@property (nonatomic,retain) NSMutableArray         *dataSourceForLine;
+@property (nonatomic,retain) NSMutableArray         *dataSourceForStation;
+@property (nonatomic,retain) UITableView            *tableView;
 
 @end

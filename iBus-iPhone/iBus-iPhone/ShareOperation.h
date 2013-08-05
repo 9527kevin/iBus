@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SNSApiOAuthConst.h"
 
 @interface ShareOperation : NSOperation
 <
