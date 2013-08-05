@@ -46,17 +46,17 @@
     self.view.backgroundColor=[UIColor whiteColor];
     
     //top tip
-    UILabel *topTipLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Toptip_StationList_Label_Origin_X, Toptip_StationList_Label_Origin_Y, Toptip_Label_Width, Toptip_Label_Height)] autorelease];
+    UILabel *topTipLbl=[[[UILabel alloc] initWithFrame:Toptip_StationList_Label_Frame] autorelease];
     topTipLbl.font=[UIFont systemFontOfSize:Toptip_Label_FontSize];
     topTipLbl.text=@"公交站点";
     [self.view addSubview:topTipLbl];
     
-    UILabel *countDownTimeLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Toptip_CountDownTime_Label_Origin_X, Toptip_CountDownTime_Label_Origin_Y, Toptip_CountDownTime_Label_Width, Toptip_Label_Height)] autorelease];
+    UILabel *countDownTimeLbl=[[[UILabel alloc] initWithFrame:Toptip_CountDownTime_Label_Frame] autorelease];
     countDownTimeLbl.font=[UIFont systemFontOfSize:Toptip_Label_FontSize];
     countDownTimeLbl.text=@"倒计时";
     [self.view addSubview:countDownTimeLbl];
     
-    UILabel *distanceLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Toptip_Distance_Label_Origin_X, Toptip_Distance_Label_Origin_Y, Toptip_Distance_Label_Width, Toptip_Label_Height)] autorelease];
+    UILabel *distanceLbl=[[[UILabel alloc] initWithFrame:Toptip_Distance_Label_Frame] autorelease];
     distanceLbl.font=[UIFont systemFontOfSize:Toptip_Label_FontSize];
     distanceLbl.text=@"剩余距离";
     [self.view addSubview:distanceLbl];
@@ -65,7 +65,7 @@
     [self initDynamicStateContainerView];
     
     //bottom tip
-    _bottomTipLbl=[[UILabel alloc] initWithFrame:CGRectMake(BottomTip_Label_Origin_X, BottomTip_Label_Origin_Y, BottomTip_Label_Width, BottomTip_Label_Height)];
+    _bottomTipLbl=[[UILabel alloc] initWithFrame:BottomTip_Label_Frame];
     self.bottomTipLbl.font=[UIFont systemFontOfSize:BottomTip_Label_FontSize];
     [self.view addSubview:self.bottomTipLbl];
     
@@ -128,7 +128,7 @@
 }
 
 - (void)initDynamicStateContainerView{
-    _containerView=[[UIView alloc] initWithFrame:CGRectMake(Dynamic_State_ContainerView_Origin_X, Dynamic_State_ContainerView_Origin_Y, Dynamic_State_ContainerView_Width, Dynamic_State_ContainerView_Height)];
+    _containerView=[[UIView alloc] initWithFrame:Dynamic_State_ContainerView_Frame];
     self.containerView.backgroundColor=ColorWithRGBA(245, 245, 245, 1);
     [self.view addSubview:self.containerView];
     
@@ -139,7 +139,10 @@
 - (void)initDynamicStationLabels{
     for (int i=0; i<Dynamic_Station_List_Count; i++) {
         //station name label
-        UILabel *stationLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Station_Label_Origin_X, Station_Label_Margin+(Station_Label_Margin+Station_Label_Height)*i, Station_Label_Width, Station_Label_Height)] autorelease];
+        UILabel *stationLbl=[[[UILabel alloc] initWithFrame:CGRectMake(Station_Label_Origin_X,
+                                                                       Station_Label_Margin+(Station_Label_Margin+Station_Label_Height)*i,
+                                                                       Station_Label_Width,
+                                                                       Station_Label_Height)] autorelease];
         stationLbl.tag=Station_Label_StartIndex + i;
         stationLbl.textAlignment=NSTextAlignmentRight;
         stationLbl.backgroundColor=[UIColor clearColor];
@@ -151,7 +154,7 @@
 }
 
 - (void)initStationDirectionArrow{
-    UIImageView *stationDirectionArrowImgView=[[[UIImageView alloc] initWithFrame:CGRectMake(Arrow_ImageView_Origin_X, Arrow_ImageView_Origin_Y, Arrow_ImageView_Width, Arrow_ImageView_Height)] autorelease];
+    UIImageView *stationDirectionArrowImgView=[[[UIImageView alloc] initWithFrame:Arrow_ImageView_Frame] autorelease];
     stationDirectionArrowImgView.image=[UIImage imageNamed:@"arrowStation.png"];
     [self.containerView addSubview:stationDirectionArrowImgView];
 }
@@ -192,10 +195,17 @@
     if (inOrOut==1) {         //set current station label's background color
         UILabel *currentStationLbl=(UILabel*)[self.containerView viewWithTag:Station_Label_StartIndex+directionStationNo];
         currentStationLbl.textColor=TipInContainerView_Label_TextColor;
+        
+        //speak
+        [GlobalInstance iFlySpeech:[NSString stringWithFormat:@"公交到站:%@",currentStationLbl.text]
+                         withAppID:IFLY_APPID];
     }
     
     //bus marker image view
-    CGRect currentStationMarkerFrame=CGRectMake(StationEntryMark_ImageView_Origin_X, StationEntryMark_ImageView_Margin+(StationEntryMark_ImageView_Margin+Station_Label_Height)*realStationNo, StationEntryMark_ImageView_Width, StationEntryMark_ImageView_Height);
+    CGRect currentStationMarkerFrame=CGRectMake(StationEntryMark_ImageView_Origin_X,
+                                                StationEntryMark_ImageView_Margin+(StationEntryMark_ImageView_Margin+Station_Label_Height)*realStationNo,
+                                                StationEntryMark_ImageView_Width,
+                                                StationEntryMark_ImageView_Height);
     
     UIImageView *stationMarkerImgView=[[[UIImageView alloc] initWithFrame:currentStationMarkerFrame] autorelease];
     stationMarkerImgView.image=[UIImage imageNamed:@"stationBusMarker.png"];
@@ -204,7 +214,10 @@
     [self.GCContainerViewArray addObject:stationMarkerImgView];     //add to gc
     
     //count down time
-    CGRect currentCountDownTimeFrame=CGRectMake(currentStationMarkerFrame.origin.x + currentStationMarkerFrame.size.width+3.0f, currentStationMarkerFrame.origin.y, Toptip_CountDownTime_Label_Width, TipInContainerView_Label_Height);
+    CGRect currentCountDownTimeFrame=CGRectMake(currentStationMarkerFrame.origin.x + currentStationMarkerFrame.size.width+3.0f,
+                                                currentStationMarkerFrame.origin.y,
+                                                Toptip_CountDownTime_Label_Width,
+                                                TipInContainerView_Label_Height);
     UILabel *countDownTimeLbl=[[[UILabel alloc] initWithFrame:currentCountDownTimeFrame] autorelease];
     [countDownTimeLbl setBackgroundColor:[UIColor clearColor]];
     countDownTimeLbl.font=[UIFont systemFontOfSize:TipInContainerView_Label_FontSize];
@@ -216,7 +229,10 @@
     [self.GCContainerViewArray addObject:countDownTimeLbl];         //add to gc
     
     //distance
-    CGRect currentDistanceFrame=CGRectMake(currentCountDownTimeFrame.origin.x+currentCountDownTimeFrame.size.width, currentStationMarkerFrame.origin.y, Toptip_CountDownTime_Label_Width, TipInContainerView_Label_Height);
+    CGRect currentDistanceFrame=CGRectMake(currentCountDownTimeFrame.origin.x+currentCountDownTimeFrame.size.width,
+                                           currentStationMarkerFrame.origin.y,
+                                           Toptip_CountDownTime_Label_Width,
+                                           TipInContainerView_Label_Height);
     UILabel *distanceLbl=[[[UILabel alloc] initWithFrame:currentDistanceFrame] autorelease];
     [distanceLbl setBackgroundColor:[UIColor clearColor]];
     distanceLbl.font=[UIFont systemFontOfSize:TipInContainerView_Label_FontSize];
@@ -230,7 +246,10 @@
 
 - (void)sendRequest4GetDynamicStateInfo{
     
-    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DestinationDistance,self.lineId,self.identifier,self.realStationNo]];
+    NSURL *requestUrl=[NSURL URLWithString:[NSString stringWithFormat:Url_DestinationDistance,
+                                                                        self.lineId,
+                                                                        self.identifier,
+                                                                        self.realStationNo]];
     __block ASIHTTPRequest *request=[ASIHTTPRequest requestWithURL:requestUrl];
 
     [request setCompletionBlock:^{

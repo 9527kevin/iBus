@@ -16,6 +16,10 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
 
 @interface StationListController ()
 
+@property (nonatomic,retain) UILabel                    *lineScheduleTipLbl;
+@property (nonatomic,retain) UILabel                    *lineScheduleLbl;
+@property (nonatomic,retain) UIView                     *topTipView;
+
 @end
 
 @implementation StationListController
@@ -24,6 +28,9 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     [_lineId release],_lineId=nil;
     [_lineName release],_lineName=nil;
     [_identifier release],_identifier=nil;
+    [_lineScheduleTipLbl release],_lineScheduleTipLbl=nil;
+    [_lineScheduleLbl release],_lineScheduleLbl=nil;
+    [_topTipView release],_topTipView=nil;
     
     [super dealloc];
 }
@@ -31,7 +38,8 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
 - (id)initWithRefreshHeaderViewEnabled:(BOOL)enableRefreshHeaderView
           andLoadMoreFooterViewEnabled:(BOOL)enableLoadMoreFooterView
                      andTableViewFrame:(CGRect)frame{
-    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
+    self=[super initWithRefreshHeaderViewEnabled:enableRefreshHeaderView
+                    andLoadMoreFooterViewEnabled:enableLoadMoreFooterView];
     if (self) {
         self.tableViewFrame=frame;
     }
@@ -43,6 +51,27 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     self.view=[[[UIView alloc] initWithFrame:Default_Frame_WithoutStatusBar] autorelease];
     self.view.backgroundColor=[UIColor whiteColor];
     
+    //top tip view
+    _topTipView=[[UIView alloc] initWithFrame:TopTip_View_Frame];
+    self.topTipView.backgroundColor=Default_TableView_BackgroundColor;
+    [self.view addSubview:self.topTipView];
+    
+    //tip label
+    _lineScheduleTipLbl=[[UILabel alloc] initWithFrame:LineScheduleTip_Label_Frame];
+    self.lineScheduleTipLbl.backgroundColor=[UIColor clearColor];
+    self.lineScheduleTipLbl.textColor=[UIColor blackColor];
+    self.lineScheduleTipLbl.textAlignment=NSTextAlignmentLeft;
+    self.lineScheduleTipLbl.font=[UIFont systemFontOfSize:LineScheduleTip_Label_FontSize];
+    self.lineScheduleTipLbl.text=@"运营时段:";
+    [self.topTipView addSubview:self.lineScheduleTipLbl];
+    
+    _lineScheduleLbl=[[UILabel alloc] initWithFrame:LineSchedule_Label_Frame];
+    self.lineScheduleLbl.backgroundColor=[UIColor clearColor];
+    self.lineScheduleLbl.textColor=[UIColor blackColor];
+    self.lineScheduleLbl.textAlignment=NSTextAlignmentRight;
+    self.lineScheduleLbl.font=[UIFont systemFontOfSize:LineSchedule_FontSize];
+    [self.topTipView addSubview:self.lineScheduleLbl];
+    
     [super loadView];
 }
 
@@ -51,8 +80,9 @@ static NSString *stationListIdentifier=@"stationListIdentifier";
     [super viewDidLoad];
     [self initNavLeftBackButton];
     [self initNavBarRightItem];
-    [self initBlocks];
     self.navigationItem.title=[NSString stringWithFormat:@"%@-站点列表",self.lineName];
+    [self initBlocks];
+    [self setStationSchedule];
     self.dataSource=[StationDao getStationListWithLineId:self.lineId
                                            andIdentifier:self.identifier];
 }
@@ -164,7 +194,23 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }
         
     //send message
-    [Default_Notification_Center postNotificationName:Notification_For_Favorited object:nil];
+    [Default_Notification_Center postNotificationName:Notification_For_Favorited
+                                               object:nil];
+}
+
+- (void)setStationSchedule{
+    NSDictionary *lineInfo=[LineDao getLineInfoWithId:self.lineId];
+    NSString *scheduleStr= [self.identifier isEqualToString:@"1"] ?
+                                                    lineInfo[@"identifier_1_schedule"] :
+                                                    lineInfo[@"identifier_2_schedule"];
+    
+    //normal
+    if (scheduleStr && ![scheduleStr isEqualToString:@"00:00"]) {
+        self.lineScheduleLbl.text=scheduleStr;
+    }else{
+        self.lineScheduleLbl.text=@"未知";
+    }
+    
 }
 
 #pragma mark - StationListCell delegate -

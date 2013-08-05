@@ -135,8 +135,10 @@
 }
 
 - (void)handleThemeChangedNotification:(NSNotification*)notification{
-    UIImage *navBarBackgroundImg=[[[ThemeManager sharedInstance] themedImageWithName:@"themeColor.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 0.0f, 1.0f, 1.0f)
-                                                                                                                       resizingMode:UIImageResizingModeTile];
+    UIImage *navBarBackgroundImg=[[[ThemeManager sharedInstance] themedImageWithName:@"themeColor.png"]
+                                  resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 0.0f, 1.0f, 1.0f)
+                                  
+                                  resizingMode:UIImageResizingModeTile];
     
     [self.navigationController.navigationBar setBackgroundImage:navBarBackgroundImg
                                                   forBarMetrics:UIBarMetricsDefault];

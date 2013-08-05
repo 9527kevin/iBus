@@ -181,6 +181,7 @@
                  @"edgeStation_2":[resultSet stringForColumn:@"edgeStation_2"],
                  @"identifier_1_favorite":[resultSet stringForColumn:@"identifier_1_favorite"],
                  @"identifier_2_favorite":[resultSet stringForColumn:@"identifier_2_favorite"],
+                 @"identifier_favorite":[resultSet stringForColumn:@"identifier_favorite"],         //mark which is favorited
                  @"identifier_1_schedule":[resultSet stringForColumn:@"identifier_1_schedule"],
                  @"identifier_2_schedule" : [resultSet stringForColumn:@"identifier_2_schedule"]
                  }];

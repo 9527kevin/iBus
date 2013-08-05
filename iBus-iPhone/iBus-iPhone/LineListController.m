@@ -140,7 +140,15 @@ static NSString *lineCellIdentifier=@"lineCellIdentifier";
     
     self.currentSelectedView=gestureRecognizer.view;
     
-    StationListController *stationListCtrller=[[[StationListController alloc] initWithRefreshHeaderViewEnabled:NO andLoadMoreFooterViewEnabled:NO andTableViewFrame:Default_TableView_Frame] autorelease];
+    
+    CGRect defaultTBFrame=Default_TableView_Frame;
+    CGRect stationListTBFrame=CGRectMake(defaultTBFrame.origin.x,
+                                         defaultTBFrame.origin.y + 30.0f,
+                                         defaultTBFrame.size.width,
+                                         defaultTBFrame.size.height - 30.0f);
+    StationListController *stationListCtrller=[[[StationListController alloc] initWithRefreshHeaderViewEnabled:NO
+                                                                                  andLoadMoreFooterViewEnabled:NO
+                                                                                             andTableViewFrame:stationListTBFrame] autorelease];
     stationListCtrller.lineId=self.currentLineInfo[@"lineId"];
     stationListCtrller.lineName=self.currentLineInfo[@"lineName"];
     

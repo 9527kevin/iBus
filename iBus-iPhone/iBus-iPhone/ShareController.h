@@ -7,8 +7,6 @@
 //
 
 #import "PublishBaseController.h"
-#import "SNSApiOAuthConst.h"
-
 
 
 @interface ShareController : PublishBaseController

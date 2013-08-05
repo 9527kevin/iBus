@@ -18,15 +18,15 @@ typedef enum {
 
 @interface StationMapInfoController ()
 
-@property (nonatomic,retain) GMSMarker      *marker;
-@property (nonatomic,retain) NSDictionary   *stationInfo;
-@property (nonatomic,retain) GMSMapView     *mapView;
+@property (nonatomic,retain) GMSMarker                  *marker;
+@property (nonatomic,retain) NSDictionary               *stationInfo;
+@property (nonatomic,retain) GMSMapView                 *mapView;
 
-@property (nonatomic,retain) UIButton       *normalTypeBtn;
-@property (nonatomic,retain) UIButton       *terrainTypeBtn;
-@property (nonatomic,retain) UIButton       *hybridTypeBtn;
+@property (nonatomic,retain) UIButton                   *normalTypeBtn;
+@property (nonatomic,retain) UIButton                   *terrainTypeBtn;
+@property (nonatomic,retain) UIButton                   *hybridTypeBtn;
 
-@property (nonatomic,assign) TAGS           currentSelectedTag;
+@property (nonatomic,assign) TAGS                       currentSelectedTag;
 
 @end
 
@@ -182,22 +182,5 @@ typedef enum {
     self.currentSelectedTag=toolBarBtn.tag;
 }
 
-//- (void)drawLineOnMap{
-//    NSMutableDictionary *stationInfo=[StationDao getStationInfoWithLineId:self.lineId
-//                                                            andIdentifier:self.identifier
-//                                                               andOrderNo:[NSNumber numberWithInt:self.stationNo]];
-//    
-//    GMSMutablePath *path = [GMSMutablePath path];
-//    if (stationInfo[@"stationLat"] && stationInfo[@"stationLog"]) {
-//        MarsGeodetic mapGeodetic=[MapHelper transformWithWGLat:[stationInfo[@"stationLat"] doubleValue] / Default_Div_Time
-//                                                      andWGLon:[stationInfo[@"stationLog"] doubleValue] / Default_Div_Time];
-//        [path addCoordinate:CLLocationCoordinate2DMake(mapGeodetic.lat,mapGeodetic.log)];
-//    }
-//    
-//    GMSPolyline *rectangle = [GMSPolyline polylineWithPath:path];
-//    [rectangle setStrokeColor:[UIColor redColor]];
-//    [rectangle setStrokeWidth:4.0f];
-//    rectangle.map = self.mapView;
-//}
 
 @end

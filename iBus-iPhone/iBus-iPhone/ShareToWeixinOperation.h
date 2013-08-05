@@ -8,7 +8,6 @@
 
 #import "ShareOperation.h"
 #import "WXApi.h"
-#import "SNSApiOAuthConst.h"
 
 @interface ShareToWeixinOperation : ShareOperation
 

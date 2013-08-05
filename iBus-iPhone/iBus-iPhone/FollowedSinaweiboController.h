@@ -8,7 +8,6 @@
 
 #import "ELTableViewController.h"
 #import "SinaWeibo.h"
-#import "SNSApiOAuthConst.h"
 
 @protocol SinaWeiboRequestDelegate;
 
